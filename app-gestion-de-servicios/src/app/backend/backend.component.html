@@ -1,0 +1,118 @@
+<div class="main-header">
+
+    <!-- LOGOUT, AND SECTION USER -->
+    <div class="sessionUser">
+        <button type="button" class="btn btn-secondary">
+        <i class="fa fa-bars fa-lg py-1 text-white"></i>
+      </button>
+
+        <button class="btn btn-sm btn-danger" (click)="logout($event)">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </button>
+
+        <span *ngIf="_userInfo" class="navbar-text">
+        <i class="fa fa-user-circle" aria-hidden="true"></i>
+        Bienvenido..<!-- Bienvenido.. {{ _userInfo.user.email }} -->
+        <!--  debe ir info de user -->
+      </span>
+    </div>
+
+
+    <div class="main-nav">
+        <ul class="navbar-nav">
+
+            <!-- HOME -->
+            <li class="nav-item">
+                <a class="nav-link" routerLink="main"><i class="fa fa-home" aria-hidden="true"></i>
+            Perfil Paciente...
+          </a>
+            </li>
+
+            <!-- LOADING MENU  -->
+            <li class="nav-item" *ngIf="_loadData">
+                <a class="nav-link">
+                    <!-- {{ 'Home.LoadingMenu' | translate }}  -->
+                    <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
+                </a>
+            </li>
+
+            <ng-container *ngIf="!_loadData && tagComponents && tagComponents.length > 0">
+                <ng-container *ngFor="let pData of tagComponents">
+                    <ng-container>
+                        <li class="nav-item dropdown">
+                            <!-- APPLY ONLY IF 1 ITEM -->
+                            <ng-container>
+                                <ng-container *ngIf="pData.componentes.length==0">
+                                    <a class="nav-link" routerLink="{{pData.routerLink}}">
+                                        <i class="{{pData.iconClass}}" aria-hidden="true"></i> {{ pData.tagName }}
+                                    </a>
+
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngIf="pData.componentes.length>0">
+
+                                <!-- TAG -->
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="{{pData.iconClass}}" aria-hidden="true"></i> {{ pData.tagName}}
+                                </a>
+                                <!-- ITEMS OF MENU -->
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <ng-container *ngFor="let item of pData.componentes">
+                                        <ng-container *ngIf="item.viewInMenu">
+                                            <a class="dropdown-item" [routerLink]="item.routerLink">{{item.name}}</a>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+
+                            </ng-container>
+                        </li>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="!_loadData && tagComponents && tagComponents.length > 0">
+                <ng-container *ngFor="let pData of tagComponents">
+                    <ng-container>
+                        <li class="nav-item dropdown">
+                            <!-- APPLY ONLY IF 1 ITEM -->
+                            <ng-container>
+                                <ng-container *ngIf="pData.componentes.length==0">
+                                    <a class="nav-link" routerLink="{{pData.routerLink}}">
+                                        <i class="{{pData.iconClass}}" aria-hidden="true"></i> {{ pData.tagName }}
+                                    </a>
+
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngIf="pData.componentes.length>0">
+
+                                <!-- TAG -->
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="{{pData.iconClass}}" aria-hidden="true"></i> {{ pData.tagName}}
+                                </a>
+                                <!-- ITEMS OF MENU -->
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <ng-container *ngFor="let item of pData.componentes">
+                                        <ng-container *ngIf="item.viewInMenu">
+                                            <a class="dropdown-item" [routerLink]="item.routerLink">{{item.name}}</a>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+
+                            </ng-container>
+                        </li>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+
+        </ul>
+    </div>
+</div>
+
+
+<router-outlet></router-outlet>
+
+<!-- USE FOR CONFIRMATION DIALOG -->
+<!-- <p-confirmDialog [baseZIndex]="10000"></p-confirmDialog>
+   -->
+<!-- GENERICS MSJ -->
+<!-- <p-toast [baseZIndex]="9999" [style]="{marginTop: '3%'}"></p-toast> -->
