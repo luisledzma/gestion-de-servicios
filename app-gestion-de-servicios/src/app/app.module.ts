@@ -15,6 +15,7 @@ import { BeforeLoginServiceService } from './service/before-login-service.servic
 import { AuthServiceService } from './service/auth-service.service';
 import { TokenServiceService } from './service/token-service.service';
 import { MessageService } from 'primeng/components/common/messageservice';
+import {PanelModule} from 'primeng/panel';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
     BrowserModule,
     routing,
     FormsModule,
-
+    PanelModule,
     HttpClientModule
 
   ],

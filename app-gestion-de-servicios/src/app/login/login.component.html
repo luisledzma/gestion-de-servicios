@@ -39,64 +39,53 @@
     </div>
   </div> -->
 <div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+      <div class="card bg-light text-dark p-4">
+        <!-- <h5 class="mb-4">{{ 'Login.AdminLogin' | translate }}</h5> -->
 
-    <div class="row">
-
-        <div class="col-md-4 offset-md-4 text-center">
-            <div class="card bg-light text-dark p-4">
-                <!-- <h5 class="mb-4">{{ 'Login.AdminLogin' | translate }}</h5> -->
-
-                <form #loginForm=ngForm (ngSubmit)="onSubmit()">
-                    <div class="alert alert-danger" [hidden]="!error">
-                        {{error}}
-                    </div>
-                    <!-- ACCOUNT USER -->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                </span>
-                        </div>
-                        <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email" [(ngModel)]="form.UserEmail" required>
-                    </div>
-
-                    <!-- PASSWORD -->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                  <i class="fa fa-lock" aria-hidden="true"></i>
-                </span>
-                        </div>
-                        <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password" [(ngModel)]="form.UsrPasw" required>
-                    </div>
-                    <div class="row">
-                        <!-- BUTTONS -->
-                        <!-- <button [disabled]="_loadingLogin" type="submit" class="btn btn-success btn-labeled form-control"> -->
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-success btn-labeled form-control" [disabled]="!loginForm.valid">
-                  <!--Sign in</button> -->
-                            <div *ngIf="!_loadingLogin">
-                                <i class="fa fa-sign-in" aria-hidden="true"></i> SingIn
-                            </div>
-                            </button>
-                        </div>
-                        <div class="col-md-6">
-                            <button type="button" class="btn btn-success btn-labeled form-control" routerLink="/signup">
-                      <!--Sign in</button> -->
-                            <div *ngIf="!_loadingLogin">
-                                <i class="fa fa-sign-in" aria-hidden="true"></i> Signup
-                            </div>
-                            </button>
-
-
-                        </div>
-                    </div>
-
-                </form>
-
-                <!-- <div *ngIf="_showError" class="alert alert-danger" role="alert">{{_errorMessage}}</div> -->
+        <h1 class="mb-4">Iniciar Sesión</h1>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+          <div class="alert alert-danger" [hidden]="!error">
+            {{ error }}
+          </div>
+          <!-- ACCOUNT USER -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i for="inputEmail3" aria-hidden="true"><label for="inputEmail3" style="margin-bottom:0rem">Usuario</label></i>
+              </span>
             </div>
-        </div>
-    </div>
+            <input type="email" name="email" class="form-control" id="inputEmail3"  placeholder="ej. 120112"
+              [(ngModel)]="form.UserEmail" required />
+          </div>
 
+          <!-- PASSWORD -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-lock" aria-hidden="true"><label for="inputPassword3" style="margin-bottom:0rem">Contraseña</label></i>
+              </span>
+            </div>
+            <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="ej. Sits@123"
+              [(ngModel)]="form.UsrPasw" required />
+          </div>
+          <div class="row">
+            <!-- BUTTONS -->
+            <!-- <button [disabled]="_loadingLogin" type="submit" class="btn btn-success btn-labeled form-control"> -->
+            <div class="col-md-6 offset-3">
+              <button type="submit" class="btn btn-success btn-labeled form-control" [disabled]="!loginForm.valid">
+                <!--Sign in</button> -->
+                <div *ngIf="!_loadingLogin">
+                  <i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar
+                </div>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- <div *ngIf="_showError" class="alert alert-danger" role="alert">{{_errorMessage}}</div> -->
+      </div>
+    </div>
+  </div>
 </div>

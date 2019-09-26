@@ -70,39 +70,6 @@
                 </ng-container>
             </ng-container>
 
-            <ng-container *ngIf="!_loadData && tagComponents && tagComponents.length > 0">
-                <ng-container *ngFor="let pData of tagComponents">
-                    <ng-container>
-                        <li class="nav-item dropdown">
-                            <!-- APPLY ONLY IF 1 ITEM -->
-                            <ng-container>
-                                <ng-container *ngIf="pData.componentes.length==0">
-                                    <a class="nav-link" routerLink="{{pData.routerLink}}">
-                                        <i class="{{pData.iconClass}}" aria-hidden="true"></i> {{ pData.tagName }}
-                                    </a>
-
-                                </ng-container>
-                            </ng-container>
-                            <ng-container *ngIf="pData.componentes.length>0">
-
-                                <!-- TAG -->
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="{{pData.iconClass}}" aria-hidden="true"></i> {{ pData.tagName}}
-                                </a>
-                                <!-- ITEMS OF MENU -->
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <ng-container *ngFor="let item of pData.componentes">
-                                        <ng-container *ngIf="item.viewInMenu">
-                                            <a class="dropdown-item" [routerLink]="item.routerLink">{{item.name}}</a>
-                                        </ng-container>
-                                    </ng-container>
-                                </div>
-
-                            </ng-container>
-                        </li>
-                    </ng-container>
-                </ng-container>
-            </ng-container>
 
         </ul>
     </div>

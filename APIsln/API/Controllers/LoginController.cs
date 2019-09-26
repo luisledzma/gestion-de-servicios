@@ -41,7 +41,7 @@ namespace API.Controllers
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
 
-            var user = _db.tbInternalUsers.Where(x => x.UserEmail == login.UserEmail && x.UsrPasw == login.UsrPasw).FirstOrDefault();
+            var user = _db.tbInternalUser.Where(x => x.UserEmail == login.UserEmail && x.UsrPasw == login.UsrPasw).FirstOrDefault();
 
            
             bool isCredentialValid = false;
