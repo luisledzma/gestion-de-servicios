@@ -1,0 +1,14 @@
+:host ::ng-deep button {
+    margin-right: .25em;
+}
+
+:host ::ng-deep .ui-message,
+:host ::ng-deep .ui-inputtext {
+    margin-right: .25em;
+}
+
+
+/* :host ::ng-deep .ui-messages,
+:host ::ng-deep .ui-messages-error {
+    background-color: #f8b7bd;
+} */

@@ -1,10 +1,61 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TEST" Class="DataServiceDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=localhost;Initial Catalog=TEST;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TESTConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.tbInternalUser" Member="tbInternalUser">
-    <Type Name="tbInternalUser">
-      <Column Name="IdUser" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="UsrPasw" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_Servicios" Class="DataServiceDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=localhost;Initial Catalog=DB_Servicios;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DB_ServiciosConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TBL_GS_USUARIO" Member="TBL_GS_USUARIO">
+    <Type Name="TBL_GS_USUARIO">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Contrasenna" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Correo_Electronico" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Function Name="dbo.SP_SEG_SeleccionarInformacionUsuario" Method="SP_SEG_SeleccionarInformacionUsuario">
+    <Parameter Name="P_Correo_Electronico" Parameter="p_Correo_Electronico" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="P_Contrasenna" Parameter="p_Contrasenna" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="SP_SEG_SeleccionarInformacionUsuarioResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Contrasenna" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Correo_Electronico" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_SeleccionarSeccionesPorRol" Method="SP_SEG_SeleccionarSeccionesPorRol">
+    <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SEG_SeleccionarSeccionesPorRolResult">
+      <Column Name="ID_Seccion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_SeleccionarMenuPorRol" Method="SP_SEG_SeleccionarMenuPorRol">
+    <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SEG_SeleccionarMenuPorRolResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

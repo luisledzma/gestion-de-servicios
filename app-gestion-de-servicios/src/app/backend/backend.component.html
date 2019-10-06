@@ -12,7 +12,7 @@
 
         <span *ngIf="_userInfo" class="navbar-text">
         <i class="fa fa-user-circle" aria-hidden="true"></i>
-        Bienvenido..<!-- Bienvenido.. {{ _userInfo.user.email }} -->
+        Bienvenido.. {{ _userInfo[0] }}<!-- Bienvenido.. {{ _userInfo.user.email }} -->
         <!--  debe ir info de user -->
       </span>
     </div>
@@ -27,6 +27,33 @@
             Perfil Paciente...
           </a>
             </li>
+
+            <ng-container *ngFor="let item of menus">
+                <ng-container>
+                    <span [ngSwitch]="item.ID">
+                    <p *ngSwitchCase="1">
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/backend/home']"><i class="fa fa-home" aria-hidden="true"></i>
+                        {{item.Descripcion}}
+                      </a>
+                        </li>
+                    </p>
+                    <p *ngSwitchCase="2">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="main"><i class="fa fa-home" aria-hidden="true"></i>
+                        dos
+                      </a>
+                        </li>
+                    </p>
+                    <p *ngSwitchDefault>
+                        
+                    </p>
+                    </span>
+                </ng-container>
+            </ng-container>
+
+
+
 
             <!-- LOADING MENU  -->
             <li class="nav-item" *ngIf="_loadData">

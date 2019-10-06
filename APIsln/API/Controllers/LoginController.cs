@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading;
 using System.Web.Http;
 using System.Linq;
-
+using System.Text;
 
 namespace API.Controllers
 {
@@ -41,7 +41,7 @@ namespace API.Controllers
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
 
-            var user = _db.tbInternalUser.Where(x => x.UserEmail == login.UserEmail && x.UsrPasw == login.UsrPasw).FirstOrDefault();
+            var user = _db.SP_SEG_SeleccionarInformacionUsuario(login.Correo_Electronico,login.Contrasenna).FirstOrDefault();
 
            
             bool isCredentialValid = false;
@@ -60,7 +60,19 @@ namespace API.Controllers
 
             if (isCredentialValid)
             {
-                var token = TokenGenerator.GenerateTokenJwt(login.UserEmail);
+                StringBuilder info = new StringBuilder();
+                info.Append(user.Correo_Electronico+";");
+                info.Append(user.Contrasenna+";");
+                info.Append(user.Usuario + ";");
+                info.Append(user.Nombre + ";");
+                info.Append(user.Telefono + ";");
+                info.Append(user.Estado + ";");
+                info.Append(user.Rol + ";");
+                info.Append(user.Usuario_Creacion + ";");
+                info.Append(user.Usuario_Modificacion + ";");
+                info.Append(user.Fecha_Creacion + ";");
+                info.Append(user.Fecha_Modificacion);
+                var token = TokenGenerator.GenerateTokenJwt(info.ToString());
                 return Ok(token);
             }
             else

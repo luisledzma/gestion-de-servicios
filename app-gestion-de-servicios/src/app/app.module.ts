@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -14,8 +14,17 @@ import { JarwisServiceService } from './service/jarwis-service.service';
 import { BeforeLoginServiceService } from './service/before-login-service.service';
 import { AuthServiceService } from './service/auth-service.service';
 import { TokenServiceService } from './service/token-service.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// --------------------------------------------------
+// --------------------PrimeNG-----------------------
 import { MessageService } from 'primeng/components/common/messageservice';
-import {PanelModule} from 'primeng/panel';
+import { PanelModule } from 'primeng/panel';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +38,11 @@ import {PanelModule} from 'primeng/panel';
     routing,
     FormsModule,
     PanelModule,
-    HttpClientModule
+    HttpClientModule,
+    MessagesModule,
+    MessageModule,
+    BrowserAnimationsModule,
+    ToastModule
 
   ],
   providers: [

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from "src/environments/environment";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ export class TokenServiceService {
   apiUrl = environment.apiURL;
   private iss = {
     login: 'http://localhost:44398'
-    //signup:this.apiUrl+'signup'
+    // signup:this.apiUrl+'signup'
   };
 
   constructor() { }
@@ -30,7 +30,6 @@ export class TokenServiceService {
 
   isValid() {
     const token = this.get();
- 
     if (token) {
       const payload = this.payload(token);
       console.log(payload);
@@ -44,7 +43,7 @@ export class TokenServiceService {
 
   payload(token) {
     const payload = token.split('.')[1];
-    console.log(payload)
+    console.log(payload);
     return this.decode(payload);
   }
 
