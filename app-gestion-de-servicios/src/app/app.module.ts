@@ -23,6 +23,7 @@ import { PanelModule } from 'primeng/panel';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
+import { MantRolComponent } from './mant-rol/mant-rol.component';
 
 
 
@@ -31,7 +32,8 @@ import { ToastModule } from 'primeng/toast';
     AppComponent,
     LoginComponent,
     HomeComponentComponent,
-    BackendComponent
+    BackendComponent,
+    MantRolComponent
   ],
   imports: [
     BrowserModule,

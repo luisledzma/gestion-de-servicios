@@ -1,0 +1,115 @@
+<div class="container pt-5 mt-5">
+    <div class="row">
+        <h1>Mantenimiento de Rol</h1>
+        <div class="col-md-12 m-1">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">
+                Agregar
+            </button>
+        </div>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let rol of roles">
+                        <tr>
+                            <th scope="row">{{ rol.ID }}</th>
+                            <td>{{ rol.Descripcion }}</td>
+                            <td *ngIf="rol.Estado === 'A'">Activo</td>
+                            <td *ngIf="rol.Estado === 'I'">Inactivo</td>
+                            <td><button (click)="onButtonEditClick(rol)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Agregar nuevo Rol</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form #rolForm="ngForm" (ngSubmit)="onSubmit()">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="descripcion">Descripcion</label>
+                                <input name="descripcion" type="text" class="form-control" id="descripcion" placeholder="ej. Cliente"
+                                    [(ngModel)]="rol.Descripcion" />
+                            </div>
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select class="form-control" id="estado" name="estado" [(ngModel)]="rol.Estado">
+                                    <option value="A">Activo</option>
+                                    <option value="I">Inactivo</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                Cerrar
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Guardar Cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Editar Rol</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form #rolEditForm="ngForm" (ngSubmit)="onSubmitEdit()">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="descripcion">Descripcion</label>
+                                <input name="descripcion" type="text" class="form-control" id="descripcion" placeholder="ej. Cliente"
+                                    [(ngModel)]="myRol.Descripcion" />
+                            </div>
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select class="form-control" id="estado" name="estado" [(ngModel)]="myRol.Estado">
+                                    <option value="A">Activo</option>
+                                    <option value="I">Inactivo</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                Cerrar
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Guardar Cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

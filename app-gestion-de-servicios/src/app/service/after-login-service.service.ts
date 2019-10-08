@@ -22,17 +22,26 @@ export class AfterLoginServiceService {
   constructor(private _http: HttpClient, private Token: TokenServiceService) { }
 
   GetPermisosPorRol(apiUrl: string, idRol: number) {
-    // let encode = btoa(f.Player + ":" + f.Token);
-    // this._options.headers.set('Authorization', 'Token ' + encode);
-
     let _apimethod = `?idRol=${idRol}`;
     return this._http.get(apiUrl + _apimethod);
   }
   GetMenusPorRol(apiUrl: string, idRol: number) {
-    // let encode = btoa(f.Player + ":" + f.Token);
-    // this._options.headers.set('Authorization', 'Token ' + encode);
-
     let _apimethod = `?idRol=${idRol}`;
     return this._http.get(apiUrl + _apimethod);
   }
+
+  GetRol(apiUrl: string) {
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
+
+
+  InsertarRol(apiUrl: string,data) {
+    return this._http.post(apiUrl , data);
+  }
+
+  EditarRol(apiUrl: string,data) {
+    return this._http.put(apiUrl , data);
+  }
+
 }

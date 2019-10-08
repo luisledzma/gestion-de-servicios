@@ -7,7 +7,7 @@
       </button>
 
         <button class="btn btn-sm btn-danger" (click)="logout($event)">
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <i class="fa fa-sign-out" aria-hidden="true"></i>Cerrar Sesión
       </button>
 
         <span *ngIf="_userInfo" class="navbar-text">
@@ -21,19 +21,14 @@
     <div class="main-nav">
         <ul class="navbar-nav">
 
-            <!-- HOME -->
-            <li class="nav-item">
-                <a class="nav-link" routerLink="main"><i class="fa fa-home" aria-hidden="true"></i>
-            Perfil Paciente...
-          </a>
-            </li>
+        
 
             <ng-container *ngFor="let item of menus">
                 <ng-container>
                     <span [ngSwitch]="item.ID">
                     <p *ngSwitchCase="1">
                         <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/backend/home']"><i class="fa fa-home" aria-hidden="true"></i>
+                            <a class="nav-link" [routerLink]="['/backend/mantRol']"><i class="fa fa-home" aria-hidden="true"></i>
                         {{item.Descripcion}}
                       </a>
                         </li>

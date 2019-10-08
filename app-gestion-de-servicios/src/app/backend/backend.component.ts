@@ -32,16 +32,17 @@ export class BackendComponent implements OnInit {
               private Auth: AuthServiceService,
               private Token: TokenServiceService, 
               private _route: ActivatedRoute,
-              private after: AfterLoginServiceService) { }
+              private after: AfterLoginServiceService) { 
+
+                const us = localStorage.getItem('User').split('.')[1];  
+                this._userExist = JSON.parse(atob(us));
+                console.log(this._userExist.unique_name.split(';'));
+                this._userInfo = this._userExist.unique_name.split(';'); 
+              }
 
   ngOnInit() {
-    const us = localStorage.getItem('User').split('.')[1];
-    this._userExist = JSON.parse(atob(us));
-    console.log(this._userExist.unique_name.split(';'));
-    // this._userNew=JSON.parse(localStorage.getItem('newUser'));
-
-    // if(this._userExist!=null){
-    this._userInfo = this._userExist.unique_name.split(';'); // JSON.parse(localStorage.getItem('PacienteUser'));
+    
+    // JSON.parse(localStorage.getItem('PacienteUser'));
     //   this.Auth.authStatus.subscribe(value => this.loggedIn = value);
     //    //console.log(this._userExist);
     //   this.getComponents();

@@ -8,6 +8,7 @@ import { HomeComponentComponent } from './home-component/home-component.componen
 import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
 import { BackendComponent } from './backend/backend.component';
+import { MantRolComponent } from './mant-rol/mant-rol.component';
 
 
 const appRoutes: Routes = [
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
   {
     path: 'backend', component: BackendComponent, children: [
       { path: 'home', component: HomeComponentComponent, canActivate: [AfterLoginServiceService] },
+      { path: 'mantRol', component: MantRolComponent, canActivate: [AfterLoginServiceService] },
     ]
   },
 
