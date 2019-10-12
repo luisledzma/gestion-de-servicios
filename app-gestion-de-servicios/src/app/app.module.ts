@@ -24,6 +24,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { MantRolComponent } from './mant-rol/mant-rol.component';
+import { MantUsuarioComponent } from './mant-usuario/mant-usuario.component';
 
 
 
@@ -33,7 +34,8 @@ import { MantRolComponent } from './mant-rol/mant-rol.component';
     LoginComponent,
     HomeComponentComponent,
     BackendComponent,
-    MantRolComponent
+    MantRolComponent,
+    MantUsuarioComponent
   ],
   imports: [
     BrowserModule,
