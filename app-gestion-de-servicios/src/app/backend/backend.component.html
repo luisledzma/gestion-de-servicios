@@ -1,6 +1,6 @@
-<div class="main-header">
+<!-- <div class="main-header">
 
-    <!-- LOGOUT, AND SECTION USER -->
+    
     <div class="sessionUser">
         <button type="button" class="btn btn-secondary">
         <i class="fa fa-bars fa-lg py-1 text-white"></i>
@@ -12,8 +12,7 @@
 
         <span *ngIf="_userInfo" class="navbar-text">
         <i class="fa fa-user-circle" aria-hidden="true"></i>
-        Bienvenido.. {{ _userInfo[0] }}<!-- Bienvenido.. {{ _userInfo.user.email }} -->
-        <!--  debe ir info de user -->
+        Bienvenido.. {{ _userInfo[0] }}
       </span>
     </div>
 
@@ -48,10 +47,10 @@
 
 
 
-            <!-- LOADING MENU  -->
+   
             <li class="nav-item" *ngIf="_loadData">
                 <a class="nav-link">
-                    <!-- {{ 'Home.LoadingMenu' | translate }}  -->
+            
                     <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
                 </a>
             </li>
@@ -60,7 +59,7 @@
                 <ng-container *ngFor="let pData of tagComponents">
                     <ng-container>
                         <li class="nav-item dropdown">
-                            <!-- APPLY ONLY IF 1 ITEM -->
+                        
                             <ng-container>
                                 <ng-container *ngIf="pData.componentes.length==0">
                                     <a class="nav-link" routerLink="{{pData.routerLink}}">
@@ -71,11 +70,11 @@
                             </ng-container>
                             <ng-container *ngIf="pData.componentes.length>0">
 
-                                <!-- TAG -->
+                              
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="{{pData.iconClass}}" aria-hidden="true"></i> {{ pData.tagName}}
                                 </a>
-                                <!-- ITEMS OF MENU -->
+                        
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <ng-container *ngFor="let item of pData.componentes">
                                         <ng-container *ngIf="item.viewInMenu">
@@ -93,10 +92,100 @@
 
         </ul>
     </div>
+</div> -->
+<!-- ---------------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------------- -->
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Bootstrap Sidebar</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <ng-container *ngFor="let item of menus">
+                <ng-container>
+                    <span [ngSwitch]="item.ID">
+                            <p *ngSwitchCase="1">
+                                <li>
+                                    <a [routerLink]="['/backend/mantRol']"><i class="fa fa-home" aria-hidden="true"></i>
+                                {{item.Descripcion}}
+                              </a>
+                            </li>
+                            </p>
+                            <p *ngSwitchCase="2">
+                                <li>
+                                    <a class="nav-link" [routerLink]="['/backend/mantUsuario']"><i class="fa fa-home" aria-hidden="true"></i>
+                                {{item.Descripcion}}
+                              </a>
+                                </li>
+                            </p>
+                            <p *ngSwitchDefault>
+                                
+                            </p>
+                            </span>
+                </ng-container>
+            </ng-container>
+            <li class="active">
+                <a href="#homeSubmenu">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#">Home 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-briefcase"></i> Mantenimiento de Rol
+                </a>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-copy"></i> Pages
+                </a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#">Page 1 fsdfsdfsdfsdfsdfsdfsd</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 3</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div>
+
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+
+            </div>
+
+        </nav>
+        <router-outlet></router-outlet>
+    </div>
 </div>
 
 
-<router-outlet></router-outlet>
+
+
 
 <!-- USE FOR CONFIRMATION DIALOG -->
 <!-- <p-confirmDialog [baseZIndex]="10000"></p-confirmDialog>
