@@ -1,187 +1,60 @@
-<!-- <div class="main-header">
 
-    
-    <div class="sessionUser">
-        <button type="button" class="btn btn-secondary">
-        <i class="fa fa-bars fa-lg py-1 text-white"></i>
-      </button>
-
-        <button class="btn btn-sm btn-danger" (click)="logout($event)">
-        <i class="fa fa-sign-out" aria-hidden="true"></i>Cerrar Sesión
-      </button>
-
-        <span *ngIf="_userInfo" class="navbar-text">
-        <i class="fa fa-user-circle" aria-hidden="true"></i>
-        Bienvenido.. {{ _userInfo[0] }}
-      </span>
-    </div>
-
-
-    <div class="main-nav">
-        <ul class="navbar-nav">
-
+  <div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
+        <header class="bmd-layout-header ">
+          <div class="navbar navbar-light bg-light">
+            <button class="navbar-toggler btn-light" type="button" data-toggle="drawer" data-target="#dw-s2">
+              <span class="sr-only">Toggle drawer</span>
+              <i class="material-icons">menu</i>
+            </button>
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <button class="btn btn-sm btn-raised btn-danger" (click)="logout($event)">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>Cerrar Sesión
+                            </button>
+                    </li>
+            </ul>
+          </div>
+        </header>
+        <div id="dw-s2" class="bmd-layout-drawer bg-faded">
+          <header>
+            <a *ngIf="_userInfo" class="navbar-brand navbar-text">
+                {{ _userInfo[0] }}
+            </a>
+          </header>
+          <ul class="list-group">
             <ng-container *ngFor="let item of menus">
-                <ng-container>
-                    <span [ngSwitch]="item.ID">
-                    <p *ngSwitchCase="1">
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/backend/mantRol']"><i class="fa fa-home" aria-hidden="true"></i>
-                        {{item.Descripcion}}
-                      </a>
-                        </li>
-                    </p>
-                    <p *ngSwitchCase="2">
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/backend/mantUsuario']"><i class="fa fa-home" aria-hidden="true"></i>
-                        {{item.Descripcion}}
-                      </a>
-                        </li>
-                    </p>
-                    <p *ngSwitchDefault>
-                        
-                    </p>
-                    </span>
-                </ng-container>
-            </ng-container>
-
-
-
-
-   
-            <li class="nav-item" *ngIf="_loadData">
-                <a class="nav-link">
-            
-                    <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
-                </a>
-            </li>
-
-            <ng-container *ngIf="!_loadData && tagComponents && tagComponents.length > 0">
-                <ng-container *ngFor="let pData of tagComponents">
                     <ng-container>
-                        <li class="nav-item dropdown">
-                        
-                            <ng-container>
-                                <ng-container *ngIf="pData.componentes.length==0">
-                                    <a class="nav-link" routerLink="{{pData.routerLink}}">
-                                        <i class="{{pData.iconClass}}" aria-hidden="true"></i> {{ pData.tagName }}
-                                    </a>
-
-                                </ng-container>
-                            </ng-container>
-                            <ng-container *ngIf="pData.componentes.length>0">
-
-                              
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="{{pData.iconClass}}" aria-hidden="true"></i> {{ pData.tagName}}
-                                </a>
-                        
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <ng-container *ngFor="let item of pData.componentes">
-                                        <ng-container *ngIf="item.viewInMenu">
-                                            <a class="dropdown-item" [routerLink]="item.routerLink">{{item.name}}</a>
-                                        </ng-container>
-                                    </ng-container>
-                                </div>
-
-                            </ng-container>
-                        </li>
+                        <span [ngSwitch]="item.ID">
+                        <p *ngSwitchCase="1">
+                           
+                                <a class="list-group-item btn" [routerLink]="['/backend/mantRol']">
+                            {{item.Descripcion}}
+                          </a>
+                            
+                        </p>
+                        <p *ngSwitchCase="2">
+                            
+                                <a class="list-group-item btn" [routerLink]="['/backend/mantUsuario']">
+                            {{item.Descripcion}}
+                          </a>
+                        </p>
+                        <p *ngSwitchDefault>
+                            
+                        </p>
+                        </span>
                     </ng-container>
                 </ng-container>
-            </ng-container>
+          </ul>
 
-
-        </ul>
-    </div>
-</div> -->
-<!-- ---------------------------------------------------------------------- -->
-<!-- ---------------------------------------------------------------------- -->
-<div class="wrapper">
-    <!-- Sidebar  -->
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>Bootstrap Sidebar</h3>
+          
         </div>
-
-        <ul class="list-unstyled components">
-            <ng-container *ngFor="let item of menus">
-                <ng-container>
-                    <span [ngSwitch]="item.ID">
-                            <p *ngSwitchCase="1">
-                                <li>
-                                    <a [routerLink]="['/backend/mantRol']"><i class="fa fa-home" aria-hidden="true"></i>
-                                {{item.Descripcion}}
-                              </a>
-                            </li>
-                            </p>
-                            <p *ngSwitchCase="2">
-                                <li>
-                                    <a class="nav-link" [routerLink]="['/backend/mantUsuario']"><i class="fa fa-home" aria-hidden="true"></i>
-                                {{item.Descripcion}}
-                              </a>
-                                </li>
-                            </p>
-                            <p *ngSwitchDefault>
-                                
-                            </p>
-                            </span>
-                </ng-container>
-            </ng-container>
-            <li class="active">
-                <a href="#homeSubmenu">
-                    <i class="fas fa-home"></i> Home
-                </a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="#">Home 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 3</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-briefcase"></i> Mantenimiento de Rol
-                </a>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                    <i class="fas fa-copy"></i> Pages
-                </a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="#">Page 1 fsdfsdfsdfsdfsdfsdfsd</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 3</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-
-    </nav>
-
-    <!-- Page Content  -->
-    <div class="col-md-12 p-0">
-
-        <nav class="navbar navbar-light bg-light">
-            <div class="container">
-
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-align-left"></i>
-                    <span>Toggle Sidebar</span>
-                </button>
-
-            </div>
-
-        </nav>
-        <router-outlet></router-outlet>
-    </div>
-</div>
+        <main class="container">
+            <router-outlet></router-outlet> 
+        </main>
+        <footer>
+            <p style="font-size: 11px;color: #999;text-align: center; margin-top: 25px;">V1.1.1</p>
+        </footer>
+      </div>
 
 
 
