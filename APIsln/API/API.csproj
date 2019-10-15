@@ -186,6 +186,7 @@
     </Compile>
     <Compile Include="LogicaNegocio\PermisoL.cs" />
     <Compile Include="LogicaNegocio\RolL.cs" />
+    <Compile Include="LogicaNegocio\UsuarioL.cs" />
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebserviceData\DataService.designer.cs">

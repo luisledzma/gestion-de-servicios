@@ -16,8 +16,8 @@ namespace API.Controllers
         public int Rol { get; set; }
         public string Usuario_Creacion { get; set; }
         public string Usuario_Modificacion { get; set; }
-        public DateTime Fecha_Creacion { get; set; }
-        public DateTime Fecha_Modificacion { get; set; }
+        public DateTime? Fecha_Creacion { get; set; }
+        public DateTime? Fecha_Modificacion { get; set; }
 
     }
 

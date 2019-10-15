@@ -127,4 +127,6 @@ export class BackendComponent implements OnInit {
     this._router.navigateByUrl('/login');
     localStorage.clear();
   }
+
+
 }

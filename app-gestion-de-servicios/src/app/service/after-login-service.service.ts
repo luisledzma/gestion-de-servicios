@@ -35,6 +35,11 @@ export class AfterLoginServiceService {
     return this._http.get(apiUrl + _apimethod);
   }
 
+  GetRolPorId(apiUrl: string, idRol:number) {
+    let _apimethod = `?idRol=${idRol}`;
+    return this._http.get(apiUrl + _apimethod);
+  }
+
 
   InsertarRol(apiUrl: string,data) {
     return this._http.post(apiUrl , data);
@@ -42,6 +47,11 @@ export class AfterLoginServiceService {
 
   EditarRol(apiUrl: string,data) {
     return this._http.put(apiUrl , data);
+  }
+
+  GetUsuarios(apiUrl: string) {
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
   }
 
 }

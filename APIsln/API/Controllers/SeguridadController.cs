@@ -14,6 +14,7 @@ namespace API.Controllers
     {
 
         RolL rolL = new RolL();
+        UsuarioL usrL = new UsuarioL();
 
         [HttpGet]
         [Route("GetRol")]
@@ -22,7 +23,14 @@ namespace API.Controllers
             return rolL.GetRol();
         }
 
-        
+        [HttpGet]
+        [Route("GetRolPorId")]
+        public Rol GetRolPorId(int idRol)
+        {
+            return rolL.GetRolPorId(idRol);
+        }
+
+
 
         [HttpPost]
         [Route("InsertarRol")]
@@ -57,6 +65,14 @@ namespace API.Controllers
             return BadRequest();
 
         }
+
+
+        [Route("GetUsuarios")]
+        public List<LoginRequest> GetUsuarios()
+        {
+            return usrL.GetUsuarios();
+        }
+
 
 
     }

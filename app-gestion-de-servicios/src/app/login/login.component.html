@@ -1,96 +1,58 @@
-<!-- <div class="mt-4 col-8 offset-2">
-    <div class="card">
-      <div class="card-header">Login Here</div>
-      <div class="card-body">
-        <form #loginForm=ngForm (ngSubmit)="onSubmit()">
 
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+      <div class="card bg-light text-dark p-4">
+      
+        <h1 class="mb-4">Iniciar Sesión</h1>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
           <div class="alert alert-danger" [hidden]="!error">
-            {{error}}
+            {{ error }}
           </div>
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-              <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email" [(ngModel)]="form.email" required>
+      
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="material-icons">person</i><label for="inputEmail3" style="margin-bottom:0rem">Usuario: </label>
+              </span>
+              
+            </div>
+            <div class="w-100">
+                <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="ej. 120112"
+                [(ngModel)]="usuario.Correo_Electronico" required />
+            </div>
+            
+          </div>
+
+          <div class="input-group mb-3 ">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                  <i class="material-icons">vpn_key</i><label for="inputPassword3" style="margin-bottom:0rem">Contraseña: </label>
+              </span>
+            </div>
+            <div class="w-100">
+                <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="ej. Sits@123"
+              [(ngModel)]="usuario.Contrasenna" required />
+            </div>
+            
+          </div>
+
+          <p-messages [(value)]="message"></p-messages>
+
+          <ng-container> </ng-container>
+
+          <div class="row">
+            <div class="col-md-6 offset-3">
+              <button type="submit" class="btn btn-raised btn-success btn-labeled form-control" [disabled]="!loginForm.valid">
+                <div *ngIf="!_loadingLogin">
+                  <i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar
+                </div>
+              </button>
             </div>
           </div>
-
-          <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-              <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password" [(ngModel)]="form.password"
-                required>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-sm-10 offset-2">
-
-              <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Sign in</button>
-
-              <a routerLink="/signup" class="btn btn-info float-right">Sign Up</a>
-
-            </div>
-          </div>
-          <small class=float-right>
-            <a routerLink="/request-password-reset">Reset Password</a>
-          </small>
         </form>
+
       </div>
     </div>
-  </div> -->
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-4 offset-md-4 text-center">
-            <div class="card bg-light text-dark p-4">
-                <!-- <h5 class="mb-4">{{ 'Login.AdminLogin' | translate }}</h5> -->
-
-                <h1 class="mb-4">Iniciar Sesión</h1>
-                <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
-                    <div class="alert alert-danger" [hidden]="!error">
-                        {{ error }}
-                    </div>
-                    <!-- ACCOUNT USER -->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                <i for="inputEmail3" aria-hidden="true"><label for="inputEmail3" style="margin-bottom:0rem">Usuario</label></i>
-              </span>
-                        </div>
-                        <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="ej. 120112" [(ngModel)]="usuario.Correo_Electronico" required />
-                    </div>
-
-                    <!-- PASSWORD -->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                <i class="fa fa-lock" aria-hidden="true"><label for="inputPassword3" style="margin-bottom:0rem">Contraseña</label></i>
-              </span>
-                        </div>
-                        <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="ej. Sits@123" [(ngModel)]="usuario.Contrasenna" required />
-                    </div>
-
-                    <p-messages [(value)]="message"></p-messages>
-
-                    <ng-container>
-
-                    </ng-container>
-
-                    <div class="row">
-                        <!-- BUTTONS -->
-                        <!-- <button [disabled]="_loadingLogin" type="submit" class="btn btn-success btn-labeled form-control"> -->
-                        <div class="col-md-6 offset-3">
-                            <button type="submit" class="btn btn-success btn-labeled form-control" [disabled]="!loginForm.valid">
-                <!--Sign in</button> -->
-                            <div *ngIf="!_loadingLogin">
-                                <i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar
-                            </div>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-                <!-- <div *ngIf="_showError" class="alert alert-danger" role="alert">{{_errorMessage}}</div> -->
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
