@@ -121,6 +121,20 @@ namespace API.WebserviceData
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<SP_SEG_Seleccionar_UsuariosResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEG_InsertarUsuario")]
+		public int SP_SEG_InsertarUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario", DbType="VarChar(50)")] string p_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Contrasenna", DbType="VarChar(MAX)")] string p_Contrasenna, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Nombre", DbType="VarChar(50)")] string p_Nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Correo", DbType="VarChar(250)")] string p_Correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Telefono", DbType="VarChar(10)")] string p_Telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Rol", DbType="Int")] System.Nullable<int> p_Rol, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_UsuarioCreacion", DbType="VarChar(50)")] string p_UsuarioCreacion, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string p_UsuarioModificacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Usuario, p_Contrasenna, p_Nombre, p_Correo, p_Telefono, p_Estado, p_Rol, p_UsuarioCreacion, p_UsuarioModificacion);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEG_EditarUsuario")]
+		public int SP_SEG_EditarUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID", DbType="Int")] System.Nullable<int> p_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario", DbType="VarChar(50)")] string p_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Contrasenna", DbType="VarChar(MAX)")] string p_Contrasenna, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Nombre", DbType="VarChar(50)")] string p_Nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Correo", DbType="VarChar(250)")] string p_Correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Telefono", DbType="VarChar(10)")] string p_Telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Rol", DbType="Int")] System.Nullable<int> p_Rol, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string p_UsuarioModificacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID, p_Usuario, p_Contrasenna, p_Nombre, p_Correo, p_Telefono, p_Estado, p_Rol, p_UsuarioModificacion);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_GS_USUARIO")]
