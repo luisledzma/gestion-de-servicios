@@ -1,0 +1,112 @@
+<div class="container pt-5">
+    <div class="row ">
+        <h1>Mantenimiento de Clientes</h1>
+        <div class="col-md-12 m-1">
+            <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
+                Agregar
+            </button>
+        </div>
+        <div class="col-md-12 table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Costo Hora</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Cliente 1</td>
+                            <td>25$</td>
+                            <td>Activo</td>
+                            <td><button  type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">Editar informacion de Cliente</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form >
+                            <div class="modal-body">
+        
+                                <div class="form-group">
+                                    <label for="descripcion">Descripcion</label>
+                                    <input name="descripcion" type="text" class="form-control" id="descripcion" placeholder="ej. Cliente"  />
+                                </div>
+                                <div class="form-group">
+                                    <label for="estado">Estado</label>
+                                    <select class="form-control" id="estado" name="estado">
+                                        <option value="A">Activo</option>
+                                        <option value="I">Inactivo</option>
+                                    </select>
+                                </div>
+        
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                    Cerrar
+                                </button>
+                                <button type="submit" class="btn btn-raised btn-success m-1">
+                                    Guardar Cambios
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-title">Agregar informacion de cliente</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form >
+                                <div class="modal-body">
+        
+                                    <div class="form-group">
+                                        <label for="descripcion">Descripcion</label>
+                                        <input name="descripcion" type="text" class="form-control" id="descripcion" placeholder="ej. Cliente" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="estado">Estado</label>
+                                        <select class="form-control" id="estado" name="estado">
+                                            <option value="A">Activo</option>
+                                            <option value="I">Inactivo</option>
+                                        </select>
+                                    </div>
+        
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                        Cerrar
+                                    </button>
+                                    <button type="submit" class="btn btn-raised btn-success m-1">
+                                        Guardar Cambios
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+       
+    </div>
+</div>
+

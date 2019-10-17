@@ -10,6 +10,11 @@ import { AppComponent } from './app.component';
 import { BackendComponent } from './backend/backend.component';
 import { MantRolComponent } from './mant-rol/mant-rol.component';
 import { MantUsuarioComponent } from './mant-usuario/mant-usuario.component';
+import { ContratosComponent } from './contratos/contratos.component';
+import { MantTareasEstandarComponent } from './mant-tareas-estandar/mant-tareas-estandar.component';
+import { ParametrosSistemaComponent } from './parametros-sistema/parametros-sistema.component';
+import { PermisosSistemaComponent } from './permisos-sistema/permisos-sistema.component';
+import { ProyectosComponent } from './proyectos/proyectos.component';
 
 
 const appRoutes: Routes = [
@@ -36,6 +41,11 @@ const appRoutes: Routes = [
       { path: 'home', component: HomeComponentComponent, canActivate: [AfterLoginServiceService] },
       { path: 'mantRol', component: MantRolComponent, canActivate: [AfterLoginServiceService] },
       { path: 'mantUsuario', component: MantUsuarioComponent, canActivate: [AfterLoginServiceService] },
+      { path: 'contratos', component: ContratosComponent, canActivate: [AfterLoginServiceService] },
+      { path: 'tareasEstandar', component: MantTareasEstandarComponent, canActivate: [AfterLoginServiceService] },
+      { path: 'parametrosSistema', component: ParametrosSistemaComponent, canActivate: [AfterLoginServiceService] },
+      { path: 'permisosSistema', component: PermisosSistemaComponent, canActivate: [AfterLoginServiceService] },
+      { path: 'proyectos', component: ProyectosComponent, canActivate: [AfterLoginServiceService] },
     ]
   },
 

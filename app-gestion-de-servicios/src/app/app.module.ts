@@ -25,6 +25,12 @@ import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { MantRolComponent } from './mant-rol/mant-rol.component';
 import { MantUsuarioComponent } from './mant-usuario/mant-usuario.component';
+import { PermisosSistemaComponent } from './permisos-sistema/permisos-sistema.component';
+import { ParametrosSistemaComponent } from './parametros-sistema/parametros-sistema.component';
+import { MantTareasEstandarComponent } from './mant-tareas-estandar/mant-tareas-estandar.component';
+import { ProyectosComponent } from './proyectos/proyectos.component';
+import { ContratosComponent } from './contratos/contratos.component';
+import { MantClientesComponent } from './mant-clientes/mant-clientes.component';
 
 
 
@@ -35,7 +41,13 @@ import { MantUsuarioComponent } from './mant-usuario/mant-usuario.component';
     HomeComponentComponent,
     BackendComponent,
     MantRolComponent,
-    MantUsuarioComponent
+    MantUsuarioComponent,
+    PermisosSistemaComponent,
+    ParametrosSistemaComponent,
+    MantTareasEstandarComponent,
+    ProyectosComponent,
+    ContratosComponent,
+    MantClientesComponent
   ],
   imports: [
     BrowserModule,
