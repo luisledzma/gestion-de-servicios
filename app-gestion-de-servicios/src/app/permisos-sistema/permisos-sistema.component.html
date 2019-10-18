@@ -1,23 +1,25 @@
 <div class="container pt-5">
-    <div class="row ">
-        <h1>Permisos del Sistema</h1>
-        <div class="col-md-12 m-1">
-            <div class="col-md-3">
-                <label for="roles">Rol</label>
-                <select class="custom-select" id="roles">
-                    <option>Administrador</option>
-                    <option>RRHH</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="menus">Menú</label>
-                <select class="custom-select" id="menus">
-                    <option>Mantenimiento de Usuarios</option>
-                    <option>Mantenimiento de Roles</option>
-                </select>
-            </div>
+    <h1>Permisos del Sistema</h1>
+    <div class="row m-1">
+
+
+        <div class="col-md-3 offset-3">
+            <label for="roles">Rol</label>
+            <select class="custom-select" id="roles">
+                <option>Administrador</option>
+                <option>RRHH</option>
+            </select>
         </div>
-        <div class="col-md-12 table-responsive">
+        <div class="col-md-3">
+            <label for="menus">Menú</label>
+            <select class="custom-select" id="menus">
+                <option>Mantenimiento de Usuarios</option>
+                <option>Mantenimiento de Roles</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-8 offset-2 table-responsive">
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>
@@ -42,4 +44,5 @@
             </table>
         </div>
     </div>
+
 </div>
