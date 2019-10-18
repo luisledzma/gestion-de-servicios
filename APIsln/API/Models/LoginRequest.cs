@@ -7,6 +7,7 @@ namespace API.Controllers
 {
     public class LoginRequest
     {
+        public int ID { get; set; }
         public string Usuario { get; set; }
         public string Contrasenna { get; set; }
         public string Nombre { get; set; }

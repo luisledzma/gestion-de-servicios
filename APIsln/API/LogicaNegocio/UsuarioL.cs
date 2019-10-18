@@ -21,6 +21,7 @@ namespace API.LogicaNegocio
 
                               select new LoginRequest()
                               {
+                                  ID = c.ID,
                                   Usuario = c.Usuario,
                                   Correo_Electronico = c.Correo_Electronico,
                                   Nombre = c.Nombre,
@@ -45,6 +46,31 @@ namespace API.LogicaNegocio
             }
             return new List<LoginRequest>();
         }
-
+        public bool InsertarUsuario(LoginRequest usuario)
+        {
+            try
+            {
+                _db.SP_SEG_InsertarUsuario(usuario.Usuario, usuario.Contrasenna, usuario.Nombre, usuario.Correo_Electronico, usuario.Telefono, usuario.Estado, usuario.Rol, usuario.Usuario_Creacion, usuario.Usuario_Modificacion);
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+                return false;
+            }
+        }
+        public bool EditarUsuario(LoginRequest usuario)
+        {
+            try
+            {
+                _db.SP_SEG_EditarUsuario(usuario.ID, usuario.Usuario, usuario.Contrasenna, usuario.Nombre,usuario.Correo_Electronico,usuario.Telefono,usuario.Estado,usuario.Rol,usuario.Usuario_Modificacion);
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+                return false;
+            }
+        }
     }
 }

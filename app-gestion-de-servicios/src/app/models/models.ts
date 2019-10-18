@@ -3,6 +3,7 @@ import { NumericDictionary } from 'lodash';
 // import { IndividualComponents, AccessPaymentMethodDto, ProfilesDto, PermissionDto } from "./permissionsModels"
 
 export class Usuario {
+    ID: number;
     Usuario: string;
     Contrasenna: string;
     Nombre: string;

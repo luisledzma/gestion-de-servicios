@@ -98,4 +98,28 @@
       <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_SEG_InsertarUsuario" Method="SP_SEG_InsertarUsuario">
+    <Parameter Name="P_Usuario" Parameter="p_Usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Contrasenna" Parameter="p_Contrasenna" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="P_Nombre" Parameter="p_Nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Correo" Parameter="p_Correo" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="P_Telefono" Parameter="p_Telefono" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_UsuarioCreacion" Parameter="p_UsuarioCreacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="p_UsuarioModificacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SEG_EditarUsuario" Method="SP_SEG_EditarUsuario">
+    <Parameter Name="P_ID" Parameter="p_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Usuario" Parameter="p_Usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Contrasenna" Parameter="p_Contrasenna" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="P_Nombre" Parameter="p_Nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Correo" Parameter="p_Correo" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="P_Telefono" Parameter="p_Telefono" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
+    <Parameter Name="p_UsuarioModificacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

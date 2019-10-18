@@ -66,14 +66,46 @@ namespace API.Controllers
 
         }
 
-
+        [HttpGet]
         [Route("GetUsuarios")]
         public List<LoginRequest> GetUsuarios()
         {
             return usrL.GetUsuarios();
         }
 
+        [HttpPost]
+        [Route("InsertarUsuario")]
+        public IHttpActionResult InsertarUsuario([FromBody]LoginRequest usuario)
+        {
+            if (usuario == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
 
+            if (usrL.InsertarUsuario(usuario))
+            {
+                return Ok();
+            }
+            return BadRequest();
+
+        }
+        [HttpPut]
+        [Route("EditarUsuario")]
+        public IHttpActionResult EditarUsuario([FromBody]LoginRequest usuario)
+        {
+            if (usuario == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (usrL.EditarUsuario(usuario))
+            {
+                return Ok();
+            }
+            return BadRequest();
+
+        }
+        
 
     }
 }
