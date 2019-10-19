@@ -15,6 +15,7 @@ namespace API.Controllers
 
         RolL rolL = new RolL();
         UsuarioL usrL = new UsuarioL();
+        PermisoL perL = new PermisoL();
 
         [HttpGet]
         [Route("GetRol")]
@@ -105,7 +106,34 @@ namespace API.Controllers
             return BadRequest();
 
         }
-        
+        [HttpGet]
+        [Route("GetMenus")]
+        public List<Menu> GetMenus()
+        {
+            return perL.GetMenus();
+        }
 
+        [HttpGet]
+        [Route("GetPermisosPorRolyMenu")]
+        public SettingPermisoDto GetPermisosPorRolyMenu(int idRol, int idMenu)
+        {
+            return perL.GetPermisosPorRolyMenu(idRol, idMenu);
+        }
+        [HttpPut]
+        [Route("UpdatePermisosLists")]
+        public IHttpActionResult UpdatePermisosLists([FromBody]SettingPermisoDto permisos)
+        {
+            if (permisos == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (perL.UpdatePermisosLists(permisos))
+            {
+                return Ok();
+            }
+            return BadRequest();
+
+        }
     }
 }

@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 
 // import { Observable } from 'rxjs/Observable'
 import { TokenServiceService } from './token-service.service';
-import { Permiso, Usuario } from '../models/models';
+import { Permiso, Usuario, SettingPermisoDto } from '../models/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -31,6 +31,11 @@ export class AfterLoginServiceService {
   }
 
   GetRol(apiUrl: string) {
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
+
+  GetMenus(apiUrl: string){
     let _apimethod = ``;
     return this._http.get(apiUrl + _apimethod);
   }
@@ -59,5 +64,12 @@ export class AfterLoginServiceService {
   EditarUsuario(apiUrl: string,data:Usuario) {
     return this._http.put(apiUrl , data);
   }
-
+  GetPermisosPorRolyMenu(apiUrl: string, idRol: number, idMenu: number){
+    let _apimethod = `?idRol=${idRol}&idMenu=${idMenu}`;
+    return this._http.get(apiUrl+_apimethod);
+  }
+  UpdatePermisosLists(apiUrl: string, setting: SettingPermisoDto){
+    let _apimethod = ``;
+    return this._http.put(apiUrl+_apimethod, setting);
+  }
 }
