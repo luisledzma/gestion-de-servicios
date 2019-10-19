@@ -46,18 +46,6 @@
       <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_SEG_SeleccionarMenuPorRol" Method="SP_SEG_SeleccionarMenuPorRol">
-    <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_SEG_SeleccionarMenuPorRolResult">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
-      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.SP_SEG_SeleccionarRol" Method="SP_SEG_SeleccionarRol">
     <ElementType Name="SP_SEG_SeleccionarRolResult">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -121,5 +109,17 @@
     <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
     <Parameter Name="p_UsuarioModificacion" Type="System.String" DbType="VarChar(50)" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SEG_SeleccionarMenuPorRol" Method="SP_SEG_SeleccionarMenuPorRol">
+    <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SEG_SeleccionarMenuPorRolResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
   </Function>
 </Database>
