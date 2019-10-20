@@ -15,14 +15,6 @@ import { BeforeLoginServiceService } from './service/before-login-service.servic
 import { AuthServiceService } from './service/auth-service.service';
 import { TokenServiceService } from './service/token-service.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-// --------------------------------------------------
-// --------------------PrimeNG-----------------------
-import { MessageService } from 'primeng/components/common/messageservice';
-import { PanelModule } from 'primeng/panel';
-import { MessagesModule } from 'primeng/messages';
-import { MessageModule } from 'primeng/message';
-import { ToastModule } from 'primeng/toast';
 import { MantRolComponent } from './mant-rol/mant-rol.component';
 import { MantUsuarioComponent } from './mant-usuario/mant-usuario.component';
 import { PermisosSistemaComponent } from './permisos-sistema/permisos-sistema.component';
@@ -32,6 +24,15 @@ import { ProyectosComponent } from './proyectos/proyectos.component';
 import { ContratosComponent } from './contratos/contratos.component';
 import { MantClientesComponent } from './mant-clientes/mant-clientes.component';
 
+// --------------------------------------------------
+// --------------------PrimeNG-----------------------
+import { MessageService } from 'primeng/components/common/messageservice';
+import { PanelModule } from 'primeng/panel';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
+import { DropdownModule } from 'primeng/dropdown';
+import { PickListModule } from 'primeng/picklist';
 
 
 @NgModule({
@@ -58,8 +59,9 @@ import { MantClientesComponent } from './mant-clientes/mant-clientes.component';
     MessagesModule,
     MessageModule,
     BrowserAnimationsModule,
-    ToastModule
-
+    ToastModule,
+    DropdownModule,
+    PickListModule
   ],
   providers: [
     AfterLoginServiceService,

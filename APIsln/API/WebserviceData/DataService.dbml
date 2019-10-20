@@ -46,18 +46,6 @@
       <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_SEG_SeleccionarMenuPorRol" Method="SP_SEG_SeleccionarMenuPorRol">
-    <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_SEG_SeleccionarMenuPorRolResult">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
-      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.SP_SEG_SeleccionarRol" Method="SP_SEG_SeleccionarRol">
     <ElementType Name="SP_SEG_SeleccionarRolResult">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -120,6 +108,53 @@
     <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
     <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
     <Parameter Name="p_UsuarioModificacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SEG_SeleccionarMenuPorRol" Method="SP_SEG_SeleccionarMenuPorRol">
+    <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SEG_SeleccionarMenuPorRolResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_Seleccionar_Menus" Method="SP_SEG_Seleccionar_Menus">
+    <ElementType Name="SP_SEG_Seleccionar_MenusResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_Seleccionar_Permiso_Por_Rol_Y_Menu" Method="SP_SEG_Seleccionar_Permiso_Por_Rol_Y_Menu">
+    <Parameter Name="P_IdMenu" Parameter="p_IdMenu" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_IdRol" Parameter="p_IdRol" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <ElementType Name="SP_SEG_Seleccionar_Permiso_Por_Rol_Y_MenuResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Seccion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Menu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_Actualizar_Lista_Permisos" Method="SP_SEG_Actualizar_Lista_Permisos">
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_ID" Parameter="p_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Usuario_Modificacion" Parameter="p_Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Fecha_Modificacion" Parameter="p_Fecha_Modificacion" Type="System.DateTime" DbType="Date" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

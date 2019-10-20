@@ -42,16 +42,6 @@ namespace API.Controllers
         public DateTime Fecha_Creacion { get; set; }
         public DateTime Fecha_Modificacion { get; set; }
     }
-    public class Permiso
-    {
-        public int ID_Seccion { get; set; }
-        public int ID_Rol { get; set; }
-        public char Estado { get; set; }
-        public string Usuario_Creacion { get; set; }
-        public string Usuario_Modificacion { get; set; }
-        public DateTime? Fecha_Creacion { get; set; }
-        public DateTime? Fecha_Modificacion { get; set; }
-    }
     public class Menu
     {
         public int ID { get; set; }
@@ -61,5 +51,23 @@ namespace API.Controllers
         public string Usuario_Modificacion { get; set; }
         public DateTime? Fecha_Creacion { get; set; }
         public DateTime? Fecha_Modificacion { get; set; }
+    }
+    public class Permiso
+    {
+        public int ID { get; set; }
+        public int ID_Seccion { get; set; }
+        public int ID_Rol { get; set; }
+        public int ID_Menu { get; set; }
+        public string Descripcion_Seccion { get; set; }
+        public char Estado { get; set; }
+        public string Usuario_Creacion { get; set; }
+        public string Usuario_Modificacion { get; set; }
+        public DateTime? Fecha_Creacion { get; set; }
+        public DateTime? Fecha_Modificacion { get; set; }
+    }
+    public class SettingPermisoDto
+    {
+        public List<Permiso> Source { get; set; }
+        public List<Permiso> Target { get; set; }
     }
 }

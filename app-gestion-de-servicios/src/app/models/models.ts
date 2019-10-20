@@ -34,12 +34,28 @@ export class Seccion {
     Fecha_Creacion: Date;
     Fecha_Modificacion: Date;
 }
-export class Permiso {
-    ID_Seccion: number;
-    ID_Rol: number;
+export class Menu {
+    ID: number;
+    Descripcion: string;
     Estado: string;
     Usuario_Creacion: string;
     Usuario_Modificacion: string;
     Fecha_Creacion: Date;
     Fecha_Modificacion: Date;
+}
+export class Permiso {
+    ID: number;
+    ID_Seccion: number;
+    ID_Rol: number;
+    ID_Menu: number;
+    Descripcion_Seccion: string;
+    Estado: string;
+    Usuario_Creacion: string;
+    Usuario_Modificacion: string;
+    Fecha_Creacion: Date;
+    Fecha_Modificacion: Date;
+}
+export class SettingPermisoDto {
+    Source: Permiso[];
+    Target: Permiso[];
 }

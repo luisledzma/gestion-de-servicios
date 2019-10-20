@@ -87,13 +87,6 @@ namespace API.WebserviceData
 			return ((ISingleResult<SP_SEG_SeleccionarSeccionesPorRolResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEG_SeleccionarMenuPorRol")]
-		public ISingleResult<SP_SEG_SeleccionarMenuPorRolResult> SP_SEG_SeleccionarMenuPorRol([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Rol", DbType="Int")] System.Nullable<int> p_Rol)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Rol);
-			return ((ISingleResult<SP_SEG_SeleccionarMenuPorRolResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEG_SeleccionarRol")]
 		public ISingleResult<SP_SEG_SeleccionarRolResult> SP_SEG_SeleccionarRol()
 		{
@@ -133,6 +126,34 @@ namespace API.WebserviceData
 		public int SP_SEG_EditarUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID", DbType="Int")] System.Nullable<int> p_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario", DbType="VarChar(50)")] string p_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Contrasenna", DbType="VarChar(MAX)")] string p_Contrasenna, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Nombre", DbType="VarChar(50)")] string p_Nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Correo", DbType="VarChar(250)")] string p_Correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Telefono", DbType="VarChar(10)")] string p_Telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Rol", DbType="Int")] System.Nullable<int> p_Rol, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string p_UsuarioModificacion)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID, p_Usuario, p_Contrasenna, p_Nombre, p_Correo, p_Telefono, p_Estado, p_Rol, p_UsuarioModificacion);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEG_SeleccionarMenuPorRol")]
+		public ISingleResult<SP_SEG_SeleccionarMenuPorRolResult> SP_SEG_SeleccionarMenuPorRol([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Rol", DbType="Int")] System.Nullable<int> p_Rol)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Rol);
+			return ((ISingleResult<SP_SEG_SeleccionarMenuPorRolResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEG_Seleccionar_Menus")]
+		public ISingleResult<SP_SEG_Seleccionar_MenusResult> SP_SEG_Seleccionar_Menus()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_SEG_Seleccionar_MenusResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEG_Seleccionar_Permiso_Por_Rol_Y_Menu")]
+		public ISingleResult<SP_SEG_Seleccionar_Permiso_Por_Rol_Y_MenuResult> SP_SEG_Seleccionar_Permiso_Por_Rol_Y_Menu([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_IdMenu", DbType="Int")] System.Nullable<int> p_IdMenu, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_IdRol", DbType="Int")] System.Nullable<int> p_IdRol, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_IdMenu, p_IdRol, p_Estado);
+			return ((ISingleResult<SP_SEG_Seleccionar_Permiso_Por_Rol_Y_MenuResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEG_Actualizar_Lista_Permisos")]
+		public int SP_SEG_Actualizar_Lista_Permisos([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID", DbType="Int")] System.Nullable<int> p_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Modificacion", DbType="VarChar(50)")] string p_Usuario_Modificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Fecha_Modificacion", DbType="Date")] System.Nullable<System.DateTime> p_Fecha_Modificacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Estado, p_ID, p_Usuario_Modificacion, p_Fecha_Modificacion);
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -821,140 +842,6 @@ namespace API.WebserviceData
 		}
 	}
 	
-	public partial class SP_SEG_SeleccionarMenuPorRolResult
-	{
-		
-		private int _ID;
-		
-		private string _Descripcion;
-		
-		private char _Estado;
-		
-		private string _Usuario_Creacion;
-		
-		private string _Usuario_Modificacion;
-		
-		private System.Nullable<System.DateTime> _Fecha_Creacion;
-		
-		private System.Nullable<System.DateTime> _Fecha_Modificacion;
-		
-		public SP_SEG_SeleccionarMenuPorRolResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Descripcion
-		{
-			get
-			{
-				return this._Descripcion;
-			}
-			set
-			{
-				if ((this._Descripcion != value))
-				{
-					this._Descripcion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Char(1) NOT NULL")]
-		public char Estado
-		{
-			get
-			{
-				return this._Estado;
-			}
-			set
-			{
-				if ((this._Estado != value))
-				{
-					this._Estado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Creacion", DbType="VarChar(50)")]
-		public string Usuario_Creacion
-		{
-			get
-			{
-				return this._Usuario_Creacion;
-			}
-			set
-			{
-				if ((this._Usuario_Creacion != value))
-				{
-					this._Usuario_Creacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Modificacion", DbType="VarChar(50)")]
-		public string Usuario_Modificacion
-		{
-			get
-			{
-				return this._Usuario_Modificacion;
-			}
-			set
-			{
-				if ((this._Usuario_Modificacion != value))
-				{
-					this._Usuario_Modificacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Creacion", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha_Creacion
-		{
-			get
-			{
-				return this._Fecha_Creacion;
-			}
-			set
-			{
-				if ((this._Fecha_Creacion != value))
-				{
-					this._Fecha_Creacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Modificacion", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha_Modificacion
-		{
-			get
-			{
-				return this._Fecha_Modificacion;
-			}
-			set
-			{
-				if ((this._Fecha_Modificacion != value))
-				{
-					this._Fecha_Modificacion = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_SEG_SeleccionarRolResult
 	{
 		
@@ -1244,6 +1131,462 @@ namespace API.WebserviceData
 				if ((this._Rol != value))
 				{
 					this._Rol = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Creacion", DbType="VarChar(50)")]
+		public string Usuario_Creacion
+		{
+			get
+			{
+				return this._Usuario_Creacion;
+			}
+			set
+			{
+				if ((this._Usuario_Creacion != value))
+				{
+					this._Usuario_Creacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Modificacion", DbType="VarChar(50)")]
+		public string Usuario_Modificacion
+		{
+			get
+			{
+				return this._Usuario_Modificacion;
+			}
+			set
+			{
+				if ((this._Usuario_Modificacion != value))
+				{
+					this._Usuario_Modificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Creacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Creacion
+		{
+			get
+			{
+				return this._Fecha_Creacion;
+			}
+			set
+			{
+				if ((this._Fecha_Creacion != value))
+				{
+					this._Fecha_Creacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Modificacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Modificacion
+		{
+			get
+			{
+				return this._Fecha_Modificacion;
+			}
+			set
+			{
+				if ((this._Fecha_Modificacion != value))
+				{
+					this._Fecha_Modificacion = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SEG_SeleccionarMenuPorRolResult
+	{
+		
+		private int _ID;
+		
+		private string _Descripcion;
+		
+		private char _Estado;
+		
+		private string _Usuario_Creacion;
+		
+		private string _Usuario_Modificacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Creacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Modificacion;
+		
+		public SP_SEG_SeleccionarMenuPorRolResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Char(1) NOT NULL")]
+		public char Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Creacion", DbType="VarChar(50)")]
+		public string Usuario_Creacion
+		{
+			get
+			{
+				return this._Usuario_Creacion;
+			}
+			set
+			{
+				if ((this._Usuario_Creacion != value))
+				{
+					this._Usuario_Creacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Modificacion", DbType="VarChar(50)")]
+		public string Usuario_Modificacion
+		{
+			get
+			{
+				return this._Usuario_Modificacion;
+			}
+			set
+			{
+				if ((this._Usuario_Modificacion != value))
+				{
+					this._Usuario_Modificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Creacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Creacion
+		{
+			get
+			{
+				return this._Fecha_Creacion;
+			}
+			set
+			{
+				if ((this._Fecha_Creacion != value))
+				{
+					this._Fecha_Creacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Modificacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Modificacion
+		{
+			get
+			{
+				return this._Fecha_Modificacion;
+			}
+			set
+			{
+				if ((this._Fecha_Modificacion != value))
+				{
+					this._Fecha_Modificacion = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SEG_Seleccionar_MenusResult
+	{
+		
+		private int _ID;
+		
+		private string _Descripcion;
+		
+		private char _Estado;
+		
+		private string _Usuario_Creacion;
+		
+		private string _Usuario_Modificacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Creacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Modificacion;
+		
+		public SP_SEG_Seleccionar_MenusResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Char(1) NOT NULL")]
+		public char Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Creacion", DbType="VarChar(50)")]
+		public string Usuario_Creacion
+		{
+			get
+			{
+				return this._Usuario_Creacion;
+			}
+			set
+			{
+				if ((this._Usuario_Creacion != value))
+				{
+					this._Usuario_Creacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Modificacion", DbType="VarChar(50)")]
+		public string Usuario_Modificacion
+		{
+			get
+			{
+				return this._Usuario_Modificacion;
+			}
+			set
+			{
+				if ((this._Usuario_Modificacion != value))
+				{
+					this._Usuario_Modificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Creacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Creacion
+		{
+			get
+			{
+				return this._Fecha_Creacion;
+			}
+			set
+			{
+				if ((this._Fecha_Creacion != value))
+				{
+					this._Fecha_Creacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Modificacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Modificacion
+		{
+			get
+			{
+				return this._Fecha_Modificacion;
+			}
+			set
+			{
+				if ((this._Fecha_Modificacion != value))
+				{
+					this._Fecha_Modificacion = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SEG_Seleccionar_Permiso_Por_Rol_Y_MenuResult
+	{
+		
+		private int _ID;
+		
+		private string _Descripcion;
+		
+		private int _ID_Seccion;
+		
+		private int _ID_Rol;
+		
+		private int _ID_Menu;
+		
+		private char _Estado;
+		
+		private string _Usuario_Creacion;
+		
+		private string _Usuario_Modificacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Creacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Modificacion;
+		
+		public SP_SEG_Seleccionar_Permiso_Por_Rol_Y_MenuResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Seccion", DbType="Int NOT NULL")]
+		public int ID_Seccion
+		{
+			get
+			{
+				return this._ID_Seccion;
+			}
+			set
+			{
+				if ((this._ID_Seccion != value))
+				{
+					this._ID_Seccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Rol", DbType="Int NOT NULL")]
+		public int ID_Rol
+		{
+			get
+			{
+				return this._ID_Rol;
+			}
+			set
+			{
+				if ((this._ID_Rol != value))
+				{
+					this._ID_Rol = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Menu", DbType="Int NOT NULL")]
+		public int ID_Menu
+		{
+			get
+			{
+				return this._ID_Menu;
+			}
+			set
+			{
+				if ((this._ID_Menu != value))
+				{
+					this._ID_Menu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Char(1) NOT NULL")]
+		public char Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
 				}
 			}
 		}
