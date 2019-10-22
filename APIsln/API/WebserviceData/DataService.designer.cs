@@ -156,6 +156,13 @@ namespace API.WebserviceData
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Estado, p_ID, p_Usuario_Modificacion, p_Fecha_Modificacion);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEG_Seleccionar_Permiso_Por_Rol")]
+		public ISingleResult<SP_SEG_Seleccionar_Permiso_Por_RolResult> SP_SEG_Seleccionar_Permiso_Por_Rol([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ROL", DbType="Int")] System.Nullable<int> p_ROL)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ROL);
+			return ((ISingleResult<SP_SEG_Seleccionar_Permiso_Por_RolResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_GS_USUARIO")]
@@ -1651,6 +1658,122 @@ namespace API.WebserviceData
 				if ((this._Fecha_Modificacion != value))
 				{
 					this._Fecha_Modificacion = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SEG_Seleccionar_Permiso_Por_RolResult
+	{
+		
+		private int _ID;
+		
+		private string _Descripcion;
+		
+		private int _ID_Menu;
+		
+		private int _ID_Seccion;
+		
+		private int _ID_Rol;
+		
+		private char _Estado;
+		
+		public SP_SEG_Seleccionar_Permiso_Por_RolResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Menu", DbType="Int NOT NULL")]
+		public int ID_Menu
+		{
+			get
+			{
+				return this._ID_Menu;
+			}
+			set
+			{
+				if ((this._ID_Menu != value))
+				{
+					this._ID_Menu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Seccion", DbType="Int NOT NULL")]
+		public int ID_Seccion
+		{
+			get
+			{
+				return this._ID_Seccion;
+			}
+			set
+			{
+				if ((this._ID_Seccion != value))
+				{
+					this._ID_Seccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Rol", DbType="Int NOT NULL")]
+		public int ID_Rol
+		{
+			get
+			{
+				return this._ID_Rol;
+			}
+			set
+			{
+				if ((this._ID_Rol != value))
+				{
+					this._ID_Rol = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Char(1) NOT NULL")]
+		public char Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
 				}
 			}
 		}

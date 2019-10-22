@@ -32,9 +32,9 @@ export class TokenServiceService {
     const token = this.get();
     if (token) {
       const payload = this.payload(token);
-      console.log(payload);
+      //console.log(payload);
       if (payload) {
-        console.log(this.iss);
+        //console.log(this.iss);
         return Object.values(this.iss).indexOf(payload.iss) > -1 ? true : false;
       }
     }
@@ -43,7 +43,7 @@ export class TokenServiceService {
 
   payload(token) {
     const payload = token.split('.')[1];
-    console.log(payload);
+    //console.log(payload);
     return this.decode(payload);
   }
 

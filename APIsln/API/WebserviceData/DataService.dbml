@@ -157,4 +157,15 @@
     <Parameter Name="P_Fecha_Modificacion" Parameter="p_Fecha_Modificacion" Type="System.DateTime" DbType="Date" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.SP_SEG_Seleccionar_Permiso_Por_Rol" Method="SP_SEG_Seleccionar_Permiso_Por_Rol">
+    <Parameter Name="P_ROL" Parameter="p_ROL" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SEG_Seleccionar_Permiso_Por_RolResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Menu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Seccion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

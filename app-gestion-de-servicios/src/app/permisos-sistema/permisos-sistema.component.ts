@@ -3,7 +3,9 @@ import { environment } from 'src/environments/environment';
 import { AfterLoginServiceService } from '../service/after-login-service.service';
 import { Usuario, Rol, SettingPermisoDto, Menu } from '../models/models';
 import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
-import { MenuItem } from 'primeng/api'
+import { MenuItem } from 'primeng/api';
+import {Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -23,7 +25,7 @@ export class PermisosSistemaComponent implements OnInit {
   settingPermiso: any ;
 
 
-  constructor(private after: AfterLoginServiceService) { 
+  constructor(private after: AfterLoginServiceService,public _router:Router,public _location:Location) { 
     const us = localStorage.getItem('User').split('.')[1];  
     this._userExist = JSON.parse(atob(us));
     this._userInfo = this._userExist.unique_name.split(';'); 
@@ -52,6 +54,7 @@ export class PermisosSistemaComponent implements OnInit {
       this.menu = data ? data[0] : null;
     });
   }
+  
   SetCampos(){
     let listaMenu: Menu = {
       ID: 1,
@@ -78,7 +81,7 @@ export class PermisosSistemaComponent implements OnInit {
     let url = this.apiUrl + 'Seguridad/GetPermisosPorRolyMenu'
     this.after.GetPermisosPorRolyMenu(url,this.rol.ID,this.menu.ID).subscribe(data => {
       this.settingPermiso = data;
-      console.log(data);
+      //console.log(data);
     });
   }
   UpdatePermisosLists(){
@@ -91,7 +94,18 @@ export class PermisosSistemaComponent implements OnInit {
     let url = this.apiUrl + 'Seguridad/UpdatePermisosLists';
     this.after.UpdatePermisosLists(url,this.settingPermiso).subscribe(data => {
       this.GetPermisosPorRolyMenu();
-      console.log(data);
+      //console.log(data);
     });
+
+    this.refresh();
+    
   }
+
+
+  refresh(): void{
+    this._router.navigateByUrl("/backend",{skipLocationChange:true}).then(()=>{
+      this._router.navigate([decodeURI(this._location.path())])
+    })
+  }
+
 }

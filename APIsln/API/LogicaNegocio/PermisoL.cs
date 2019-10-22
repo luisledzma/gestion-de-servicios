@@ -16,17 +16,15 @@ namespace API.LogicaNegocio
             try
             {
 
-                var result = (from c in _db.SP_SEG_SeleccionarSeccionesPorRol(idRol)
+                var result = (from c in _db.SP_SEG_Seleccionar_Permiso_Por_Rol(idRol)
 
                               select new Permiso()
                               {
+                                  ID = c.ID,
+                                  Descripcion_Seccion = c.Descripcion,
                                   ID_Seccion = c.ID_Seccion,
                                   ID_Rol = c.ID_Rol,
-                                  Estado = c.Estado,
-                                  Usuario_Creacion = c.Usuario_Creacion,
-                                  Usuario_Modificacion = c.Usuario_Modificacion,
-                                  Fecha_Creacion = c.Fecha_Creacion,
-                                  Fecha_Modificacion = c.Fecha_Modificacion
+                                  Estado = c.Estado
 
                               }).ToList();
 
@@ -98,7 +96,7 @@ namespace API.LogicaNegocio
             }
             return new List<Menu>();
         }
-        public SettingPermisoDto GetPermisosPorRolyMenu(int idMenu, int idRol)
+        public SettingPermisoDto GetPermisosPorRolyMenu(int idRol, int idMenu)
         {
             SettingPermisoDto result = new SettingPermisoDto();
             try

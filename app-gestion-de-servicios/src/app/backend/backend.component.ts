@@ -36,7 +36,7 @@ export class BackendComponent implements OnInit {
 
                 const us = localStorage.getItem('User').split('.')[1];  
                 this._userExist = JSON.parse(atob(us));
-                console.log(this._userExist.unique_name.split(';'));
+                //console.log(this._userExist.unique_name.split(';'));
                 this._userInfo = this._userExist.unique_name.split(';'); 
               }
 
@@ -60,7 +60,7 @@ export class BackendComponent implements OnInit {
 
     // localStorage.setItem('UserLogin', JSON.stringify(this._userInfo));
     
-    console.log(this.apiUrl);
+    //console.log(this.apiUrl);
     this.GetPermisosPorRol(this._userInfo[6]);
     this.GetMenusPorRol(this._userInfo[6]);
   }
@@ -76,7 +76,7 @@ export class BackendComponent implements OnInit {
     this.after.GetPermisosPorRol(url, rol).subscribe(data => {
       
       this.permisos = data;
-      console.log(this.permisos);
+      //console.log(this.permisos);
     });
 
   }
@@ -91,7 +91,7 @@ export class BackendComponent implements OnInit {
     this.after.GetMenusPorRol(url, rol).subscribe(data => {
       
       this.menus = data;
-      console.log(this.permisos);
+      //console.log(this.permisos);
     });
 
   }
