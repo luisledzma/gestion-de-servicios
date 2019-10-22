@@ -70,4 +70,14 @@ namespace API.Controllers
         public List<Permiso> Source { get; set; }
         public List<Permiso> Target { get; set; }
     }
+    public class TareasEstandar
+    {
+        public int ID { get; set; }
+        public string Descripcion { get; set; }
+        public char Estado { get; set; }
+        public string Usuario_Creacion { get; set; }
+        public string Usuario_Modificacion { get; set; }
+        public DateTime? Fecha_Creacion { get; set; }
+        public DateTime? Fecha_Modificacion { get; set; }
+    }
 }

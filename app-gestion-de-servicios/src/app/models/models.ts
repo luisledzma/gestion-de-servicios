@@ -59,3 +59,13 @@ export class SettingPermisoDto {
     Source: Permiso[];
     Target: Permiso[];
 }
+export class TareasEstandar
+{
+    ID: number;
+    Descripcion: string;
+    Estado: string;
+    Usuario_Creacion: string;
+    Usuario_Modificacion: string;
+    Fecha_Creacion: Date;
+    Fecha_Modificacion: Date;
+}
