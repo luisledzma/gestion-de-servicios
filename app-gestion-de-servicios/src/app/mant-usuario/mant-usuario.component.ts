@@ -20,11 +20,17 @@ export class MantUsuarioComponent implements OnInit {
   usuario: Usuario = new Usuario();
   _userExist: any;
   _userInfo: any;
+  myMenu: any;
+  menus: any;
+  permisos: any;
+  misPermisos: any;
+  page: string = "Mantenimiento de Usuario";
 
   constructor(private after: AfterLoginServiceService) {
     const us = localStorage.getItem('User').split('.')[1];  
     this._userExist = JSON.parse(atob(us));
     this._userInfo = this._userExist.unique_name.split(';'); 
+    this.setPermisos();
   }
 
   ngOnInit() {
@@ -36,7 +42,6 @@ export class MantUsuarioComponent implements OnInit {
     let url = this.apiUrl + 'Seguridad/InsertarUsuario';
     this.usuario.Usuario_Creacion = this._userInfo[0];
     this.after.InsertarUsuario(url,this.usuario).subscribe(data => {
-      //console.log(data)
       this.GetUsuarios();
     })
   }
@@ -73,7 +78,6 @@ export class MantUsuarioComponent implements OnInit {
     });
   }
   onSubmit(){
-    console.log(this.usuario.Rol);
     this.InsertarUsuario();
   }
   onSubmitEdit(){
@@ -84,10 +88,28 @@ export class MantUsuarioComponent implements OnInit {
     this.myUsr.Usuario_Modificacion = this._userInfo[0];
     let url = this.apiUrl + 'Seguridad/EditarUsuario';
     this.after.EditarRol(url,this.myUsr).subscribe(data => {
-      console.log(data)
       this.GetRol();
-    })
-    console.log(this.myUsr);
+    });
+  }
+
+  setPermisos() {
+    this.GetMenus();
+  }
+
+  GetMenus() {
+    let url = this.apiUrl + 'Seguridad/GetMenus';
+    this.after.GetMenus(url).subscribe(data => {
+      this.menus = data;
+      this.myMenu = this.menus.filter((m) => {
+        if (m.Descripcion === this.page) {
+          let url2 = this.apiUrl + 'Seguridad/GetPermisosPorRolyMenu'
+          this.after.GetPermisosPorRolyMenu(url2, this._userInfo[6], m.ID).subscribe(data => {
+            this.permisos = data;
+            this.misPermisos = this.permisos.Target;
+          });
+        }
+      });
+    });
   }
 
 }

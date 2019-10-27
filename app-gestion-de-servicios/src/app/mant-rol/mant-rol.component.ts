@@ -36,7 +36,6 @@ export class MantRolComponent implements OnInit {
 
   ngOnInit() {
     this.GetRol();
-    //this.GetPermisosPorRolyMenu();
   }
 
 
@@ -51,8 +50,6 @@ export class MantRolComponent implements OnInit {
 
   setPermisos() {
     this.GetMenus();
-    //this.GetPermisosPorRolyMenu();
-    // this.setMyMenu();
   }
 
   GetMenus() {
@@ -67,15 +64,10 @@ export class MantRolComponent implements OnInit {
             this.misPermisos = this.permisos.Target;
           });
         }
-
       });
     });
   }
 
-
-  GetPermisosPorRolyMenu() {
-
-  }
 
   InsertarRol() {
     let url = this.apiUrl + 'Seguridad/InsertarRol';
