@@ -122,13 +122,6 @@ namespace API.WebserviceData
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEG_EditarUsuario")]
-		public int SP_SEG_EditarUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID", DbType="Int")] System.Nullable<int> p_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario", DbType="VarChar(50)")] string p_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Contrasenna", DbType="VarChar(MAX)")] string p_Contrasenna, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Nombre", DbType="VarChar(50)")] string p_Nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Correo", DbType="VarChar(250)")] string p_Correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Telefono", DbType="VarChar(10)")] string p_Telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Rol", DbType="Int")] System.Nullable<int> p_Rol, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string p_UsuarioModificacion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID, p_Usuario, p_Contrasenna, p_Nombre, p_Correo, p_Telefono, p_Estado, p_Rol, p_UsuarioModificacion);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEG_SeleccionarMenuPorRol")]
 		public ISingleResult<SP_SEG_SeleccionarMenuPorRolResult> SP_SEG_SeleccionarMenuPorRol([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Rol", DbType="Int")] System.Nullable<int> p_Rol)
 		{
@@ -162,6 +155,34 @@ namespace API.WebserviceData
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ROL);
 			return ((ISingleResult<SP_SEG_Seleccionar_Permiso_Por_RolResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Tareas_Estandar")]
+		public ISingleResult<SP_ADM_Seleccionar_Tareas_EstandarResult> SP_ADM_Seleccionar_Tareas_Estandar()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_ADM_Seleccionar_Tareas_EstandarResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Insertar_Tarea_Estandar")]
+		public int SP_ADM_Insertar_Tarea_Estandar([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Descripcion", DbType="VarChar(50)")] string p_Descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario", DbType="VarChar(50)")] string p_Usuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Descripcion, p_Estado, p_Usuario);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Editar_Tarea_Estandar")]
+		public int SP_ADM_Editar_Tarea_Estandar([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID", DbType="Int")] System.Nullable<int> p_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Descripcion", DbType="VarChar(50)")] string p_Descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario", DbType="VarChar(50)")] string p_Usuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID, p_Descripcion, p_Estado, p_Usuario);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEG_EditarUsuario")]
+		public int SP_SEG_EditarUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID", DbType="Int")] System.Nullable<int> p_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario", DbType="VarChar(50)")] string p_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Contrasenna", DbType="VarChar(MAX)")] string p_Contrasenna, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Nombre", DbType="VarChar(50)")] string p_Nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Correo", DbType="VarChar(250)")] string p_Correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Telefono", DbType="VarChar(10)")] string p_Telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Rol", DbType="Int")] System.Nullable<int> p_Rol, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string p_UsuarioModificacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID, p_Usuario, p_Contrasenna, p_Nombre, p_Correo, p_Telefono, p_Estado, p_Rol, p_UsuarioModificacion);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -1774,6 +1795,140 @@ namespace API.WebserviceData
 				if ((this._Estado != value))
 				{
 					this._Estado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_ADM_Seleccionar_Tareas_EstandarResult
+	{
+		
+		private int _ID;
+		
+		private string _Descripcion;
+		
+		private char _Estado;
+		
+		private string _Usuario_Creacion;
+		
+		private string _Usuario_Modificacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Creacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Modificacion;
+		
+		public SP_ADM_Seleccionar_Tareas_EstandarResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Char(1) NOT NULL")]
+		public char Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Creacion", DbType="VarChar(50)")]
+		public string Usuario_Creacion
+		{
+			get
+			{
+				return this._Usuario_Creacion;
+			}
+			set
+			{
+				if ((this._Usuario_Creacion != value))
+				{
+					this._Usuario_Creacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Modificacion", DbType="VarChar(50)")]
+		public string Usuario_Modificacion
+		{
+			get
+			{
+				return this._Usuario_Modificacion;
+			}
+			set
+			{
+				if ((this._Usuario_Modificacion != value))
+				{
+					this._Usuario_Modificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Creacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Creacion
+		{
+			get
+			{
+				return this._Fecha_Creacion;
+			}
+			set
+			{
+				if ((this._Fecha_Creacion != value))
+				{
+					this._Fecha_Creacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Modificacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Modificacion
+		{
+			get
+			{
+				return this._Fecha_Modificacion;
+			}
+			set
+			{
+				if ((this._Fecha_Modificacion != value))
+				{
+					this._Fecha_Modificacion = value;
 				}
 			}
 		}

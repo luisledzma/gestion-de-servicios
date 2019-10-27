@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 
 // import { Observable } from 'rxjs/Observable'
 import { TokenServiceService } from './token-service.service';
-import { Permiso, Usuario, SettingPermisoDto } from '../models/models';
+import { Permiso, Usuario, SettingPermisoDto, TareasEstandar } from '../models/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -71,5 +71,18 @@ export class AfterLoginServiceService {
   UpdatePermisosLists(apiUrl: string, setting: SettingPermisoDto){
     let _apimethod = ``;
     return this._http.put(apiUrl+_apimethod, setting);
+  }
+  
+  // --------------------------------
+  // Mantenimiento de Tareas Estandar
+  GetTareasEstandar(apiUrl: string){
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
+  InsertarTareaEstandar(apiUrl: string,data:TareasEstandar) {
+    return this._http.post(apiUrl , data);
+  }
+  EditarTareaEstandar(apiUrl: string,data:TareasEstandar) {
+    return this._http.put(apiUrl , data);
   }
 }
