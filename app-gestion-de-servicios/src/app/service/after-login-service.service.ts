@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 
 // import { Observable } from 'rxjs/Observable'
 import { TokenServiceService } from './token-service.service';
-import { Permiso, Usuario, SettingPermisoDto, TareasEstandar } from '../models/models';
+import { Permiso, Usuario, SettingPermisoDto, TareasEstandar, Reporte } from '../models/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -73,7 +73,7 @@ export class AfterLoginServiceService {
     return this._http.put(apiUrl+_apimethod, setting);
   }
   
-  // --------------------------------
+  // ---------------------------------
   // Mantenimiento de Tareas Estandar
   GetTareasEstandar(apiUrl: string){
     let _apimethod = ``;
@@ -84,5 +84,26 @@ export class AfterLoginServiceService {
   }
   EditarTareaEstandar(apiUrl: string,data:TareasEstandar) {
     return this._http.put(apiUrl , data);
+  }
+
+  // ---------------------------------
+  // ----Mantenimiento de Clientes----
+  GetClientes(apiUrl: string){
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
+
+  // ---------------------------------
+  // Mantenimiento de Reportes
+  GetTipoReportes(apiUrl: string){
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
+  GetReportes(apiUrl: string){
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
+  InsertarReporte(apiUrl: string,data:Reporte) {
+    return this._http.post(apiUrl , data);
   }
 }

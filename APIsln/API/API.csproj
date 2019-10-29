@@ -185,7 +185,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LogicaNegocio\ClienteL.cs" />
     <Compile Include="LogicaNegocio\PermisoL.cs" />
+    <Compile Include="LogicaNegocio\ReporteL.cs" />
     <Compile Include="LogicaNegocio\RolL.cs" />
     <Compile Include="LogicaNegocio\TareasL.cs" />
     <Compile Include="LogicaNegocio\UsuarioL.cs" />

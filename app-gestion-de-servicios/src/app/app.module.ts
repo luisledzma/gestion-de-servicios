@@ -23,6 +23,7 @@ import { MantTareasEstandarComponent } from './mant-tareas-estandar/mant-tareas-
 import { ProyectosComponent } from './proyectos/proyectos.component';
 import { ContratosComponent } from './contratos/contratos.component';
 import { MantClientesComponent } from './mant-clientes/mant-clientes.component';
+import { MantFormularioComponent } from './mant-formulario/mant-formulario.component';
 
 // --------------------------------------------------
 // --------------------PrimeNG-----------------------
@@ -33,6 +34,10 @@ import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 import { PickListModule } from 'primeng/picklist';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
 
 
 @NgModule({
@@ -48,7 +53,8 @@ import { PickListModule } from 'primeng/picklist';
     MantTareasEstandarComponent,
     ProyectosComponent,
     ContratosComponent,
-    MantClientesComponent
+    MantClientesComponent,
+    MantFormularioComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +67,10 @@ import { PickListModule } from 'primeng/picklist';
     BrowserAnimationsModule,
     ToastModule,
     DropdownModule,
-    PickListModule
+    PickListModule,
+    CalendarModule,
+    InputTextModule,
+    InputTextareaModule
   ],
   providers: [
     AfterLoginServiceService,

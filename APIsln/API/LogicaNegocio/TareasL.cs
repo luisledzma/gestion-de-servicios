@@ -43,7 +43,11 @@ namespace API.LogicaNegocio
         {
             try
             {
-                _db.SP_ADM_Insertar_Tarea_Estandar(tarea.Descripcion, tarea.Estado, tarea.Usuario_Creacion);
+                var result = _db.SP_ADM_Insertar_Tarea_Estandar(tarea.Descripcion, tarea.Estado, tarea.Usuario_Creacion);
+                if (result < 0)
+                {
+                    return false;
+                }
                 return true;
             }
             catch (Exception ex)

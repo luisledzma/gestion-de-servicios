@@ -69,3 +69,45 @@ export class TareasEstandar
     Fecha_Creacion: Date;
     Fecha_Modificacion: Date;
 }
+export class ClienteC
+{
+    ID: number;
+    Cliente: string;
+    Costo_Hora: number;
+    Estado: string;
+    Usuario_Creacion: string;
+    Usuario_Modificacion: string;
+    Fecha_Creacion: Date;
+    Fecha_Modificacion: Date;
+}
+export class TipoReporte
+{
+    ID: number;
+    Descripcion: string;
+    Estado: string;
+    Usuario_Creacion: string;
+    Usuario_Modificacion: string;
+    Fecha_Creacion: Date;
+    Fecha_Modificacion: Date;
+}
+export class Reporte
+{
+    ID : number
+    ID_Cliente : number
+    Cliente : string 
+    ID_Tipo_Reporte : number
+    Descripcion_Tipo_Reporte : string
+    Hora_Inicio : string;
+    Hora_Final : string;
+    Total_Horas : number;
+    Horas_A_Facturar : number;
+    ID_Tareas_Estandar : number;
+    Tareas_Estandar : string;
+    Descripcion : string;
+    Observaciones : string;
+    Estado : string;
+    Usuario_Creacion : string;
+    Usuario_Modificacion : string;
+    Fecha_Creacion : Date;
+    Fecha_Modificacion : Date;
+}

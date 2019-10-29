@@ -15,6 +15,7 @@ import { MantTareasEstandarComponent } from './mant-tareas-estandar/mant-tareas-
 import { ParametrosSistemaComponent } from './parametros-sistema/parametros-sistema.component';
 import { PermisosSistemaComponent } from './permisos-sistema/permisos-sistema.component';
 import { ProyectosComponent } from './proyectos/proyectos.component';
+import { MantFormularioComponent } from './mant-formulario/mant-formulario.component';
 
 
 const appRoutes: Routes = [
@@ -37,7 +38,7 @@ const appRoutes: Routes = [
 
   // /* BACKEND ADMIN */
   {
-    path: 'backend', component: BackendComponent, children: [
+    path: 'backend', component: BackendComponent, canActivate: [AfterLoginServiceService], children: [
       { path: 'home', component: HomeComponentComponent, canActivate: [AfterLoginServiceService] },
       { path: 'mantRol', component: MantRolComponent, canActivate: [AfterLoginServiceService] },
       { path: 'mantUsuario', component: MantUsuarioComponent, canActivate: [AfterLoginServiceService] },
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
       { path: 'parametrosSistema', component: ParametrosSistemaComponent, canActivate: [AfterLoginServiceService] },
       { path: 'permisosSistema', component: PermisosSistemaComponent, canActivate: [AfterLoginServiceService] },
       { path: 'proyectos', component: ProyectosComponent, canActivate: [AfterLoginServiceService] },
+      { path: 'formularios', component: MantFormularioComponent, canActivate: [AfterLoginServiceService] },
     ]
   },
 

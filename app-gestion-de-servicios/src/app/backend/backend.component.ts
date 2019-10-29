@@ -37,7 +37,9 @@ export class BackendComponent implements OnInit {
                 const us = localStorage.getItem('User').split('.')[1];  
                 this._userExist = JSON.parse(atob(us));
                 //console.log(this._userExist.unique_name.split(';'));
-                this._userInfo = this._userExist.unique_name.split(';'); 
+                this._userInfo = this._userExist.unique_name.split(';');
+
+ 
               }
 
   ngOnInit() {
@@ -61,8 +63,25 @@ export class BackendComponent implements OnInit {
     // localStorage.setItem('UserLogin', JSON.stringify(this._userInfo));
     
     //console.log(this.apiUrl);
+    var urlParams = [];
+    window.location.search.replace("?", "").split("&").forEach(function (e, i) {
+        var p = e.split("=");
+        urlParams[p[0]] = p[1];
+    });
+
+    // We have all the params now -> you can access it by name
+    console.log(urlParams["loaded"]);
+
+    if(urlParams["loaded"]) {}else{
+
+        let win = (window as any);
+        win.location.search = '?loaded=1';
+        //win.location.reload('?loaded=1');
+    }
+    
     this.GetPermisosPorRol(this._userInfo[6]);
     this.GetMenusPorRol(this._userInfo[6]);
+
   }
 
 
@@ -91,7 +110,7 @@ export class BackendComponent implements OnInit {
     this.after.GetMenusPorRol(url, rol).subscribe(data => {
       
       this.menus = data;
-      //console.log(this.permisos);
+      console.log(this.menus);
     });
 
   }

@@ -13,6 +13,8 @@ namespace API.Controllers
     public class AdministracionController : ApiController
     {
         TareasL tareaL = new TareasL();
+        ReporteL repL = new ReporteL();
+        ClienteL cliL = new ClienteL();
 
         [HttpGet]
         [Route("GetTareasEstandar")]
@@ -22,7 +24,7 @@ namespace API.Controllers
         }
         [HttpPost]
         [Route("InsertarTareaEstandar")]
-        public IHttpActionResult InsertarRol([FromBody]TareasEstandar tarea)
+        public IHttpActionResult InsertarTareaEstandar([FromBody]TareasEstandar tarea)
         {
             if (tarea == null)
             {
@@ -39,7 +41,7 @@ namespace API.Controllers
 
         [HttpPut]
         [Route("EditarTareaEstandar")]
-        public IHttpActionResult EditarRol([FromBody]TareasEstandar tarea)
+        public IHttpActionResult EditarTareaEstandar([FromBody]TareasEstandar tarea)
         {
             if (tarea == null)
             {
@@ -47,6 +49,56 @@ namespace API.Controllers
             }
 
             if (tareaL.EditarTareaEstandar(tarea))
+            {
+                return Ok();
+            }
+            return BadRequest();
+
+        }
+        [HttpGet]
+        [Route("GetClientes")]
+        public List<ClienteC> GetClientes()
+        {
+            return cliL.GetClientes();
+        }
+        [HttpPost]
+        [Route("InsertarCliente")]
+        public IHttpActionResult InsertarCliente([FromBody]ClienteC cliente)
+        {
+            if (cliente == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (cliL.InsertarCliente(cliente))
+            {
+                return Ok();
+            }
+            return BadRequest();
+
+        }
+        [HttpGet]
+        [Route("GetTipoReportes")]
+        public List<TipoReporte> GetTipoReportes()
+        {
+            return repL.GetTipoReportes();
+        }
+        [HttpGet]
+        [Route("GetReportes")]
+        public List<Reporte> GetReportes()
+        {
+            return repL.GetReportes();
+        }
+        [HttpPost]
+        [Route("InsertarReporte")]
+        public IHttpActionResult InsertarReporte([FromBody]Reporte reporte)
+        {
+            if (reporte == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (repL.InsertarReporte(reporte))
             {
                 return Ok();
             }

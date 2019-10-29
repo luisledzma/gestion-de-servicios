@@ -34,6 +34,7 @@ export class MantTareasEstandarComponent implements OnInit {
   }
 
   onSubmit(){
+    console.log('EntraAqui');
     this.InsertarTareaEstandar();
   }
   
@@ -48,6 +49,7 @@ export class MantTareasEstandarComponent implements OnInit {
   }
 
   onButtonEditClick(tarea:TareasEstandar){
+    
     this.selectedTarea = tarea;
   }
   

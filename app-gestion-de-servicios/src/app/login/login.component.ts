@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('User', JSON.stringify(data));
     this.Token.handle(data);
     this.Auth.changeAuthStatus(true);
-    this.router.navigateByUrl('/backend');
+    this.router.navigateByUrl("/backend");
     // console.log(data);
     // if (data.user.role_id == 1) {
     //   this.router.navigateByUrl('/adminbackend');
