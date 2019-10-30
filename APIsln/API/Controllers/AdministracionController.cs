@@ -15,7 +15,11 @@ namespace API.Controllers
         TareasL tareaL = new TareasL();
         ReporteL repL = new ReporteL();
         ClienteL cliL = new ClienteL();
+        ProyectoL proL = new ProyectoL();
 
+
+        // ---------------------------------------
+        // -------------TAREAS ESTANDAR-----------
         [HttpGet]
         [Route("GetTareasEstandar")]
         public List<TareasEstandar> GetTareasEstandar()
@@ -55,6 +59,9 @@ namespace API.Controllers
             return BadRequest();
 
         }
+
+        // ---------------------------------------
+        // --------------CLIENTES-----------------
         [HttpGet]
         [Route("GetClientes")]
         public List<ClienteC> GetClientes()
@@ -77,12 +84,64 @@ namespace API.Controllers
             return BadRequest();
 
         }
+
+        // ----------------------------------------
         [HttpGet]
         [Route("GetTipoReportes")]
         public List<TipoReporte> GetTipoReportes()
         {
             return repL.GetTipoReportes();
         }
+
+        // ----------------------------------------
+        // --------------PROYECTOS-----------------
+        [HttpGet]
+        [Route("GetProyectos")]
+        public List<Proyecto> GetProyectos()
+        {
+            return proL.GetProyectos();
+        }
+        [HttpGet]
+        [Route("GetProyectoPorId")]
+        public Proyecto GetProyectoPorId(int idProy)
+        {
+            return proL.GetProyectoPorId(idProy);
+        }
+        [HttpPost]
+        [Route("InsertarProyecto")]
+        public IHttpActionResult InsertarProyecto([FromBody]Proyecto proyecto)
+        {
+            if (proyecto == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (proL.InsertarProyecto(proyecto))
+            {
+                return Ok();
+            }
+            return BadRequest();
+
+        }
+        [HttpPut]
+        [Route("EditarProyecto")]
+        public IHttpActionResult EditarProyecto([FromBody]Proyecto proyecto)
+        {
+            if (proyecto == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (proL.EditarProyecto(proyecto))
+            {
+                return Ok();
+            }
+            return BadRequest();
+
+        }
+
+        // ----------------------------------------
+        // --------------REPORTES------------------
         [HttpGet]
         [Route("GetReportes")]
         public List<Reporte> GetReportes()

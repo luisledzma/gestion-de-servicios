@@ -75,6 +75,9 @@ export class MantFormularioComponent implements OnInit {
   InsertarReporte() {
     let url = this.apiUrl + 'Administracion/InsertarReporte';
     this.reporte.Usuario_Creacion = this._userInfo[0];
+    this.reporte.ID_Tipo_Reporte = this.selectedTReporte.ID;
+    this.reporte.ID_Cliente = this.selectedCliente.ID;
+    this.reporte.ID_Tareas_Estandar = this.selectedTarea.ID;
     this.after.InsertarReporte(url,this.reporte).subscribe(data => {
       //console.log(data)
       this.GetReportes();

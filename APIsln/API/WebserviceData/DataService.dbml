@@ -251,4 +251,20 @@
       <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Proyectos" Method="SP_ADM_Seleccionar_Proyectos">
+    <ElementType Name="SP_ADM_Seleccionar_ProyectosResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Cliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Horas_Estimadas" Type="System.Decimal" DbType="Decimal(5,1)" CanBeNull="true" />
+      <Column Name="Horas_Invertidas" Type="System.Decimal" DbType="Decimal(5,1)" CanBeNull="true" />
+      <Column Name="Monto_Total" Type="System.Decimal" DbType="Decimal(28,8) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
