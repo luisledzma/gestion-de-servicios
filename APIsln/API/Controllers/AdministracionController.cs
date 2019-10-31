@@ -109,7 +109,7 @@ namespace API.Controllers
         }
         [HttpPost]
         [Route("InsertarProyecto")]
-        public IHttpActionResult InsertarProyecto([FromBody]Proyecto proyecto)
+        public bool InsertarProyecto([FromBody]Proyecto proyecto)
         {
             if (proyecto == null)
             {
@@ -118,14 +118,14 @@ namespace API.Controllers
 
             if (proL.InsertarProyecto(proyecto))
             {
-                return Ok();
+                return true;
             }
-            return BadRequest();
+            return false;
 
         }
         [HttpPut]
         [Route("EditarProyecto")]
-        public IHttpActionResult EditarProyecto([FromBody]Proyecto proyecto)
+        public bool EditarProyecto([FromBody]Proyecto proyecto)
         {
             if (proyecto == null)
             {
@@ -134,9 +134,9 @@ namespace API.Controllers
 
             if (proL.EditarProyecto(proyecto))
             {
-                return Ok();
+                return true;
             }
-            return BadRequest();
+            return false;
 
         }
 

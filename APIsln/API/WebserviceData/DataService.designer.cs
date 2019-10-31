@@ -219,6 +219,20 @@ namespace API.WebserviceData
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<SP_ADM_Seleccionar_ProyectosResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Insertar_Proyecto")]
+		public int SP_ADM_Insertar_Proyecto([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Descripcion", DbType="VarChar(50)")] string p_Descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Cliente", DbType="Int")] System.Nullable<int> p_ID_Cliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Horas_Estimadas", DbType="Decimal(5,1)")] System.Nullable<decimal> p_Horas_Estimadas, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Monto_Total", DbType="Decimal(28,8)")] System.Nullable<decimal> p_Monto_Total, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Creacion", DbType="VarChar(50)")] string p_Usuario_Creacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Descripcion, p_ID_Cliente, p_Horas_Estimadas, p_Monto_Total, p_Estado, p_Usuario_Creacion);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Editar_Proyecto")]
+		public int SP_ADM_Editar_Proyecto([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Proyecto", DbType="Int")] System.Nullable<int> p_ID_Proyecto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Descripcion", DbType="VarChar(50)")] string p_Descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Horas_Estimadas", DbType="Decimal(5,1)")] System.Nullable<decimal> p_Horas_Estimadas, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Monto_Total", DbType="Decimal(28,8)")] System.Nullable<decimal> p_Monto_Total, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Modificacion", DbType="VarChar(50)")] string p_Usuario_Modificacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID_Proyecto, p_Descripcion, p_Horas_Estimadas, p_Monto_Total, p_Estado, p_Usuario_Modificacion);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_GS_USUARIO")]

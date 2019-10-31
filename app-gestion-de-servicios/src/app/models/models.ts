@@ -90,6 +90,20 @@ export class TipoReporte
     Fecha_Creacion: Date;
     Fecha_Modificacion: Date;
 }
+export class Proyecto{
+    ID: number;
+    Descripcion: string; 
+    ID_Cliente: number; 
+    Cliente: string;
+    Horas_Estimadas: number;
+    Horas_Invertidas: number;
+    Monto_Total: number;
+    Estado: string;
+    Usuario_Creacion: string;
+    Usuario_Modificacion: string;
+    Fecha_Creacion: Date;
+    Fecha_Modificacion: Date;
+}
 export class Reporte
 {
     ID : number

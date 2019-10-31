@@ -1,1 +1,187 @@
-<p>proyectos works!</p>
+<p-messages [(value)]="msgs"></p-messages>
+<div class="container pt-5">
+    <div class="row ">
+        <h1>Proyectos</h1>
+        <div class="col-md-12 m-1">
+            <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
+                Agregar
+            </button>
+        </div>
+
+        <div class="col-md-12 table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Horas Invertidas</th>
+                        <th scope="col">Monto Total</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col"> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="proyectos">
+                        <ng-container *ngFor="let pro of proyectos">
+                            <tr>
+                                <th scope="row">{{pro.ID}}</th>
+                                <td>{{pro.Descripcion}}</td>
+                                <td>{{pro.Cliente}}</td>
+                                <td>{{pro.Horas_Invertidas}}</td>
+                                <td>{{pro.Monto_Total}}</td>
+                                <td>{{pro.Estado}}</td>
+                                <td><button type="button" (click)="onButtonEditClick(pro)" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
+                            </tr>
+                        </ng-container>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Agregar Proyecto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <form #ProyectoAddForm="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <ng-container *ngIf="clientes">
+                                    <label>Cliente</label>
+                                    <br>
+                                    <p-dropdown id="clientes" [options]="clientes" [(ngModel)]="selectedCliente" placeholder="Seleccione un cliente" optionLabel="Cliente" name="clients" [showClear]="true" required></p-dropdown>
+                                    <ng-container *ngIf="!selectedCliente">
+                                        <p-message severity="error" text="El campo es requerido"></p-message>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descripcion">Descripción</label>
+                                <br>
+                                <input id="descripcion" type="text" size="30" pInputText [(ngModel)]="proyecto.Descripcion" name="descripcion" #descripcion="ngModel" required>
+                                <ng-container *ngIf="!descripcion.valid">
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hEstimadas">Horas estimadas</label>
+                                <br>
+                                <input id="hEstimadas" type="number" size="30" pInputText [(ngModel)]="proyecto.Horas_Estimadas" name="hEstimadas" #hEstimadas="ngModel" required>
+                                <ng-container *ngIf="!hEstimadas.valid">
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="total">Monto Total</label>
+                                <br>
+                                <input id="total" type="number" size="30" pInputText [(ngModel)]="proyecto.Monto_Total" name="total" #total="ngModel" required>
+                                <ng-container *ngIf="!total.valid">
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select class="form-control" id="estado" [(ngModel)]="proyecto.Estado" name="estado">
+                                    <option value="A">Activo</option>
+                                    <option value="I">Inactivo</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                Cerrar
+                            </button>
+
+                            <ng-container *ngIf="ProyectoAddForm.form.valid">
+                                <button type="submit" (click)="onSubmit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
+                                    Guardar Cambios
+                                </button>
+                            </ng-container>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Editar tarea estandar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                    </div>
+                    <form #EditProForm="ngForm" (ngSubmit)="onSubmitEdit()" autocomplete="off">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="descripcion">Descripción</label>
+                                <br>
+                                <input id="descripcion" type="text" size="30" pInputText [(ngModel)]="selectedProyecto.Descripcion" name="descripcion" #descripcion="ngModel" required>
+                                <ng-container *ngIf="!descripcion.valid">
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hEstimadas">Horas estimadas</label>
+                                <br>
+                                <input id="hEstimadas" type="number" size="30" pInputText [(ngModel)]="selectedProyecto.Horas_Estimadas" name="hEstimadas" #hEstimadas="ngModel" required>
+                                <ng-container *ngIf="!hEstimadas.valid">
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="total">Monto Total</label>
+                                <br>
+                                <input id="total" type="number" size="30" pInputText [(ngModel)]="selectedProyecto.Monto_Total" name="total" #total="ngModel" required>
+                                <ng-container *ngIf="!total.valid">
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select class="form-control" id="estado" [(ngModel)]="selectedProyecto.Estado" name="estado">
+                                    <option value="A">Activo</option>
+                                    <option value="I">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                Cerrar
+                            </button>
+                            <ng-container *ngIf="EditProForm.form.valid">
+                                <button type="submit" (click)="onSubmitEdit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
+                                    Guardar Cambios
+                                </button>
+                            </ng-container>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

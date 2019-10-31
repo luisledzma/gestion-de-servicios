@@ -87,8 +87,9 @@ export class MantUsuarioComponent implements OnInit {
   EditarUsuario(){
     this.myUsr.Usuario_Modificacion = this._userInfo[0];
     let url = this.apiUrl + 'Seguridad/EditarUsuario';
-    this.after.EditarRol(url,this.myUsr).subscribe(data => {
+    this.after.EditarUsuario(url,this.myUsr).subscribe(data => {
       this.GetRol();
+      this.GetUsuarios();
     });
   }
 

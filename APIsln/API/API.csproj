@@ -187,6 +187,7 @@
     </Compile>
     <Compile Include="LogicaNegocio\ClienteL.cs" />
     <Compile Include="LogicaNegocio\PermisoL.cs" />
+    <Compile Include="LogicaNegocio\ProyectoL.cs" />
     <Compile Include="LogicaNegocio\ReporteL.cs" />
     <Compile Include="LogicaNegocio\RolL.cs" />
     <Compile Include="LogicaNegocio\TareasL.cs" />

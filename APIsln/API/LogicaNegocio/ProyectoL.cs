@@ -81,7 +81,7 @@ namespace API.LogicaNegocio
         {
             try
             {
-                //_db.SP_SEG_InsertarRol(rol.Descripcion, rol.Estado, rol.Usuario_Creacion);
+                _db.SP_ADM_Insertar_Proyecto(proyecto.Descripcion,proyecto.ID_Cliente,proyecto.Horas_Estimadas,proyecto.Monto_Total,proyecto.Estado,proyecto.Usuario_Creacion);
                 return true;
             }
             catch (Exception)
@@ -95,7 +95,7 @@ namespace API.LogicaNegocio
         {
             try
             {
-                //_db.SP_SEG_EditarRol(rol.ID, rol.Descripcion, rol.Estado, rol.Usuario_Modificacion);
+                _db.SP_ADM_Editar_Proyecto(proyecto.ID,proyecto.Descripcion,proyecto.Horas_Estimadas,proyecto.Monto_Total,proyecto.Estado,proyecto.Usuario_Modificacion);
                 return true;
             }
             catch (Exception)
