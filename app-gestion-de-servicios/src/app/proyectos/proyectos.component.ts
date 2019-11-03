@@ -71,9 +71,11 @@ export class ProyectosComponent implements OnInit {
       if(data){
         this.msgs = [];
         this.msgs.push({severity:'success', summary:'Correcto', detail:'Se ha guardado correctamente'});
+        this.messageService.add({severity:'success', summary: 'Correcto', detail:'Se ha guardado correctamente'});
       }else{
         this.msgs = [];
         this.msgs.push({severity:'error', summary:'Incorrecto', detail:'No se ha guardado el proyecto'});
+        this.messageService.add({severity:'error', summary: 'Incorrecto', detail:'No se ha guardado el proyecto'});
       }
       this.proyecto = new Proyecto();
       setTimeout(()=>{  
@@ -103,9 +105,11 @@ export class ProyectosComponent implements OnInit {
       if(data){
         this.msgs = [];
         this.msgs.push({severity:'success', summary:'Correcto', detail:'Se ha editado correctamente'});
+        this.messageService.add({severity:'success', summary: 'Correcto', detail:'Se ha editado correctamente'});
       }else{
         this.msgs = [];
         this.msgs.push({severity:'error', summary:'Incorrecto', detail:'No se ha editado el proyecto'});
+        this.messageService.add({severity:'error', summary: 'Incorrecto', detail:'No se ha guardado el proyecto'});
       }
       setTimeout(()=>{  
         this.msgs = [];

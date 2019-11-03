@@ -37,6 +37,7 @@ import { PickListModule } from 'primeng/picklist';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import {TableModule} from 'primeng/table';
 
 
 
@@ -70,7 +71,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     PickListModule,
     CalendarModule,
     InputTextModule,
-    InputTextareaModule
+    InputTextareaModule,
+    TableModule
   ],
   providers: [
     AfterLoginServiceService,
