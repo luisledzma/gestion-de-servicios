@@ -38,6 +38,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {TableModule} from 'primeng/table';
+import { MantEtapasProyectoComponent } from './mant-etapas-proyecto/mant-etapas-proyecto.component';
 
 
 
@@ -55,7 +56,8 @@ import {TableModule} from 'primeng/table';
     ProyectosComponent,
     ContratosComponent,
     MantClientesComponent,
-    MantFormularioComponent
+    MantFormularioComponent,
+    MantEtapasProyectoComponent
   ],
   imports: [
     BrowserModule,

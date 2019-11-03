@@ -141,6 +141,46 @@ namespace API.Controllers
         }
 
         // ----------------------------------------
+        // ------------ETAPAS PROYECTOS------------
+
+        [HttpGet]
+        [Route("GetEtapasProyectoPorProyecto")]
+        public List<EtapaProyecto> GetEtapasProyectoPorProyecto(int idProy)
+        {
+            return proL.GetEtapasProyectoPorProyecto(idProy);
+        }
+        [HttpPost]
+        [Route("InsertarEtapaProyecto")]
+        public bool InsertarEtapaProyecto([FromBody]EtapaProyecto eProyecto)
+        {
+            if (eProyecto == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (proL.InsertarEtapaProyecto(eProyecto))
+            {
+                return true;
+            }
+            return false;
+        }
+        [HttpPut]
+        [Route("EditarEtapaProyecto")]
+        public bool EditarEtapaProyecto([FromBody]EtapaProyecto eProyecto)
+        {
+            if (eProyecto == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (proL.EditarEtapaProyecto(eProyecto))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        // ----------------------------------------
         // --------------REPORTES------------------
         [HttpGet]
         [Route("GetReportes")]

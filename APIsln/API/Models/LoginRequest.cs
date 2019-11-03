@@ -137,4 +137,19 @@ namespace API.Controllers
         public DateTime? Fecha_Creacion { get; set; }
         public DateTime? Fecha_Modificacion { get; set; }
     }
+
+    public class EtapaProyecto
+    {
+        public int ID { get; set; }
+        public string Descripcion { get; set; }
+        public int? ID_Proyecto { get; set; }
+        public string Proyecto { get; set; }
+        public decimal? Horas_Estimadas { get; set; }
+        public decimal? Horas_Invertidas { get; set; }
+        public char? Estado { get; set; }
+        public string Usuario_Creacion { get; set; }
+        public string Usuario_Modificacion { get; set; }
+        public DateTime? Fecha_Creacion { get; set; }
+        public DateTime? Fecha_Modificacion { get; set; }
+    }
 }

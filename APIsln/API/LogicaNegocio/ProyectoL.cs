@@ -89,13 +89,73 @@ namespace API.LogicaNegocio
                 return false;
             }
         }
-
-
         public bool EditarProyecto(Proyecto proyecto)
         {
             try
             {
                 _db.SP_ADM_Editar_Proyecto(proyecto.ID,proyecto.Descripcion,proyecto.Horas_Estimadas,proyecto.Monto_Total,proyecto.Estado,proyecto.Usuario_Modificacion);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
+        // ---------------------------------------------
+        // --------------Etapa Proyecto-----------------
+
+        public List<EtapaProyecto> GetEtapasProyectoPorProyecto(int idProyecto)
+        {
+            try
+            {
+
+                var result = (from p in _db.SP_ADM_Seleccionar_Etapas_de_Proyecto_por_Proyectos(idProyecto)
+
+                              select new EtapaProyecto()
+                              {
+                                  ID = p.ID,
+                                  Descripcion = p.Descripcion,
+                                  ID_Proyecto = p.ID_Proyecto,
+                                  Proyecto = p.Proyecto,
+                                  Horas_Estimadas = p.Horas_Estimadas,
+                                  Horas_Invertidas = p.Horas_Invertidas,
+                                  Estado = p.Estado,
+                                  Usuario_Creacion = p.Usuario_Creacion,
+                                  Usuario_Modificacion = p.Usuario_Modificacion,
+                                  Fecha_Creacion = p.Fecha_Creacion,
+                                  Fecha_Modificacion = p.Fecha_Modificacion
+
+                              }).ToList();
+
+
+                if (result != null)
+                    return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return new List<EtapaProyecto>();
+        }
+        public bool InsertarEtapaProyecto(EtapaProyecto eProyecto)
+        {
+            try
+            {
+                _db.SP_ADM_Insertar_Etapa_Proyecto(eProyecto.Descripcion, eProyecto.ID_Proyecto, eProyecto.Horas_Estimadas, eProyecto.Estado, eProyecto.Usuario_Creacion);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool EditarEtapaProyecto(EtapaProyecto eProyecto)
+        {
+            try
+            {
+                _db.SP_ADM_Editar_Etapa_Proyecto(eProyecto.ID, eProyecto.Descripcion, eProyecto.Horas_Estimadas, eProyecto.Estado, eProyecto.Usuario_Modificacion);
                 return true;
             }
             catch (Exception)

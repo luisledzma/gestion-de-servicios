@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AfterLoginServiceService } from '../service/after-login-service.service';
-import { Usuario, Rol, TareasEstandar, ClienteC, Proyecto } from '../models/models';
+import { ClienteC, Proyecto } from '../models/models';
 import { MessageService } from 'primeng/api';
 import { Message } from 'primeng/components/common/api';
 

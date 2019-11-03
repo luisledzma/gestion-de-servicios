@@ -104,6 +104,19 @@ export class Proyecto{
     Fecha_Creacion: Date;
     Fecha_Modificacion: Date;
 }
+export class EtapaProyecto{
+    ID: number;
+    Descripcion: string; 
+    ID_Proyecto: number; 
+    Proyecto: string;
+    Horas_Estimadas: number;
+    Horas_Invertidas: number;
+    Estado: string;
+    Usuario_Creacion: string;
+    Usuario_Modificacion: string;
+    Fecha_Creacion: Date;
+    Fecha_Modificacion: Date;
+}
 export class Reporte
 {
     ID : number

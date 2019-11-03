@@ -16,6 +16,7 @@ import { ParametrosSistemaComponent } from './parametros-sistema/parametros-sist
 import { PermisosSistemaComponent } from './permisos-sistema/permisos-sistema.component';
 import { ProyectosComponent } from './proyectos/proyectos.component';
 import { MantFormularioComponent } from './mant-formulario/mant-formulario.component';
+import { MantEtapasProyectoComponent } from './mant-etapas-proyecto/mant-etapas-proyecto.component';
 
 
 const appRoutes: Routes = [
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
       { path: 'permisosSistema', component: PermisosSistemaComponent, canActivate: [AfterLoginServiceService] },
       { path: 'proyectos', component: ProyectosComponent, canActivate: [AfterLoginServiceService] },
       { path: 'formularios', component: MantFormularioComponent, canActivate: [AfterLoginServiceService] },
+      { path: 'etapasProyecto', component: MantEtapasProyectoComponent, canActivate: [AfterLoginServiceService] },
     ]
   },
 

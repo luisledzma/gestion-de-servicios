@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 
 // import { Observable } from 'rxjs/Observable'
 import { TokenServiceService } from './token-service.service';
-import { Permiso, Usuario, SettingPermisoDto, TareasEstandar, Reporte, Proyecto } from '../models/models';
+import { Permiso, Usuario, SettingPermisoDto, TareasEstandar, Reporte, Proyecto, EtapaProyecto } from '../models/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -105,6 +105,20 @@ export class AfterLoginServiceService {
     return this._http.post(apiUrl , data);
   }
   EditarProyecto(apiUrl: string,data:Proyecto) {
+    return this._http.put(apiUrl , data);
+  }
+
+  // ---------------------------------
+  // ---------ETAPAS PROYECTO---------
+
+  GetEtapasProyectoPorProyecto(apiUrl: string, idProyecto:number) {
+    let _apimethod = `?idProy=${idProyecto}`;
+    return this._http.get(apiUrl + _apimethod);
+  }
+  InsertarEtapaProyecto(apiUrl: string,data:EtapaProyecto) {
+    return this._http.post(apiUrl , data);
+  }
+  EditarEtapaProyecto(apiUrl: string,data:EtapaProyecto) {
     return this._http.put(apiUrl , data);
   }
 
