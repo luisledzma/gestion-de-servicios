@@ -19,6 +19,7 @@ export class MantEtapasProyectoComponent implements OnInit {
   // ----------------------------------
   // ------------PROYECTOS-------------
   proyectos: any;
+  proyectosActivos: any;
   selectedProyecto: Proyecto = new Proyecto();
   selectedProyectoTable: Proyecto = new Proyecto();
   // ----------------------------------
@@ -36,6 +37,7 @@ export class MantEtapasProyectoComponent implements OnInit {
 
   ngOnInit() {
     this.GetProyectos();
+    this.GetProyectosActivos();
     this.GetEtapasProyectoPorProyecto(0);
     //this.setValues();
   }
@@ -67,7 +69,14 @@ export class MantEtapasProyectoComponent implements OnInit {
       this.estado = true;
     });
   }
-
+  GetProyectosActivos(){
+    let url = this.apiUrl + 'Administracion/GetProyectosActivos';
+    this.after.GetProyectosActivos(url).subscribe(data => {
+      this.proyectosActivos = data;
+      this.selectedProyecto = data ? data[0] : undefined;
+      console.log(data);
+    });
+  }
   GetEtapasProyectoPorProyecto(id:number){
     if(this.selectedProyectoTable.ID != 0){
       let url = this.apiUrl + 'Administracion/GetEtapasProyectoPorProyecto';

@@ -102,6 +102,12 @@ namespace API.Controllers
             return proL.GetProyectos();
         }
         [HttpGet]
+        [Route("GetProyectosActivos")]
+        public List<Proyecto> GetProyectosActivos()
+        {
+            return proL.GetProyectosActivos();
+        }        
+        [HttpGet]
         [Route("GetProyectoPorId")]
         public Proyecto GetProyectoPorId(int idProy)
         {
@@ -149,6 +155,12 @@ namespace API.Controllers
         {
             return proL.GetEtapasProyectoPorProyecto(idProy);
         }
+        [HttpGet]
+        [Route("GetEtapasProyectoActivasPorProyecto")]
+        public List<EtapaProyecto> GetEtapasProyectoActivasPorProyecto(int idProy)
+        {
+            return proL.GetEtapasProyectoActivasPorProyecto(idProy);
+        }        
         [HttpPost]
         [Route("InsertarEtapaProyecto")]
         public bool InsertarEtapaProyecto([FromBody]EtapaProyecto eProyecto)

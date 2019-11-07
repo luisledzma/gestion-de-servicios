@@ -24,7 +24,7 @@ namespace API.LogicaNegocio
                                   Descripcion_Tipo_Reporte = r.Descripcion_Tipo_Reporte,
                                   Hora_Inicio = r.Hora_Inicio,
                                   Hora_Final = r.Hora_Final,
-                                  Total_Horas = r.Total_Horas,
+                                  Total_Horas = r.Total_Horas.ToString(),
                                   Horas_A_Facturar = r.Horas_A_Facturar,
                                   ID_Tareas_Estandar = r.ID_Tareas_Estandar,
                                   Tareas_Estandar = r.Tareas_Estandar,
@@ -77,7 +77,7 @@ namespace API.LogicaNegocio
         {
             try
             {
-                var result = _db.SP_ADM_Insertar_Reporte(reporte.ID_Cliente, reporte.ID_Tipo_Reporte, reporte.Hora_Inicio, reporte.Hora_Final, reporte.Total_Horas, reporte.Horas_A_Facturar, reporte.ID_Tareas_Estandar, reporte.Descripcion, reporte.Observaciones, reporte.Estado, reporte.Usuario_Creacion);
+                var result = _db.SP_ADM_Insertar_Reporte(reporte.ID_Cliente, reporte.ID_Tipo_Reporte, reporte.ID_Proyecto,reporte.ID_Etapa_Proyecto,reporte.Hora_Inicio, reporte.Hora_Final, reporte.Horas_A_Facturar, reporte.ID_Tareas_Estandar, reporte.Descripcion, reporte.Observaciones, reporte.Estado, reporte.Usuario_Creacion);
                 if(result < 0)
                 {
                     return false;

@@ -78,7 +78,7 @@
                                 <ng-container *ngIf="proyectos">
                                     <label>Proyecto</label>
                                     <br>
-                                    <p-dropdown id="projects" [options]="proyectos" [(ngModel)]="selectedProyecto" placeholder="Seleccione un Proyecto" optionLabel="Descripcion" name="projects" [showClear]="true" required></p-dropdown>
+                                    <p-dropdown id="projects" [options]="proyectosActivos" [(ngModel)]="selectedProyecto" placeholder="Seleccione un Proyecto" optionLabel="Descripcion" name="projects" [showClear]="true" required></p-dropdown>
                                     <ng-container *ngIf="!selectedProyecto">
                                         <p-message severity="error" text="El campo es requerido"></p-message>
                                     </ng-container>

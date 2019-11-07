@@ -100,7 +100,10 @@ export class AfterLoginServiceService {
     let _apimethod = ``;
     return this._http.get(apiUrl + _apimethod);
   }
-
+  GetProyectosActivos(apiUrl: string){
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
   InsertarProyecto(apiUrl: string,data:Proyecto) {
     return this._http.post(apiUrl , data);
   }
@@ -115,6 +118,10 @@ export class AfterLoginServiceService {
     let _apimethod = `?idProy=${idProyecto}`;
     return this._http.get(apiUrl + _apimethod);
   }
+  GetEtapasProyectoActivasPorProyecto(apiUrl: string, idProyecto:number) {
+    let _apimethod = `?idProy=${idProyecto}`;
+    return this._http.get(apiUrl + _apimethod);
+  }  
   InsertarEtapaProyecto(apiUrl: string,data:EtapaProyecto) {
     return this._http.post(apiUrl , data);
   }

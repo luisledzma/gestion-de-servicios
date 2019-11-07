@@ -119,13 +119,18 @@ export class EtapaProyecto{
 }
 export class Reporte
 {
-    ID : number
-    ID_Cliente : number
+    ID : number;
+    ID_Cliente : number;
     Cliente : string 
-    ID_Tipo_Reporte : number
-    Descripcion_Tipo_Reporte : string
-    Hora_Inicio : string;
-    Hora_Final : string;
+    ID_Tipo_Reporte : number;
+    // ------------------------------------
+    // ----variables si tiene proyecto-----
+    ID_Proyecto: number;
+    ID_Etapa_Proyecto: number;
+    // ------------------------------------
+    Descripcion_Tipo_Reporte : string;
+    Hora_Inicio : Date;
+    Hora_Final : Date;
     Total_Horas : number;
     Horas_A_Facturar : number;
     ID_Tareas_Estandar : number;
