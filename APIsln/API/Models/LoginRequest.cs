@@ -108,10 +108,15 @@ namespace API.Controllers
         public int? ID_Cliente { get; set; }
         public string Cliente { get; set; }
         public int ID_Tipo_Reporte { get; set; }
+        // ------------------------------------
+        // ----variables si tiene proyecto-----
+        public int ID_Proyecto { get; set; }
+        public int ID_Etapa_Proyecto { get; set; }
+        // ------------------------------------
         public string Descripcion_Tipo_Reporte { get; set; }
-        public string Hora_Inicio { get; set; }
-        public string Hora_Final { get; set; }
-        public decimal Total_Horas { get; set; }
+        public DateTime? Hora_Inicio { get; set; }
+        public DateTime? Hora_Final { get; set; }
+        public string Total_Horas { get; set; }
         public decimal Horas_A_Facturar { get; set; }
         public int? ID_Tareas_Estandar { get; set; }
         public string Tareas_Estandar { get; set; }
@@ -130,7 +135,7 @@ namespace API.Controllers
         public int? ID_Cliente { get; set; }
         public string Cliente { get; set; }
         public decimal? Horas_Estimadas { get; set; }
-        public decimal? Horas_Invertidas { get; set; }
+        public TimeSpan? Horas_Invertidas { get; set; }
         public decimal Monto_Total { get; set; }
         public char? Estado { get; set; }
         public string Usuario_Creacion { get; set; }
@@ -146,7 +151,24 @@ namespace API.Controllers
         public int? ID_Proyecto { get; set; }
         public string Proyecto { get; set; }
         public decimal? Horas_Estimadas { get; set; }
-        public decimal? Horas_Invertidas { get; set; }
+        public TimeSpan? Horas_Invertidas { get; set; }
+        public char? Estado { get; set; }
+        public string Usuario_Creacion { get; set; }
+        public string Usuario_Modificacion { get; set; }
+        public DateTime? Fecha_Creacion { get; set; }
+        public DateTime? Fecha_Modificacion { get; set; }
+    }
+    public class Contrato
+    {
+        public int ID { get; set; }
+        public string Descripcion { get; set; }
+        public int? ID_Cliente { get; set; }
+        public string Cliente { get; set; }
+        public decimal Monto_Contrato { get; set; }
+        public TimeSpan? Horas_Contratadas { get; set; }
+        public TimeSpan? Horas_Disponibles { get; set; }
+        public TimeSpan? Horas_Consumidas { get; set; }
+        public TimeSpan? Horas_Excedidas { get; set; }
         public char? Estado { get; set; }
         public string Usuario_Creacion { get; set; }
         public string Usuario_Modificacion { get; set; }

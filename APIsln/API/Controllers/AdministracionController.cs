@@ -16,6 +16,7 @@ namespace API.Controllers
         ReporteL repL = new ReporteL();
         ClienteL cliL = new ClienteL();
         ProyectoL proL = new ProyectoL();
+        ContratoL conL = new ContratoL();
 
 
         // ---------------------------------------
@@ -124,6 +125,12 @@ namespace API.Controllers
             return proL.GetProyectos();
         }
         [HttpGet]
+        [Route("GetProyectosActivos")]
+        public List<Proyecto> GetProyectosActivos()
+        {
+            return proL.GetProyectosActivos();
+        }        
+        [HttpGet]
         [Route("GetProyectoPorId")]
         public Proyecto GetProyectoPorId(int idProy)
         {
@@ -171,6 +178,12 @@ namespace API.Controllers
         {
             return proL.GetEtapasProyectoPorProyecto(idProy);
         }
+        [HttpGet]
+        [Route("GetEtapasProyectoActivasPorProyecto")]
+        public List<EtapaProyecto> GetEtapasProyectoActivasPorProyecto(int idProy)
+        {
+            return proL.GetEtapasProyectoActivasPorProyecto(idProy);
+        }        
         [HttpPost]
         [Route("InsertarEtapaProyecto")]
         public bool InsertarEtapaProyecto([FromBody]EtapaProyecto eProyecto)
@@ -226,5 +239,44 @@ namespace API.Controllers
             return BadRequest();
 
         }
+        [HttpPut]
+        [Route("EditarReporte")]
+        public bool EditarReporte([FromBody]Reporte reporte)
+        {
+            if (reporte == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (repL.EditarReporte(reporte))
+            {
+                return true;
+            }
+            return false;
+        }
+        // ------------------------------------------
+        // ----------------CONTRATOS-----------------
+        [HttpGet]
+        [Route("GetContratos")]
+        public List<Contrato> GetContratos()
+        {
+            return conL.GetContratos();
+        }
+        [HttpPost]
+        [Route("InsertaContrato")]
+        public bool InsertaContrato([FromBody]Contrato contrato)
+        {
+            if (contrato == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (conL.InsertaContrato(contrato))
+            {
+                return true;
+            }
+            return false;
+        }
+        
     }
 }

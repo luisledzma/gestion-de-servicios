@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 
 // import { Observable } from 'rxjs/Observable'
 import { TokenServiceService } from './token-service.service';
-import { Permiso, Usuario, SettingPermisoDto, TareasEstandar, Reporte, Proyecto, EtapaProyecto, ClienteC } from '../models/models';
+import { Permiso, Usuario, SettingPermisoDto, TareasEstandar, Reporte, Proyecto, EtapaProyecto, Contrato,ClienteC } from '../models/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -113,7 +113,10 @@ export class AfterLoginServiceService {
     let _apimethod = ``;
     return this._http.get(apiUrl + _apimethod);
   }
-
+  GetProyectosActivos(apiUrl: string){
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
   InsertarProyecto(apiUrl: string,data:Proyecto) {
     return this._http.post(apiUrl , data);
   }
@@ -128,6 +131,10 @@ export class AfterLoginServiceService {
     let _apimethod = `?idProy=${idProyecto}`;
     return this._http.get(apiUrl + _apimethod);
   }
+  GetEtapasProyectoActivasPorProyecto(apiUrl: string, idProyecto:number) {
+    let _apimethod = `?idProy=${idProyecto}`;
+    return this._http.get(apiUrl + _apimethod);
+  }  
   InsertarEtapaProyecto(apiUrl: string,data:EtapaProyecto) {
     return this._http.post(apiUrl , data);
   }
@@ -147,5 +154,26 @@ export class AfterLoginServiceService {
   }
   InsertarReporte(apiUrl: string,data:Reporte) {
     return this._http.post(apiUrl , data);
+  }
+  EditarReporte(apiUrl: string,data:Reporte) {
+    return this._http.put(apiUrl , data);
+  }
+
+  // --------------------------------------------
+  // ----------MANTENIMIENTO CONTRATOS-----------
+
+  GetContratos(apiUrl: string){
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
+  GetContratosActivos(apiUrl: string){
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
+  InsertaContrato(apiUrl: string,data:Contrato) {
+    return this._http.post(apiUrl , data);
+  }
+  EditarContrato(apiUrl: string,data:Contrato) {
+    return this._http.put(apiUrl , data);
   }
 }

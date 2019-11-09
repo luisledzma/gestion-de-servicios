@@ -186,6 +186,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LogicaNegocio\ClienteL.cs" />
+    <Compile Include="LogicaNegocio\ContratoL.cs" />
     <Compile Include="LogicaNegocio\PermisoL.cs" />
     <Compile Include="LogicaNegocio\ProyectoL.cs" />
     <Compile Include="LogicaNegocio\ReporteL.cs" />

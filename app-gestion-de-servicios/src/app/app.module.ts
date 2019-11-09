@@ -24,6 +24,7 @@ import { ProyectosComponent } from './proyectos/proyectos.component';
 import { ContratosComponent } from './contratos/contratos.component';
 import { MantClientesComponent } from './mant-clientes/mant-clientes.component';
 import { MantFormularioComponent } from './mant-formulario/mant-formulario.component';
+import { MantEtapasProyectoComponent } from './mant-etapas-proyecto/mant-etapas-proyecto.component';
 
 // --------------------------------------------------
 // --------------------PrimeNG-----------------------
@@ -37,8 +38,10 @@ import { PickListModule } from 'primeng/picklist';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import {TableModule} from 'primeng/table';
-import { MantEtapasProyectoComponent } from './mant-etapas-proyecto/mant-etapas-proyecto.component';
+import { TableModule } from 'primeng/table';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+
 
 
 
@@ -74,7 +77,8 @@ import { MantEtapasProyectoComponent } from './mant-etapas-proyecto/mant-etapas-
     CalendarModule,
     InputTextModule,
     InputTextareaModule,
-    TableModule
+    TableModule,
+    ConfirmDialogModule
   ],
   providers: [
     AfterLoginServiceService,
@@ -82,7 +86,8 @@ import { MantEtapasProyectoComponent } from './mant-etapas-proyecto/mant-etapas-
     BeforeLoginServiceService,
     AuthServiceService,
     TokenServiceService,
-    MessageService
+    MessageService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })
