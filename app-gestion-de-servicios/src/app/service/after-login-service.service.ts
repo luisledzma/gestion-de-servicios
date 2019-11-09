@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 
 // import { Observable } from 'rxjs/Observable'
 import { TokenServiceService } from './token-service.service';
-import { Permiso, Usuario, SettingPermisoDto, TareasEstandar, Reporte, Proyecto, EtapaProyecto } from '../models/models';
+import { Permiso, Usuario, SettingPermisoDto, TareasEstandar, Reporte, Proyecto, EtapaProyecto, ClienteC } from '../models/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -91,6 +91,19 @@ export class AfterLoginServiceService {
   GetClientes(apiUrl: string){
     let _apimethod = ``;
     return this._http.get(apiUrl + _apimethod);
+  }
+
+  GetClientesERP(apiUrl: string){
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
+
+  InsertarCliente(apiUrl: string,data:ClienteC) {
+    return this._http.post(apiUrl , data);
+  }
+
+  EditarCliente(apiUrl: string,data:ClienteC) {
+    return this._http.post(apiUrl , data);
   }
 
   // ----------------------------------

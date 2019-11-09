@@ -192,18 +192,6 @@
     <Parameter Name="p_UsuarioModificacion" Type="System.String" DbType="VarChar(50)" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.SP_ADM_Seleccionar_Clientes" Method="SP_ADM_Seleccionar_Clientes">
-    <ElementType Name="SP_ADM_Seleccionar_ClientesResult">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Cliente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="Costo_Hora" Type="System.Decimal" DbType="Decimal(28,8) NOT NULL" CanBeNull="false" />
-      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
-      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.SP_ADM_Seleccionar_Reportes" Method="SP_ADM_Seleccionar_Reportes">
     <ElementType Name="SP_ADM_Seleccionar_ReportesResult">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -316,5 +304,38 @@
       <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Clientes_ERP" Method="SP_ADM_Seleccionar_Clientes_ERP">
+    <ElementType Name="SP_ADM_Seleccionar_Clientes_ERPResult">
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Insertar_Cliente" Method="SP_ADM_Insertar_Cliente">
+    <Parameter Name="P_CLIENTE" Parameter="p_CLIENTE" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="P_COSTO_HORA" Parameter="p_COSTO_HORA" Type="System.Decimal" DbType="Decimal(28,8)" />
+    <Parameter Name="P_ESTADO" Parameter="p_ESTADO" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_USUARIO" Parameter="p_USUARIO" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Clientes" Method="SP_ADM_Seleccionar_Clientes">
+    <ElementType Name="SP_ADM_Seleccionar_ClientesResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="Costo_Hora" Type="System.Decimal" DbType="Decimal(28,8) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Editar_Cliente" Method="SP_ADM_Editar_Cliente">
+    <Parameter Name="P_Cliente" Parameter="p_Cliente" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="P_Costo_Hora" Parameter="p_Costo_Hora" Type="System.Decimal" DbType="Decimal(28,8)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Modifica" Parameter="p_Usuario_Modifica" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

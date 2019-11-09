@@ -84,6 +84,28 @@ namespace API.Controllers
             return BadRequest();
 
         }
+        [HttpPost]
+        [Route("EditarCliente")]
+        public IHttpActionResult EditarCliente([FromBody]ClienteC cliente)
+        {
+            if (cliente == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (cliL.EditarCliente(cliente))
+            {
+                return Ok();
+            }
+            return BadRequest();
+
+        }
+        [HttpGet]
+        [Route("GetClientesERP")]
+        public List<ClienteC> GetClientesERP()
+        {
+            return cliL.GetClientesERP();
+        }
 
         // ----------------------------------------
         [HttpGet]

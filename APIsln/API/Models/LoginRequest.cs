@@ -85,6 +85,7 @@ namespace API.Controllers
         public int ID { get; set; }
         public string Cliente { get; set; }
         public decimal Costo_Hora { get; set; }
+        public string Nombre { get; set; }
         public char Estado { get; set; }
         public string Usuario_Creacion { get; set; }
         public string Usuario_Modificacion { get; set; }

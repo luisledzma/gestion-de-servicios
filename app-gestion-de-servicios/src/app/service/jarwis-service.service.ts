@@ -29,7 +29,7 @@ export class JarwisServiceService {
 
   login(data) {
 
-    console.log(data);
+    //console.log(data);
     return this.http.post(`${this.apiUrl}/authenticate`, data);
     // .pipe(map((response: Response) => {
     //   const runs = response.json() as boolean;

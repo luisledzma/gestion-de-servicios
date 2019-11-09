@@ -20,6 +20,7 @@ namespace API.LogicaNegocio
                               select new ClienteC { 
                                   ID = c.ID,
                                   Cliente = c.Cliente,
+                                  Nombre = c.NOMBRE,
                                   Costo_Hora = c.Costo_Hora,
                                   Estado = c.Estado,
                                   Usuario_Creacion = c.Usuario_Creacion,
@@ -43,7 +44,7 @@ namespace API.LogicaNegocio
         {
             try
             {
-
+                _db.SP_ADM_Insertar_Cliente(cliente.Cliente, cliente.Costo_Hora, cliente.Estado, cliente.Usuario_Creacion);
                 return true;
             }
             catch (Exception ex)
@@ -51,5 +52,43 @@ namespace API.LogicaNegocio
                 return false;
             }
         }
+
+        public bool EditarCliente(ClienteC cliente)
+        {
+            try
+            {
+                _db.SP_ADM_Editar_Cliente(cliente.Cliente, cliente.Costo_Hora, cliente.Estado, cliente.Usuario_Modificacion);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public List<ClienteC> GetClientesERP()
+        {
+            try
+            {
+                var result = (from c in _db.SP_ADM_Seleccionar_Clientes_ERP()
+                              select new ClienteC
+                              {
+                                  Cliente = c.Cliente,
+                                  Nombre = c.Nombre
+                              }).ToList();
+
+                if (result != null)
+                {
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return new List<ClienteC>();
+        }
+
+        
     }
 }
