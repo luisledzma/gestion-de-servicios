@@ -185,25 +185,6 @@ namespace API.WebserviceData
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Reportes")]
-		public ISingleResult<SP_ADM_Seleccionar_ReportesResult> SP_ADM_Seleccionar_Reportes()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<SP_ADM_Seleccionar_ReportesResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Insertar_Reporte")]
-		public int SP_ADM_Insertar_Reporte([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Cliente", DbType="Int")] System.Nullable<int> p_Cliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Tipo_Reporte", DbType="Int")] System.Nullable<int> p_Tipo_Reporte, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Hora_Inicio", DbType="VarChar(10)")] string p_Hora_Inicio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Hora_Final", DbType="VarChar(10)")] string p_Hora_Final, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Total_Horas", DbType="Decimal(5,1)")] System.Nullable<decimal> p_Total_Horas, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Horas_A_Facturar", DbType="Decimal(5,1)")] System.Nullable<decimal> p_Horas_A_Facturar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Tareas_Estandar", DbType="Int")] System.Nullable<int> p_Tareas_Estandar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Descripcion", DbType="VarChar(MAX)")] string p_Descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Observaciones", DbType="VarChar(250)")] string p_Observaciones, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Creacion", DbType="VarChar(50)")] string p_Usuario_Creacion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Cliente, p_Tipo_Reporte, p_Hora_Inicio, p_Hora_Final, p_Total_Horas, p_Horas_A_Facturar, p_Tareas_Estandar, p_Descripcion, p_Observaciones, p_Estado, p_Usuario_Creacion);
-			return ((int)(result.ReturnValue));
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Clientes")]
-		public ISingleResult<SP_ADM_Seleccionar_ClientesResult> SP_ADM_Seleccionar_Clientes()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<SP_ADM_Seleccionar_ClientesResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Tipo_Reportes")]
 		public ISingleResult<SP_ADM_Seleccionar_Tipo_ReportesResult> SP_ADM_Seleccionar_Tipo_Reportes()
 		{
@@ -253,31 +234,6 @@ namespace API.WebserviceData
 			return ((ISingleResult<SP_ADM_Seleccionar_Etapas_de_Proyecto_por_ProyectosResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Clientes_ERP")]
-		public ISingleResult<SP_ADM_Seleccionar_Clientes_ERPResult> SP_ADM_Seleccionar_Clientes_ERP()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<SP_ADM_Seleccionar_Clientes_ERPResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Insertar_Cliente")]
-		public int SP_ADM_Insertar_Cliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_CLIENTE", DbType="VarChar(30)")] string p_CLIENTE, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_COSTO_HORA", DbType="Decimal(28,8)")] System.Nullable<decimal> p_COSTO_HORA, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ESTADO", DbType="Char(1)")] System.Nullable<char> p_ESTADO, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_USUARIO", DbType="VarChar(50)")] string p_USUARIO)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_CLIENTE, p_COSTO_HORA, p_ESTADO, p_USUARIO);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Clientes")]
-		public ISingleResult<SP_ADM_Seleccionar_ClientesResult> SP_ADM_Seleccionar_Clientes()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<SP_ADM_Seleccionar_ClientesResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Editar_Cliente")]
-		public int SP_ADM_Editar_Cliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Cliente", DbType="VarChar(30)")] string p_Cliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Costo_Hora", DbType="Decimal(28,8)")] System.Nullable<decimal> p_Costo_Hora, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Modifica", DbType="VarChar(50)")] string p_Usuario_Modifica)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Cliente, p_Costo_Hora, p_Estado, p_Usuario_Modifica);
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Proyectos")]
 		public ISingleResult<SP_ADM_Seleccionar_ProyectosResult> SP_ADM_Seleccionar_Proyectos()
 		{
@@ -325,6 +281,34 @@ namespace API.WebserviceData
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Descripcion, p_ID_Cliente, p_Monto_Contratado, p_Horas_Contratadas, p_Estado, p_Usuario_Creacion);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Editar_Cliente")]
+		public int SP_ADM_Editar_Cliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Cliente", DbType="VarChar(30)")] string p_Cliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Costo_Hora", DbType="Decimal(28,8)")] System.Nullable<decimal> p_Costo_Hora, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Modifica", DbType="VarChar(50)")] string p_Usuario_Modifica)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Cliente, p_Costo_Hora, p_Estado, p_Usuario_Modifica);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Insertar_Cliente")]
+		public int SP_ADM_Insertar_Cliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_CLIENTE", DbType="VarChar(30)")] string p_CLIENTE, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_COSTO_HORA", DbType="Decimal(28,8)")] System.Nullable<decimal> p_COSTO_HORA, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ESTADO", DbType="Char(1)")] System.Nullable<char> p_ESTADO, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_USUARIO", DbType="VarChar(50)")] string p_USUARIO)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_CLIENTE, p_COSTO_HORA, p_ESTADO, p_USUARIO);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Clientes")]
+		public ISingleResult<SP_ADM_Seleccionar_ClientesResult> SP_ADM_Seleccionar_Clientes()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_ADM_Seleccionar_ClientesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Clientes_ERP")]
+		public ISingleResult<SP_ADM_Seleccionar_Clientes_ERPResult> SP_ADM_Seleccionar_Clientes_ERP()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_ADM_Seleccionar_Clientes_ERPResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2076,158 +2060,6 @@ namespace API.WebserviceData
 		}
 	}
 	
-	public partial class SP_ADM_Seleccionar_ClientesResult
-	{
-		
-		private int _ID;
-		
-		private string _Cliente;
-		
-		private decimal _Costo_Hora;
-		
-		private char _Estado;
-		
-		private string _Usuario_Creacion;
-		
-		private string _Usuario_Modificacion;
-		
-		private System.Nullable<System.DateTime> _Fecha_Creacion;
-		
-		private System.Nullable<System.DateTime> _Fecha_Modificacion;
-		
-		public SP_ADM_Seleccionar_ClientesResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cliente", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string Cliente
-		{
-			get
-			{
-				return this._Cliente;
-			}
-			set
-			{
-				if ((this._Cliente != value))
-				{
-					this._Cliente = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Costo_Hora", DbType="Decimal(28,8) NOT NULL")]
-		public decimal Costo_Hora
-		{
-			get
-			{
-				return this._Costo_Hora;
-			}
-			set
-			{
-				if ((this._Costo_Hora != value))
-				{
-					this._Costo_Hora = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Char(1) NOT NULL")]
-		public char Estado
-		{
-			get
-			{
-				return this._Estado;
-			}
-			set
-			{
-				if ((this._Estado != value))
-				{
-					this._Estado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Creacion", DbType="VarChar(50)")]
-		public string Usuario_Creacion
-		{
-			get
-			{
-				return this._Usuario_Creacion;
-			}
-			set
-			{
-				if ((this._Usuario_Creacion != value))
-				{
-					this._Usuario_Creacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Modificacion", DbType="VarChar(50)")]
-		public string Usuario_Modificacion
-		{
-			get
-			{
-				return this._Usuario_Modificacion;
-			}
-			set
-			{
-				if ((this._Usuario_Modificacion != value))
-				{
-					this._Usuario_Modificacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Creacion", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha_Creacion
-		{
-			get
-			{
-				return this._Fecha_Creacion;
-			}
-			set
-			{
-				if ((this._Fecha_Creacion != value))
-				{
-					this._Fecha_Creacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Modificacion", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha_Modificacion
-		{
-			get
-			{
-				return this._Fecha_Modificacion;
-			}
-			set
-			{
-				if ((this._Fecha_Modificacion != value))
-				{
-					this._Fecha_Modificacion = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_ADM_Seleccionar_Tipo_ReportesResult
 	{
 		
@@ -3554,29 +3386,6 @@ namespace API.WebserviceData
 		}
 	}
 	
-	public partial class SP_ADM_Seleccionar_Clientes_ERPResult
-	{
-		
-		private string _Cliente;
-		
-		private string _Nombre;
-		
-		public SP_ADM_Seleccionar_Clientes_ERPResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cliente", DbType="VarChar(20)")]
-		public string Cliente
-		{
-			get
-			{
-				return this._Cliente;
-			}
-			set
-			{
-				if ((this._Cliente != value))
-				{
-					this._Cliente = value;
 	public partial class SP_ADM_Seleccionar_ContratosResult
 	{
 		
@@ -3628,60 +3437,6 @@ namespace API.WebserviceData
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(80)")]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_ADM_Seleccionar_ClientesResult
-	{
-		
-		private int _ID;
-		
-		private string _Cliente;
-		
-		private string _NOMBRE;
-		
-		private decimal _Costo_Hora;
-		
-		private char _Estado;
-		
-		private string _Usuario_Creacion;
-		
-		private string _Usuario_Modificacion;
-		
-		private System.Nullable<System.DateTime> _Fecha_Creacion;
-		
-		private System.Nullable<System.DateTime> _Fecha_Modificacion;
-		
-		public SP_ADM_Seleccionar_ClientesResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Descripcion
 		{
@@ -3730,18 +3485,6 @@ namespace API.WebserviceData
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOMBRE", DbType="VarChar(80)")]
-		public string NOMBRE
-		{
-			get
-			{
-				return this._NOMBRE;
-			}
-			set
-			{
-				if ((this._NOMBRE != value))
-				{
-					this._NOMBRE = value;
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Monto_Contrato", DbType="Decimal(28,8) NOT NULL")]
 		public decimal Monto_Contrato
 		{
@@ -3806,18 +3549,6 @@ namespace API.WebserviceData
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Costo_Hora", DbType="Decimal(28,8) NOT NULL")]
-		public decimal Costo_Hora
-		{
-			get
-			{
-				return this._Costo_Hora;
-			}
-			set
-			{
-				if ((this._Costo_Hora != value))
-				{
-					this._Costo_Hora = value;
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Horas_Excedidas", DbType="Time")]
 		public System.Nullable<System.TimeSpan> Horas_Excedidas
 		{
@@ -3910,6 +3641,220 @@ namespace API.WebserviceData
 				if ((this._Fecha_Modificacion != value))
 				{
 					this._Fecha_Modificacion = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_ADM_Seleccionar_ClientesResult
+	{
+		
+		private int _ID;
+		
+		private string _Cliente;
+		
+		private string _NOMBRE;
+		
+		private decimal _Costo_Hora;
+		
+		private char _Estado;
+		
+		private string _Usuario_Creacion;
+		
+		private string _Usuario_Modificacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Creacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Modificacion;
+		
+		public SP_ADM_Seleccionar_ClientesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cliente", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string Cliente
+		{
+			get
+			{
+				return this._Cliente;
+			}
+			set
+			{
+				if ((this._Cliente != value))
+				{
+					this._Cliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOMBRE", DbType="VarChar(80)")]
+		public string NOMBRE
+		{
+			get
+			{
+				return this._NOMBRE;
+			}
+			set
+			{
+				if ((this._NOMBRE != value))
+				{
+					this._NOMBRE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Costo_Hora", DbType="Decimal(28,8) NOT NULL")]
+		public decimal Costo_Hora
+		{
+			get
+			{
+				return this._Costo_Hora;
+			}
+			set
+			{
+				if ((this._Costo_Hora != value))
+				{
+					this._Costo_Hora = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Char(1) NOT NULL")]
+		public char Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Creacion", DbType="VarChar(50)")]
+		public string Usuario_Creacion
+		{
+			get
+			{
+				return this._Usuario_Creacion;
+			}
+			set
+			{
+				if ((this._Usuario_Creacion != value))
+				{
+					this._Usuario_Creacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Modificacion", DbType="VarChar(50)")]
+		public string Usuario_Modificacion
+		{
+			get
+			{
+				return this._Usuario_Modificacion;
+			}
+			set
+			{
+				if ((this._Usuario_Modificacion != value))
+				{
+					this._Usuario_Modificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Creacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Creacion
+		{
+			get
+			{
+				return this._Fecha_Creacion;
+			}
+			set
+			{
+				if ((this._Fecha_Creacion != value))
+				{
+					this._Fecha_Creacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Modificacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Modificacion
+		{
+			get
+			{
+				return this._Fecha_Modificacion;
+			}
+			set
+			{
+				if ((this._Fecha_Modificacion != value))
+				{
+					this._Fecha_Modificacion = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_ADM_Seleccionar_Clientes_ERPResult
+	{
+		
+		private string _Cliente;
+		
+		private string _Nombre;
+		
+		public SP_ADM_Seleccionar_Clientes_ERPResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cliente", DbType="VarChar(20)")]
+		public string Cliente
+		{
+			get
+			{
+				return this._Cliente;
+			}
+			set
+			{
+				if ((this._Cliente != value))
+				{
+					this._Cliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(103) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
 				}
 			}
 		}

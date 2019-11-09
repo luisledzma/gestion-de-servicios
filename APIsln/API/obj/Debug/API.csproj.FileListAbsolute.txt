@@ -203,6 +203,7 @@ C:\Users\jimen\OneDrive\Escritorio\Proyecto\gestion-de-servicios\APIsln\API\obj\
 C:\Users\jimen\OneDrive\Escritorio\Proyecto\gestion-de-servicios\APIsln\API\obj\Debug\API.csproj.CopyComplete
 C:\Users\jimen\OneDrive\Escritorio\Proyecto\gestion-de-servicios\APIsln\API\obj\Debug\API.dll
 C:\Users\jimen\OneDrive\Escritorio\Proyecto\gestion-de-servicios\APIsln\API\obj\Debug\API.pdb
+D:\Proyectos\gestion-de-servicios\APIsln\API\obj\Debug\API.csproj.CoreCompileInputs.cache
 D:\Proyectos\gestion-de-servicios\APIsln\API\bin\API.dll.config
 D:\Proyectos\gestion-de-servicios\APIsln\API\bin\API.dll
 D:\Proyectos\gestion-de-servicios\APIsln\API\bin\API.pdb
@@ -301,8 +302,6 @@ D:\Proyectos\gestion-de-servicios\APIsln\API\bin\es\System.Web.Razor.resources.d
 D:\Proyectos\gestion-de-servicios\APIsln\API\bin\es\System.Web.WebPages.resources.dll
 D:\Proyectos\gestion-de-servicios\APIsln\API\bin\es\System.Web.WebPages.Deployment.resources.dll
 D:\Proyectos\gestion-de-servicios\APIsln\API\bin\es\System.Web.WebPages.Razor.resources.dll
-D:\Proyectos\gestion-de-servicios\APIsln\API\obj\Debug\API.csprojAssemblyReference.cache
-D:\Proyectos\gestion-de-servicios\APIsln\API\obj\Debug\API.csproj.CoreCompileInputs.cache
 D:\Proyectos\gestion-de-servicios\APIsln\API\obj\Debug\API.csproj.CopyComplete
 D:\Proyectos\gestion-de-servicios\APIsln\API\obj\Debug\API.dll
 D:\Proyectos\gestion-de-servicios\APIsln\API\obj\Debug\API.pdb
