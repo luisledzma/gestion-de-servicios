@@ -6,7 +6,7 @@
                 Agregar
             </button>
         </div>
-
+        <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
         <div class="col-md-12 table-responsive">
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
@@ -150,10 +150,6 @@
                                 <label for="descr">Descripción</label>
                                 <br>
                                 <textarea id="descr" rows="5" cols="30" [(ngModel)]="reporte.Descripcion" name="descr" pInputTextarea></textarea>
-                                <!-- <ng-container *ngIf="!ReporteAddForm.form.valid">
-                                    <br>
-                                    <p-message severity="error" text="El campo es requerido"></p-message>
-                                </ng-container> -->
                             </div>
 
                             <div class="form-group">
@@ -192,7 +188,7 @@
             </div>
         </div>
 
-        <!-- <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -201,17 +197,24 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                     </div>
-                    <form #TareaForm="ngForm" (ngSubmit)="onSubmitEdit()" autocomplete="off">
+                    <form #EditReportForm="ngForm" (ngSubmit)="onSubmitEdit()" autocomplete="off">
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="descripcion">Descripcion</label>
-                                <input name="descripcion" type="text" [(ngModel)]="selectedTarea.Descripcion" class="form-control" id="descripcion" placeholder="ej. Cliente" />
+                                <label for="descrE">Descripción</label>
+                                <br>
+                                <textarea id="descrE" rows="5" cols="30" [(ngModel)]="selectedReporte.Descripcion" name="descrEN" pInputTextarea></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="obsE">Observaciones</label>
+                                <br>
+                                <input id="obsE" type="text" size="30" [(ngModel)]="selectedReporte.Observaciones" name="obsEN" pInputText>
                             </div>
 
                             <div class="form-group">
                                 <label for="estado">Estado</label>
-                                <select class="form-control" id="estado" name="estado" [(ngModel)]="selectedTarea.Estado">
+                                <select class="form-control" id="estadoE" name="estadoEN" [(ngModel)]="selectedReporte.Estado">
                                     <option value="A">Activo</option>
                                     <option value="I">Inactivo</option>
                                 </select>
@@ -222,7 +225,7 @@
                             <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
                                 Cerrar
                             </button>
-                            <ng-container *ngIf="TareaForm.form.valid">
+                            <ng-container *ngIf="EditReportForm.form.valid">
                                 <button type="submit" (click)="onSubmitEdit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
                                     Guardar Cambios
                                 </button>
@@ -231,7 +234,7 @@
                     </form>
                 </div>
             </div>
-        </div> -->
+        </div>
 
     </div>
 </div>

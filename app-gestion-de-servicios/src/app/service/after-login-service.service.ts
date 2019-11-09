@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 
 // import { Observable } from 'rxjs/Observable'
 import { TokenServiceService } from './token-service.service';
-import { Permiso, Usuario, SettingPermisoDto, TareasEstandar, Reporte, Proyecto, EtapaProyecto } from '../models/models';
+import { Permiso, Usuario, SettingPermisoDto, TareasEstandar, Reporte, Proyecto, EtapaProyecto, Contrato } from '../models/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -141,5 +141,26 @@ export class AfterLoginServiceService {
   }
   InsertarReporte(apiUrl: string,data:Reporte) {
     return this._http.post(apiUrl , data);
+  }
+  EditarReporte(apiUrl: string,data:Reporte) {
+    return this._http.put(apiUrl , data);
+  }
+
+  // --------------------------------------------
+  // ----------MANTENIMIENTO CONTRATOS-----------
+
+  GetContratos(apiUrl: string){
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
+  GetContratosActivos(apiUrl: string){
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
+  InsertaContrato(apiUrl: string,data:Contrato) {
+    return this._http.post(apiUrl , data);
+  }
+  EditarContrato(apiUrl: string,data:Contrato) {
+    return this._http.put(apiUrl , data);
   }
 }

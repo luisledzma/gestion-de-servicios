@@ -157,4 +157,21 @@ namespace API.Controllers
         public DateTime? Fecha_Creacion { get; set; }
         public DateTime? Fecha_Modificacion { get; set; }
     }
+    public class Contrato
+    {
+        public int ID { get; set; }
+        public string Descripcion { get; set; }
+        public int? ID_Cliente { get; set; }
+        public string Cliente { get; set; }
+        public decimal Monto_Contrato { get; set; }
+        public TimeSpan? Horas_Contratadas { get; set; }
+        public TimeSpan? Horas_Disponibles { get; set; }
+        public TimeSpan? Horas_Consumidas { get; set; }
+        public TimeSpan? Horas_Excedidas { get; set; }
+        public char? Estado { get; set; }
+        public string Usuario_Creacion { get; set; }
+        public string Usuario_Modificacion { get; set; }
+        public DateTime? Fecha_Creacion { get; set; }
+        public DateTime? Fecha_Modificacion { get; set; }
+    }
 }

@@ -248,13 +248,6 @@ namespace API.WebserviceData
 			return ((ISingleResult<SP_ADM_Seleccionar_ProyectosResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Insertar_Reporte")]
-		public int SP_ADM_Insertar_Reporte([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Cliente", DbType="Int")] System.Nullable<int> p_Cliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Tipo_Reporte", DbType="Int")] System.Nullable<int> p_Tipo_Reporte, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Proyecto", DbType="Int")] System.Nullable<int> p_ID_Proyecto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Etapa", DbType="Int")] System.Nullable<int> p_ID_Etapa, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Hora_Inicio", DbType="DateTime")] System.Nullable<System.DateTime> p_Hora_Inicio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Hora_Final", DbType="DateTime")] System.Nullable<System.DateTime> p_Hora_Final, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Horas_A_Facturar", DbType="Decimal(5,1)")] System.Nullable<decimal> p_Horas_A_Facturar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Tareas_Estandar", DbType="Int")] System.Nullable<int> p_Tareas_Estandar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Descripcion", DbType="VarChar(MAX)")] string p_Descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Observaciones", DbType="VarChar(250)")] string p_Observaciones, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Creacion", DbType="VarChar(50)")] string p_Usuario_Creacion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Cliente, p_Tipo_Reporte, p_ID_Proyecto, p_ID_Etapa, p_Hora_Inicio, p_Hora_Final, p_Horas_A_Facturar, p_Tareas_Estandar, p_Descripcion, p_Observaciones, p_Estado, p_Usuario_Creacion);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Proyectos_Activos")]
 		public ISingleResult<SP_ADM_Seleccionar_Proyectos_ActivosResult> SP_ADM_Seleccionar_Proyectos_Activos()
 		{
@@ -267,6 +260,34 @@ namespace API.WebserviceData
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID_Proyecto);
 			return ((ISingleResult<SP_ADM_Seleccionar_Etapas_de_Proyecto_Activas_por_ProyectosResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Editar_Reporte")]
+		public int SP_ADM_Editar_Reporte([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Reporte", DbType="Int")] System.Nullable<int> p_ID_Reporte, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Descripcion", DbType="VarChar(MAX)")] string p_Descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Observaciones", DbType="VarChar(250)")] string p_Observaciones, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Modificacion", DbType="VarChar(50)")] string p_Usuario_Modificacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID_Reporte, p_Descripcion, p_Observaciones, p_Estado, p_Usuario_Modificacion);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Insertar_Reporte")]
+		public int SP_ADM_Insertar_Reporte([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Cliente", DbType="Int")] System.Nullable<int> p_Cliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Tipo_Reporte", DbType="Int")] System.Nullable<int> p_Tipo_Reporte, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Proyecto", DbType="Int")] System.Nullable<int> p_ID_Proyecto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Etapa", DbType="Int")] System.Nullable<int> p_ID_Etapa, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Hora_Inicio", DbType="DateTime")] System.Nullable<System.DateTime> p_Hora_Inicio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Hora_Final", DbType="DateTime")] System.Nullable<System.DateTime> p_Hora_Final, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Horas_A_Facturar", DbType="Decimal(5,1)")] System.Nullable<decimal> p_Horas_A_Facturar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Tareas_Estandar", DbType="Int")] System.Nullable<int> p_Tareas_Estandar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Descripcion", DbType="VarChar(MAX)")] string p_Descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Observaciones", DbType="VarChar(250)")] string p_Observaciones, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Creacion", DbType="VarChar(50)")] string p_Usuario_Creacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Cliente, p_Tipo_Reporte, p_ID_Proyecto, p_ID_Etapa, p_Hora_Inicio, p_Hora_Final, p_Horas_A_Facturar, p_Tareas_Estandar, p_Descripcion, p_Observaciones, p_Estado, p_Usuario_Creacion);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Contratos")]
+		public ISingleResult<SP_ADM_Seleccionar_ContratosResult> SP_ADM_Seleccionar_Contratos()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_ADM_Seleccionar_ContratosResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Insertar_Contrato")]
+		public int SP_ADM_Insertar_Contrato([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Descripcion", DbType="VarChar(50)")] string p_Descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Cliente", DbType="Int")] System.Nullable<int> p_ID_Cliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Monto_Contratado", DbType="Decimal(28,8)")] System.Nullable<decimal> p_Monto_Contratado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Horas_Contratadas", DbType="Time")] System.Nullable<System.TimeSpan> p_Horas_Contratadas, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Creacion", DbType="VarChar(50)")] string p_Usuario_Creacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Descripcion, p_ID_Cliente, p_Monto_Contratado, p_Horas_Contratadas, p_Estado, p_Usuario_Creacion);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -3427,6 +3448,266 @@ namespace API.WebserviceData
 				if ((this._Proyecto != value))
 				{
 					this._Proyecto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Creacion", DbType="VarChar(50)")]
+		public string Usuario_Creacion
+		{
+			get
+			{
+				return this._Usuario_Creacion;
+			}
+			set
+			{
+				if ((this._Usuario_Creacion != value))
+				{
+					this._Usuario_Creacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Modificacion", DbType="VarChar(50)")]
+		public string Usuario_Modificacion
+		{
+			get
+			{
+				return this._Usuario_Modificacion;
+			}
+			set
+			{
+				if ((this._Usuario_Modificacion != value))
+				{
+					this._Usuario_Modificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Creacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Creacion
+		{
+			get
+			{
+				return this._Fecha_Creacion;
+			}
+			set
+			{
+				if ((this._Fecha_Creacion != value))
+				{
+					this._Fecha_Creacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Modificacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Modificacion
+		{
+			get
+			{
+				return this._Fecha_Modificacion;
+			}
+			set
+			{
+				if ((this._Fecha_Modificacion != value))
+				{
+					this._Fecha_Modificacion = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_ADM_Seleccionar_ContratosResult
+	{
+		
+		private int _ID;
+		
+		private string _Descripcion;
+		
+		private System.Nullable<int> _ID_Cliente;
+		
+		private string _Cliente;
+		
+		private decimal _Monto_Contrato;
+		
+		private System.Nullable<System.TimeSpan> _Horas_Contratadas;
+		
+		private System.Nullable<System.TimeSpan> _Horas_Disponibles;
+		
+		private System.Nullable<System.TimeSpan> _Horas_Consumidas;
+		
+		private System.Nullable<System.TimeSpan> _Horas_Excedidas;
+		
+		private char _Estado;
+		
+		private string _Usuario_Creacion;
+		
+		private string _Usuario_Modificacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Creacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Modificacion;
+		
+		public SP_ADM_Seleccionar_ContratosResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Cliente", DbType="Int")]
+		public System.Nullable<int> ID_Cliente
+		{
+			get
+			{
+				return this._ID_Cliente;
+			}
+			set
+			{
+				if ((this._ID_Cliente != value))
+				{
+					this._ID_Cliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cliente", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string Cliente
+		{
+			get
+			{
+				return this._Cliente;
+			}
+			set
+			{
+				if ((this._Cliente != value))
+				{
+					this._Cliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Monto_Contrato", DbType="Decimal(28,8) NOT NULL")]
+		public decimal Monto_Contrato
+		{
+			get
+			{
+				return this._Monto_Contrato;
+			}
+			set
+			{
+				if ((this._Monto_Contrato != value))
+				{
+					this._Monto_Contrato = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Horas_Contratadas", DbType="Time")]
+		public System.Nullable<System.TimeSpan> Horas_Contratadas
+		{
+			get
+			{
+				return this._Horas_Contratadas;
+			}
+			set
+			{
+				if ((this._Horas_Contratadas != value))
+				{
+					this._Horas_Contratadas = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Horas_Disponibles", DbType="Time")]
+		public System.Nullable<System.TimeSpan> Horas_Disponibles
+		{
+			get
+			{
+				return this._Horas_Disponibles;
+			}
+			set
+			{
+				if ((this._Horas_Disponibles != value))
+				{
+					this._Horas_Disponibles = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Horas_Consumidas", DbType="Time")]
+		public System.Nullable<System.TimeSpan> Horas_Consumidas
+		{
+			get
+			{
+				return this._Horas_Consumidas;
+			}
+			set
+			{
+				if ((this._Horas_Consumidas != value))
+				{
+					this._Horas_Consumidas = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Horas_Excedidas", DbType="Time")]
+		public System.Nullable<System.TimeSpan> Horas_Excedidas
+		{
+			get
+			{
+				return this._Horas_Excedidas;
+			}
+			set
+			{
+				if ((this._Horas_Excedidas != value))
+				{
+					this._Horas_Excedidas = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Char(1) NOT NULL")]
+		public char Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
 				}
 			}
 		}

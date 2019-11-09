@@ -303,21 +303,6 @@
       <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_ADM_Insertar_Reporte" Method="SP_ADM_Insertar_Reporte">
-    <Parameter Name="P_Cliente" Parameter="p_Cliente" Type="System.Int32" DbType="Int" />
-    <Parameter Name="P_Tipo_Reporte" Parameter="p_Tipo_Reporte" Type="System.Int32" DbType="Int" />
-    <Parameter Name="P_ID_Proyecto" Parameter="p_ID_Proyecto" Type="System.Int32" DbType="Int" />
-    <Parameter Name="P_ID_Etapa" Parameter="p_ID_Etapa" Type="System.Int32" DbType="Int" />
-    <Parameter Name="P_Hora_Inicio" Parameter="p_Hora_Inicio" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="P_Hora_Final" Parameter="p_Hora_Final" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="P_Horas_A_Facturar" Parameter="p_Horas_A_Facturar" Type="System.Decimal" DbType="Decimal(5,1)" />
-    <Parameter Name="P_Tareas_Estandar" Parameter="p_Tareas_Estandar" Type="System.Int32" DbType="Int" />
-    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(MAX)" />
-    <Parameter Name="P_Observaciones" Parameter="p_Observaciones" Type="System.String" DbType="VarChar(250)" />
-    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
-    <Parameter Name="P_Usuario_Creacion" Parameter="p_Usuario_Creacion" Type="System.String" DbType="VarChar(50)" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.SP_ADM_Seleccionar_Proyectos_Activos" Method="SP_ADM_Seleccionar_Proyectos_Activos">
     <ElementType Name="SP_ADM_Seleccionar_Proyectos_ActivosResult">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -349,5 +334,55 @@
       <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Editar_Reporte" Method="SP_ADM_Editar_Reporte">
+    <Parameter Name="P_ID_Reporte" Parameter="p_ID_Reporte" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="P_Observaciones" Parameter="p_Observaciones" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Modificacion" Parameter="p_Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Insertar_Reporte" Method="SP_ADM_Insertar_Reporte">
+    <Parameter Name="P_Cliente" Parameter="p_Cliente" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Tipo_Reporte" Parameter="p_Tipo_Reporte" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_ID_Proyecto" Parameter="p_ID_Proyecto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_ID_Etapa" Parameter="p_ID_Etapa" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Hora_Inicio" Parameter="p_Hora_Inicio" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="P_Hora_Final" Parameter="p_Hora_Final" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="P_Horas_A_Facturar" Parameter="p_Horas_A_Facturar" Type="System.Decimal" DbType="Decimal(5,1)" />
+    <Parameter Name="P_Tareas_Estandar" Parameter="p_Tareas_Estandar" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="P_Observaciones" Parameter="p_Observaciones" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Creacion" Parameter="p_Usuario_Creacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Contratos" Method="SP_ADM_Seleccionar_Contratos">
+    <ElementType Name="SP_ADM_Seleccionar_ContratosResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Cliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Monto_Contrato" Type="System.Decimal" DbType="Decimal(28,8) NOT NULL" CanBeNull="false" />
+      <Column Name="Horas_Contratadas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Horas_Disponibles" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Horas_Consumidas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Horas_Excedidas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Insertar_Contrato" Method="SP_ADM_Insertar_Contrato">
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_ID_Cliente" Parameter="p_ID_Cliente" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Monto_Contratado" Parameter="p_Monto_Contratado" Type="System.Decimal" DbType="Decimal(28,8)" />
+    <Parameter Name="P_Horas_Contratadas" Parameter="p_Horas_Contratadas" Type="System.TimeSpan" DbType="Time" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Creacion" Parameter="p_Usuario_Creacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

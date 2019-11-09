@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AfterLoginServiceService } from '../service/after-login-service.service';
+import { ConfirmationService,MessageService } from 'primeng/api';
 import { Usuario, Rol, TareasEstandar, Reporte, ClienteC, TipoReporte, Proyecto, EtapaProyecto } from '../models/models';
 
 @Component({
@@ -12,13 +13,21 @@ export class MantFormularioComponent implements OnInit {
   private apiUrl = environment.apiURL;
   _userExist: any;
   _userInfo: any;
+  // ---------------------------------
+  // ------------REPORTES-------------
   reportes: any;
   reporte: Reporte = new Reporte(); // Para insertar
   selectedReporte: Reporte = new Reporte(); // Para editar
+  // ---------------------------------
+  // ------------CLIENTES-------------
   clientes: any;
   selectedCliente: ClienteC = new ClienteC();
+  // ---------------------------------
+  // ---------TIPOS REPORTES----------
   tiposReportes: any;
   selectedTReporte: TipoReporte = new TipoReporte();
+  // ---------------------------------
+  // -------------TAREAS--------------
   tareasEstandar: any;
   selectedTarea: TareasEstandar = new TareasEstandar();
   horaInicio: Date;
@@ -33,7 +42,7 @@ export class MantFormularioComponent implements OnInit {
   etapas: any;
   selectedEtapa: EtapaProyecto = new EtapaProyecto();
 
-  constructor(private after: AfterLoginServiceService) { 
+  constructor(private after: AfterLoginServiceService, private messageService: MessageService, private confirmationService: ConfirmationService) { 
     const us = localStorage.getItem('User').split('.')[1];  
     this._userExist = JSON.parse(atob(us));
     this._userInfo = this._userExist.unique_name.split(';');
@@ -114,9 +123,20 @@ export class MantFormularioComponent implements OnInit {
     });
   }  
   onSubmit(){
-    this.InsertarReporte();
+    this.confirmInsertGeneralCalc(); // DEBE CONFIRMAR PARA INSERTAR
   }
-
+  confirmInsertGeneralCalc() { // ES EL DIALOG PARA CONFIRMAR
+    this.confirmationService.confirm({
+      message: 'Esta seguro que desea continuar?',
+      header: 'Confirmación',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.InsertarReporte();
+      },
+      reject: () => {
+      }
+    });
+  }
   InsertarReporte() {
     let url = this.apiUrl + 'Administracion/InsertarReporte';
     this.reporte.Usuario_Creacion = this._userInfo[0];
@@ -137,10 +157,45 @@ export class MantFormularioComponent implements OnInit {
     this.after.InsertarReporte(url,this.reporte).subscribe(data => {
       //console.log(data)
       this.GetReportes();
+      if(data){
+        this.messageService.add({
+          severity: "success",
+          summary: "Correcto",
+          detail: "Se ha insertado correctamente."
+        });
+      }else{
+        this.messageService.add({
+          severity: "error",
+          summary: "No se pudo insertar",
+          detail: "Ha habido un problema al insertar el reporte"
+        });
+      }
+      
     });
     this.reporte = new Reporte();
   }
+  // --------------------------------------
+  // -----------EDITAR REPORTE-------------
+  onButtonEditClick(reporte:Reporte){
+    this.selectedReporte = reporte;
+  }
 
+  onSubmitEdit(){
+    this.EditarReporte();
+  }
+
+  EditarReporte(){
+    this.selectedEtapa.Usuario_Modificacion = this._userInfo[0];
+    let url = this.apiUrl + 'Administracion/EditarReporte';
+    this.after.EditarReporte(url,this.selectedReporte).subscribe(data => {
+
+      if(data){
+        this.messageService.add({severity:'success', summary: 'Correcto', detail:'Se ha editado correctamente'});
+      }else{
+        this.messageService.add({severity:'error', summary: 'Incorrecto', detail:'No se ha guardado el proyecto'});
+      }
+    });
+  }
   prueba(value:any){
     let fecha = new Date(value);
     console.log(`${fecha.getHours()}:${fecha.getMinutes()}`);

@@ -89,5 +89,17 @@ namespace API.LogicaNegocio
                 return false;
             }
         }
+        public bool EditarReporte(Reporte reporte)
+        {
+            try
+            {
+                _db.SP_ADM_Editar_Reporte(reporte.ID,reporte.Descripcion,reporte.Observaciones,reporte.Estado,reporte.Usuario_Modificacion);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

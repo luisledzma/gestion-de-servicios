@@ -143,3 +143,19 @@ export class Reporte
     Fecha_Creacion : Date;
     Fecha_Modificacion : Date;
 }
+export class Contrato{
+    ID: number;
+    Descripcion: string; 
+    ID_Cliente: number; 
+    Cliente: string;
+    Monto_Contrato: number;
+    Horas_Contratadas: number;
+    Horas_Disponibles: number;
+    Horas_Consumidas: number;
+    Horas_Excedidas: number;
+    Estado: string;
+    Usuario_Creacion: string;
+    Usuario_Modificacion: string;
+    Fecha_Creacion: Date;
+    Fecha_Modificacion: Date;
+}
