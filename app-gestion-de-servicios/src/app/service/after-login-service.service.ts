@@ -170,7 +170,7 @@ export class AfterLoginServiceService {
     let _apimethod = ``;
     return this._http.get(apiUrl + _apimethod);
   }
-  InsertaContrato(apiUrl: string,data:Contrato) {
+  InsertarContrato(apiUrl: string,data:Contrato) {
     return this._http.post(apiUrl , data);
   }
   EditarContrato(apiUrl: string,data:Contrato) {

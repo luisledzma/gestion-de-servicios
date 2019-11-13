@@ -47,7 +47,7 @@ namespace API.LogicaNegocio
             }
             return new List<Contrato>();
         }
-        public bool InsertaContrato(Contrato contrato)
+        public bool InsertarContrato(Contrato contrato)
         {
             try
             {

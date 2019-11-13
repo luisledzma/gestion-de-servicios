@@ -263,15 +263,15 @@ namespace API.Controllers
             return conL.GetContratos();
         }
         [HttpPost]
-        [Route("InsertaContrato")]
-        public bool InsertaContrato([FromBody]Contrato contrato)
+        [Route("InsertarContrato")]
+        public bool InsertarContrato([FromBody]Contrato contrato)
         {
             if (contrato == null)
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
 
-            if (conL.InsertaContrato(contrato))
+            if (conL.InsertarContrato(contrato))
             {
                 return true;
             }
