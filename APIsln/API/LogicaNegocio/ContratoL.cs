@@ -49,9 +49,23 @@ namespace API.LogicaNegocio
         }
         public bool InsertarContrato(Contrato contrato)
         {
+            TimeSpan tiempoF = new TimeSpan(contrato.horas, 00, 00);
             try
             {
-                _db.SP_ADM_Insertar_Contrato(contrato.Descripcion,contrato.ID_Cliente,contrato.Monto_Contrato,contrato.Horas_Contratadas,contrato.Estado,contrato.Usuario_Creacion);
+                _db.SP_ADM_Insertar_Contrato(contrato.Descripcion,contrato.ID_Cliente,contrato.Monto_Contrato, tiempoF, contrato.Estado,contrato.Usuario_Creacion);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool EditarContrato(Contrato contrato)
+        {
+            TimeSpan tiempoF = new TimeSpan(contrato.horas, 00, 00);
+            try
+            {
+                _db.SP_ADM_Editar_Contrato(contrato.ID,contrato.Descripcion, tiempoF, contrato.Monto_Contrato,contrato.Estado,contrato.Usuario_Modificacion);
                 return true;
             }
             catch (Exception)

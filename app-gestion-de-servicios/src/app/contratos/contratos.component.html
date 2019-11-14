@@ -29,8 +29,8 @@
                         <td> <span class="ui-column-title">Horas Invertidas</span> {{contract.Monto_Contrato}}</td>
                         <td> <span class="ui-column-title">Monto Total</span> {{contract.Horas_Disponibles}}</td>
                         <td> <span class="ui-column-title">Estado</span> {{contract.Estado}}</td>
-                        <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
-                        <!-- <td><button type="button" (click)="onButtonEditClick(pro)" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td> -->
+                        <!-- <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td> -->
+                        <td><button type="button" (click)="onButtonEditClick(contract)" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
                     </tr>
                 </ng-template>
             </p-table>
@@ -72,7 +72,7 @@
                             <div class="form-group">
                                 <label for="hContratadas">Horas contratadas</label>
                                 <br>
-                                <input id="hContratadas" type="number" size="30" pInputText [(ngModel)]="contrato.Horas_Contratadas" name="hContratadas" #hContratadasNum="ngModel" required>
+                                <input id="hContratadas" type="number" size="30" pInputText [(ngModel)]="contrato.horas" name="hContratadas" #hContratadasNum="ngModel" required>
                                 <ng-container *ngIf="!hContratadasNum.valid">
                                     <p-message severity="error" text="El campo es requerido"></p-message>
                                 </ng-container>
@@ -115,51 +115,51 @@
             </div>
         </div>
 
-        <!-- <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modal-title">Editar tarea estandar</h5>
+                        <h5 class="modal-title" id="modal-title">Editar Contrato</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                     </div>
-                    <form #EditProForm="ngForm" (ngSubmit)="onSubmitEdit()" autocomplete="off">
+                    <form #EditConForm="ngForm" (ngSubmit)="onSubmitEdit()" autocomplete="off">
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="descripcion">Descripción</label>
+                                <label for="descripcionE">Descripción</label>
                                 <br>
-                                <input id="descripcion" type="text" size="30" pInputText [(ngModel)]="selectedProyecto.Descripcion" name="descripcionE" #descripcionE="ngModel" required>
-                                <ng-container *ngIf="!descripcionE.valid">
+                                <input id="descripcionE" type="text" size="30" pInputText [(ngModel)]="selectedcontrato.Descripcion" name="descripcionEN" #descripcionEV="ngModel" required>
+                                <ng-container *ngIf="!descripcionEV.valid">
                                     <p-message severity="error" text="El campo es requerido"></p-message>
                                 </ng-container>
 
                             </div>
 
                             <div class="form-group">
-                                <label for="hEstimadas">Horas estimadas</label>
+                                <label for="hContratadasE">Horas contratadas</label>
                                 <br>
-                                <input id="hEstimadas" type="number" size="30" pInputText [(ngModel)]="selectedProyecto.Horas_Estimadas" name="hEstimadasE" #hEstimadasE="ngModel" required>
-                                <ng-container *ngIf="!hEstimadasE.valid">
+                                <input id="hContratadasE" type="number" size="30" pInputText [(ngModel)]="selectedcontrato.horas" name="hContratadasEN" #hContratadasENum="ngModel" required>
+                                <ng-container *ngIf="!hContratadasENum.valid">
                                     <p-message severity="error" text="El campo es requerido"></p-message>
                                 </ng-container>
 
                             </div>
 
                             <div class="form-group">
-                                <label for="total">Monto Total</label>
+                                <label for="mContratoE">Monto Contrato</label>
                                 <br>
-                                <input id="total" type="number" size="30" pInputText [(ngModel)]="selectedProyecto.Monto_Total" name="totalE" #totalE="ngModel" required>
-                                <ng-container *ngIf="!totalE.valid">
+                                <input id="mContratoE" type="number" size="30" pInputText [(ngModel)]="selectedcontrato.Monto_Contrato" name="mContratoEN" #mContratoENum="ngModel" required>
+                                <ng-container *ngIf="!mContratoENum.valid">
                                     <p-message severity="error" text="El campo es requerido"></p-message>
                                 </ng-container>
 
                             </div>
 
                             <div class="form-group">
-                                <label for="estado">Estado</label>
-                                <select class="form-control" id="estado" [(ngModel)]="selectedProyecto.Estado" name="estado">
+                                <label for="estadoE">Estado</label>
+                                <select class="form-control" id="estadoE" [(ngModel)]="selectedcontrato.Estado" name="estadoEN">
                                     <option value="A">Activo</option>
                                     <option value="I">Inactivo</option>
                                 </select>
@@ -169,7 +169,7 @@
                             <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
                                 Cerrar
                             </button>
-                            <ng-container *ngIf="EditProForm.form.valid">
+                            <ng-container *ngIf="EditConForm.form.valid">
                                 <button type="submit" (click)="onSubmitEdit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
                                     Guardar Cambios
                                 </button>
@@ -178,7 +178,7 @@
                     </form>
                 </div>
             </div>
-        </div> -->
+        </div>
 
     </div>
 </div>

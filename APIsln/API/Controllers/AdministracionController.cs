@@ -277,6 +277,21 @@ namespace API.Controllers
             }
             return false;
         }
-        
+        [HttpPut]
+        [Route("EditarContrato")]
+        public bool EditarContrato([FromBody]Contrato contrato)
+        {
+            if (contrato == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (conL.EditarContrato(contrato))
+            {
+                return true;
+            }
+            return false;
+
+        }
     }
 }

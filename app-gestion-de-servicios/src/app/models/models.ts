@@ -149,7 +149,8 @@ export class Contrato{
     ID_Cliente: number; 
     Cliente: string;
     Monto_Contrato: number;
-    Horas_Contratadas: number;
+    horas: number;
+    Horas_Contratadas: Date;
     Horas_Disponibles: number;
     Horas_Consumidas: number;
     Horas_Excedidas: number;

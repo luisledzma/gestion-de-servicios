@@ -310,6 +310,13 @@ namespace API.WebserviceData
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<SP_ADM_Seleccionar_Clientes_ERPResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Editar_Contrato")]
+		public int SP_ADM_Editar_Contrato([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Contrato", DbType="Int")] System.Nullable<int> p_ID_Contrato, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Descripcion", DbType="VarChar(50)")] string p_Descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Horas_Contratadas", DbType="Time")] System.Nullable<System.TimeSpan> p_Horas_Contratadas, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Monto_Contrato", DbType="Decimal(28,8)")] System.Nullable<decimal> p_Monto_Contrato, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Modificacion", DbType="VarChar(50)")] string p_Usuario_Modificacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID_Contrato, p_Descripcion, p_Horas_Contratadas, p_Monto_Contrato, p_Estado, p_Usuario_Modificacion);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_GS_USUARIO")]

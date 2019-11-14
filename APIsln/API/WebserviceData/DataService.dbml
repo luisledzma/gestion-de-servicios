@@ -406,4 +406,13 @@
       <Column Name="Nombre" Type="System.String" DbType="VarChar(103) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_ADM_Editar_Contrato" Method="SP_ADM_Editar_Contrato">
+    <Parameter Name="P_ID_Contrato" Parameter="p_ID_Contrato" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Horas_Contratadas" Parameter="p_Horas_Contratadas" Type="System.TimeSpan" DbType="Time" />
+    <Parameter Name="P_Monto_Contrato" Parameter="p_Monto_Contrato" Type="System.Decimal" DbType="Decimal(28,8)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Modificacion" Parameter="p_Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

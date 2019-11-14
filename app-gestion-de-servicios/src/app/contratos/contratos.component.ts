@@ -4,6 +4,7 @@ import { AfterLoginServiceService } from '../service/after-login-service.service
 import { ClienteC, Contrato } from '../models/models';
 import { MessageService } from 'primeng/api';
 import { Message } from 'primeng/components/common/api';
+import { Time } from '@angular/common';
 
 
 @Component({
@@ -74,5 +75,29 @@ export class ContratosComponent implements OnInit {
       this.contrato = new Contrato();
     });
     
+  }
+  // --------------------------------------
+  // -----------Editar Contrato------------
+
+  onButtonEditClick(con:Contrato){
+    this.selectedcontrato = con;
+  }
+
+  onSubmitEdit(){
+    this.EditarContrato();
+  }
+
+  EditarContrato(){
+    this.selectedcontrato.Usuario_Modificacion = this._userInfo[0];
+    let url = this.apiUrl + 'Administracion/EditarContrato';
+    this.after.EditarContrato(url,this.selectedcontrato).subscribe(data => {
+      this.GetContratos();
+
+      if(data){    
+        this.messageService.add({severity:'success', summary: 'Correcto', detail:'Se ha editado correctamente'});
+      }else{      
+        this.messageService.add({severity:'error', summary: 'Incorrecto', detail:'No se ha guardado el proyecto'});
+      }
+    });
   }
 }

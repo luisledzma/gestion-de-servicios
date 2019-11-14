@@ -165,6 +165,7 @@ namespace API.Controllers
         public int? ID_Cliente { get; set; }
         public string Cliente { get; set; }
         public decimal Monto_Contrato { get; set; }
+        public int horas { get; set; }
         public TimeSpan? Horas_Contratadas { get; set; }
         public TimeSpan? Horas_Disponibles { get; set; }
         public TimeSpan? Horas_Consumidas { get; set; }
