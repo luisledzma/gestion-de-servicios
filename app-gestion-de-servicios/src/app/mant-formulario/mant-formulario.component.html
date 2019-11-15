@@ -130,7 +130,7 @@
                                     <ng-container *ngIf="proyectos">
                                         <label for="porjects">Proyectos</label>
                                         <br>
-                                        <p-dropdown id="porjects" [options]="proyectos" [(ngModel)]="selectedProyecto" (onChange)="GetEtapasProyectoActivasPorProyecto(pro.value.ID);" placeholder="Seleccione un cliente" optionLabel="Descripcion" name="porjects" [showClear]="true" #pro="ngModel"
+                                        <p-dropdown id="porjects" [options]="proyectos" [(ngModel)]="selectedProyecto" (onChange)="GetEtapasProyectoActivasPorProyecto(pro.value.ID);" placeholder="Seleccione un proyecto" optionLabel="Descripcion" name="porjects" [showClear]="true" #pro="ngModel"
                                             required></p-dropdown>
                                         <ng-container *ngIf="!selectedProyecto">
                                             <p-message severity="error" text="El campo es requerido"></p-message>
@@ -140,8 +140,22 @@
                                     <ng-container *ngIf="selectedEtapa">
                                         <label for="etaps">Etapas</label>
                                         <br>
-                                        <p-dropdown id="etaps" [options]="etapas" [(ngModel)]="selectedEtapa" placeholder="Seleccione un cliente" optionLabel="Descripcion" name="etaps" [showClear]="true" required></p-dropdown>
+                                        <p-dropdown id="etaps" [options]="etapas" [(ngModel)]="selectedEtapa" placeholder="Seleccione una etapa" optionLabel="Descripcion" name="etaps" [showClear]="true" required></p-dropdown>
                                         <ng-container *ngIf="!selectedEtapa">
+                                            <p-message severity="error" text="El campo es requerido"></p-message>
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+
+
+                            <ng-container *ngIf="selectedTReporte">
+                                <ng-container *ngIf="selectedTReporte.ID == 2">
+                                    <ng-container *ngIf="proyectos">
+                                        <label for="contracts">Contratos</label>
+                                        <br>
+                                        <p-dropdown id="contracts" [options]="contratos" [(ngModel)]="selectedContrato" placeholder="Seleccione un contrato" optionLabel="Descripcion" name="contractN" [showClear]="true" #contractN="ngModel" required></p-dropdown>
+                                        <ng-container *ngIf="!contractN.valid">
                                             <p-message severity="error" text="El campo es requerido"></p-message>
                                         </ng-container>
                                     </ng-container>
@@ -152,7 +166,7 @@
                                 <ng-container *ngIf="tareasEstandar">
                                     <label for="tEstandar">Tarea estandar</label>
                                     <br>
-                                    <p-dropdown id="tEstandar" [options]="tareasEstandar" [(ngModel)]="selectedTarea" placeholder="Seleccione un cliente" optionLabel="Descripcion" name="tEstandar" [showClear]="true" required></p-dropdown>
+                                    <p-dropdown id="tEstandar" [options]="tareasEstandar" [(ngModel)]="selectedTarea" placeholder="Seleccione una tarea" optionLabel="Descripcion" name="tEstandar" [showClear]="true" required></p-dropdown>
                                     <ng-container *ngIf="!selectedTarea">
                                         <p-message severity="error" text="El campo es requerido"></p-message>
                                     </ng-container>
@@ -235,7 +249,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modal-title">Editar tarea estandar</h5>
+                        <h5 class="modal-title" id="modal-title">Editar Reporte</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

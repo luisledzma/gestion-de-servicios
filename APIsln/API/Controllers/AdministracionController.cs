@@ -293,5 +293,11 @@ namespace API.Controllers
             return false;
 
         }
+        [HttpGet]
+        [Route("GetContratosActivos")]
+        public List<Contrato> GetContratosActivos()
+        {
+            return conL.GetContratosActivos();
+        }
     }
 }

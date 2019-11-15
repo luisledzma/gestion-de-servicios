@@ -77,7 +77,7 @@ namespace API.LogicaNegocio
         {
             try
             {
-                var result = _db.SP_ADM_Insertar_Reporte(reporte.ID_Cliente, reporte.ID_Tipo_Reporte, reporte.ID_Proyecto,reporte.ID_Etapa_Proyecto,reporte.Hora_Inicio, reporte.Hora_Final, reporte.Horas_A_Facturar, reporte.ID_Tareas_Estandar, reporte.Descripcion, reporte.Observaciones, reporte.Estado, reporte.Usuario_Creacion);
+                var result = _db.SP_ADM_Insertar_Reporte(reporte.ID_Cliente, reporte.ID_Tipo_Reporte, reporte.ID_Proyecto,reporte.ID_Etapa_Proyecto,reporte.ID_Contrato,reporte.Hora_Inicio, reporte.Hora_Final, reporte.Horas_A_Facturar, reporte.ID_Tareas_Estandar, reporte.Descripcion, reporte.Observaciones, reporte.Estado, reporte.Usuario_Creacion);
                 if(result < 0)
                 {
                     return false;

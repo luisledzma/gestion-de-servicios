@@ -47,6 +47,42 @@ namespace API.LogicaNegocio
             }
             return new List<Contrato>();
         }
+        public List<Contrato> GetContratosActivos()
+        {
+            try
+            {
+
+                var result = (from c in _db.SP_ADM_Seleccionar_Contratos_Activos()
+
+                              select new Contrato()
+                              {
+                                  ID = c.ID,
+                                  Descripcion = c.Descripcion,
+                                  ID_Cliente = c.ID_Cliente,
+                                  Cliente = c.Cliente,
+                                  Monto_Contrato = c.Monto_Contrato,
+                                  Horas_Contratadas = c.Horas_Contratadas,
+                                  Horas_Consumidas = c.Horas_Consumidas,
+                                  Horas_Disponibles = c.Horas_Disponibles, 
+                                  Horas_Excedidas = c.Horas_Excedidas,
+                                  Estado = c.Estado,
+                                  Usuario_Creacion = c.Usuario_Creacion,
+                                  Usuario_Modificacion = c.Usuario_Modificacion,
+                                  Fecha_Creacion = c.Fecha_Creacion,
+                                  Fecha_Modificacion = c.Fecha_Modificacion
+
+                              }).ToList();
+
+
+                if (result != null)
+                    return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return new List<Contrato>();
+        }
         public bool InsertarContrato(Contrato contrato)
         {
             TimeSpan tiempoF = new TimeSpan(contrato.horas, 00, 00);

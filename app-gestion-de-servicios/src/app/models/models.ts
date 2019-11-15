@@ -128,6 +128,9 @@ export class Reporte
     ID_Proyecto: number;
     ID_Etapa_Proyecto: number;
     // ------------------------------------
+    // ----variables si tiene contrato----- 
+    ID_Contrato: number;
+    // ------------------------------------
     Descripcion_Tipo_Reporte : string;
     Hora_Inicio : Date;
     Hora_Final : Date;

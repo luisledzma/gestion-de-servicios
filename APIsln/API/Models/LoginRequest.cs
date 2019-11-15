@@ -113,6 +113,9 @@ namespace API.Controllers
         public int ID_Proyecto { get; set; }
         public int ID_Etapa_Proyecto { get; set; }
         // ------------------------------------
+        // ----variables si tiene contrato-----
+        public int ID_Contrato { get; set; }
+        // ------------------------------------
         public string Descripcion_Tipo_Reporte { get; set; }
         public DateTime? Hora_Inicio { get; set; }
         public DateTime? Hora_Final { get; set; }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AfterLoginServiceService } from '../service/after-login-service.service';
 import { ConfirmationService,MessageService } from 'primeng/api';
-import { Usuario, Rol, TareasEstandar, Reporte, ClienteC, TipoReporte, Proyecto, EtapaProyecto } from '../models/models';
+import { Usuario, Rol, TareasEstandar, Reporte, ClienteC, TipoReporte, Proyecto, EtapaProyecto, Contrato } from '../models/models';
 
 @Component({
   selector: 'app-mant-formulario',
@@ -37,6 +37,10 @@ export class MantFormularioComponent implements OnInit {
   // ----------------------------------
   proyectos: any;
   selectedProyecto: Proyecto = new Proyecto(); //Para Editar
+  // ----------------------------------
+  // -------------CONTRATOS------------
+  contratos: any;
+  selectedContrato: Contrato = new Contrato();
   // ------------------------------------
   // ---------------ETAPAS---------------
   etapas: any;
@@ -54,6 +58,7 @@ export class MantFormularioComponent implements OnInit {
     this.GetTareasEstandar();
     this.GetTipoReportes();
     this.GetProyectosActivos();
+    this.GetContratosActivos();
     this.GetEtapasProyectoActivasPorProyecto(0);
   }
   
@@ -119,9 +124,17 @@ export class MantFormularioComponent implements OnInit {
     this.after.GetProyectosActivos(url).subscribe(data => {
       this.proyectos = data;
       this.selectedProyecto = data ? data[0] : undefined;
+    });
+  } 
+  
+  GetContratosActivos(){
+    let url = this.apiUrl + 'Administracion/GetContratosActivos';
+    this.after.GetContratosActivos(url).subscribe(data => {
+      this.contratos = data;
+      this.selectedContrato = data ? data[0] : undefined;
       console.log(data);
     });
-  }  
+  } 
   onSubmit(){
     this.confirmInsertGeneralCalc(); // DEBE CONFIRMAR PARA INSERTAR
   }
@@ -148,6 +161,9 @@ export class MantFormularioComponent implements OnInit {
     // ------Cuando el formulario es Proyecto-------
     this.reporte.ID_Proyecto = this.selectedProyecto.ID;
     this.reporte.ID_Etapa_Proyecto = this.selectedEtapa.ID;
+    // ---------------------------------------------
+    // ------Cuando el formulario es Contrato-------
+    this.reporte.ID_Contrato =this.selectedContrato.ID;
     // ---------------------------------------------
     this.horaInicio = new Date(this.horaInicio);
     this.horaFinal = new Date(this.horaFinal);
