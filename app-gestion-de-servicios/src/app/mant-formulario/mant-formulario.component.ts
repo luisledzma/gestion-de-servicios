@@ -140,7 +140,7 @@ export class MantFormularioComponent implements OnInit {
   }
   confirmInsertGeneralCalc() { // ES EL DIALOG PARA CONFIRMAR
     this.confirmationService.confirm({
-      message: 'Esta seguro que desea continuar?',
+      message: 'Esta seguro que desea continuar? Verifique bien las horas ya que no se podran modificar mas adelante',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
@@ -156,14 +156,22 @@ export class MantFormularioComponent implements OnInit {
     this.reporte.ID_Tipo_Reporte = this.selectedTReporte.ID;
     this.reporte.ID_Cliente = this.selectedCliente.ID;
     this.reporte.ID_Tareas_Estandar = this.selectedTarea.ID;
+    this.reporte.ID_Proyecto = 0;
+    this.reporte.ID_Etapa_Proyecto = 0;
+    this.reporte.ID_Contrato = 0;
 
     // ---------------------------------------------
     // ------Cuando el formulario es Proyecto-------
-    this.reporte.ID_Proyecto = this.selectedProyecto.ID;
-    this.reporte.ID_Etapa_Proyecto = this.selectedEtapa.ID;
+    if(this.selectedTReporte.ID == 1){
+      this.reporte.ID_Proyecto = this.selectedProyecto.ID;
+      this.reporte.ID_Etapa_Proyecto = this.selectedEtapa.ID;
+    }
+    
     // ---------------------------------------------
     // ------Cuando el formulario es Contrato-------
-    this.reporte.ID_Contrato =this.selectedContrato.ID;
+    if(this.selectedTReporte.ID == 2){
+      this.reporte.ID_Contrato =this.selectedContrato.ID;
+    }
     // ---------------------------------------------
     this.horaInicio = new Date(this.horaInicio);
     this.horaFinal = new Date(this.horaFinal);
