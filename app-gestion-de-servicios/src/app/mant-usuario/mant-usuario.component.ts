@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AfterLoginServiceService } from '../service/after-login-service.service';
+import { ConfirmationService,MessageService } from 'primeng/api';
 import { Usuario, Rol } from '../models/models';
 
 @Component({
@@ -26,7 +27,7 @@ export class MantUsuarioComponent implements OnInit {
   misPermisos: any;
   page: string = "Mantenimiento de Usuario";
 
-  constructor(private after: AfterLoginServiceService) {
+  constructor(private after: AfterLoginServiceService,private messageService: MessageService, private confirmationService: ConfirmationService) {
     const us = localStorage.getItem('User').split('.')[1];  
     this._userExist = JSON.parse(atob(us));
     this._userInfo = this._userExist.unique_name.split(';'); 
@@ -38,13 +39,7 @@ export class MantUsuarioComponent implements OnInit {
     this.GetRol();
   }
 
-  InsertarUsuario(){
-    let url = this.apiUrl + 'Seguridad/InsertarUsuario';
-    this.usuario.Usuario_Creacion = this._userInfo[0];
-    this.after.InsertarUsuario(url,this.usuario).subscribe(data => {
-      this.GetUsuarios();
-    })
-  }
+ 
 
   GetUsuarios() {
     let url = this.apiUrl + 'Seguridad/GetUsuarios';
@@ -77,9 +72,67 @@ export class MantUsuarioComponent implements OnInit {
       this.rol = data;
     });
   }
-  onSubmit(){
-    this.InsertarUsuario();
+  
+  setPermisos() {
+    this.GetMenus();
   }
+
+  // ---------------------------------------------
+  // -------------INSERTAR USUARIO----------------
+  onSubmit(){
+    this.confirmInsertUsuario(); // DEBE CONFIRMAR PARA INSERTAR
+  }
+  confirmInsertUsuario() { // ES EL DIALOG PARA CONFIRMAR
+    this.confirmationService.confirm({
+      message: 'Esta seguro que desea continuar?',
+      header: 'Confirmación',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.InsertarUsuario();
+      },
+      reject: () => {
+      }
+    });
+  }
+
+  InsertarUsuario(){
+    let url = this.apiUrl + 'Seguridad/InsertarUsuario';
+    let urlU = this.apiUrl + 'Seguridad/ConsultarUsuarioERP';
+    this.usuario.Usuario_Creacion = this._userInfo[0];
+    this.after.ConsultarUsuarioERP(urlU,this.usuario.Usuario).subscribe(data => {
+      if(data){
+      
+        this.after.InsertarUsuario(url,this.usuario).subscribe(data => {
+          this.GetUsuarios();
+          if(data){
+            this.messageService.add({
+              severity: "success",
+              summary: "Correcto",
+              detail: "Se ha insertado correctamente."
+            });
+          }
+          else{
+            this.messageService.add({
+              severity: "error",
+              summary: "Incorrecto",
+              detail: "El usuario no se ha insertado correctamente."
+            });
+          }
+        });
+      }else{
+        this.messageService.add({
+          severity: "error",
+          summary: "Usuario invalido",
+          detail: "El usuario no existe en el ERP o ya existe en el sistema"
+        });
+      }
+      
+    });
+    
+  }
+
+  // ----------------------------------------------------------
+  // --------------------EDITAR USUARIO------------------------
   onSubmitEdit(){
     this.EditarUsuario();
   }
@@ -91,10 +144,6 @@ export class MantUsuarioComponent implements OnInit {
       this.GetRol();
       this.GetUsuarios();
     });
-  }
-
-  setPermisos() {
-    this.GetMenus();
   }
 
   GetMenus() {

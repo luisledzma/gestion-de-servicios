@@ -53,10 +53,15 @@ export class AfterLoginServiceService {
   EditarRol(apiUrl: string,data) {
     return this._http.put(apiUrl , data);
   }
-
+  // ----------------------------------------
+  // ---------------USUARIOS-----------------
   GetUsuarios(apiUrl: string) {
     let _apimethod = ``;
     return this._http.get(apiUrl + _apimethod);
+  }
+  ConsultarUsuarioERP(apiUrl: string, idUsuario:string){
+    let _apimethod = `?idUsuario=${idUsuario}`;
+    return this._http.post(apiUrl+_apimethod, idUsuario);
   }
   InsertarUsuario(apiUrl: string,data:Usuario) {
     return this._http.post(apiUrl , data);

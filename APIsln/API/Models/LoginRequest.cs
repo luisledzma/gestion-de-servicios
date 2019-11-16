@@ -22,6 +22,13 @@ namespace API.Controllers
 
     }
 
+    public class ArticuloERP
+    {
+        public string Articulo { get; set; }
+        public string Descripcion { get; set; }
+
+    }
+
     public class Rol
     {
         public int ID { get; set; }

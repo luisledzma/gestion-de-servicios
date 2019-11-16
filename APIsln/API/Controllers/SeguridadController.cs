@@ -66,7 +66,8 @@ namespace API.Controllers
             return BadRequest();
 
         }
-
+        // ------------------------------------------
+        // ----------------USUARIOS------------------
         [HttpGet]
         [Route("GetUsuarios")]
         public List<LoginRequest> GetUsuarios()
@@ -76,7 +77,7 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("InsertarUsuario")]
-        public IHttpActionResult InsertarUsuario([FromBody]LoginRequest usuario)
+        public bool InsertarUsuario([FromBody]LoginRequest usuario)
         {
             if (usuario == null)
             {
@@ -85,11 +86,27 @@ namespace API.Controllers
 
             if (usrL.InsertarUsuario(usuario))
             {
-                return Ok();
+                return true;
             }
-            return BadRequest();
+            return false;
 
         }
+        [HttpPost]
+        [Route("ConsultarUsuarioERP")]
+        public bool ConsultarUsuarioERP(string idUsuario)
+        {
+            if (idUsuario == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (usrL.ConsultarUsuarioERP(idUsuario))
+            {
+                return true;
+            }
+            return false;
+
+        }        
         [HttpPut]
         [Route("EditarUsuario")]
         public IHttpActionResult EditarUsuario([FromBody]LoginRequest usuario)

@@ -46,6 +46,38 @@ namespace API.LogicaNegocio
             }
             return new List<LoginRequest>();
         }
+        public bool ConsultarUsuarioERP(string idUsuario)
+        {
+            try
+            {
+                var userERP = _db.SP_SEG_Consultar_Usuario_ERP(idUsuario).FirstOrDefault();
+                
+                if (userERP != null)
+                {
+                    var user = _db.SP_SEG_Consultar_Usuario(idUsuario).FirstOrDefault();
+                    if (user != null)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+
+                }
+                else
+                {
+                    return false;
+                }
+
+                
+            }
+            catch (Exception)
+            {
+                throw;
+                return false;
+            }
+        }
         public bool InsertarUsuario(LoginRequest usuario)
         {
             try
@@ -55,8 +87,8 @@ namespace API.LogicaNegocio
             }
             catch (Exception)
             {
-                throw;
                 return false;
+                throw;              
             }
         }
         public bool EditarUsuario(LoginRequest usuario)

@@ -434,4 +434,28 @@
     <Parameter Name="P_Usuario_Creacion" Parameter="p_Usuario_Creacion" Type="System.String" DbType="VarChar(50)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.SP_SEG_Consultar_Usuario_ERP" Method="SP_SEG_Consultar_Usuario_ERP">
+    <Parameter Name="P_Articulo" Parameter="p_Articulo" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="SP_SEG_Consultar_Usuario_ERPResult">
+      <Column Name="ARTICULO" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="VarChar(254)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_Consultar_Usuario" Method="SP_SEG_Consultar_Usuario">
+    <Parameter Name="P_Usuario" Parameter="p_Usuario" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_SEG_Consultar_UsuarioResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Contrasenna" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Correo_Electronico" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
