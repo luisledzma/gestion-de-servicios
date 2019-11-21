@@ -123,6 +123,10 @@ namespace API.Controllers
         // ----variables si tiene contrato-----
         public int ID_Contrato { get; set; }
         // ------------------------------------
+        // ----variables si tiene garantia-----
+        public int ID_Proyecto_Garantia { get; set; }
+        public int ID_Contrato_Garantia { get; set; }
+        // ------------------------------------
         public string Descripcion_Tipo_Reporte { get; set; }
         public DateTime? Hora_Inicio { get; set; }
         public DateTime? Hora_Final { get; set; }

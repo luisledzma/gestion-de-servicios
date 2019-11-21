@@ -37,10 +37,12 @@ export class MantFormularioComponent implements OnInit {
   // ----------------------------------
   proyectos: any;
   selectedProyecto: Proyecto = new Proyecto(); //Para Editar
+  selectedProyectoGarantia: Proyecto = new Proyecto();
   // ----------------------------------
   // -------------CONTRATOS------------
   contratos: any;
   selectedContrato: Contrato = new Contrato();
+  selectedContratoGarantia: Contrato = new Contrato(); 
   // ------------------------------------
   // ---------------ETAPAS---------------
   etapas: any;
@@ -159,6 +161,8 @@ export class MantFormularioComponent implements OnInit {
     this.reporte.ID_Proyecto = 0;
     this.reporte.ID_Etapa_Proyecto = 0;
     this.reporte.ID_Contrato = 0;
+    this.reporte.ID_Proyecto_Garantia = 0; 
+    this.reporte.ID_Contrato_Garantia = 0;
 
     // ---------------------------------------------
     // ------Cuando el formulario es Proyecto-------
@@ -171,6 +175,12 @@ export class MantFormularioComponent implements OnInit {
     // ------Cuando el formulario es Contrato-------
     if(this.selectedTReporte.ID == 2){
       this.reporte.ID_Contrato =this.selectedContrato.ID;
+    }
+    // ---------------------------------------------
+    // ------Cuando el formulario es Garantia-------
+    if(this.selectedTReporte.ID == 4){
+      this.reporte.ID_Proyecto_Garantia = this.selectedProyectoGarantia.ID;
+      this.reporte.ID_Contrato_Garantia = this.selectedContratoGarantia.ID;
     }
     // ---------------------------------------------
     this.horaInicio = new Date(this.horaInicio);

@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Net;
+using System.Net.Mail;
 
 namespace API.LogicaNegocio
 {
@@ -36,7 +38,7 @@ namespace API.LogicaNegocio
 
                               }).ToList();
 
-
+                //EnviarCorreo();
                 if (result != null)
                     return result;
             }
@@ -104,5 +106,26 @@ namespace API.LogicaNegocio
                 return false;
             }
         }
+        //public void EnviarCorreo()
+        //{
+        //    try
+        //    {
+        //        MailMessage email = new MailMessage("jimenezjozsef@gmail.com", "jimenezjozsef@hotmail.com", "Prueba", "Esto es una prueba");
+        //        email.IsBodyHtml = false;
+        //        SmtpClient cliente = new SmtpClient("smtp.gmail.com", 587)
+        //        {
+        //            EnableSsl = true,
+        //            DeliveryMethod = SmtpDeliveryMethod.Network,
+        //            UseDefaultCredentials = false,
+        //            Credentials = new NetworkCredential("jimenezjozsef@gmail.com", "angelsandarwaves")
+        //        };
+        //        cliente.Send(email);
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+            
+        //}
     }
 }

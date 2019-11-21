@@ -119,6 +119,18 @@
                                 </ng-container>
                             </ng-container>
 
+                            <ng-container *ngIf="selectedTReporte">
+                                <ng-container *ngIf="selectedTReporte.ID == 4">
+                                    <ng-container *ngIf="proyectos">
+                                        <label for="porjectsGara">Proyectos</label>
+                                        <br>
+                                        <p-dropdown id="porjectsGara" [options]="proyectos" [(ngModel)]="selectedProyectoGarantia" placeholder="Seleccione un proyecto" optionLabel="Descripcion" name="porjectsGaraN" [showClear]="true" #proGN="ngModel" required></p-dropdown>
+                                        <ng-container *ngIf="!selectedProyectoGarantia">
+                                            <p-message severity="error" text="El campo es requerido"></p-message>
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
 
                             <ng-container *ngIf="selectedTReporte">
                                 <ng-container *ngIf="selectedTReporte.ID == 2">

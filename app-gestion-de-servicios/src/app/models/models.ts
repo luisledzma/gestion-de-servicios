@@ -131,6 +131,10 @@ export class Reporte
     // ----variables si tiene contrato----- 
     ID_Contrato: number;
     // ------------------------------------
+    // ----variables si tiene garantia-----
+    ID_Proyecto_Garantia: number; 
+    ID_Contrato_Garantia: number;
+    // ------------------------------------
     Descripcion_Tipo_Reporte : string;
     Hora_Inicio : Date;
     Hora_Final : Date;
