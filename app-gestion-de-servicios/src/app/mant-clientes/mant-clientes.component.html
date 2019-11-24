@@ -14,7 +14,7 @@
 
         <ng-container *ngFor="let permiso of misPermisos">    
         <div *ngIf="permiso.Descripcion_Seccion === 'Lista' && permiso.Estado === 'A' " class="col-md-12">
-            <p-table [value]="misClientes" [paginator]="true" [rows]="5" [responsive]="true">
+            <p-table [value]="misClientes" [paginator]="true" [rows]="10" [responsive]="true">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>N°</th>

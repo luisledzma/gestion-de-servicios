@@ -85,6 +85,12 @@
                 {{item.Descripcion}}
               </a>
             </p>
+            <p *ngSwitchCase="11">
+
+              <a class="list-group-item btn" [routerLink]="['/backend/garantias']">
+                {{item.Descripcion}}
+              </a>
+            </p>
             <p *ngSwitchDefault>
 
             </p>

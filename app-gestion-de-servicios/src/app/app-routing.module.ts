@@ -18,7 +18,7 @@ import { ProyectosComponent } from './proyectos/proyectos.component';
 import { MantFormularioComponent } from './mant-formulario/mant-formulario.component';
 import { MantEtapasProyectoComponent } from './mant-etapas-proyecto/mant-etapas-proyecto.component';
 import { MantClientesComponent } from './mant-clientes/mant-clientes.component';
-
+import { GarantiasComponent } from './garantias/garantias.component';
 
 const appRoutes: Routes = [
   // { path: '', redirectTo: 'internallogin', pathMatch: 'full' },
@@ -52,6 +52,7 @@ const appRoutes: Routes = [
       { path: 'formularios', component: MantFormularioComponent, canActivate: [AfterLoginServiceService] },
       { path: 'etapasProyecto', component: MantEtapasProyectoComponent, canActivate: [AfterLoginServiceService] },
       { path: 'clientes', component: MantClientesComponent, canActivate: [AfterLoginServiceService] },
+      { path: 'garantias', component: GarantiasComponent, canActivate: [AfterLoginServiceService] },
     ]
   },
 

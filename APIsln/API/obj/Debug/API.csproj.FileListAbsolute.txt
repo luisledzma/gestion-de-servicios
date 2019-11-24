@@ -305,3 +305,4 @@ D:\Proyectos\gestion-de-servicios\APIsln\API\bin\es\System.Web.WebPages.Razor.re
 D:\Proyectos\gestion-de-servicios\APIsln\API\obj\Debug\API.csproj.CopyComplete
 D:\Proyectos\gestion-de-servicios\APIsln\API\obj\Debug\API.dll
 D:\Proyectos\gestion-de-servicios\APIsln\API\obj\Debug\API.pdb
+D:\Proyectos\gestion-de-servicios\APIsln\API\obj\Debug\API.csprojAssemblyReference.cache

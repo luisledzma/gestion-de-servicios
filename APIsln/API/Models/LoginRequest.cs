@@ -190,4 +190,14 @@ namespace API.Controllers
         public DateTime? Fecha_Creacion { get; set; }
         public DateTime? Fecha_Modificacion { get; set; }
     }
+
+    public class Garantia
+    {
+        public int ID { get; set; }
+        public string Cliente { get; set; }
+        public decimal Horas_A_Facturar { get; set; }
+        public string Tipo { get; set; }
+        public string Descripcion { get; set; }
+        public DateTime? Fecha_Creacion { get; set; }
+    }
 }

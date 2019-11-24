@@ -17,6 +17,7 @@ namespace API.Controllers
         ClienteL cliL = new ClienteL();
         ProyectoL proL = new ProyectoL();
         ContratoL conL = new ContratoL();
+        GarantiaL garL = new GarantiaL();
 
 
         // ---------------------------------------
@@ -298,6 +299,13 @@ namespace API.Controllers
         public List<Contrato> GetContratosActivos()
         {
             return conL.GetContratosActivos();
+        }
+
+        [HttpGet]
+        [Route("GetGarantias")]
+        public List<Garantia> GetGarantias()
+        {
+            return garL.GetGaratias();
         }
     }
 }

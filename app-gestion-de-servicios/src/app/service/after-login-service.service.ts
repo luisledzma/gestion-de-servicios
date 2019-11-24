@@ -181,4 +181,11 @@ export class AfterLoginServiceService {
   EditarContrato(apiUrl: string,data:Contrato) {
     return this._http.put(apiUrl , data);
   }
+  // --------------------------------------------
+  // ----------MANTENIMIENTO CONTRATOS-----------
+  GetGarantias(apiUrl: string){
+    let _apimethod = ``;
+    return this._http.get(apiUrl + _apimethod);
+  }
+
 }
