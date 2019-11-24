@@ -37,8 +37,6 @@ namespace API.LogicaNegocio
                                   Fecha_Modificacion = c.Fecha_Modificacion
 
                               }).ToList();
-
-                //EnviarCorreo();
                 if (result != null)
                     return result;
             }
@@ -105,27 +103,6 @@ namespace API.LogicaNegocio
                 throw;
                 return false;
             }
-        }
-        //public void EnviarCorreo()
-        //{
-        //    try
-        //    {
-        //        MailMessage email = new MailMessage("jimenezjozsef@gmail.com", "jimenezjozsef@hotmail.com", "Prueba", "Esto es una prueba");
-        //        email.IsBodyHtml = false;
-        //        SmtpClient cliente = new SmtpClient("smtp.gmail.com", 587)
-        //        {
-        //            EnableSsl = true,
-        //            DeliveryMethod = SmtpDeliveryMethod.Network,
-        //            UseDefaultCredentials = false,
-        //            Credentials = new NetworkCredential("jimenezjozsef@gmail.com", "angelsandarwaves")
-        //        };
-        //        cliente.Send(email);
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-            
-        //}
+        }  
     }
 }

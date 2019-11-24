@@ -458,6 +458,8 @@
     <Parameter Name="P_Observaciones" Parameter="p_Observaciones" Type="System.String" DbType="VarChar(250)" />
     <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
     <Parameter Name="P_Usuario_Creacion" Parameter="p_Usuario_Creacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_ID_Reporte" Parameter="p_ID_Reporte" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="P_Correo_Cliente" Parameter="p_Correo_Cliente" Type="System.String" DbType="VarChar(250)" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

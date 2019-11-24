@@ -41,6 +41,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { CorreoComponent } from './correo/correo.component';
 
 
 
@@ -60,7 +61,8 @@ import { ConfirmationService } from 'primeng/api';
     ContratosComponent,
     MantClientesComponent,
     MantFormularioComponent,
-    MantEtapasProyectoComponent
+    MantEtapasProyectoComponent,
+    CorreoComponent
   ],
   imports: [
     BrowserModule,

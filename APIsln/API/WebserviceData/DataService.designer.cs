@@ -333,9 +333,28 @@ namespace API.WebserviceData
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Insertar_Reporte")]
-		public int SP_ADM_Insertar_Reporte([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Cliente", DbType="Int")] System.Nullable<int> p_Cliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Tipo_Reporte", DbType="Int")] System.Nullable<int> p_Tipo_Reporte, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Proyecto", DbType="Int")] System.Nullable<int> p_ID_Proyecto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Etapa", DbType="Int")] System.Nullable<int> p_ID_Etapa, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Contrato", DbType="Int")] System.Nullable<int> p_ID_Contrato, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Proyecto_Garantia", DbType="Int")] System.Nullable<int> p_ID_Proyecto_Garantia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Contrato_Garantia", DbType="Int")] System.Nullable<int> p_ID_Contrato_Garantia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Hora_Inicio", DbType="DateTime")] System.Nullable<System.DateTime> p_Hora_Inicio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Hora_Final", DbType="DateTime")] System.Nullable<System.DateTime> p_Hora_Final, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Horas_A_Facturar", DbType="Decimal(5,1)")] System.Nullable<decimal> p_Horas_A_Facturar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Tareas_Estandar", DbType="Int")] System.Nullable<int> p_Tareas_Estandar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Descripcion", DbType="VarChar(MAX)")] string p_Descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Observaciones", DbType="VarChar(250)")] string p_Observaciones, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Creacion", DbType="VarChar(50)")] string p_Usuario_Creacion)
+		public int SP_ADM_Insertar_Reporte(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Cliente", DbType="Int")] System.Nullable<int> p_Cliente, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Tipo_Reporte", DbType="Int")] System.Nullable<int> p_Tipo_Reporte, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Proyecto", DbType="Int")] System.Nullable<int> p_ID_Proyecto, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Etapa", DbType="Int")] System.Nullable<int> p_ID_Etapa, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Contrato", DbType="Int")] System.Nullable<int> p_ID_Contrato, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Proyecto_Garantia", DbType="Int")] System.Nullable<int> p_ID_Proyecto_Garantia, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Contrato_Garantia", DbType="Int")] System.Nullable<int> p_ID_Contrato_Garantia, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Hora_Inicio", DbType="DateTime")] System.Nullable<System.DateTime> p_Hora_Inicio, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Hora_Final", DbType="DateTime")] System.Nullable<System.DateTime> p_Hora_Final, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Horas_A_Facturar", DbType="Decimal(5,1)")] System.Nullable<decimal> p_Horas_A_Facturar, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Tareas_Estandar", DbType="Int")] System.Nullable<int> p_Tareas_Estandar, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Descripcion", DbType="VarChar(MAX)")] string p_Descripcion, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Observaciones", DbType="VarChar(250)")] string p_Observaciones, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Creacion", DbType="VarChar(50)")] string p_Usuario_Creacion, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Reporte", DbType="Int")] ref System.Nullable<int> p_ID_Reporte, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Correo_Cliente", DbType="VarChar(250)")] ref string p_Correo_Cliente)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Cliente, p_Tipo_Reporte, p_ID_Proyecto, p_ID_Etapa, p_ID_Contrato, p_ID_Proyecto_Garantia, p_ID_Contrato_Garantia, p_Hora_Inicio, p_Hora_Final, p_Horas_A_Facturar, p_Tareas_Estandar, p_Descripcion, p_Observaciones, p_Estado, p_Usuario_Creacion);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_Cliente, p_Tipo_Reporte, p_ID_Proyecto, p_ID_Etapa, p_ID_Contrato, p_ID_Proyecto_Garantia, p_ID_Contrato_Garantia, p_Hora_Inicio, p_Hora_Final, p_Horas_A_Facturar, p_Tareas_Estandar, p_Descripcion, p_Observaciones, p_Estado, p_Usuario_Creacion, p_ID_Reporte, p_Correo_Cliente);
+			p_ID_Reporte = ((System.Nullable<int>)(result.GetParameterValue(15)));
+			p_Correo_Cliente = ((string)(result.GetParameterValue(16)));
 			return ((int)(result.ReturnValue));
 		}
 	}

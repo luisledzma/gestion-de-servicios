@@ -18,6 +18,7 @@ import { ProyectosComponent } from './proyectos/proyectos.component';
 import { MantFormularioComponent } from './mant-formulario/mant-formulario.component';
 import { MantEtapasProyectoComponent } from './mant-etapas-proyecto/mant-etapas-proyecto.component';
 import { MantClientesComponent } from './mant-clientes/mant-clientes.component';
+import { CorreoComponent } from './correo/correo.component';
 
 
 const appRoutes: Routes = [
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, canActivate: [BeforeLoginServiceService] },
+  { path: 'correo', component: CorreoComponent },
   //{ path: 'signup', component: SingupComponent, canActivate: [BeforeLoginServiceService] },
 
   // {path: 'informacion',component: InformacionComponent,canActivate: [BeforeLoginService]},
