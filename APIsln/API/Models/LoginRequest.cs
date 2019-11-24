@@ -200,4 +200,11 @@ namespace API.Controllers
         public string Descripcion { get; set; }
         public DateTime? Fecha_Creacion { get; set; }
     }
+    public class RespuestaCorreo
+    {
+        public string Mensaje_Encriptado { get; set; }
+        public string Clave { get; set; }
+        public char Estado { get; set; }
+        public string Razon_Rechazo { get; set; }
+    }
 }

@@ -1,1 +1,50 @@
-<p>correo works!</p>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 text-center">
+            <div class="card bg-light text-dark p-4">
+
+                <h1 class="mb-4">Confirmación de Reporte</h1>
+                <form #correoForm="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                  <label for="estado" style="margin-bottom:0rem">Estado: </label>
+                </span>
+
+                        </div>
+                        <div class="w-100">
+                            <p-dropdown id="estado" [options]="estados" [(ngModel)]="selectedEstado" placeholder="Seleccione un Estado" optionLabel="descripcion" name="estado" #estado="ngModel"></p-dropdown>
+                        </div>
+                        <ng-container *ngIf="!estado.valid">
+                            <p-message severity="error" text="Debe seleccionar un estado"></p-message>
+                        </ng-container>
+                    </div>
+                    <ng-container *ngIf="selectedEstado.id == 'R'">
+                        <div class="input-group mb-3 ">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                          <label for="reject" style="margin-bottom:0rem">Razón de Rechazo: </label>
+                      </span>
+                            </div>
+                            <div class="w-100">
+                                <textarea id="reject" rows="5" cols="30" [(ngModel)]="respuesta.Razon_Rechazo" name="reject" pInputTextarea></textarea>
+                            </div>
+
+                        </div>
+                    </ng-container>
+
+                    <div class="row">
+                        <div class="col-md-6 offset-3">
+
+                            <ng-container *ngIf="correoForm.form.valid && selectedEstado.id != 'T'">
+                                <button type="submit" class="btn btn-raised btn-success btn-labeled form-control">Enviar</button>
+                            </ng-container>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

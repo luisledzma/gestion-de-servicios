@@ -16,6 +16,7 @@ export class MantFormularioComponent implements OnInit {
   // ---------------------------------
   // ------------REPORTES-------------
   reportes: any;
+  reportesTipo: any;
   reporte: Reporte = new Reporte(); // Para insertar
   selectedReporte: Reporte = new Reporte(); // Para editar
   // ---------------------------------
@@ -26,6 +27,9 @@ export class MantFormularioComponent implements OnInit {
   // ---------TIPOS REPORTES----------
   tiposReportes: any;
   selectedTReporte: TipoReporte = new TipoReporte();
+
+  tiposReportesFilter:any;
+  selectedTReporteFilter: TipoReporte = new TipoReporte();
   // ---------------------------------
   // -------------TAREAS--------------
   tareasEstandar: any;
@@ -62,13 +66,14 @@ export class MantFormularioComponent implements OnInit {
     this.GetProyectosActivos();
     this.GetContratosActivos();
     this.GetEtapasProyectoActivasPorProyecto(0);
+    this.GetTipoReportesFilter();
   }
   
   GetReportes() {
     let url = this.apiUrl + 'Administracion/GetReportes';
     this.after.GetReportes(url).subscribe(data => {
       this.reportes = data;
-      console.log(data);
+      this.reportesTipo = data;
     });
   }
   GetClientes(){
@@ -91,10 +96,37 @@ export class MantFormularioComponent implements OnInit {
     this.after.GetTipoReportes(url).subscribe(data => {
       this.tiposReportes = data;
       this.selectedTReporte = data ? data[0] : undefined;
-      console.log(data);
+    });
+  }
+  
+  // -----------------------------------------------------
+  // --------CODIGO PARA FILTRAR POR TIPO REPORTE---------
+  GetTipoReportesFilter(){
+    let url = this.apiUrl + 'Administracion/GetTipoReportes';
+    this.after.GetTipoReportes(url).subscribe(data => {
+      this.tiposReportesFilter = data;
+
+      let t: TipoReporte = new TipoReporte();
+      t.ID = 0;
+      t.Descripcion = 'Todos';
+
+      this.tiposReportesFilter.unshift(t);
     });
   }
 
+  TipoReporteFilter(){
+    this.reportesTipo = [];
+    if(this.selectedTReporteFilter.Descripcion == "Todos"){
+      this.reportesTipo = this.reportes;
+    }else{
+      this.reportes.forEach(element => {
+        if(element.ID_Tipo_Reporte == this.selectedTReporteFilter.ID){
+          this.reportesTipo.push(element);
+        }
+      });
+    }
+  }
+  // --------------------------------------------------------
   GetEtapasProyectoPorProyecto(id:number){
     if(this.selectedProyecto.ID != 0){
       let url = this.apiUrl + 'Administracion/GetEtapasProyectoPorProyecto';

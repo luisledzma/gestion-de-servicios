@@ -6,16 +6,19 @@
             <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
                 Agregar
             </button>
+            <p-dropdown id="tReportsF" [options]="tiposReportesFilter" [style]="{'width':'100%'}" (onChange)="TipoReporteFilter();" [(ngModel)]="selectedTReporteFilter" placeholder="Tipo de Reporte" optionLabel="Descripcion" name="tReportsF"></p-dropdown>
         </div>
         <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
         <div class="col-md-12">
-            <p-table [value]="reportes" [paginator]="true" [rows]="10" [responsive]="true">
+            <p-table [value]="reportesTipo" [paginator]="true" [rows]="10" [responsive]="true">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>N°</th>
                         <th>Cliente</th>
-                        <th>Tipo</th>
+                        <th>
+                            Tipo Reporte
+                        </th>
                         <th>Total horas</th>
                         <th>Horas a facturar</th>
                         <th>Tarea</th>
