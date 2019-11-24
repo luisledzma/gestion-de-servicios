@@ -20,6 +20,7 @@
                         <th>Horas a facturar</th>
                         <th>Tarea</th>
                         <th>Editar</th>
+                        <th>Enviar Correo</th>
                         <!-- <ng-container *ngFor="let permiso2 of misPermisos">
                             <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
                                 <th scope="col"></th>
@@ -39,6 +40,9 @@
                         <td><span class="ui-column-title">Horas a Facturar</span>{{rep.Horas_A_Facturar}}</td>
                         <td><span class="ui-column-title">Tarea Estándar</span>{{rep.Tareas_Estandar}}</td>
                         <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
+                        <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal"><i class="material-icons">
+                            email
+                            </i></button></td>
                         <!-- <ng-container *ngFor="let permiso2 of misPermisos">
                             <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
                                 <td><button (click)="onButtonEditClick(usr)" type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>

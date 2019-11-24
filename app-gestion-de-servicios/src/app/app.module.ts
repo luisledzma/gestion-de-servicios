@@ -42,6 +42,7 @@ import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { GarantiasComponent } from './garantias/garantias.component';
+import { CorreoComponent } from './correo/correo.component';
 
 
 
@@ -62,7 +63,8 @@ import { GarantiasComponent } from './garantias/garantias.component';
     MantClientesComponent,
     MantFormularioComponent,
     MantEtapasProyectoComponent,
-    GarantiasComponent
+    GarantiasComponent,
+    CorreoComponent
   ],
   imports: [
     BrowserModule,
