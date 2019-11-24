@@ -1,0 +1,284 @@
+<p-toast [style]="{marginTop: '80px'}" life="3000"></p-toast>
+<div class="container pt-5">
+    <div class="row ">
+        <h1>Formulario</h1>
+        <div class="col-md-12 m-1">
+            <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
+                Agregar
+            </button>
+        </div>
+        <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+
+        <div class="col-md-12">
+            <p-table [value]="reportes" [paginator]="true" [rows]="10" [responsive]="true">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>N°</th>
+                        <th>Cliente</th>
+                        <th>Tipo</th>
+                        <th>Total horas</th>
+                        <th>Horas a facturar</th>
+                        <th>Tarea</th>
+                        <th>Editar</th>
+                        <th>Enviar Correo</th>
+                        <!-- <ng-container *ngFor="let permiso2 of misPermisos">
+                            <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
+                                <th scope="col"></th>
+                            </ng-container>
+                            <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Detalles' && permiso2.Estado === 'A' ">
+                                <th scope="col"></th>
+                            </ng-container>
+                        </ng-container> -->
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rep>
+                    <tr>
+                        <td><span class="ui-column-title">ID</span>{{rep.ID}}</td>
+                        <td><span class="ui-column-title">Cliente</span>{{rep.Cliente}}</td>
+                        <td><span class="ui-column-title">Descripcion</span>{{rep.Descripcion_Tipo_Reporte}}</td>
+                        <td><span class="ui-column-title">Total Horas</span>{{rep.Total_Horas}}</td>
+                        <td><span class="ui-column-title">Horas a Facturar</span>{{rep.Horas_A_Facturar}}</td>
+                        <td><span class="ui-column-title">Tarea Estándar</span>{{rep.Tareas_Estandar}}</td>
+                        <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
+                        <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal"><i class="material-icons">
+                            email
+                            </i></button></td>
+                        <!-- <ng-container *ngFor="let permiso2 of misPermisos">
+                            <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
+                                <td><button (click)="onButtonEditClick(usr)" type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
+                            </ng-container>
+                            <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Detalles' && permiso2.Estado === 'A' ">
+                                <td><button (click)="onDetailsClick(usr)" type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#detailsModal">Ver detalles</button></td>
+                            </ng-container>
+                        </ng-container> -->
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <!-- <div class="form-group">
+            <label for="hInicio">Hora de inicio</label>
+            <br>
+            <p-calendar id="hInicio" [(ngModel)]="reporte.Hora_Inicio" [timeOnly]="true" name="hInicio" #hora="ngModel" required></p-calendar>
+            <button type="button" (click)="prueba(hora.value)">Prueba</button>
+            <ng-container *ngIf="!ReporteAddForm.form.valid">
+                <br>
+                <p-message severity="error" text="El campo es requerido"></p-message>
+            </ng-container>
+        </div> -->
+
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Agregar Reporte</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <form #ReporteAddForm="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <ng-container *ngIf="clientes">
+                                    <label>Cliente</label>
+                                    <br>
+                                    <p-dropdown id="clientes" [options]="clientes" [(ngModel)]="selectedCliente" placeholder="Seleccione un cliente" optionLabel="Cliente" name="clients" [showClear]="true" required></p-dropdown>
+                                    <ng-container *ngIf="!selectedCliente">
+                                        <p-message severity="error" text="El campo es requerido"></p-message>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+
+                            <div class="form-group">
+                                <ng-container *ngIf="tiposReportes">
+                                    <label for="tReports">Tipo de Reporte</label>
+                                    <br>
+                                    <p-dropdown id="tReports" [options]="tiposReportes" [(ngModel)]="selectedTReporte" placeholder="Seleccione un tipo de Reporte" optionLabel="Descripcion" name="tReports" [showClear]="true" required></p-dropdown>
+                                    <ng-container *ngIf="!selectedTReporte">
+                                        <p-message severity="error" text="El campo es requerido"></p-message>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+
+                            <ng-container *ngIf="selectedTReporte">
+                                <ng-container *ngIf="selectedTReporte.ID == 1">
+                                    <ng-container *ngIf="proyectos">
+                                        <label for="porjects">Proyectos</label>
+                                        <br>
+                                        <p-dropdown id="porjects" [options]="proyectos" [(ngModel)]="selectedProyecto" (onChange)="GetEtapasProyectoActivasPorProyecto(pro.value.ID);" placeholder="Seleccione un proyecto" optionLabel="Descripcion" name="porjects" [showClear]="true" #pro="ngModel"
+                                            required></p-dropdown>
+                                        <ng-container *ngIf="!selectedProyecto">
+                                            <p-message severity="error" text="El campo es requerido"></p-message>
+                                        </ng-container>
+                                    </ng-container>
+
+                                    <ng-container *ngIf="selectedEtapa">
+                                        <label for="etaps">Etapas</label>
+                                        <br>
+                                        <p-dropdown id="etaps" [options]="etapas" [(ngModel)]="selectedEtapa" placeholder="Seleccione una etapa" optionLabel="Descripcion" name="etaps" [showClear]="true" required></p-dropdown>
+                                        <ng-container *ngIf="!selectedEtapa">
+                                            <p-message severity="error" text="El campo es requerido"></p-message>
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+
+                            <ng-container *ngIf="selectedTReporte">
+                                <ng-container *ngIf="selectedTReporte.ID == 4">
+                                    <ng-container *ngIf="proyectos">
+                                        <label for="porjectsGara">Proyectos</label>
+                                        <br>
+                                        <p-dropdown id="porjectsGara" [options]="proyectos" [(ngModel)]="selectedProyectoGarantia" placeholder="Seleccione un proyecto" optionLabel="Descripcion" name="porjectsGaraN" [showClear]="true" #proGN="ngModel" required></p-dropdown>
+                                        <ng-container *ngIf="!selectedProyectoGarantia">
+                                            <p-message severity="error" text="El campo es requerido"></p-message>
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+
+                            <ng-container *ngIf="selectedTReporte">
+                                <ng-container *ngIf="selectedTReporte.ID == 2">
+                                    <ng-container *ngIf="proyectos">
+                                        <label for="contracts">Contratos</label>
+                                        <br>
+                                        <p-dropdown id="contracts" [options]="contratos" [(ngModel)]="selectedContrato" placeholder="Seleccione un contrato" optionLabel="Descripcion" name="contractN" [showClear]="true" #contractN="ngModel" required></p-dropdown>
+                                        <ng-container *ngIf="!contractN.valid">
+                                            <p-message severity="error" text="El campo es requerido"></p-message>
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+
+                            <div class="form-group">
+                                <ng-container *ngIf="tareasEstandar">
+                                    <label for="tEstandar">Tarea estandar</label>
+                                    <br>
+                                    <p-dropdown id="tEstandar" [options]="tareasEstandar" [(ngModel)]="selectedTarea" placeholder="Seleccione una tarea" optionLabel="Descripcion" name="tEstandar" [showClear]="true" required></p-dropdown>
+                                    <ng-container *ngIf="!selectedTarea">
+                                        <p-message severity="error" text="El campo es requerido"></p-message>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hInicio">Hora de inicio</label>
+                                <br>
+                                <p-calendar id="hInicio" [(ngModel)]="horaInicio" [timeOnly]="true" name="hInicio" #hora="ngModel" required></p-calendar>
+                                <ng-container *ngIf="!ReporteAddForm.form.valid">
+                                    <br>
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hfinal">Hora final</label>
+                                <br>
+                                <p-calendar id="hfinal" [(ngModel)]="horaFinal" [timeOnly]="true" name="hfinal" required></p-calendar>
+                                <ng-container *ngIf="!ReporteAddForm.form.valid">
+                                    <br>
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="horasFacturar">Horas a facturar</label>
+                                <br>
+                                <input id="horasFacturar" type="text" size="30" pInputText [(ngModel)]="reporte.Horas_A_Facturar" name="horasFacturar">
+                                <!-- <ng-container *ngIf="!ReporteAddForm.form.valid">
+                                    <br>
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container> -->
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descr">Descripción</label>
+                                <br>
+                                <textarea id="descr" rows="5" cols="30" [(ngModel)]="reporte.Descripcion" name="descr" pInputTextarea></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="obs">Observaciones</label>
+                                <br>
+                                <input id="obs" type="text" size="30" [(ngModel)]="reporte.Observaciones" name="obs" pInputText>
+                                <!-- <ng-container *ngIf="!ReporteAddForm.form.valid">
+                                    <br>
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container> -->
+                            </div>
+
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select class="form-control" id="estado" [(ngModel)]="reporte.Estado" name="estado">
+                                    <option value="A">Activo</option>
+                                    <option value="I">Inactivo</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                Cerrar
+                            </button>
+
+                            <ng-container *ngIf="ReporteAddForm.form.valid">
+                                <button type="submit" (click)="onSubmit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
+                                    Guardar Cambios
+                                </button>
+                            </ng-container>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Editar Reporte</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                    </div>
+                    <form #EditReportForm="ngForm" (ngSubmit)="onSubmitEdit()" autocomplete="off">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="descrE">Descripción</label>
+                                <br>
+                                <textarea id="descrE" rows="5" cols="30" [(ngModel)]="selectedReporte.Descripcion" name="descrEN" pInputTextarea></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="obsE">Observaciones</label>
+                                <br>
+                                <input id="obsE" type="text" size="30" [(ngModel)]="selectedReporte.Observaciones" name="obsEN" pInputText>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select class="form-control" id="estadoE" name="estadoEN" [(ngModel)]="selectedReporte.Estado">
+                                    <option value="A">Activo</option>
+                                    <option value="I">Inactivo</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                Cerrar
+                            </button>
+                            <ng-container *ngIf="EditReportForm.form.valid">
+                                <button type="submit" (click)="onSubmitEdit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
+                                    Guardar Cambios
+                                </button>
+                            </ng-container>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

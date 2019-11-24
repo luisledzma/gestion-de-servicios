@@ -1,0 +1,190 @@
+<p-toast [style]="{marginTop: '80px'}" life="3000"></p-toast>
+<div class="container pt-5">
+
+    <!-- <div class="col-md-4">
+        <label><strong>Transaction Types</strong></label>
+        <br>
+        <div class="ui-grid ui-grid-responsive ui-fluid">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-11">
+                    <p-dropdown [options]="transactionTypes" [showClear]="true" [autoWidth]="false" (onChange)="validateProcessor();" placeholder="Please Select.." filter="true" optionLabel="Name" [(ngModel)]="transactionTypeSelected" required></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <h1>Etapas de Proyectos</h1>
+    <div class="row mt-4">
+
+        <div class="col-md-6 m-1">
+            <label>Proyecto</label>
+            <br>
+            <ng-container *ngIf="proyectos">
+
+                <p-dropdown id="proyectosp" [options]="proyectos" [(ngModel)]="selectedProyectoTable" (onChange)="GetEtapasProyectoPorProyecto(pro.value.ID);" placeholder="Seleccione un Proyecto" optionLabel="Descripcion" #pro="ngModel" required></p-dropdown>
+
+                <ng-container *ngIf="!pro.valid">
+                    <p-message severity="error" text="El campo es requerido"></p-message>
+                </ng-container>
+            </ng-container>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-md-12 m-1">
+            <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
+                Agregar
+            </button>
+        </div>
+
+        <div class="col-md-12">
+            <p-table [value]="etapas" [paginator]="true" [rows]="10" [responsive]="true">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>N°</th>
+                        <th>Descripción</th>
+                        <th>Proyecto</th>
+                        <th>Horas Invertidas</th>
+                        <th>Estado</th>
+                        <th> </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-etapa>
+                    <tr>
+                        <td> <span class="ui-column-title">ID</span> {{etapa.ID}}</td>
+                        <td> <span class="ui-column-title">Descripción</span> {{etapa.Descripcion}}</td>
+                        <td> <span class="ui-column-title">Proyecto</span> {{etapa.Proyecto}}</td>
+                        <td> <span class="ui-column-title">Horas Invertidas</span> {{ etapa.Horas_Invertidas!=null?etapa.Horas_Invertidas:'NA' }}</td>
+                        <td> <span class="ui-column-title">Estado</span> {{etapa.Estado}}</td>
+                        <td><button type="button" (click)="onButtonEditClick(etapa)" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Agregar Etapa Proyecto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <form #eProyectoAddForm="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <ng-container *ngIf="proyectos">
+                                    <label>Proyecto</label>
+                                    <br>
+                                    <p-dropdown id="projects" [options]="proyectosActivos" [(ngModel)]="selectedProyecto" placeholder="Seleccione un Proyecto" optionLabel="Descripcion" name="projects" [showClear]="true" required></p-dropdown>
+                                    <ng-container *ngIf="!selectedProyecto">
+                                        <p-message severity="error" text="El campo es requerido"></p-message>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descripcion">Descripción</label>
+                                <br>
+                                <input id="descripcion" type="text" size="30" pInputText [(ngModel)]="etapa.Descripcion" name="descripcion" #descripcion="ngModel" required>
+                                <ng-container *ngIf="!descripcion.valid">
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hEstimadas">Horas estimadas</label>
+                                <br>
+                                <input id="hEstimadas" type="number" size="30" pInputText [(ngModel)]="etapa.Horas_Estimadas" name="hEstimadas" #hEstimadas="ngModel" required>
+                                <ng-container *ngIf="!hEstimadas.valid">
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select class="form-control" id="estado" [(ngModel)]="etapa.Estado" name="estado">
+                                    <option value="A">Activo</option>
+                                    <option value="I">Inactivo</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                Cerrar
+                            </button>
+
+                            <ng-container *ngIf="eProyectoAddForm.form.valid">
+                                <button type="submit" (click)="onSubmit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
+                                    Guardar Cambios
+                                </button>
+                            </ng-container>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Editar tarea estandar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                    </div>
+                    <form #EditProForm="ngForm" (ngSubmit)="onSubmitEdit()" autocomplete="off">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="descripcionE">Descripción</label>
+                                <br>
+                                <input id="descripcionE" type="text" size="30" pInputText [(ngModel)]="selectedEtapa.Descripcion" name="descripcionE" #descripcionE="ngModel" required>
+                                <ng-container *ngIf="!descripcionE.valid">
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hEstimadasE">Horas estimadas</label>
+                                <br>
+                                <input id="hEstimadasE" type="number" size="30" pInputText [(ngModel)]="selectedEtapa.Horas_Estimadas" name="hEstimadasE" #hEstimadasE="ngModel" required>
+                                <ng-container *ngIf="!hEstimadasE.valid">
+                                    <p-message severity="error" text="El campo es requerido"></p-message>
+                                </ng-container>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select class="form-control" id="estado" [(ngModel)]="selectedEtapa.Estado" name="estado">
+                                    <option value="A">Activo</option>
+                                    <option value="I">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                Cerrar
+                            </button>
+                            <ng-container *ngIf="EditProForm.form.valid">
+                                <button type="submit" (click)="onSubmitEdit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
+                                    Guardar Cambios
+                                </button>
+                            </ng-container>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

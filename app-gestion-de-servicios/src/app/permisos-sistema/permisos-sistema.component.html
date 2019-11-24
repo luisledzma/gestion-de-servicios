@@ -1,0 +1,52 @@
+<div class="container pt-5">
+    <h1>Permisos del Sistema</h1>
+    <div class="row m-1">
+        <div class="col-md-2 offset-2">
+            <label for="roles">Rol</label><br>
+            <p-dropdown [options]="roles" [(ngModel)]="rol" (onChange)="GetPermisosPorRolyMenu();" placeholder="Select a Rol" optionLabel="Descripcion" [showClear]="true"></p-dropdown>
+        </div>
+        <div class="col-md-2">
+            <label for="menus">Menú</label><br>
+            <p-dropdown [options]="menus" [(ngModel)]="menu" (onChange)="GetPermisosPorRolyMenu();" placeholder="Select a Menu" optionLabel="Descripcion" [showClear]="true"></p-dropdown>
+        </div>
+    </div>
+    <ng-container *ngIf="settingPermiso">
+        <div class="row mt-3 table-responsive">
+            <div class="col-md-10 offset-1 table-responsive">
+                <p-pickList [source]="settingPermiso.Source" [responsive]="true" [target]="settingPermiso.Target" sourceHeader="Deshabilitados" targetHeader="Habilitados" [responsive]="true" filterBy="_setting.Target" dragdrop="true" sourceFilterPlaceholder="Buscar " targetFilterPlaceholder="Buscar"
+                    [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+                    <ng-template let-permiso pTemplate="item">
+                        <div class="ui-helper-clearfix">
+                            <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{permiso.Descripcion_Seccion}}</div>
+                        </div>
+                    </ng-template>
+                </p-pickList>
+            </div>
+        </div>
+    </ng-container>
+    <div class="row offset-2">
+        <button data-toggle="modal" data-target="#modalMessage" class="btn btn-success btn-raised m-1" (click)="UpdatePermisosLists();"> Actualizar </button>
+    </div>
+
+    <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitle">¡Se ha realizado correctamente!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success" role="alert">
+                    Los permisos del sistema se han actualizado correctamente.
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-raised btn-warning" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</div>

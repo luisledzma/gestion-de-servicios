@@ -1,0 +1,475 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_Servicios" Class="DataServiceDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=localhost;Initial Catalog=DB_Servicios;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DB_ServiciosConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TBL_GS_USUARIO" Member="TBL_GS_USUARIO">
+    <Type Name="TBL_GS_USUARIO">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Contrasenna" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Correo_Electronico" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.SP_SEG_SeleccionarInformacionUsuario" Method="SP_SEG_SeleccionarInformacionUsuario">
+    <Parameter Name="P_Correo_Electronico" Parameter="p_Correo_Electronico" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="P_Contrasenna" Parameter="p_Contrasenna" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="SP_SEG_SeleccionarInformacionUsuarioResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Contrasenna" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Correo_Electronico" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_SeleccionarSeccionesPorRol" Method="SP_SEG_SeleccionarSeccionesPorRol">
+    <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SEG_SeleccionarSeccionesPorRolResult">
+      <Column Name="ID_Seccion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_SeleccionarRol" Method="SP_SEG_SeleccionarRol">
+    <ElementType Name="SP_SEG_SeleccionarRolResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_InsertarRol" Method="SP_SEG_InsertarRol">
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario" Parameter="p_Usuario" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SEG_EditarRol" Method="SP_SEG_EditarRol">
+    <Parameter Name="P_ID" Parameter="p_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario" Parameter="p_Usuario" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SEG_Seleccionar_Usuarios" Method="SP_SEG_Seleccionar_Usuarios">
+    <ElementType Name="SP_SEG_Seleccionar_UsuariosResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Contrasenna" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Correo_Electronico" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_InsertarUsuario" Method="SP_SEG_InsertarUsuario">
+    <Parameter Name="P_Usuario" Parameter="p_Usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Contrasenna" Parameter="p_Contrasenna" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="P_Nombre" Parameter="p_Nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Correo" Parameter="p_Correo" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="P_Telefono" Parameter="p_Telefono" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_UsuarioCreacion" Parameter="p_UsuarioCreacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="p_UsuarioModificacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SEG_SeleccionarMenuPorRol" Method="SP_SEG_SeleccionarMenuPorRol">
+    <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SEG_SeleccionarMenuPorRolResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_Seleccionar_Menus" Method="SP_SEG_Seleccionar_Menus">
+    <ElementType Name="SP_SEG_Seleccionar_MenusResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_Seleccionar_Permiso_Por_Rol_Y_Menu" Method="SP_SEG_Seleccionar_Permiso_Por_Rol_Y_Menu">
+    <Parameter Name="P_IdMenu" Parameter="p_IdMenu" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_IdRol" Parameter="p_IdRol" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <ElementType Name="SP_SEG_Seleccionar_Permiso_Por_Rol_Y_MenuResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Seccion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Menu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_Actualizar_Lista_Permisos" Method="SP_SEG_Actualizar_Lista_Permisos">
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_ID" Parameter="p_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Usuario_Modificacion" Parameter="p_Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Fecha_Modificacion" Parameter="p_Fecha_Modificacion" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SEG_Seleccionar_Permiso_Por_Rol" Method="SP_SEG_Seleccionar_Permiso_Por_Rol">
+    <Parameter Name="P_ROL" Parameter="p_ROL" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SEG_Seleccionar_Permiso_Por_RolResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Menu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Seccion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Tareas_Estandar" Method="SP_ADM_Seleccionar_Tareas_Estandar">
+    <ElementType Name="SP_ADM_Seleccionar_Tareas_EstandarResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Insertar_Tarea_Estandar" Method="SP_ADM_Insertar_Tarea_Estandar">
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario" Parameter="p_Usuario" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Editar_Tarea_Estandar" Method="SP_ADM_Editar_Tarea_Estandar">
+    <Parameter Name="P_ID" Parameter="p_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario" Parameter="p_Usuario" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SEG_EditarUsuario" Method="SP_SEG_EditarUsuario">
+    <Parameter Name="P_ID" Parameter="p_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Usuario" Parameter="p_Usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Contrasenna" Parameter="p_Contrasenna" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="P_Nombre" Parameter="p_Nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Correo" Parameter="p_Correo" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="P_Telefono" Parameter="p_Telefono" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Rol" Parameter="p_Rol" Type="System.Int32" DbType="Int" />
+    <Parameter Name="p_UsuarioModificacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Tipo_Reportes" Method="SP_ADM_Seleccionar_Tipo_Reportes">
+    <ElementType Name="SP_ADM_Seleccionar_Tipo_ReportesResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Insertar_Proyecto" Method="SP_ADM_Insertar_Proyecto">
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_ID_Cliente" Parameter="p_ID_Cliente" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Horas_Estimadas" Parameter="p_Horas_Estimadas" Type="System.Decimal" DbType="Decimal(5,1)" />
+    <Parameter Name="P_Monto_Total" Parameter="p_Monto_Total" Type="System.Decimal" DbType="Decimal(28,8)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Creacion" Parameter="p_Usuario_Creacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Editar_Proyecto" Method="SP_ADM_Editar_Proyecto">
+    <Parameter Name="P_ID_Proyecto" Parameter="p_ID_Proyecto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Horas_Estimadas" Parameter="p_Horas_Estimadas" Type="System.Decimal" DbType="Decimal(5,1)" />
+    <Parameter Name="P_Monto_Total" Parameter="p_Monto_Total" Type="System.Decimal" DbType="Decimal(28,8)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Modificacion" Parameter="p_Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Insertar_Etapa_Proyecto" Method="SP_ADM_Insertar_Etapa_Proyecto">
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_ID_Proyecto" Parameter="p_ID_Proyecto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Horas_Estimadas" Parameter="p_Horas_Estimadas" Type="System.Decimal" DbType="Decimal(5,1)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Creacion" Parameter="p_Usuario_Creacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Editar_Etapa_Proyecto" Method="SP_ADM_Editar_Etapa_Proyecto">
+    <Parameter Name="P_ID_Etapa_Proyecto" Parameter="p_ID_Etapa_Proyecto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Horas_Estimadas" Parameter="p_Horas_Estimadas" Type="System.Decimal" DbType="Decimal(5,1)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Modificacion" Parameter="p_Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Reportes" Method="SP_ADM_Seleccionar_Reportes">
+    <ElementType Name="SP_ADM_Seleccionar_ReportesResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Cliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Tipo_Reporte" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion_Tipo_Reporte" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Hora_Inicio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Hora_Final" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Total_Horas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Horas_A_Facturar" Type="System.Decimal" DbType="Decimal(5,1) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Tareas_Estandar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tareas_Estandar" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Observaciones" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Etapas_de_Proyecto_por_Proyectos" Method="SP_ADM_Seleccionar_Etapas_de_Proyecto_por_Proyectos">
+    <Parameter Name="P_ID_Proyecto" Parameter="p_ID_Proyecto" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_ADM_Seleccionar_Etapas_de_Proyecto_por_ProyectosResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Horas_Estimadas" Type="System.Decimal" DbType="Decimal(5,1)" CanBeNull="true" />
+      <Column Name="Horas_Invertidas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Proyecto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Proyecto" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Proyectos" Method="SP_ADM_Seleccionar_Proyectos">
+    <ElementType Name="SP_ADM_Seleccionar_ProyectosResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Cliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Horas_Estimadas" Type="System.Decimal" DbType="Decimal(5,1)" CanBeNull="true" />
+      <Column Name="Horas_Invertidas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Monto_Total" Type="System.Decimal" DbType="Decimal(28,8) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Proyectos_Activos" Method="SP_ADM_Seleccionar_Proyectos_Activos">
+    <ElementType Name="SP_ADM_Seleccionar_Proyectos_ActivosResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Cliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Horas_Estimadas" Type="System.Decimal" DbType="Decimal(5,1)" CanBeNull="true" />
+      <Column Name="Horas_Invertidas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Monto_Total" Type="System.Decimal" DbType="Decimal(28,8) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Etapas_de_Proyecto_Activas_por_Proyectos" Method="SP_ADM_Seleccionar_Etapas_de_Proyecto_Activas_por_Proyectos">
+    <Parameter Name="P_ID_Proyecto" Parameter="p_ID_Proyecto" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_ADM_Seleccionar_Etapas_de_Proyecto_Activas_por_ProyectosResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Horas_Estimadas" Type="System.Decimal" DbType="Decimal(5,1)" CanBeNull="true" />
+      <Column Name="Horas_Invertidas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Proyecto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Proyecto" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Editar_Reporte" Method="SP_ADM_Editar_Reporte">
+    <Parameter Name="P_ID_Reporte" Parameter="p_ID_Reporte" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="P_Observaciones" Parameter="p_Observaciones" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Modificacion" Parameter="p_Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Contratos" Method="SP_ADM_Seleccionar_Contratos">
+    <ElementType Name="SP_ADM_Seleccionar_ContratosResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Cliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Monto_Contrato" Type="System.Decimal" DbType="Decimal(28,8) NOT NULL" CanBeNull="false" />
+      <Column Name="Horas_Contratadas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Horas_Disponibles" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Horas_Consumidas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Horas_Excedidas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Insertar_Contrato" Method="SP_ADM_Insertar_Contrato">
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_ID_Cliente" Parameter="p_ID_Cliente" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Monto_Contratado" Parameter="p_Monto_Contratado" Type="System.Decimal" DbType="Decimal(28,8)" />
+    <Parameter Name="P_Horas_Contratadas" Parameter="p_Horas_Contratadas" Type="System.TimeSpan" DbType="Time" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Creacion" Parameter="p_Usuario_Creacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Editar_Cliente" Method="SP_ADM_Editar_Cliente">
+    <Parameter Name="P_Cliente" Parameter="p_Cliente" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="P_Costo_Hora" Parameter="p_Costo_Hora" Type="System.Decimal" DbType="Decimal(28,8)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Modifica" Parameter="p_Usuario_Modifica" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Insertar_Cliente" Method="SP_ADM_Insertar_Cliente">
+    <Parameter Name="P_CLIENTE" Parameter="p_CLIENTE" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="P_COSTO_HORA" Parameter="p_COSTO_HORA" Type="System.Decimal" DbType="Decimal(28,8)" />
+    <Parameter Name="P_ESTADO" Parameter="p_ESTADO" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_USUARIO" Parameter="p_USUARIO" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Clientes" Method="SP_ADM_Seleccionar_Clientes">
+    <ElementType Name="SP_ADM_Seleccionar_ClientesResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="Costo_Hora" Type="System.Decimal" DbType="Decimal(28,8) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Clientes_ERP" Method="SP_ADM_Seleccionar_Clientes_ERP">
+    <ElementType Name="SP_ADM_Seleccionar_Clientes_ERPResult">
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(103) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Editar_Contrato" Method="SP_ADM_Editar_Contrato">
+    <Parameter Name="P_ID_Contrato" Parameter="p_ID_Contrato" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_Horas_Contratadas" Parameter="p_Horas_Contratadas" Type="System.TimeSpan" DbType="Time" />
+    <Parameter Name="P_Monto_Contrato" Parameter="p_Monto_Contrato" Type="System.Decimal" DbType="Decimal(28,8)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Modificacion" Parameter="p_Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Contratos_Activos" Method="SP_ADM_Seleccionar_Contratos_Activos">
+    <ElementType Name="SP_ADM_Seleccionar_Contratos_ActivosResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Cliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Monto_Contrato" Type="System.Decimal" DbType="Decimal(28,8) NOT NULL" CanBeNull="false" />
+      <Column Name="Horas_Contratadas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Horas_Disponibles" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Horas_Consumidas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Horas_Excedidas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_Consultar_Usuario_ERP" Method="SP_SEG_Consultar_Usuario_ERP">
+    <Parameter Name="P_Articulo" Parameter="p_Articulo" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="SP_SEG_Consultar_Usuario_ERPResult">
+      <Column Name="ARTICULO" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="VarChar(254)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEG_Consultar_Usuario" Method="SP_SEG_Consultar_Usuario">
+    <Parameter Name="P_Usuario" Parameter="p_Usuario" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_SEG_Consultar_UsuarioResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Contrasenna" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Correo_Electronico" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Insertar_Reporte" Method="SP_ADM_Insertar_Reporte">
+    <Parameter Name="P_Cliente" Parameter="p_Cliente" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Tipo_Reporte" Parameter="p_Tipo_Reporte" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_ID_Proyecto" Parameter="p_ID_Proyecto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_ID_Etapa" Parameter="p_ID_Etapa" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_ID_Contrato" Parameter="p_ID_Contrato" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_ID_Proyecto_Garantia" Parameter="p_ID_Proyecto_Garantia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_ID_Contrato_Garantia" Parameter="p_ID_Contrato_Garantia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Hora_Inicio" Parameter="p_Hora_Inicio" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="P_Hora_Final" Parameter="p_Hora_Final" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="P_Horas_A_Facturar" Parameter="p_Horas_A_Facturar" Type="System.Decimal" DbType="Decimal(5,1)" />
+    <Parameter Name="P_Tareas_Estandar" Parameter="p_Tareas_Estandar" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Descripcion" Parameter="p_Descripcion" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="P_Observaciones" Parameter="p_Observaciones" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="P_Usuario_Creacion" Parameter="p_Usuario_Creacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="P_ID_Reporte" Parameter="p_ID_Reporte" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="P_Correo_Cliente" Parameter="p_Correo_Cliente" Type="System.String" DbType="VarChar(250)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Garantias" Method="SP_ADM_Seleccionar_Garantias">
+    <ElementType Name="SP_ADM_Seleccionar_GarantiasResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Horas_A_Facturar" Type="System.Decimal" DbType="Decimal(5,1) NOT NULL" CanBeNull="false" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(61) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

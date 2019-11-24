@@ -1,0 +1,153 @@
+<div class="container pt-5">
+    <div class="row ">
+        <h1>Mantenimiento de Clientes</h1>
+        
+        <ng-container *ngFor="let permiso of misPermisos">
+            <div *ngIf="permiso.Descripcion_Seccion === 'Agregar' && permiso.Estado === 'A' " class="col-md-12 m-1">
+                <div class="col-md-12 m-1">
+                    <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
+                        Agregar
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container *ngFor="let permiso of misPermisos">    
+        <div *ngIf="permiso.Descripcion_Seccion === 'Lista' && permiso.Estado === 'A' " class="col-md-12">
+            <p-table [value]="misClientes" [paginator]="true" [rows]="10" [responsive]="true">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>N°</th>
+                        <th>Cliente</th>
+                        <th>Nombre</th>
+                        <th>Costo Hora</th>
+                        <th>Estado</th>
+                        <ng-container *ngFor="let permiso2 of misPermisos">
+                            <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
+                                <th>Editar</th>
+                            </ng-container>
+                        </ng-container>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-cli>
+                    <tr>
+                        <td><span class="ui-column-title">N°</span>{{cli.ID}}</td>
+                        <td><span class="ui-column-title">Cliente</span>{{cli.Cliente}}</td>
+                        <td><span class="ui-column-title">Nombre</span>{{cli.Nombre}}</td>
+                        <td><span class="ui-column-title">Costo Hora</span>{{cli.Costo_Hora}}</td>
+                        <td><span class="ui-column-title">Estado</span>{{cli.Estado}}</td>
+                        <ng-container *ngFor="let permiso2 of misPermisos">
+                            <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
+                                <td>
+                                    <span class="ui-column-title">Editar</span>
+                                    <button  type="button" (click)='onButtonEditClick(cli)' class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button>
+                                </td>
+                            </ng-container>
+                        </ng-container>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+    </ng-container>
+    <ng-container *ngFor="let permiso of misPermisos">
+
+    
+        <div *ngIf="permiso.Descripcion_Seccion === 'Editar' && permiso.Estado === 'A' " class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">Editar informacion de Cliente</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form #clientesEditForm="ngForm" (ngSubmit)="onSubmitEdit()">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <ng-container *ngIf="editCliente">
+                                        <label>{{editCliente.Nombre}}</label>
+                                    </ng-container>
+                                </div>
+                                <div class="form-group">
+                                    <ng-container *ngIf="editCliente">
+                                        <label for="costoHora">Costo por Hora</label>
+                                        <input name="costoHora" pInputText pKeyFilter="num" [(ngModel)]="editCliente.Costo_Hora" type="text" class="form-control" id="costoHora" placeholder="ej. 25$" />
+                                    </ng-container>
+                                </div>
+                                <div class="form-group">
+                                    <label for="estado">Estado</label>
+                                    <select [(ngModel)]="editCliente.Estado" class="form-control" id="estado" name="estado">
+                                        <option value="A">Activo</option>
+                                        <option value="I">Inactivo</option>
+                                    </select>
+                                </div>
+        
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                    Cerrar
+                                </button>
+                                <button type="submit" class="btn btn-raised btn-success m-1" data-dismiss="modal">
+                                    Guardar Cambios
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </ng-container>
+        <ng-container *ngFor="let permiso of misPermisos">
+            <div *ngIf="permiso.Descripcion_Seccion === 'Agregar' && permiso.Estado === 'A' " class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-title">Agregar informacion de cliente</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form #clientesForm="ngForm" (ngSubmit)="onSubmit()" >
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <ng-container *ngIf="clientes">
+                                            <label for="tClientes">Clientes</label>
+                                            <br>
+                                            <p-dropdown id="tClientes" [options]="clientes" [(ngModel)]="selectedClient" placeholder="Seleccione un cliente" optionLabel="Nombre" name="tClientes" [showClear]="true" required></p-dropdown>
+                                            <ng-container *ngIf="!selectedClient">
+                                                <p-message severity="error" text="El campo es requerido"></p-message>
+                                            </ng-container>
+                                        </ng-container>
+                                    </div>
+                                    <div class="form-group">
+                                        <ng-container *ngIf="clientes">
+                                            <label for="costoHora">Costo por Hora</label>
+                                            <input name="costoHora" pInputText pKeyFilter="num" [(ngModel)]="cliente.Costo_Hora" type="text" class="form-control" id="costoHora" placeholder="ej. 25$" />
+                                        </ng-container>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="estado">Estado</label>
+                                        <select [(ngModel)]="cliente.Estado" class="form-control" id="estado" name="estado">
+                                            <option value="A">Activo</option>
+                                            <option value="I">Inactivo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                        Cerrar
+                                    </button>
+                                    <button type="submit" class="btn btn-raised btn-success m-1" >
+                                        Guardar Cambios
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+       
+    </div>
+</div>
+
