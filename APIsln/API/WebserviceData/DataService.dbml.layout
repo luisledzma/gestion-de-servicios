@@ -2,10 +2,16 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DataService">
   <DataContextMoniker Name="/DataServiceDataContext" />
   <nestedChildShapes>
-    <classShape Id="7ff2a5cf-2b07-4d06-b92d-45c694da3223" absoluteBounds="1.625, 0.875, 2, 3.1170068359375">
+    <classShape Id="7ff2a5cf-2b07-4d06-b92d-45c694da3223" absoluteBounds="0.75, 0.5, 2, 3.1170068359375">
       <DataClassMoniker Name="/DataServiceDataContext/TBL_GS_USUARIO" />
       <nestedChildShapes>
-        <elementListCompartment Id="6bc6e262-063d-41c0-983b-df85eaebaab8" absoluteBounds="1.6400000000000006, 1.335, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="6bc6e262-063d-41c0-983b-df85eaebaab8" absoluteBounds="0.76500000000000057, 0.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="af70653c-41e3-4654-bedd-58f69bca1b61" absoluteBounds="3.25, 0.5, 2, 4.0785139973958326">
+      <DataClassMoniker Name="/DataServiceDataContext/TBL_GS_REPORTE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7845bfcf-618e-4678-9f51-e8af6e351748" absoluteBounds="3.2649999999999997, 0.96, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

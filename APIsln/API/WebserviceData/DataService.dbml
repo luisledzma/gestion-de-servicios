@@ -16,6 +16,27 @@
       <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.TBL_GS_REPORTE" Member="TBL_GS_REPORTE">
+    <Type Name="TBL_GS_REPORTE">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Tipo_Reporte" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Hora_Inicio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Hora_Final" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Total_Horas" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Horas_A_Facturar" Type="System.Decimal" DbType="Decimal(5,1) NOT NULL" CanBeNull="false" />
+      <Column Name="Tareas_Estandar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Observaciones" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Usuario_Creacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario_Modificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Correo_Enviado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Correo_Respondido" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.SP_SEG_SeleccionarInformacionUsuario" Method="SP_SEG_SeleccionarInformacionUsuario">
     <Parameter Name="P_Correo_Electronico" Parameter="p_Correo_Electronico" Type="System.String" DbType="VarChar(250)" />
     <Parameter Name="P_Contrasenna" Parameter="p_Contrasenna" Type="System.String" DbType="VarChar(MAX)" />
@@ -442,6 +463,16 @@
       <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_ADM_Seleccionar_Garantias" Method="SP_ADM_Seleccionar_Garantias">
+    <ElementType Name="SP_ADM_Seleccionar_GarantiasResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Horas_A_Facturar" Type="System.Decimal" DbType="Decimal(5,1) NOT NULL" CanBeNull="false" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(61) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.SP_ADM_Insertar_Reporte" Method="SP_ADM_Insertar_Reporte">
     <Parameter Name="P_Cliente" Parameter="p_Cliente" Type="System.Int32" DbType="Int" />
     <Parameter Name="P_Tipo_Reporte" Parameter="p_Tipo_Reporte" Type="System.Int32" DbType="Int" />
@@ -462,14 +493,9 @@
     <Parameter Name="P_Correo_Cliente" Parameter="p_Correo_Cliente" Type="System.String" DbType="VarChar(250)" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.SP_ADM_Seleccionar_Garantias" Method="SP_ADM_Seleccionar_Garantias">
-    <ElementType Name="SP_ADM_Seleccionar_GarantiasResult">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Cliente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="Horas_A_Facturar" Type="System.Decimal" DbType="Decimal(5,1) NOT NULL" CanBeNull="false" />
-      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(61) NOT NULL" CanBeNull="false" />
-      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </ElementType>
+  <Function Name="dbo.SP_ADM_Aprobacion_Reporte" Method="SP_ADM_Aprobacion_Reporte">
+    <Parameter Name="P_ID_Reporte" Parameter="p_ID_Reporte" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

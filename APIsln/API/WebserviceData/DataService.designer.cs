@@ -33,6 +33,9 @@ namespace API.WebserviceData
     partial void InsertTBL_GS_USUARIO(TBL_GS_USUARIO instance);
     partial void UpdateTBL_GS_USUARIO(TBL_GS_USUARIO instance);
     partial void DeleteTBL_GS_USUARIO(TBL_GS_USUARIO instance);
+    partial void InsertTBL_GS_REPORTE(TBL_GS_REPORTE instance);
+    partial void UpdateTBL_GS_REPORTE(TBL_GS_REPORTE instance);
+    partial void DeleteTBL_GS_REPORTE(TBL_GS_REPORTE instance);
     #endregion
 		
 		public DataServiceDataContext() : 
@@ -70,6 +73,14 @@ namespace API.WebserviceData
 			get
 			{
 				return this.GetTable<TBL_GS_USUARIO>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TBL_GS_REPORTE> TBL_GS_REPORTE
+		{
+			get
+			{
+				return this.GetTable<TBL_GS_REPORTE>();
 			}
 		}
 		
@@ -332,6 +343,13 @@ namespace API.WebserviceData
 			return ((ISingleResult<SP_SEG_Consultar_UsuarioResult>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Garantias")]
+		public ISingleResult<SP_ADM_Seleccionar_GarantiasResult> SP_ADM_Seleccionar_Garantias()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_ADM_Seleccionar_GarantiasResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Insertar_Reporte")]
 		public int SP_ADM_Insertar_Reporte(
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Cliente", DbType="Int")] System.Nullable<int> p_Cliente, 
@@ -358,11 +376,11 @@ namespace API.WebserviceData
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Garantias")]
-		public ISingleResult<SP_ADM_Seleccionar_GarantiasResult> SP_ADM_Seleccionar_Garantias()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Aprobacion_Reporte")]
+		public int SP_ADM_Aprobacion_Reporte([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Reporte", DbType="Int")] System.Nullable<int> p_ID_Reporte, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<SP_ADM_Seleccionar_GarantiasResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID_Reporte, p_Estado);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -667,6 +685,452 @@ namespace API.WebserviceData
 					this._Fecha_Modificacion = value;
 					this.SendPropertyChanged("Fecha_Modificacion");
 					this.OnFecha_ModificacionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_GS_REPORTE")]
+	public partial class TBL_GS_REPORTE : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private System.Nullable<int> _Cliente;
+		
+		private int _ID_Tipo_Reporte;
+		
+		private System.Nullable<System.DateTime> _Hora_Inicio;
+		
+		private System.Nullable<System.DateTime> _Hora_Final;
+		
+		private System.Nullable<System.TimeSpan> _Total_Horas;
+		
+		private decimal _Horas_A_Facturar;
+		
+		private System.Nullable<int> _Tareas_Estandar;
+		
+		private string _Descripcion;
+		
+		private string _Observaciones;
+		
+		private System.Nullable<char> _Estado;
+		
+		private string _Usuario_Creacion;
+		
+		private string _Usuario_Modificacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Creacion;
+		
+		private System.Nullable<System.DateTime> _Fecha_Modificacion;
+		
+		private System.Nullable<bool> _Correo_Enviado;
+		
+		private System.Nullable<bool> _Correo_Respondido;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnClienteChanging(System.Nullable<int> value);
+    partial void OnClienteChanged();
+    partial void OnID_Tipo_ReporteChanging(int value);
+    partial void OnID_Tipo_ReporteChanged();
+    partial void OnHora_InicioChanging(System.Nullable<System.DateTime> value);
+    partial void OnHora_InicioChanged();
+    partial void OnHora_FinalChanging(System.Nullable<System.DateTime> value);
+    partial void OnHora_FinalChanged();
+    partial void OnTotal_HorasChanging(System.Nullable<System.TimeSpan> value);
+    partial void OnTotal_HorasChanged();
+    partial void OnHoras_A_FacturarChanging(decimal value);
+    partial void OnHoras_A_FacturarChanged();
+    partial void OnTareas_EstandarChanging(System.Nullable<int> value);
+    partial void OnTareas_EstandarChanged();
+    partial void OnDescripcionChanging(string value);
+    partial void OnDescripcionChanged();
+    partial void OnObservacionesChanging(string value);
+    partial void OnObservacionesChanged();
+    partial void OnEstadoChanging(System.Nullable<char> value);
+    partial void OnEstadoChanged();
+    partial void OnUsuario_CreacionChanging(string value);
+    partial void OnUsuario_CreacionChanged();
+    partial void OnUsuario_ModificacionChanging(string value);
+    partial void OnUsuario_ModificacionChanged();
+    partial void OnFecha_CreacionChanging(System.Nullable<System.DateTime> value);
+    partial void OnFecha_CreacionChanged();
+    partial void OnFecha_ModificacionChanging(System.Nullable<System.DateTime> value);
+    partial void OnFecha_ModificacionChanged();
+    partial void OnCorreo_EnviadoChanging(System.Nullable<bool> value);
+    partial void OnCorreo_EnviadoChanged();
+    partial void OnCorreo_RespondidoChanging(System.Nullable<bool> value);
+    partial void OnCorreo_RespondidoChanged();
+    #endregion
+		
+		public TBL_GS_REPORTE()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cliente", DbType="Int")]
+		public System.Nullable<int> Cliente
+		{
+			get
+			{
+				return this._Cliente;
+			}
+			set
+			{
+				if ((this._Cliente != value))
+				{
+					this.OnClienteChanging(value);
+					this.SendPropertyChanging();
+					this._Cliente = value;
+					this.SendPropertyChanged("Cliente");
+					this.OnClienteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Tipo_Reporte", DbType="Int NOT NULL")]
+		public int ID_Tipo_Reporte
+		{
+			get
+			{
+				return this._ID_Tipo_Reporte;
+			}
+			set
+			{
+				if ((this._ID_Tipo_Reporte != value))
+				{
+					this.OnID_Tipo_ReporteChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Tipo_Reporte = value;
+					this.SendPropertyChanged("ID_Tipo_Reporte");
+					this.OnID_Tipo_ReporteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hora_Inicio", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Hora_Inicio
+		{
+			get
+			{
+				return this._Hora_Inicio;
+			}
+			set
+			{
+				if ((this._Hora_Inicio != value))
+				{
+					this.OnHora_InicioChanging(value);
+					this.SendPropertyChanging();
+					this._Hora_Inicio = value;
+					this.SendPropertyChanged("Hora_Inicio");
+					this.OnHora_InicioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hora_Final", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Hora_Final
+		{
+			get
+			{
+				return this._Hora_Final;
+			}
+			set
+			{
+				if ((this._Hora_Final != value))
+				{
+					this.OnHora_FinalChanging(value);
+					this.SendPropertyChanging();
+					this._Hora_Final = value;
+					this.SendPropertyChanged("Hora_Final");
+					this.OnHora_FinalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total_Horas", DbType="Time")]
+		public System.Nullable<System.TimeSpan> Total_Horas
+		{
+			get
+			{
+				return this._Total_Horas;
+			}
+			set
+			{
+				if ((this._Total_Horas != value))
+				{
+					this.OnTotal_HorasChanging(value);
+					this.SendPropertyChanging();
+					this._Total_Horas = value;
+					this.SendPropertyChanged("Total_Horas");
+					this.OnTotal_HorasChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Horas_A_Facturar", DbType="Decimal(5,1) NOT NULL")]
+		public decimal Horas_A_Facturar
+		{
+			get
+			{
+				return this._Horas_A_Facturar;
+			}
+			set
+			{
+				if ((this._Horas_A_Facturar != value))
+				{
+					this.OnHoras_A_FacturarChanging(value);
+					this.SendPropertyChanging();
+					this._Horas_A_Facturar = value;
+					this.SendPropertyChanged("Horas_A_Facturar");
+					this.OnHoras_A_FacturarChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tareas_Estandar", DbType="Int")]
+		public System.Nullable<int> Tareas_Estandar
+		{
+			get
+			{
+				return this._Tareas_Estandar;
+			}
+			set
+			{
+				if ((this._Tareas_Estandar != value))
+				{
+					this.OnTareas_EstandarChanging(value);
+					this.SendPropertyChanging();
+					this._Tareas_Estandar = value;
+					this.SendPropertyChanged("Tareas_Estandar");
+					this.OnTareas_EstandarChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this.OnDescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._Descripcion = value;
+					this.SendPropertyChanged("Descripcion");
+					this.OnDescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Observaciones", DbType="VarChar(250)")]
+		public string Observaciones
+		{
+			get
+			{
+				return this._Observaciones;
+			}
+			set
+			{
+				if ((this._Observaciones != value))
+				{
+					this.OnObservacionesChanging(value);
+					this.SendPropertyChanging();
+					this._Observaciones = value;
+					this.SendPropertyChanged("Observaciones");
+					this.OnObservacionesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Char(1)")]
+		public System.Nullable<char> Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this.OnEstadoChanging(value);
+					this.SendPropertyChanging();
+					this._Estado = value;
+					this.SendPropertyChanged("Estado");
+					this.OnEstadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Creacion", DbType="VarChar(50)")]
+		public string Usuario_Creacion
+		{
+			get
+			{
+				return this._Usuario_Creacion;
+			}
+			set
+			{
+				if ((this._Usuario_Creacion != value))
+				{
+					this.OnUsuario_CreacionChanging(value);
+					this.SendPropertyChanging();
+					this._Usuario_Creacion = value;
+					this.SendPropertyChanged("Usuario_Creacion");
+					this.OnUsuario_CreacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Modificacion", DbType="VarChar(50)")]
+		public string Usuario_Modificacion
+		{
+			get
+			{
+				return this._Usuario_Modificacion;
+			}
+			set
+			{
+				if ((this._Usuario_Modificacion != value))
+				{
+					this.OnUsuario_ModificacionChanging(value);
+					this.SendPropertyChanging();
+					this._Usuario_Modificacion = value;
+					this.SendPropertyChanged("Usuario_Modificacion");
+					this.OnUsuario_ModificacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Creacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Creacion
+		{
+			get
+			{
+				return this._Fecha_Creacion;
+			}
+			set
+			{
+				if ((this._Fecha_Creacion != value))
+				{
+					this.OnFecha_CreacionChanging(value);
+					this.SendPropertyChanging();
+					this._Fecha_Creacion = value;
+					this.SendPropertyChanged("Fecha_Creacion");
+					this.OnFecha_CreacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Modificacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Modificacion
+		{
+			get
+			{
+				return this._Fecha_Modificacion;
+			}
+			set
+			{
+				if ((this._Fecha_Modificacion != value))
+				{
+					this.OnFecha_ModificacionChanging(value);
+					this.SendPropertyChanging();
+					this._Fecha_Modificacion = value;
+					this.SendPropertyChanged("Fecha_Modificacion");
+					this.OnFecha_ModificacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo_Enviado", DbType="Bit")]
+		public System.Nullable<bool> Correo_Enviado
+		{
+			get
+			{
+				return this._Correo_Enviado;
+			}
+			set
+			{
+				if ((this._Correo_Enviado != value))
+				{
+					this.OnCorreo_EnviadoChanging(value);
+					this.SendPropertyChanging();
+					this._Correo_Enviado = value;
+					this.SendPropertyChanged("Correo_Enviado");
+					this.OnCorreo_EnviadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo_Respondido", DbType="Bit")]
+		public System.Nullable<bool> Correo_Respondido
+		{
+			get
+			{
+				return this._Correo_Respondido;
+			}
+			set
+			{
+				if ((this._Correo_Respondido != value))
+				{
+					this.OnCorreo_RespondidoChanging(value);
+					this.SendPropertyChanging();
+					this._Correo_Respondido = value;
+					this.SendPropertyChanged("Correo_Respondido");
+					this.OnCorreo_RespondidoChanged();
 				}
 			}
 		}

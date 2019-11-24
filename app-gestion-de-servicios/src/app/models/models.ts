@@ -167,3 +167,9 @@ export class Contrato{
     Fecha_Creacion: Date;
     Fecha_Modificacion: Date;
 }
+export class RespuestaCorreo{
+    Mensaje_Encriptado: string;
+    Clave: string; 
+    Estado: string;
+    Razon_Rechazo: string;
+}

@@ -255,6 +255,21 @@ namespace API.Controllers
             }
             return false;
         }
+        [HttpPut]
+        [Route("EditarReporteRespuestaCorreo")]
+        public bool EditarReporteRespuestaCorreo([FromBody]RespuestaCorreo respuesta)
+        {
+            if (respuesta == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (repL.EditarReporteRespuestaCorreo(respuesta))
+            {
+                return true;
+            }
+            return false;
+        }
         // ------------------------------------------
         // ----------------CONTRATOS-----------------
         [HttpGet]

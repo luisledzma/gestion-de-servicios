@@ -6,6 +6,9 @@ using API.Controllers;
 using API.WebserviceData;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
+using System.Security.Cryptography;
+using System.IO;
 
 namespace API.LogicaNegocio
 {
@@ -38,6 +41,11 @@ namespace API.LogicaNegocio
                                   Fecha_Creacion = r.Fecha_Creacion,
                                   Fecha_Modificacion = r.Fecha_Modificacion
                               }).ToList();
+
+
+                //var resulte = Encrypt("Prueba Encrypte", "MECAGO");
+                //var result2 = Decrypt(resulte,"MECAGOS");
+                // EnviarCorreo("jimenezjozsef@hotmail.com", "2019");
                 if (result != null)
                 {
                     return result;
@@ -110,26 +118,62 @@ namespace API.LogicaNegocio
                 return false;
             }
         }
+
+        public bool EditarReporteRespuestaCorreo(RespuestaCorreo respuesta)
+        {
+            try
+            {
+                var result2 = Decrypt(respuesta.Mensaje_Encriptado, respuesta.Clave);
+
+                var reporte = _db.TBL_GS_REPORTE.FirstOrDefault(c => c.ID.Equals(result2));
+
+                if (reporte.Correo_Respondido == false)
+                {
+                    var aprobacion = _db.SP_ADM_Aprobacion_Reporte(Convert.ToInt32(result2), respuesta.Estado);
+                    if (aprobacion < 0)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         // --------------------------------------------------
         // ---------------PARA EDITAR REPORTE----------------
         public void EnviarCorreo(string correo, string idFormulario)
         {
             try
             {
-                var token = TokenGenerator.GenerateTokenJwt(idFormulario);
-
-
-                MailMessage email = new MailMessage("jimenezjozsef@gmail.com", correo, "Prueba", "<a href='http://localhost:4201/correo?id="+token+"'>Confirmar</a>");
-                email.IsBodyHtml = true;
-                SmtpClient cliente = new SmtpClient("smtp.gmail.com", 587)
+                var reporte = _db.TBL_GS_REPORTE.FirstOrDefault(c => c.ID.Equals(idFormulario));
+                if(reporte.Correo_Enviado == false)
                 {
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("jimenezjozsef@gmail.com", "angelsandarwaves")
-                };
-                cliente.Send(email);
+                    var resulte = Encrypt(idFormulario, "CB5%182");
 
+                    var token = TokenGenerator.GenerateTokenJwt(resulte);
+
+
+                    MailMessage email = new MailMessage("jimenezjozsef@gmail.com", correo, "Prueba", "<p>Se realizaron las tareas para el reporte "+reporte.Descripcion +" para aprovar dirijase al siguiente link</p><a href='http://localhost:4201/correo?id=" + token + "'>Confirmar</a>");
+                    email.IsBodyHtml = true;
+                    SmtpClient cliente = new SmtpClient("smtp.gmail.com", 587)
+                    {
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential("jimenezjozsef@gmail.com", "") // Agregar las credenciales del correo con el que se va a enviar la confirmacion
+                    };
+                    cliente.Send(email);
+                    reporte.Correo_Enviado = true;
+                    _db.SubmitChanges();
+                }
             }
             catch (Exception ex)
             {
@@ -137,5 +181,117 @@ namespace API.LogicaNegocio
             }
         }
 
+        // Metodos para encriptar y desencriptar el link del correo.
+        public static string Encrypt(string plainText, string password)
+        {
+            if (plainText == null)
+            {
+                return null;
+            }
+
+            if (password == null)
+            {
+                password = String.Empty;
+            }
+
+            // Get the bytes of the string
+            var bytesToBeEncrypted = Encoding.UTF8.GetBytes(plainText);
+            var passwordBytes = Encoding.UTF8.GetBytes(password);
+
+            // Hash the password with SHA256
+            passwordBytes = SHA256.Create().ComputeHash(passwordBytes);
+
+            var bytesEncrypted = Encrypt(bytesToBeEncrypted, passwordBytes);
+
+            return Convert.ToBase64String(bytesEncrypted);
+        }
+        private static byte[] Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes)
+        {
+            byte[] encryptedBytes = null;
+
+            // Set your salt here, change it to meet your flavor:
+            // The salt bytes must be at least 8 bytes.
+            var saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (RijndaelManaged AES = new RijndaelManaged())
+                {
+                    var key = new Rfc2898DeriveBytes(passwordBytes, saltBytes, 1000);
+
+                    AES.KeySize = 256;
+                    AES.BlockSize = 128;
+                    AES.Key = key.GetBytes(AES.KeySize / 8);
+                    AES.IV = key.GetBytes(AES.BlockSize / 8);
+
+                    AES.Mode = CipherMode.CBC;
+
+                    using (var cs = new CryptoStream(ms, AES.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(bytesToBeEncrypted, 0, bytesToBeEncrypted.Length);
+                        cs.Close();
+                    }
+
+                    encryptedBytes = ms.ToArray();
+                }
+            }
+
+            return encryptedBytes;
+        }
+
+        public static string Decrypt(string encryptedText, string password)
+        {
+            if (encryptedText == null)
+            {
+                return null;
+            }
+
+            if (password == null)
+            {
+                password = String.Empty;
+            }
+
+            // Get the bytes of the string
+            var bytesToBeDecrypted = Convert.FromBase64String(encryptedText);
+            var passwordBytes = Encoding.UTF8.GetBytes(password);
+
+            passwordBytes = SHA256.Create().ComputeHash(passwordBytes);
+
+            var bytesDecrypted = Decrypt(bytesToBeDecrypted, passwordBytes);
+
+            return Encoding.UTF8.GetString(bytesDecrypted);
+        }
+        private static byte[] Decrypt(byte[] bytesToBeDecrypted, byte[] passwordBytes)
+        {
+            byte[] decryptedBytes = null;
+
+            // Set your salt here, change it to meet your flavor:
+            // The salt bytes must be at least 8 bytes.
+            var saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (RijndaelManaged AES = new RijndaelManaged())
+                {
+                    var key = new Rfc2898DeriveBytes(passwordBytes, saltBytes, 1000);
+
+                    AES.KeySize = 256;
+                    AES.BlockSize = 128;
+                    AES.Key = key.GetBytes(AES.KeySize / 8);
+                    AES.IV = key.GetBytes(AES.BlockSize / 8);
+                    AES.Mode = CipherMode.CBC;
+
+                    using (var cs = new CryptoStream(ms, AES.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(bytesToBeDecrypted, 0, bytesToBeDecrypted.Length);
+                        cs.Close();
+                    }
+
+                    decryptedBytes = ms.ToArray();
+                }
+            }
+
+            return decryptedBytes;
+        }
     }
 }
