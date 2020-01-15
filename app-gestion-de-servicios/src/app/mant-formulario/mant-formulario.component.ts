@@ -42,6 +42,13 @@ export class MantFormularioComponent implements OnInit {
   proyectos: any;
   selectedProyecto: Proyecto = new Proyecto(); //Para Editar
   selectedProyectoGarantia: Proyecto = new Proyecto();
+  //----------------------------------
+  tiposRepGarantia = [
+    {id: "1", name: "Proyecto"},
+    {id: "2", name: "Contrato"},
+    {id: "3", name: "Facturado"}
+  ];
+  selectedTGarantia: any;
   // ----------------------------------
   // -------------CONTRATOS------------
   contratos: any;
@@ -51,6 +58,7 @@ export class MantFormularioComponent implements OnInit {
   // ---------------ETAPAS---------------
   etapas: any;
   selectedEtapa: EtapaProyecto = new EtapaProyecto();
+
 
   constructor(private after: AfterLoginServiceService, private messageService: MessageService, private confirmationService: ConfirmationService) { 
     const us = localStorage.getItem('User').split('.')[1];  
@@ -263,7 +271,8 @@ export class MantFormularioComponent implements OnInit {
     });
   }
   prueba(value:any){
-    let fecha = new Date(value);
-    console.log(`${fecha.getHours()}:${fecha.getMinutes()}`);
+    // let fecha = new Date(value);
+    // console.log(`${fecha.getHours()}:${fecha.getMinutes()}`);
+    console.log(this.selectedTGarantia);
   }
 }
