@@ -227,7 +227,9 @@ export class MantFormularioComponent implements OnInit {
     this.horaFinal = new Date(this.horaFinal);
     this.reporte.Hora_Inicio = this.horaInicio;
     this.reporte.Hora_Final = this.horaFinal;
-    
+    // console.log("Hora Inicial"+this.reporte.Hora_Inicio);
+    // console.log("Hora Final"+ this.reporte.Hora_Final);
+    console.log(this.reporte);
     this.after.InsertarReporte(url,this.reporte).subscribe(data => {
       //console.log(data)
       this.GetReportes();
