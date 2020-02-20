@@ -12,12 +12,12 @@ namespace API.LogicaNegocio
 
         private readonly DataServiceDataContext _db = new DataServiceDataContext();
 
-        public List<Rol> GetRol()
+        public List<Rol> GetRol(string usuarioConsulta)
         {
             try
             {
                 
-                var result = (from c in _db.SP_SEG_SeleccionarRol()
+                var result = (from c in _db.SP_SEG_SeleccionarRol(usuarioConsulta)
 
                               select new Rol()
                               {
@@ -47,7 +47,7 @@ namespace API.LogicaNegocio
             try
             {
 
-                var result = (from c in _db.SP_SEG_SeleccionarRol() where c.ID == idRol
+                var result = (from c in _db.SP_SEG_SeleccionarRolPorId(idRol)
 
                               select new Rol()
                               {

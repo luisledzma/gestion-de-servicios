@@ -14,12 +14,12 @@ namespace API.LogicaNegocio
 
         private readonly DataServiceDataContext _db = new DataServiceDataContext();
 
-        public List<LoginRequest> GetUsuarios()
+        public List<LoginRequest> GetUsuarios(string usuarioConsulta)
         {
             try
             {
 
-                var result = (from c in _db.SP_SEG_Seleccionar_Usuarios()
+                var result = (from c in _db.SP_SEG_Seleccionar_Usuarios(usuarioConsulta)
 
                               select new LoginRequest()
                               {

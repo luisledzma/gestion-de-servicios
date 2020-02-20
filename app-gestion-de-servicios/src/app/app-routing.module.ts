@@ -20,6 +20,7 @@ import { MantEtapasProyectoComponent } from './mant-etapas-proyecto/mant-etapas-
 import { MantClientesComponent } from './mant-clientes/mant-clientes.component';
 import { GarantiasComponent } from './garantias/garantias.component';
 import { CorreoComponent } from './correo/correo.component';
+import { AprobClienteComponent } from './aprob-cliente/aprob-cliente.component';
 
 
 const appRoutes: Routes = [
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, canActivate: [BeforeLoginServiceService] },
   { path: 'correo', component: CorreoComponent },
+  { path: 'aprobCliente', component: AprobClienteComponent, canActivate: [BeforeLoginServiceService] },
   //{ path: 'signup', component: SingupComponent, canActivate: [BeforeLoginServiceService] },
 
   // {path: 'informacion',component: InformacionComponent,canActivate: [BeforeLoginService]},

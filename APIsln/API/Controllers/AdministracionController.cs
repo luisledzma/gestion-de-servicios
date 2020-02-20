@@ -220,9 +220,9 @@ namespace API.Controllers
         // --------------REPORTES------------------
         [HttpGet]
         [Route("GetReportes")]
-        public List<Reporte> GetReportes()
+        public List<Reporte> GetReportes(string usuarioConsulta)
         {
-            return repL.GetReportes();
+            return repL.GetReportes(usuarioConsulta);
         }
         [HttpPost]
         [Route("InsertarReporte")]
