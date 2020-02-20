@@ -15,11 +15,11 @@ namespace API.LogicaNegocio
     public class ReporteL
     {
         private readonly DataServiceDataContext _db = new DataServiceDataContext();
-        public List<Reporte> GetReportes()
+        public List<Reporte> GetReportes(string usuarioConsulta)
         {
             try
             {
-                var result = (from r in _db.SP_ADM_Seleccionar_Reportes()
+                var result = (from r in _db.SP_ADM_Seleccionar_Reportes(usuarioConsulta)
                               select new Reporte
                               {
                                   ID = r.ID,
@@ -43,9 +43,6 @@ namespace API.LogicaNegocio
                               }).ToList();
 
 
-                //var resulte = Encrypt("Prueba Encrypte", "MECAGO");
-                //var result2 = Decrypt(resulte,"MECAGOS");
-                // EnviarCorreo("jimenezjozsef@hotmail.com", "2019");
                 if (result != null)
                 {
                     return result;

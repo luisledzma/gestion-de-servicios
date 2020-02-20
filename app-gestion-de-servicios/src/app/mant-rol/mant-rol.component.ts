@@ -40,7 +40,7 @@ export class MantRolComponent implements OnInit {
 
 
   GetRol() {
-    let url = this.apiUrl + 'Seguridad/GetRol';
+    let url = this.apiUrl + 'Seguridad/GetRol?usuarioConsulta='+this._userInfo[0];
     this.after.GetRol(url).subscribe(data => {
       this.roles = data;
     });

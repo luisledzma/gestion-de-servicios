@@ -19,9 +19,9 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("GetRol")]
-        public List<Rol> GetRol()
+        public List<Rol> GetRol(string usuarioConsulta)
         {
-            return rolL.GetRol();
+            return rolL.GetRol(usuarioConsulta);
         }
 
         [HttpGet]
@@ -70,9 +70,9 @@ namespace API.Controllers
         // ----------------USUARIOS------------------
         [HttpGet]
         [Route("GetUsuarios")]
-        public List<LoginRequest> GetUsuarios()
+        public List<LoginRequest> GetUsuarios(string usuarioConsulta)
         {
-            return usrL.GetUsuarios();
+            return usrL.GetUsuarios(usuarioConsulta);
         }
 
         [HttpPost]

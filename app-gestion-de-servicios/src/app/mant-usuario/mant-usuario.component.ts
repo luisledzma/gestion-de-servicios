@@ -42,7 +42,7 @@ export class MantUsuarioComponent implements OnInit {
  
 
   GetUsuarios() {
-    let url = this.apiUrl + 'Seguridad/GetUsuarios';
+    let url = this.apiUrl + 'Seguridad/GetUsuarios?usuarioConsulta='+this._userInfo[0];
     this.after.GetUsuarios(url).subscribe(data => {
       this.usuarios = data;
     });

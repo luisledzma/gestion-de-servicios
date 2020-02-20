@@ -78,7 +78,7 @@ export class MantFormularioComponent implements OnInit {
   }
   
   GetReportes() {
-    let url = this.apiUrl + 'Administracion/GetReportes';
+    let url = this.apiUrl + 'Administracion/GetReportes?usuarioConsulta='+this._userInfo[0];
     this.after.GetReportes(url).subscribe(data => {
       this.reportes = data;
       this.reportesTipo = data;
