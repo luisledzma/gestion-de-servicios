@@ -23,7 +23,13 @@ namespace API.Controllers
         {
             return rolL.GetRol(usuarioConsulta);
         }
-
+        [HttpGet]
+        [Route("GetRolesActivos")]
+        public List<Rol> GetRolesActivos()
+        {
+            return rolL.GetRolesActivos();
+        }
+        
         [HttpGet]
         [Route("GetRolPorId")]
         public Rol GetRolPorId(int idRol)

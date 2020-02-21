@@ -89,11 +89,10 @@ export class MantFormularioComponent implements OnInit {
     this.after.GetClientes(url).subscribe(data => {
       this.clientes = data;
       this.selectedCliente = data ? data[0] : undefined;
-      console.log(data);
     });
   }
   GetTareasEstandar() {
-    let url = this.apiUrl + 'Administracion/GetTareasEstandar';
+    let url = this.apiUrl + 'Administracion/GetTareasEstandarActivas';
     this.after.GetTareasEstandar(url).subscribe(data => {
       this.tareasEstandar = data;
       this.selectedTarea = data ? data[0] : undefined;
@@ -112,8 +111,9 @@ export class MantFormularioComponent implements OnInit {
   GetTipoReportesFilter(){
     let url = this.apiUrl + 'Administracion/GetTipoReportes';
     this.after.GetTipoReportes(url).subscribe(data => {
-      this.tiposReportesFilter = data;
-
+      if(data){
+        this.tiposReportesFilter = data;
+      }
       let t: TipoReporte = new TipoReporte();
       t.ID = 0;
       t.Descripcion = 'Todos';
@@ -135,46 +135,34 @@ export class MantFormularioComponent implements OnInit {
     }
   }
   // --------------------------------------------------------
-  GetEtapasProyectoPorProyecto(id:number){
-    if(this.selectedProyecto.ID != 0){
-      let url = this.apiUrl + 'Administracion/GetEtapasProyectoPorProyecto';
-      this.after.GetEtapasProyectoPorProyecto(url,id).subscribe(data => {
-        this.etapas = data;
-        this.selectedEtapa = data ? data[0] : undefined;
-      });
-    }
-  }
   GetEtapasProyectoActivasPorProyecto(id:number){
     if(this.selectedProyecto.ID != 0){
       let url = this.apiUrl + 'Administracion/GetEtapasProyectoActivasPorProyecto';
       this.after.GetEtapasProyectoActivasPorProyecto(url,id).subscribe(data => {
-        this.etapas = data;
-        this.selectedEtapa = data ? data[0] : undefined;
+        if(data){
+          this.etapas = data;
+          this.selectedEtapa = data ? data[0] : undefined;
+        }
       });
     }
-  }
-  GetProyectos(){
-    let url = this.apiUrl + 'Administracion/GetProyectos';
-    this.after.GetProyectos(url).subscribe(data => {
-      this.proyectos = data;
-      this.selectedProyecto = data ? data[0] : undefined;
-      console.log(data);
-    });
   }
   GetProyectosActivos(){
     let url = this.apiUrl + 'Administracion/GetProyectosActivos';
     this.after.GetProyectosActivos(url).subscribe(data => {
-      this.proyectos = data;
-      this.selectedProyecto = data ? data[0] : undefined;
+      if(data){
+        this.proyectos = data;
+        this.selectedProyecto = data ? data[0] : undefined;
+      }
     });
   } 
   
   GetContratosActivos(){
     let url = this.apiUrl + 'Administracion/GetContratosActivos';
     this.after.GetContratosActivos(url).subscribe(data => {
-      this.contratos = data;
-      this.selectedContrato = data ? data[0] : undefined;
-      console.log(data);
+      if(data){
+        this.contratos = data;
+        this.selectedContrato = data ? data[0] : undefined;
+      }
     });
   } 
   onSubmit(){

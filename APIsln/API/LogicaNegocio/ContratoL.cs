@@ -11,12 +11,12 @@ namespace API.LogicaNegocio
     {
         private readonly DataServiceDataContext _db = new DataServiceDataContext();
 
-        public List<Contrato> GetContratos()
+        public List<Contrato> GetContratos(string usuarioConsulta)
         {
             try
             {
 
-                var result = (from c in _db.SP_ADM_Seleccionar_Contratos()
+                var result = (from c in _db.SP_ADM_Seleccionar_Contratos(usuarioConsulta)
 
                               select new Contrato()
                               {

@@ -41,7 +41,35 @@ namespace API.LogicaNegocio
             }
             return new List<Rol>();
         }
+        public List<Rol> GetRolesActivos()
+        {
+            try
+            {
 
+                var result = (from c in _db.SP_SEG_Seleccionar_Roles_Activos()
+
+                              select new Rol()
+                              {
+                                  ID = c.ID,
+                                  Descripcion = c.Descripcion,
+                                  Estado = c.Estado,
+                                  Usuario_Creacion = c.Usuario_Creacion,
+                                  Usuario_Modificacion = c.Usuario_Modificacion,
+                                  Fecha_Creacion = c.Fecha_Creacion,
+                                  Fecha_Modificacion = c.Fecha_Modificacion
+
+                              }).ToList();
+
+
+                if (result != null)
+                    return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return new List<Rol>();
+        }
         public Rol GetRolPorId(int idRol)
         {
             try

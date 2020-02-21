@@ -11,11 +11,11 @@ namespace API.LogicaNegocio
     {
         private readonly DataServiceDataContext _db = new DataServiceDataContext();
 
-        public List<TareasEstandar> GetTareasEstandar()
+        public List<TareasEstandar> GetTareasEstandar(string usuarioConsulta)
         {
             try
             {
-                var result = (from c in _db.SP_ADM_Seleccionar_Tareas_Estandar()
+                var result = (from c in _db.SP_ADM_Seleccionar_Tareas_Estandar(usuarioConsulta)
 
                               select new TareasEstandar()
                               {
@@ -29,6 +29,34 @@ namespace API.LogicaNegocio
 
                               }).ToList();
                 if(result != null)
+                {
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return new List<TareasEstandar>();
+        }
+        public List<TareasEstandar> GetTareasEstandarActivas()
+        {
+            try
+            {
+                var result = (from c in _db.SP_ADM_Seleccionar_Tareas_Estandar_Activas()
+
+                              select new TareasEstandar()
+                              {
+                                  ID = c.ID,
+                                  Descripcion = c.Descripcion,
+                                  Estado = c.Estado,
+                                  Usuario_Creacion = c.Usuario_Creacion,
+                                  Usuario_Modificacion = c.Usuario_Modificacion,
+                                  Fecha_Creacion = c.Fecha_Creacion,
+                                  Fecha_Modificacion = c.Fecha_Modificacion
+
+                              }).ToList();
+                if (result != null)
                 {
                     return result;
                 }

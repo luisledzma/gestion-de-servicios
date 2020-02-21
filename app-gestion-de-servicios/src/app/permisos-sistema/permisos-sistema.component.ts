@@ -39,10 +39,12 @@ export class PermisosSistemaComponent implements OnInit {
   }
 
   GetRol() {
-    let url = this.apiUrl + 'Seguridad/GetRol';
+    let url = this.apiUrl + 'Seguridad/GetRolesActivos';
     this.after.GetRol(url).subscribe(data => {
-      this.roles = data;
-      this.rol = data ? data[0] : null;
+      if(data){
+        this.roles = data;
+        this.rol = data ? data[0] : null;
+      }
     });
     this.myRol = new Rol();
   }
@@ -50,8 +52,10 @@ export class PermisosSistemaComponent implements OnInit {
   GetMenus(){
     let url = this.apiUrl + 'Seguridad/GetMenus';
     this.after.GetMenus(url).subscribe(data=>{
-      this.menus = data;
-      this.menu = data ? data[0] : null;
+      if(data){
+        this.menus = data;
+        this.menu = data ? data[0] : null;
+      }
     });
   }
   
@@ -80,8 +84,9 @@ export class PermisosSistemaComponent implements OnInit {
   GetPermisosPorRolyMenu(){
     let url = this.apiUrl + 'Seguridad/GetPermisosPorRolyMenu'
     this.after.GetPermisosPorRolyMenu(url,this.rol.ID,this.menu.ID).subscribe(data => {
-      this.settingPermiso = data;
-      //console.log(data);
+      if(data){
+        this.settingPermiso = data;
+      }
     });
   }
   UpdatePermisosLists(){

@@ -39,20 +39,22 @@ export class ContratosComponent implements OnInit {
   }
 
   GetContratos(){
-    let url = this.apiUrl + 'Administracion/GetContratos';
+    let url = this.apiUrl + 'Administracion/GetContratos?usuarioConsulta='+this._userInfo[0];
     this.after.GetContratos(url).subscribe(data => {
-      this.contratos = data;
-      this.selectedcontrato = data ? data[0] : undefined;
-      //console.log(data);
+      if(data){
+        this.contratos = data;
+        this.selectedcontrato = data ? data[0] : undefined;
+      }
     });
   }
 
   GetClientes(){
     let url = this.apiUrl + 'Administracion/GetClientes';
     this.after.GetClientes(url).subscribe(data => {
-      this.clientes = data;
-      this.selectedCliente = data ? data[0] : undefined;
-      console.log(data);
+      if(data){
+        this.clientes = data;
+        this.selectedCliente = data ? data[0] : undefined;
+      }
     });
   }
   // --------------------------------------
