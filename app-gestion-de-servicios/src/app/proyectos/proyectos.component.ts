@@ -39,11 +39,10 @@ export class ProyectosComponent implements OnInit {
   }
 
   GetProyectos(){
-    let url = this.apiUrl + 'Administracion/GetProyectos';
+    let url = this.apiUrl + 'Administracion/GetProyectos?usuarioConsulta='+this._userInfo[0];
     this.after.GetProyectos(url).subscribe(data => {
       this.proyectos = data;
       this.selectedProyecto = data ? data[0] : undefined;
-      console.log(data);
     });
   }
   

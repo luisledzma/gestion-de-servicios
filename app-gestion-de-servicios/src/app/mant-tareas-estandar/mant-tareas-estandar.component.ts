@@ -27,14 +27,13 @@ export class MantTareasEstandarComponent implements OnInit {
   }
   
   GetTareasEstandar() {
-    let url = this.apiUrl + 'Administracion/GetTareasEstandar';
+    let url = this.apiUrl + 'Administracion/GetTareasEstandar?usuarioConsulta='+this._userInfo[0];
     this.after.GetTareasEstandar(url).subscribe(data => {
       this.tareasEstandar = data;
     });
   }
 
   onSubmit(){
-    console.log('EntraAqui');
     this.InsertarTareaEstandar();
   }
   

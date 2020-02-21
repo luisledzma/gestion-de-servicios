@@ -44,14 +44,18 @@ export class MantUsuarioComponent implements OnInit {
   GetUsuarios() {
     let url = this.apiUrl + 'Seguridad/GetUsuarios?usuarioConsulta='+this._userInfo[0];
     this.after.GetUsuarios(url).subscribe(data => {
-      this.usuarios = data;
+      if(data){
+        this.usuarios = data;
+      }
     });
   }
 
   GetRol() {
-    let url = this.apiUrl + 'Seguridad/GetRol';
+    let url = this.apiUrl + 'Seguridad/GetRolesActivos';
     this.after.GetRol(url).subscribe(data => {
-      this.roles = data;
+      if(data){
+        this.roles = data;
+      }
     });
     this.rol = new Rol();
     this.myRol = new Rol();

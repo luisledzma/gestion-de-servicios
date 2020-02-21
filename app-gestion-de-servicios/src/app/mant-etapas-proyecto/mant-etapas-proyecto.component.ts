@@ -62,27 +62,31 @@ export class MantEtapasProyectoComponent implements OnInit {
   }
 
   GetProyectos(){
-    let url = this.apiUrl + 'Administracion/GetProyectos';
+    let url = this.apiUrl + 'Administracion/GetProyectos?usuarioConsulta='+this._userInfo[0];
     this.after.GetProyectos(url).subscribe(data => {
-      this.proyectos = data;
-      //this.selectedProyecto = data ? data[0] : undefined;
-      this.estado = true;
+      if(data){
+        this.proyectos = data;
+        //this.selectedProyecto = data ? data[0] : undefined;
+        this.estado = true;
+      }
     });
   }
   GetProyectosActivos(){
     let url = this.apiUrl + 'Administracion/GetProyectosActivos';
     this.after.GetProyectosActivos(url).subscribe(data => {
-      this.proyectosActivos = data;
-      this.selectedProyecto = data ? data[0] : undefined;
-      console.log(data);
+      if(data){
+        this.proyectosActivos = data;
+        this.selectedProyecto = data ? data[0] : undefined;
+      }
     });
   }
   GetEtapasProyectoPorProyecto(id:number){
     if(this.selectedProyectoTable.ID != 0){
       let url = this.apiUrl + 'Administracion/GetEtapasProyectoPorProyecto';
-      this.after.GetEtapasProyectoPorProyecto(url,id).subscribe(data => {
-        this.etapas = data;
-        console.log(data);
+      this.after.GetEtapasProyectoPorProyecto(url,id,this._userInfo[0]).subscribe(data => {
+        if(data){
+          this.etapas = data;
+        }
       });
     }
   }

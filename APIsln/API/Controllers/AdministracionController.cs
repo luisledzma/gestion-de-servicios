@@ -24,9 +24,15 @@ namespace API.Controllers
         // -------------TAREAS ESTANDAR-----------
         [HttpGet]
         [Route("GetTareasEstandar")]
-        public List<TareasEstandar> GetTareasEstandar()
+        public List<TareasEstandar> GetTareasEstandar(string usuarioConsulta)
         {
-            return tareaL.GetTareasEstandar();
+            return tareaL.GetTareasEstandar(usuarioConsulta);
+        }
+        [HttpGet]
+        [Route("GetTareasEstandarActivas")]
+        public List<TareasEstandar> GetTareasEstandarActivas()
+        {
+            return tareaL.GetTareasEstandarActivas();
         }
         [HttpPost]
         [Route("InsertarTareaEstandar")]
@@ -121,9 +127,9 @@ namespace API.Controllers
         // --------------PROYECTOS-----------------
         [HttpGet]
         [Route("GetProyectos")]
-        public List<Proyecto> GetProyectos()
+        public List<Proyecto> GetProyectos(string usuarioConsulta)
         {
-            return proL.GetProyectos();
+            return proL.GetProyectos(usuarioConsulta);
         }
         [HttpGet]
         [Route("GetProyectosActivos")]
@@ -175,9 +181,9 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("GetEtapasProyectoPorProyecto")]
-        public List<EtapaProyecto> GetEtapasProyectoPorProyecto(int idProy)
+        public List<EtapaProyecto> GetEtapasProyectoPorProyecto(int idProy,string usuarioConsulta)
         {
-            return proL.GetEtapasProyectoPorProyecto(idProy);
+            return proL.GetEtapasProyectoPorProyecto(idProy, usuarioConsulta);
         }
         [HttpGet]
         [Route("GetEtapasProyectoActivasPorProyecto")]
@@ -274,9 +280,9 @@ namespace API.Controllers
         // ----------------CONTRATOS-----------------
         [HttpGet]
         [Route("GetContratos")]
-        public List<Contrato> GetContratos()
+        public List<Contrato> GetContratos(string usuarioConsulta)
         {
-            return conL.GetContratos();
+            return conL.GetContratos(usuarioConsulta);
         }
         [HttpPost]
         [Route("InsertarContrato")]

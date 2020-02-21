@@ -132,8 +132,8 @@ export class AfterLoginServiceService {
   // ---------------------------------
   // ---------ETAPAS PROYECTO---------
 
-  GetEtapasProyectoPorProyecto(apiUrl: string, idProyecto:number) {
-    let _apimethod = `?idProy=${idProyecto}`;
+  GetEtapasProyectoPorProyecto(apiUrl: string, idProyecto:number,usuario:string) {
+    let _apimethod = `?idProy=${idProyecto}&usuarioConsulta=${usuario}`;
     return this._http.get(apiUrl + _apimethod);
   }
   GetEtapasProyectoActivasPorProyecto(apiUrl: string, idProyecto:number) {

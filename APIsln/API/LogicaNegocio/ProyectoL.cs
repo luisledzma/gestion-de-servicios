@@ -11,12 +11,12 @@ namespace API.LogicaNegocio
     {
         private readonly DataServiceDataContext _db = new DataServiceDataContext();
 
-        public List<Proyecto> GetProyectos()
+        public List<Proyecto> GetProyectos(string usuarioConsulta)
         {
             try
             {
 
-                var result = (from p in _db.SP_ADM_Seleccionar_Proyectos()
+                var result = (from p in _db.SP_ADM_Seleccionar_Proyectos(usuarioConsulta)
 
                               select new Proyecto()
                               {
@@ -142,12 +142,12 @@ namespace API.LogicaNegocio
         // ---------------------------------------------
         // --------------Etapa Proyecto-----------------
 
-        public List<EtapaProyecto> GetEtapasProyectoPorProyecto(int idProyecto)
+        public List<EtapaProyecto> GetEtapasProyectoPorProyecto(int idProyecto, string usuarioConsulta)
         {
             try
             {
 
-                var result = (from p in _db.SP_ADM_Seleccionar_Etapas_de_Proyecto_por_Proyectos(idProyecto)
+                var result = (from p in _db.SP_ADM_Seleccionar_Etapas_de_Proyecto_por_Proyectos(idProyecto, usuarioConsulta)
 
                               select new EtapaProyecto()
                               {
