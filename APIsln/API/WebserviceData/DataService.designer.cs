@@ -403,6 +403,15 @@ namespace API.WebserviceData
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID_Proyecto, p_Usuario_Consulta);
 			return ((ISingleResult<SP_ADM_Seleccionar_Etapas_de_Proyecto_por_ProyectosResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_EjecutarCierreMes")]
+		public int SP_ADM_EjecutarCierreMes([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_CONTRATO", DbType="Int")] System.Nullable<int> p_ID_CONTRATO, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Reporte", DbType="Int")] ref System.Nullable<int> p_ID_Reporte, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Correo_Cliente", DbType="VarChar(250)")] ref string p_Correo_Cliente)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID_CONTRATO, p_ID_Reporte, p_Correo_Cliente);
+			p_ID_Reporte = ((System.Nullable<int>)(result.GetParameterValue(1)));
+			p_Correo_Cliente = ((string)(result.GetParameterValue(2)));
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_GS_USUARIO")]

@@ -109,5 +109,22 @@ namespace API.LogicaNegocio
                 return false;
             }
         }
+
+        public bool CierreDeMes(Contrato contrato)
+        {
+            int? idReporte = 0;
+            string correoCliente = "";
+            ReporteL repL = new ReporteL();
+            try
+            {
+                _db.SP_ADM_EjecutarCierreMes(contrato.ID,ref idReporte, ref correoCliente);
+                repL.EnviarCorreo(correoCliente, idReporte.ToString());
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

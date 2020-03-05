@@ -19,6 +19,7 @@
                         <th>Horas Disponibles</th>
                         <th>Estado</th>
                         <th> </th>
+                        <th>Cierre de mes</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-contract>
@@ -31,6 +32,7 @@
                         <td> <span class="ui-column-title">Estado</span> {{contract.Estado}}</td>
                         <!-- <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td> -->
                         <td><button type="button" (click)="onButtonEditClick(contract)" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
+                        <td><button type="button" (click)="cierreDeMes(contract)" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#cierreMesModal">Ejecutar</button></td>
                     </tr>
                 </ng-template>
             </p-table>
@@ -172,6 +174,34 @@
                             <ng-container *ngIf="EditConForm.form.valid">
                                 <button type="submit" (click)="onSubmitEdit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
                                     Guardar Cambios
+                                </button>
+                            </ng-container>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="cierreMesModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Cierre de mes</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form #EditConForm="ngForm" (ngSubmit)="onSubmitEdit()" autocomplete="off">
+                        <div class="modal-body">
+                            <p>¿Está seguro que desea ejecutar el cierre de mes para este contrato?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                Cerrar
+                            </button>
+                            <ng-container *ngIf="EditConForm.form.valid">
+                                <button type="submit" (click)="onSubmitCierreDeMes();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
+                                    Ejecutar
                                 </button>
                             </ng-container>
                         </div>

@@ -14,7 +14,7 @@ namespace API.LogicaNegocio
 {
     public class ReporteL
     {
-        private readonly DataServiceDataContext _db = new DataServiceDataContext();
+        DataServiceDataContext _db = new DataServiceDataContext();
         public List<Reporte> GetReportes(string usuarioConsulta)
         {
             try
@@ -158,14 +158,14 @@ namespace API.LogicaNegocio
                     var token = TokenGenerator.GenerateTokenJwt(resulte);
 
 
-                    MailMessage email = new MailMessage("jimenezjozsef@gmail.com", correo, "Prueba", "<p>Se realizaron las tareas para el reporte "+reporte.Descripcion +" para aprovar dirijase al siguiente link</p><a href='http://localhost:4201/correo?id=" + token + "'>Confirmar</a>");
+                    MailMessage email = new MailMessage("test.gestionproyectos@gmail.com", correo, "Prueba", "<p>Se realizaron las tareas para el reporte "+reporte.Descripcion +" para aprovar dirijase al siguiente link</p><a href='http://localhost:4201/correo?id=" + token + "'>Confirmar</a>");
                     email.IsBodyHtml = true;
                     SmtpClient cliente = new SmtpClient("smtp.gmail.com", 587)
                     {
                         EnableSsl = true,
                         DeliveryMethod = SmtpDeliveryMethod.Network,
                         UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential("jimenezjozsef@gmail.com", "") // Agregar las credenciales del correo con el que se va a enviar la confirmacion
+                        Credentials = new NetworkCredential("test.gestionproyectos@gmail.com", "C0ntras3nna") // Agregar las credenciales del correo con el que se va a enviar la confirmacion
                     };
                     cliente.Send(email);
                     reporte.Correo_Enviado = true;

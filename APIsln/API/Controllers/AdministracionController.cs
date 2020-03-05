@@ -328,5 +328,21 @@ namespace API.Controllers
         {
             return garL.GetGaratias();
         }
+
+        [HttpPost]
+        [Route("CierreDeMes")]
+        public bool CierreDeMes([FromBody]Contrato contrato)
+        {
+            if (contrato == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            if (conL.CierreDeMes(contrato))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

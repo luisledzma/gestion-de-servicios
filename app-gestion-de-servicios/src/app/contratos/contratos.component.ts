@@ -23,6 +23,7 @@ export class ContratosComponent implements OnInit {
   contratos: any;
   contrato: Contrato = new Contrato(); // Para insertar
   selectedcontrato: Contrato = new Contrato(); //Para Editar
+  miContrato: Contrato = new Contrato();//Para cierre de mes
   // ----------------------------------
   clientes: any;
   selectedCliente: ClienteC = new ClienteC();
@@ -102,4 +103,25 @@ export class ContratosComponent implements OnInit {
       }
     });
   }
+
+  
+cierreDeMes(con:Contrato){
+  this.miContrato = con;
 }
+
+onSubmitCierreDeMes(){
+  this.miContrato.Usuario_Modificacion = this._userInfo[0];
+    let url = this.apiUrl + 'Administracion/CierreDeMes';
+    this.after.CierreMes(url,this.miContrato).subscribe(data => {
+      this.GetContratos();
+      if(data){    
+        this.messageService.add({severity:'success', summary: 'Correcto', detail:'Se ha ejecutado correctamente'});
+      }else{      
+        this.messageService.add({severity:'error', summary: 'Incorrecto', detail:'No se ha ejecutado correctamente'});
+      }
+    });
+}
+
+
+}
+
