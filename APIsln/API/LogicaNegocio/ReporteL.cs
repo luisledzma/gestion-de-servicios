@@ -139,7 +139,7 @@ namespace API.LogicaNegocio
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
