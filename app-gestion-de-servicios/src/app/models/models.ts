@@ -149,6 +149,8 @@ export class Reporte
     Usuario_Modificacion : string;
     Fecha_Creacion : Date;
     Fecha_Modificacion : Date;
+    Begin_Hour : string;
+    End_Hour : string;
 }
 export class Contrato{
     ID: number;

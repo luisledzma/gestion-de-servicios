@@ -141,6 +141,9 @@ namespace API.Controllers
         public string Usuario_Modificacion { get; set; }
         public DateTime? Fecha_Creacion { get; set; }
         public DateTime? Fecha_Modificacion { get; set; }
+        public string Begin_Hour { get; set; }
+        public string End_Hour { get; set; }
+
     }
     public class Proyecto
     {

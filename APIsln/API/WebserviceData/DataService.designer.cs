@@ -313,13 +313,6 @@ namespace API.WebserviceData
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Aprobacion_Reporte")]
-		public int SP_ADM_Aprobacion_Reporte([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Reporte", DbType="Int")] System.Nullable<int> p_ID_Reporte, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID_Reporte, p_Estado);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Seleccionar_Reportes")]
 		public ISingleResult<SP_ADM_Seleccionar_ReportesResult> SP_ADM_Seleccionar_Reportes([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Usuario_Consulta", DbType="VarChar(250)")] string p_Usuario_Consulta)
 		{
@@ -402,6 +395,13 @@ namespace API.WebserviceData
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID_Proyecto, p_Usuario_Consulta);
 			return ((ISingleResult<SP_ADM_Seleccionar_Etapas_de_Proyecto_por_ProyectosResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_Aprobacion_Reporte")]
+		public int SP_ADM_Aprobacion_Reporte([global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_ID_Reporte", DbType="Int")] System.Nullable<int> p_ID_Reporte, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="P_Estado", DbType="Char(1)")] System.Nullable<char> p_Estado)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), p_ID_Reporte, p_Estado);
+			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADM_EjecutarCierreMes")]

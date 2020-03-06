@@ -87,7 +87,9 @@ namespace API.LogicaNegocio
             string correoCliente = "";
             try
             {
-                var result = _db.SP_ADM_Insertar_Reporte(reporte.ID_Cliente, reporte.ID_Tipo_Reporte, reporte.ID_Proyecto,reporte.ID_Etapa_Proyecto,reporte.ID_Contrato,reporte.ID_Proyecto_Garantia,reporte.ID_Contrato_Garantia,reporte.Hora_Inicio, reporte.Hora_Final, reporte.Horas_A_Facturar, reporte.ID_Tareas_Estandar, reporte.Descripcion, reporte.Observaciones, 'P', reporte.Usuario_Creacion, ref idReporte, ref correoCliente);
+                DateTime begin = DateTime.Parse(reporte.Begin_Hour);
+                DateTime end = DateTime.Parse(reporte.End_Hour);
+                var result = _db.SP_ADM_Insertar_Reporte(reporte.ID_Cliente, reporte.ID_Tipo_Reporte, reporte.ID_Proyecto,reporte.ID_Etapa_Proyecto,reporte.ID_Contrato,reporte.ID_Proyecto_Garantia,reporte.ID_Contrato_Garantia,begin, end, reporte.Horas_A_Facturar, reporte.ID_Tareas_Estandar, reporte.Descripcion, reporte.Observaciones, 'P', reporte.Usuario_Creacion, ref idReporte, ref correoCliente);
 
 
                 EnviarCorreo(correoCliente, idReporte.ToString());

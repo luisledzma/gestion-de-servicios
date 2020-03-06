@@ -30,12 +30,14 @@ export class MantFormularioComponent implements OnInit {
 
   tiposReportesFilter:any;
   selectedTReporteFilter: TipoReporte = new TipoReporte();
+
   // ---------------------------------
   // -------------TAREAS--------------
   tareasEstandar: any;
   selectedTarea: TareasEstandar = new TareasEstandar();
   horaInicio: Date;
   horaFinal: Date;
+  public horas = {horasIniciales:null,horasFinales:null}
 
   
   // ----------------------------------
@@ -181,6 +183,13 @@ export class MantFormularioComponent implements OnInit {
     });
   }
   InsertarReporte() {
+    let tmp = 0;
+    let b = new Date(this.horaInicio);
+    let e = new Date(this.horaFinal);
+    this.horas.horasIniciales = `${b.getMonth() + 1}/${b.getDate()}/${b.getFullYear()} ${b.getHours()}:${b.getMinutes()}`;
+    this.horas.horasFinales = `${e.getMonth() + 1}/${e.getDate()}/${e.getFullYear()} ${e.getHours()}:${e.getMinutes()}`;
+
+
     let url = this.apiUrl + 'Administracion/InsertarReporte';
     this.reporte.Usuario_Creacion = this._userInfo[0];
     this.reporte.ID_Tipo_Reporte = this.selectedTReporte.ID;
@@ -213,8 +222,8 @@ export class MantFormularioComponent implements OnInit {
     // ---------------------------------------------
     this.horaInicio = new Date(this.horaInicio);
     this.horaFinal = new Date(this.horaFinal);
-    this.reporte.Hora_Inicio = this.horaInicio;
-    this.reporte.Hora_Final = this.horaFinal;
+    this.reporte.Begin_Hour = `${b.getMonth() + 1}/${b.getDate()}/${b.getFullYear()} ${b.getHours()}:${b.getMinutes()}`;
+    this.reporte.End_Hour = `${e.getMonth() + 1}/${e.getDate()}/${e.getFullYear()} ${e.getHours()}:${e.getMinutes()}`;
     // console.log("Hora Inicial"+this.reporte.Hora_Inicio);
     // console.log("Hora Final"+ this.reporte.Hora_Final);
     console.log(this.reporte);

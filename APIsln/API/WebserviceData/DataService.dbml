@@ -349,11 +349,6 @@
     <Parameter Name="P_Correo_Cliente" Parameter="p_Correo_Cliente" Type="System.String" DbType="VarChar(250)" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.SP_ADM_Aprobacion_Reporte" Method="SP_ADM_Aprobacion_Reporte">
-    <Parameter Name="P_ID_Reporte" Parameter="p_ID_Reporte" Type="System.Int32" DbType="Int" />
-    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.SP_ADM_Seleccionar_Reportes" Method="SP_ADM_Seleccionar_Reportes">
     <Parameter Name="P_Usuario_Consulta" Parameter="p_Usuario_Consulta" Type="System.String" DbType="VarChar(250)" />
     <ElementType Name="SP_ADM_Seleccionar_ReportesResult">
@@ -538,6 +533,11 @@
       <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Fecha_Modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ADM_Aprobacion_Reporte" Method="SP_ADM_Aprobacion_Reporte">
+    <Parameter Name="P_ID_Reporte" Parameter="p_ID_Reporte" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_Estado" Parameter="p_Estado" Type="System.Char" DbType="Char(1)" />
+    <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.SP_ADM_EjecutarCierreMes" Method="SP_ADM_EjecutarCierreMes">
     <Parameter Name="P_ID_CONTRATO" Parameter="p_ID_CONTRATO" Type="System.Int32" DbType="Int" />
