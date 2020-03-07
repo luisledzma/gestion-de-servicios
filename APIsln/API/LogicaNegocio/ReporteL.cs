@@ -92,7 +92,7 @@ namespace API.LogicaNegocio
                 var result = _db.SP_ADM_Insertar_Reporte(reporte.ID_Cliente, reporte.ID_Tipo_Reporte, reporte.ID_Proyecto,reporte.ID_Etapa_Proyecto,reporte.ID_Contrato,reporte.ID_Proyecto_Garantia,reporte.ID_Contrato_Garantia,begin, end, reporte.Horas_A_Facturar, reporte.ID_Tareas_Estandar, reporte.Descripcion, reporte.Observaciones, 'P', reporte.Usuario_Creacion, ref idReporte, ref correoCliente);
 
 
-                EnviarCorreo(correoCliente, idReporte.ToString());
+                EnviarCorreo(correoCliente, (int)idReporte);
 
                 if(result < 0)
                 {
@@ -148,34 +148,92 @@ namespace API.LogicaNegocio
         }
         // --------------------------------------------------
         // ---------------PARA EDITAR REPORTE----------------
-        public void EnviarCorreo(string correo, string idFormulario)
+        public void EnviarCorreo(string correo, int idFormulario)
         {
+            int idReporte = 0;
             try
             {
-                var reporte = _db.TBL_GS_REPORTE.FirstOrDefault(c => c.ID.Equals(idFormulario));
-                if(reporte.Correo_Enviado == false)
+                // var reporte = _db.TBL_GS_REPORTE.FirstOrDefault(c => c.ID.Equals(idFormulario));
+
+                var reporte = (from r in _db.SP_ADM_Seleccionar_Reporte_Por_Id(idFormulario)
+                               select new Reporte
+                               {
+                                   ID = r.ID,
+                                   ID_Cliente = r.ID_Cliente,
+                                   Cliente = r.Cliente,
+                                   ID_Tipo_Reporte = r.ID_Tipo_Reporte,
+                                   Descripcion_Tipo_Reporte = r.Descripcion_Tipo_Reporte,
+                                   Hora_Inicio = r.Hora_Inicio,
+                                   Hora_Final = r.Hora_Final,
+                                   Total_Horas = r.Total_Horas.ToString(),
+                                   Horas_A_Facturar = r.Horas_A_Facturar,
+                                   ID_Tareas_Estandar = r.ID_Tareas_Estandar,
+                                   Tareas_Estandar = r.Tareas_Estandar,
+                                   Descripcion = r.Descripcion,
+                                   Observaciones = r.Observaciones,
+                                   Estado = r.Estado,
+                                   Usuario_Creacion = r.Usuario_Creacion,
+                                   Usuario_Modificacion = r.Usuario_Modificacion,
+                                   Fecha_Creacion = r.Fecha_Creacion,
+                                   Fecha_Modificacion = r.Fecha_Modificacion,
+                                   Correo_Enviado = (bool)r.Correo_Enviado,
+                                   Correo_Respondido = (bool)r.Correo_Respondido
+                               }).FirstOrDefault();
+
+                if(reporte != null)
                 {
-                    var resulte = Encrypt(idFormulario, "CB5%182");
-
-                    var token = TokenGenerator.GenerateTokenJwt(resulte);
-
-
-                    MailMessage email = new MailMessage("test.gestionproyectos@gmail.com", correo, "Prueba", "<p>Se realizaron las tareas para el reporte "+reporte.Descripcion +" para aprovar dirijase al siguiente link</p><a href='http://localhost:4201/correo?id=" + token + "'>Confirmar</a>");
-                    email.IsBodyHtml = true;
-                    SmtpClient cliente = new SmtpClient("smtp.gmail.com", 587)
+                    idReporte = reporte.ID;
+                    if (reporte.Correo_Enviado == false)
                     {
-                        EnableSsl = true,
-                        DeliveryMethod = SmtpDeliveryMethod.Network,
-                        UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential("test.gestionproyectos@gmail.com", "C0ntras3nna") // Agregar las credenciales del correo con el que se va a enviar la confirmacion
-                    };
-                    cliente.Send(email);
-                    reporte.Correo_Enviado = true;
-                    _db.SubmitChanges();
+                        var resulte = Encrypt(idFormulario.ToString(), "CB5%182");
+
+                        var token = TokenGenerator.GenerateTokenJwt(resulte);
+
+                        System.Text.StringBuilder message = new System.Text.StringBuilder();
+
+
+                        MailMessage email = new MailMessage
+                        {
+                            Subject = "Aprobación del correo",
+                            From = new MailAddress("test.gestionproyectos@gmail.com"),
+                            SubjectEncoding = Encoding.UTF8,
+                            IsBodyHtml = true
+                        };
+
+                        message.Append($"<p>Se ha generado un reporte con el detalle siguiente: </p>");
+                        message.Append($"<br>");
+                        message.Append("<ul>");
+                        message.Append($"<li>Tipo del reporte: {reporte.Descripcion_Tipo_Reporte}</li>");
+                        message.Append($"<li>Tarea estandar: {reporte.Tareas_Estandar}</li>");
+                        message.Append($"<li>Descripción: {reporte.Descripcion}</li>");
+                        message.Append($"<li>Observaciones: {reporte.Observaciones}</li>");
+                        message.Append($"<li>Horas Totales: {reporte.Total_Horas}</li>");
+                        message.Append("</ul>");
+                        message.Append("<br>");
+                        message.Append("<p>para aprobar dirígase al siguiente link: </p>");
+                        message.Append("<br>");
+                        message.Append($"<a href='http://localhost:4201/correo?id=" + token + "'>Confirmar</a>");
+
+
+                        email.To.Add("jimenezjozsef@gmail.com");
+
+                        email.Body = message.ToString();
+
+                        SmtpClient cliente = new SmtpClient("smtp.gmail.com", 587)
+                        {
+                            EnableSsl = true,
+                            DeliveryMethod = SmtpDeliveryMethod.Network,
+                            UseDefaultCredentials = false,
+                            Credentials = new NetworkCredential("test.gestionproyectos@gmail.com", "C0ntras3nna") // Agregar las credenciales del correo con el que se va a enviar la confirmacion
+                        };
+                        cliente.Send(email);
+                        _db.SP_ADM_Editar_Correo_Enviado(reporte.ID, true);
+                    }
                 }
             }
             catch (Exception ex)
             {
+                _db.SP_ADM_Editar_Correo_Enviado(idReporte, false);
                 throw ex;
             }
         }
