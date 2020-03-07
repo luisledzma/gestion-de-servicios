@@ -143,6 +143,8 @@ namespace API.Controllers
         public DateTime? Fecha_Modificacion { get; set; }
         public string Begin_Hour { get; set; }
         public string End_Hour { get; set; }
+        public bool Correo_Enviado { get; set; }
+        public bool Correo_Respondido { get; set; }
 
     }
     public class Proyecto

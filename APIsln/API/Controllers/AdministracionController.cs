@@ -232,7 +232,7 @@ namespace API.Controllers
         }
         [HttpPost]
         [Route("InsertarReporte")]
-        public IHttpActionResult InsertarReporte([FromBody]Reporte reporte)
+        public bool InsertarReporte([FromBody]Reporte reporte)
         {
             if (reporte == null)
             {
@@ -241,9 +241,9 @@ namespace API.Controllers
 
             if (repL.InsertarReporte(reporte))
             {
-                return Ok();
+                return true;
             }
-            return BadRequest();
+            return false;
 
         }
         [HttpPut]

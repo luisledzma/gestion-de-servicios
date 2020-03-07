@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RespuestaCorreo } from '../models/models';
 import { environment } from 'src/environments/environment';
 import { BeforeLoginServiceService } from '../service/before-login-service.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-correo',
@@ -16,7 +17,7 @@ export class CorreoComponent implements OnInit {
   private apiUrl = environment.apiURL;
   estados: any ;
   selectedEstado: any;
-  constructor(private router: Router, private before: BeforeLoginServiceService) { 
+  constructor(private router: Router, private before: BeforeLoginServiceService, private messageService: MessageService) { 
     this.href=this.router.url;
   }
 
@@ -42,7 +43,19 @@ export class CorreoComponent implements OnInit {
 
 
     this.before.EditarReporteRespuestaCorreo(url, this.respuesta).subscribe(data => {
-      console.log(data);
+      if(data){
+        this.messageService.add({
+          severity: "success",
+          summary: "Correcto",
+          detail: "Se ha resivido correctamente."
+        });
+      }else{
+        this.messageService.add({
+          severity: "error",
+          summary: "ya fue respondido",
+          detail: "este reporte ya fue respondido"
+        });
+      }
     });
   }
 
