@@ -215,7 +215,8 @@ namespace API.LogicaNegocio
                         message.Append($"<a href='http://localhost:4201/correo?id=" + token + "'>Confirmar</a>");
 
 
-                        email.To.Add("jimenezjozsef@gmail.com");
+                        //email.To.Add("jimenezjozsef@gmail.com");
+                        email.To.Add(correo);
 
                         email.Body = message.ToString();
 

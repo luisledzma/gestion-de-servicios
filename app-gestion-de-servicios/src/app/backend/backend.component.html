@@ -1,112 +1,113 @@
-<div id="bmd-drawer" class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay" style="overflow: scroll;">
-    <header class="bmd-layout-header ">
-        <div class="navbar navbar-light bg-light">
-            <button class="navbar-toggler btn-light" type="button" data-toggle="drawer" type="button" data-target="#Open">
-                <span class="sr-only">Toggle drawer</span>
-                <i class="material-icons">menu</i>
-            </button>
-            <ul class="nav navbar-nav">
-                <li class="nav-item">
-                    <button class="btn btn-sm btn-raised btn-danger" (click)="logout($event)">
+<div id="bmd-drawer" class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay show-outline" style="overflow: scroll;">
+  <header class="bmd-layout-header ">
+    <div class="navbar navbar-light bg-dark">
+      <button class="navbar-toggler btn btn-light ham-button " type="button" data-toggle="drawer" type="button" data-target="#Open">
+        <span class="sr-only">Toggle drawer</span>
+        <i class="material-icons">menu</i>
+      </button>
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <button class="btn btn-raised btn-danger" (click)="logout($event)">
             <i class="fa fa-sign-out" aria-hidden="true"></i>Cerrar Sesión
           </button>
-                </li>
-            </ul>
-        </div>
-    </header>
-    <div id="Open" class="bmd-layout-drawer bmd-drawer-in-lg-up bg-faded">
-        <header>
-            <a *ngIf="_userInfo" class="navbar-brand navbar-text">
+        </li>
+      </ul>
+    </div>
+  </header>
+  <div id="Open" class="bmd-layout-drawer bmd-drawer-in-lg-up bg-faded">
+    <header>
+      <a *ngIf="_userInfo" class="navbar-brand navbar-text">  
         {{ _userInfo[0] }}
       </a>
-        </header>
-        <ul class="list-group">
-            <ng-container *ngFor="let item of menus">
-                <ng-container>
-                    <span [ngSwitch]="item.ID">
-            <p *ngSwitchCase="1">
+    </header>
+    <ul class="list-group menu-items">
+      <ng-container *ngFor="let item of menus">
+        <ng-container>
+          <span [ngSwitch]="item.ID">
+            <li *ngSwitchCase="1">
 
               <a class="list-group-item btn" [routerLink]="['/backend/mantRol']">
                 {{item.Descripcion}}
               </a>
 
-            </p>
-            <p *ngSwitchCase="2">
+            </li>
+            <li *ngSwitchCase="2">
 
               <a class="list-group-item btn" [routerLink]="['/backend/mantUsuario']">
                 {{item.Descripcion}}
               </a>
-            </p>
-            <p *ngSwitchCase="3">
+            </li>
+            <li *ngSwitchCase="3">
 
               <a class="list-group-item btn" [routerLink]="['/backend/permisosSistema']">
                 {{item.Descripcion}}
               </a>
-            </p>
-            <p *ngSwitchCase="4">
+            </li>
+            <li *ngSwitchCase="4">
 
               <a class="list-group-item btn" [routerLink]="['/backend/parametrosSistema']">
                 {{item.Descripcion}}
               </a>
-            </p>
-            <p *ngSwitchCase="5">
+            </li>
+            <li *ngSwitchCase="5">
 
               <a class="list-group-item btn" [routerLink]="['/backend/tareasEstandar']">
                 {{item.Descripcion}}
               </a>
-            </p>
-            <p *ngSwitchCase="6">
+            </li>
+            <li *ngSwitchCase="6">
 
               <a class="list-group-item btn" [routerLink]="['/backend/proyectos']">
                 {{item.Descripcion}}
               </a>
-            </p>
-            <p *ngSwitchCase="7">
+            </li>
+            <li *ngSwitchCase="7">
 
               <a class="list-group-item btn" [routerLink]="['/backend/contratos']">
                 {{item.Descripcion}}
               </a>
-            </p>
-            <p *ngSwitchCase="8">
+            </li>
+            <li *ngSwitchCase="8">
 
               <a class="list-group-item btn" [routerLink]="['/backend/formularios']">
                 {{item.Descripcion}}
               </a>
-            </p>
-            <p *ngSwitchCase="9">
+            </li>
+            <li *ngSwitchCase="9">
 
               <a class="list-group-item btn" [routerLink]="['/backend/etapasProyecto']">
                 {{item.Descripcion}}
               </a>
-            </p>
-            <p *ngSwitchCase="10">
+            </li>
+            <li *ngSwitchCase="10">
 
               <a class="list-group-item btn" [routerLink]="['/backend/clientes']">
                 {{item.Descripcion}}
               </a>
-            </p>
-            <p *ngSwitchCase="11">
+            </li>
+            <li *ngSwitchCase="11">
 
               <a class="list-group-item btn" [routerLink]="['/backend/garantias']">
                 {{item.Descripcion}}
               </a>
-            </p>
+            </li>
             <p *ngSwitchDefault>
 
             </p>
           </span>
-                </ng-container>
-            </ng-container>
-        </ul>
+        </ng-container>
+      </ng-container>
+    </ul>
+  </div>
 
+  <main class="container">
+    <router-outlet></router-outlet>
+  </main>
 
-    </div>
-    <main class="container">
-        <router-outlet></router-outlet>
-    </main>
-    <footer>
-        <p style="font-size: 11px;color: #999;text-align: center; margin-top: 25px;">V1.1.1</p>
-    </footer>
+  <footer>
+    <p style="font-size: 11px;color: #999;text-align: center; margin-top: 25px;">V1.1.1</p>
+  </footer>
+
 </div>
 
 

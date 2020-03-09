@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
   handleError(error) {
     if (error.ok === false) {
       this.message = [];
-      this.message.push({severity: 'error', summary: 'Error Message', detail: 'Validation failed'});
+      this.message.push({severity: 'error', summary: 'Error:', detail: 'Usuario o Contraseña incorrectos'});
     }
     // this.error = error.error.error;
   }

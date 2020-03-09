@@ -47,13 +47,13 @@ export class CorreoComponent implements OnInit {
         this.messageService.add({
           severity: "success",
           summary: "Correcto",
-          detail: "Se ha resivido correctamente."
+          detail: "El reporte se ha aprobado correctamente."
         });
       }else{
         this.messageService.add({
           severity: "error",
-          summary: "ya fue respondido",
-          detail: "este reporte ya fue respondido"
+          summary: "Error",
+          detail: "Este reporte ya fue actualizado"
         });
       }
     });

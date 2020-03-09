@@ -6,3 +6,12 @@
 :not(.bmd-drawer-out).bmd-drawer-in.bmd-drawer-f-l > .bmd-layout-drawer{
     transform: translateX(0);
 }
+
+.ham-button{
+    border: 1px solid white !important;
+}
+
+.menu-items li{
+    padding: 0.5em !important;
+    font-size: 1.25rem !important;
+}
