@@ -45,6 +45,13 @@ export class MantEtapasProyectoComponent implements OnInit {
     { label: 'Inactivo', value: 'I' }
   ];
 
+  colsPDF = [
+    { dataKey: 'ID', header: 'N°'},
+    { dataKey: 'Descripcion', header: 'Descripción' },
+    { dataKey: 'Proyecto', header: 'Proyecto' },
+    { dataKey: 'Horas_Invertidas', header: 'Horas invertidas' },
+  ];
+
   constructor(private after: AfterLoginServiceService,
     private messageService: MessageService,
     private _ExcelService: ExcelServiceService) { 
@@ -186,6 +193,45 @@ export class MantEtapasProyectoComponent implements OnInit {
             });
           });
           this._ExcelService.exportAsExcelFile(pDataExport, pNameFile);
+        }
+      }
+  
+    }, 300);
+  }
+  exportPdf(data){
+    let pDataExport = [];
+  
+    let date = new Date()
+    let day = date.getMonth()+1 + '-' + date.getFullYear();
+    let pNameFile: string = "Reporte de etapas " + day;
+  
+    setTimeout(() => {
+      if(data){
+        if(data.filteredValue){
+          if(data.filteredValue.length > 0){
+            
+            data.filteredValue.forEach(element => {
+              pDataExport.push({
+                'ID':element.ID,
+                'Descripcion': element.Descripcion,
+                'Proyecto': element.Proyecto,
+                'Horas_Invertidas': element.Horas_Invertidas,
+              });
+            });
+            //console.log(pDataExport);
+            this._ExcelService.exportPdf(pDataExport, this.colsPDF, pNameFile);
+          }
+        }else{
+          this.etapas.forEach(element => {
+            pDataExport.push({
+              'ID':element.ID,
+              'Descripcion': element.Descripcion,
+              'Proyecto': element.Proyecto,
+              'Horas_Invertidas': element.Horas_Invertidas,
+            });
+          });
+          //console.log(pDataExport);
+          this._ExcelService.exportPdf(pDataExport, this.colsPDF, pNameFile);
         }
       }
   
