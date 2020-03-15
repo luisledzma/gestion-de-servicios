@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import * as jspdf from 'jspdf';
+import * as jspdf_autotable from 'jspdf-autotable';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +10,19 @@ import * as XLSX from 'xlsx';
 export class ExcelServiceService {
 
   constructor() { }
+
+  exportPdf(bod: any[], head: any[], name: string) {
+    import("jspdf").then(jsPDF => {
+      import("jspdf-autotable").then(x => {
+          const doc = new jsPDF.default(0,0);
+          doc.autoTable({
+            body: bod,
+            columns: head,
+          });
+          doc.save(`${name}.pdf`);
+      })
+  })
+  }
 
   public exportAsExcelFile(json: any[], excelFileName: string): void {
 

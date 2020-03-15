@@ -23,6 +23,8 @@
     "@angular/router": "~8.2.5",
     "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",
+    "jspdf": "^1.5.3",
+    "jspdf-autotable": "^3.2.13",
     "ngforms": "^1.0.33",
     "primeicons": "^2.0.0",
     "primeng": "^8.0.4",
