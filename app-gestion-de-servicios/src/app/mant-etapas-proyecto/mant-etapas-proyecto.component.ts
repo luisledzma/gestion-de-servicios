@@ -4,6 +4,7 @@ import { AfterLoginServiceService } from '../service/after-login-service.service
 import { MessageService } from 'primeng/api';
 import { Proyecto, EtapaProyecto } from '../models/models';
 import { Message } from 'primeng/components/common/api';
+import { ExcelServiceService } from '../service/excel-service.service';
 
 @Component({
   selector: 'app-mant-etapas-proyecto',
@@ -29,7 +30,24 @@ export class MantEtapasProyectoComponent implements OnInit {
   selectedEtapa: EtapaProyecto = new EtapaProyecto();
   estado:boolean;
 
-  constructor(private after: AfterLoginServiceService,private messageService: MessageService) { 
+  cols = [
+    { field: 'ID', header: 'N°'},
+    { field: 'Descripcion', header: 'Descripción' },
+    { field: 'Proyecto', header: 'Proyecto' },
+    { field: 'Horas_Invertidas', header: 'Horas invertidas' },
+    { field: 'Estado', header: 'Estado' },
+    { field: 'Editar', header: '' },
+  ];
+
+  Estados = [
+    { label: 'Todos', value: null },
+    { label: 'Activo', value: 'A' },
+    { label: 'Inactivo', value: 'I' }
+  ];
+
+  constructor(private after: AfterLoginServiceService,
+    private messageService: MessageService,
+    private _ExcelService: ExcelServiceService) { 
     const us = localStorage.getItem('User').split('.')[1];  
     this._userExist = JSON.parse(atob(us));
     this._userInfo = this._userExist.unique_name.split(';');
@@ -134,5 +152,43 @@ export class MantEtapasProyectoComponent implements OnInit {
         this.messageService.add({severity:'error', summary: 'Incorrecto', detail:'No se ha guardado el proyecto'});
       }
     });
+  }
+  exportExcel(data) {
+
+    let pDataExport = [];
+  
+    let date = new Date()
+    let day = date.getMonth()+1 + '-' + date.getFullYear();
+    let pNameFile: string = "Reporte de etapas " + day;
+  
+    setTimeout(() => {
+      if(data){
+        if(data.filteredValue){
+          if(data.filteredValue.length > 0){
+            
+            data.filteredValue.forEach(element => {
+              pDataExport.push({
+                'N°':element.ID,
+                'Descripción': element.Descripcion,
+                Proyecto: element.Proyecto,
+                'Horas invertidas': element.Horas_Invertidas,
+              });
+            });
+            this._ExcelService.exportAsExcelFile(pDataExport, pNameFile);
+          }
+        }else{
+          this.etapas.forEach(element => {
+            pDataExport.push({
+              'N°':element.ID,
+              'Descripción': element.Descripcion,
+              Proyecto: element.Proyecto,
+              'Horas invertidas': element.Horas_Invertidas,
+            });
+          });
+          this._ExcelService.exportAsExcelFile(pDataExport, pNameFile);
+        }
+      }
+  
+    }, 300);
   }
 }
