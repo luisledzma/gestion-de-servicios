@@ -44,6 +44,7 @@ import { ConfirmationService } from 'primeng/api';
 import { GarantiasComponent } from './garantias/garantias.component';
 import { CorreoComponent } from './correo/correo.component';
 import { AprobClienteComponent } from './aprob-cliente/aprob-cliente.component';
+import { HorasPipe } from './service/horas.pipe';
 
 
 
@@ -66,7 +67,8 @@ import { AprobClienteComponent } from './aprob-cliente/aprob-cliente.component';
     MantEtapasProyectoComponent,
     GarantiasComponent,
     CorreoComponent,
-    AprobClienteComponent
+    AprobClienteComponent,
+    HorasPipe
   ],
   imports: [
     BrowserModule,
