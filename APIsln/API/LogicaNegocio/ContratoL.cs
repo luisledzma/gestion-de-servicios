@@ -91,7 +91,7 @@ namespace API.LogicaNegocio
                 _db.SP_ADM_Insertar_Contrato(contrato.Descripcion,contrato.ID_Cliente,contrato.Monto_Contrato, tiempoF, contrato.Estado,contrato.Usuario_Creacion);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
