@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { AfterLoginServiceService } from '../service/after-login-service.service';
 import { ConfirmationService,MessageService } from 'primeng/api';
 import { Usuario, Rol, TareasEstandar, Reporte, ClienteC, TipoReporte, Proyecto, EtapaProyecto, Contrato } from '../models/models';
+import { ExcelServiceService } from '../service/excel-service.service';
 
 @Component({
   selector: 'app-mant-formulario',
@@ -61,8 +62,23 @@ export class MantFormularioComponent implements OnInit {
   etapas: any;
   selectedEtapa: EtapaProyecto = new EtapaProyecto();
 
+  cols = [
+    { field: 'ID', header: 'N°'},
+    { field: 'Cliente', header: 'Cliente' },
+    { field: 'Descripcion_Tipo_Reporte', header: 'Tipo Reporte' },
+    { field: 'Total_Horas', header: 'Horas totales' },
+    { field: 'Horas_A_Facturar', header: 'Horas a facturar' },
+    { field: 'Tareas_Estandar', header: 'Tarea' },
+    { field: '', header: 'Editar' },
+    { field: '', header: 'Enviar Correo' },
+  ];
+  
 
-  constructor(private after: AfterLoginServiceService, private messageService: MessageService, private confirmationService: ConfirmationService) { 
+
+  constructor(private after: AfterLoginServiceService, 
+    private messageService: MessageService, 
+    private confirmationService: ConfirmationService,
+    private _ExcelService: ExcelServiceService) { 
     const us = localStorage.getItem('User').split('.')[1];  
     this._userExist = JSON.parse(atob(us));
     this._userInfo = this._userExist.unique_name.split(';');
@@ -273,5 +289,47 @@ export class MantFormularioComponent implements OnInit {
     // let fecha = new Date(value);
     // console.log(`${fecha.getHours()}:${fecha.getMinutes()}`);
     console.log(this.selectedTGarantia);
+  }
+  exportExcel(data) {
+
+    let pDataExport = [];
+
+    let date = new Date()
+    let day = date.getMonth()+1 + '-' + date.getFullYear();
+    let pNameFile: string = "Reporte de formulario " + day;
+
+    setTimeout(() => {
+      if(data){
+        if(data.filteredValue){
+          if(data.filteredValue.length > 0){
+            
+            data.filteredValue.forEach(element => {
+              pDataExport.push({
+                'N°':element.ID,
+                Cliente: element.Cliente,
+                'Tipo Reporte': element.Descripcion_Tipo_Reporte,
+                'Horas totales': element.Total_Horas,
+                'Horas a facturar': element.Horas_A_Facturar,
+                Tarea: element.Tareas_Estandar,
+              });
+            });
+            this._ExcelService.exportAsExcelFile(pDataExport, pNameFile);
+          }
+        }else{
+          this.reportesTipo.forEach(element => {
+            pDataExport.push({
+              'N°':element.ID,
+                Cliente: element.Cliente,
+                'Tipo Reporte': element.Descripcion_Tipo_Reporte,
+                'Horas totales': element.Total_Horas,
+                'Horas a facturar': element.Horas_A_Facturar,
+                Tarea: element.Tareas_Estandar,
+            });
+          });
+          this._ExcelService.exportAsExcelFile(pDataExport, pNameFile);
+        }
+      }
+
+    }, 300);
   }
 }

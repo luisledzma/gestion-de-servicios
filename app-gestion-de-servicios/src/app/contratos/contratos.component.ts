@@ -5,6 +5,7 @@ import { ClienteC, Contrato } from '../models/models';
 import { MessageService } from 'primeng/api';
 import { Message } from 'primeng/components/common/api';
 import { Time } from '@angular/common';
+import { ExcelServiceService } from '../service/excel-service.service';
 
 
 @Component({
@@ -28,7 +29,29 @@ export class ContratosComponent implements OnInit {
   clientes: any;
   selectedCliente: ClienteC = new ClienteC();
 
-  constructor(private after: AfterLoginServiceService,private messageService: MessageService) { 
+  cols = [
+    { field: 'ID', header: 'N°'},
+    { field: 'Descripcion', header: 'Descripción' },
+    { field: 'Cliente', header: 'Cliente' },
+    { field: 'Monto_Total', header: 'Monto contrato' },
+    { field: 'Horas_Contratadas', header: 'Horas contratadas' },
+    { field: 'Horas_Disponibles', header: 'Horas disponibles' },
+    { field: 'Horas_Consumidas', header: 'Horas consumidas' },
+    { field: 'Horas_Excedidas', header: 'Horas excedidas' },
+    { field: 'Estado', header: 'Estado' },
+    { field: 'Editar', header: '' },
+    { field: 'Cierre', header: 'Cierre de mes' },
+  ];
+
+  Estados = [
+    { label: 'Todos', value: null },
+    { label: 'Activo', value: 'A' },
+    { label: 'Inactivo', value: 'I' }
+  ];
+
+  constructor(private after: AfterLoginServiceService,
+    private messageService: MessageService,
+    private _ExcelService: ExcelServiceService) { 
     const us = localStorage.getItem('User').split('.')[1];  
     this._userExist = JSON.parse(atob(us));
     this._userInfo = this._userExist.unique_name.split(';');
@@ -120,6 +143,52 @@ onSubmitCierreDeMes(){
         this.messageService.add({severity:'error', summary: 'Incorrecto', detail:'No se ha ejecutado correctamente'});
       }
     });
+}
+exportExcel(data) {
+
+  let pDataExport = [];
+
+  let date = new Date()
+  let day = date.getMonth()+1 + '-' + date.getFullYear();
+  let pNameFile: string = "Reporte de contratos " + day;
+
+  setTimeout(() => {
+    if(data){
+      if(data.filteredValue){
+        if(data.filteredValue.length > 0){
+          
+          data.filteredValue.forEach(element => {
+            pDataExport.push({
+              'N°':element.ID,
+              'Descripción': element.Descripcion,
+              Cliente: element.Cliente,
+              'Monto contrato': element.Monto_Contrato,
+              'Horas contratadas': element.Horas_Contratadas,
+              'Horas disponibles': element.Horas_Disponibles,
+              'Horas consumidas': element.Horas_Consumidas,
+              'Horas excedidas': element.Horas_Excedidas,
+            });
+          });
+          this._ExcelService.exportAsExcelFile(pDataExport, pNameFile);
+        }
+      }else{
+        this.contratos.forEach(element => {
+          pDataExport.push({
+            'N°':element.ID,
+              'Descripción': element.Descripcion,
+              Cliente: element.Cliente,
+              'Monto contrato': element.Monto_Contrato,
+              'Horas contratadas': element.Horas_Contratadas,
+              'Horas disponibles': element.Horas_Disponibles,
+              'Horas consumidas': element.Horas_Consumidas,
+              'Horas excedidas': element.Horas_Excedidas,
+          });
+        });
+        this._ExcelService.exportAsExcelFile(pDataExport, pNameFile);
+      }
+    }
+
+  }, 300);
 }
 
 
