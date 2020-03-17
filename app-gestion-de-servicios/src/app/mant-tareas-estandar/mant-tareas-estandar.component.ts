@@ -15,16 +15,43 @@ export class MantTareasEstandarComponent implements OnInit {
   tareasEstandar: any;
   tarea: TareasEstandar = new TareasEstandar();
   selectedTarea: TareasEstandar = new TareasEstandar();
+  myMenu: any;
+  menus: any;
+  permisos: any;
+  misPermisos: any;
+  page: string = "Mantenimiento de Tareas Estandar";
 
   constructor(private after: AfterLoginServiceService) { 
     const us = localStorage.getItem('User').split('.')[1];  
     this._userExist = JSON.parse(atob(us));
     this._userInfo = this._userExist.unique_name.split(';');
+    this.setPermisos();
   }
 
   ngOnInit() {
     this.GetTareasEstandar();
   }
+
+  setPermisos() {
+    this.GetMenus();
+  }
+
+  GetMenus() {
+    let url = this.apiUrl + 'Seguridad/GetMenus';
+    this.after.GetMenus(url).subscribe(data => {
+      this.menus = data;
+      this.myMenu = this.menus.filter((m) => {
+        if (m.Descripcion === this.page) {
+          let url2 = this.apiUrl + 'Seguridad/GetPermisosPorRolyMenu'
+          this.after.GetPermisosPorRolyMenu(url2, this._userInfo[6], m.ID).subscribe(data => {
+            this.permisos = data;
+            this.misPermisos = this.permisos.Target;
+          });
+        }
+      });
+    });
+  }
+
   
   GetTareasEstandar() {
     let url = this.apiUrl + 'Administracion/GetTareasEstandar?usuarioConsulta='+this._userInfo[0];

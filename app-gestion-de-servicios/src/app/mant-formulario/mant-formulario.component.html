@@ -2,70 +2,63 @@
 <div class="container pt-5">
     <div class="row ">
         <h1>Formulario</h1>
-        <div class="col-md-12 m-1">
-            <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
-                Agregar
-            </button>
-            <!-- <p-dropdown id="tReportsF" [options]="tiposReportesFilter" [style]="{'width':'100%'}" (onChange)="TipoReporteFilter();" [(ngModel)]="selectedTReporteFilter" placeholder="Tipo de Reporte" optionLabel="Descripcion" name="tReportsF"></p-dropdown> -->
-        </div>
+        <ng-container *ngFor="let permiso of misPermisos">
+            <div *ngIf="permiso.Descripcion_Seccion === 'Agregar' && permiso.Estado === 'A' " class="col-md-12 m-1">
+                <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
+                    Agregar
+                </button>
+            </div>
+        </ng-container>
         <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
-        <div class="col-md-12">
-            <p-table #dt [columns]="cols" [(value)]="reportesTipo" [paginator]="true" [rows]="6" [responsive]="true">
-                <ng-template pTemplate="caption">
-                    <div class="ui-helper-clearfix" style="text-align: left">
-                        <button type="button" pButton icon="pi pi-file-excel" iconPos="left" label="EXCEL" (click)="exportExcel(dt)" style="margin-right: 0.5em;" class="ui-button-success"></button>
-                    </div>
-                </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th *ngFor="let col of cols">
-                            {{col.header}}
-                        </th>
-                    </tr>
-                    <tr>
-                        <th *ngFor="let col of cols" [ngSwitch]="col.field" colspan=1>
-                            <input *ngSwitchCase="'ID'" class="form-control text-success" placeholder="Identificación" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
-                            <input *ngSwitchCase="'Cliente'" class="form-control text-success" placeholder="Cliente" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
-                            <p-dropdown *ngSwitchCase="'Descripcion_Tipo_Reporte'" [options]="tiposReportesFilter" [style]="{'width':'100%'}" (onChange)="TipoReporteFilter();" [(ngModel)]="selectedTReporteFilter" placeholder="Tipo de Reporte" optionLabel="Descripcion" name="tReportsF"></p-dropdown>
-                        </th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-rep>
-                    <tr>
-                        <td><span class="ui-column-title">ID</span>{{rep.ID}}</td>
-                        <td><span class="ui-column-title">Cliente</span>{{rep.Cliente}}</td>
-                        <td><span class="ui-column-title">Descripcion</span>{{rep.Descripcion_Tipo_Reporte}}</td>
-                        <td><span class="ui-column-title">Total Horas</span>{{rep.Total_Horas | horas}}</td>
-                        <td><span class="ui-column-title">Horas a Facturar</span>{{rep.Horas_A_Facturar}}</td>
-                        <td><span class="ui-column-title">Tarea Estándar</span>{{rep.Tareas_Estandar}}</td>
-                        <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
-                        <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal"><i class="material-icons">
-                            email
-                            </i></button></td>
-                        <!-- <ng-container *ngFor="let permiso2 of misPermisos">
-                            <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
-                                <td><button (click)="onButtonEditClick(usr)" type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
+        <ng-container *ngFor="let permiso of misPermisos">
+            <div *ngIf="permiso.Descripcion_Seccion === 'Lista' && permiso.Estado === 'A' " class="col-md-12">
+                <p-table #dt [columns]="cols" [(value)]="reportesTipo" [paginator]="true" [rows]="6" [responsive]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="ui-helper-clearfix" style="text-align: left">
+                            <button type="button" pButton icon="pi pi-file-excel" iconPos="left" label="EXCEL" (click)="exportExcel(dt)" style="margin-right: 0.5em;" class="ui-button-success"></button>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th *ngFor="let col of cols">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                        <tr>
+                            <th *ngFor="let col of cols" [ngSwitch]="col.field" colspan=1>
+                                <input *ngSwitchCase="'ID'" class="form-control text-success" placeholder="Identificación" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
+                                <input *ngSwitchCase="'Cliente'" class="form-control text-success" placeholder="Cliente" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
+                                <p-dropdown *ngSwitchCase="'Descripcion_Tipo_Reporte'" [options]="tiposReportesFilter" [style]="{'width':'100%'}" (onChange)="TipoReporteFilter();" [(ngModel)]="selectedTReporteFilter" placeholder="Tipo de Reporte" optionLabel="Descripcion" name="tReportsF"></p-dropdown>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rep>
+                        <tr>
+                            <td><span class="ui-column-title">ID</span>{{rep.ID}}</td>
+                            <td><span class="ui-column-title">Cliente</span>{{rep.Cliente}}</td>
+                            <td><span class="ui-column-title">Descripcion</span>{{rep.Descripcion_Tipo_Reporte}}</td>
+                            <td><span class="ui-column-title">Total Horas</span>{{rep.Total_Horas | horas}}</td>
+                            <td><span class="ui-column-title">Horas a Facturar</span>{{rep.Horas_A_Facturar}}</td>
+                            <td><span class="ui-column-title">Tarea Estándar</span>{{rep.Tareas_Estandar}}</td>
+                            <ng-container *ngFor="let permiso2 of misPermisos">
+                                <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
+                                    <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
+                                </ng-container>
                             </ng-container>
-                            <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Detalles' && permiso2.Estado === 'A' ">
-                                <td><button (click)="onDetailsClick(usr)" type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#detailsModal">Ver detalles</button></td>
+                            <ng-container *ngFor="let permiso2 of misPermisos">
+                                <ng-container *ngIf="permiso2.Descripcion_Seccion === 'EnvioCorreo' && permiso2.Estado === 'A' ">
+                                    <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal"><i class="material-icons">
+                                        email
+                                        </i></button></td>
+                                </ng-container>
                             </ng-container>
-                        </ng-container> -->
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
-        <!-- <div class="form-group">
-            <label for="hInicio">Hora de inicio</label>
-            <br>
-            <p-calendar id="hInicio" [(ngModel)]="reporte.Hora_Inicio" [timeOnly]="true" name="hInicio" #hora="ngModel" required></p-calendar>
-            <button type="button" (click)="prueba(hora.value)">Prueba</button>
-            <ng-container *ngIf="!ReporteAddForm.form.valid">
-                <br>
-                <p-message severity="error" text="El campo es requerido"></p-message>
-            </ng-container>
-        </div> -->
-
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </ng-container>
+       
         <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
