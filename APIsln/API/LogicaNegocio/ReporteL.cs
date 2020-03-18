@@ -180,7 +180,14 @@ namespace API.LogicaNegocio
                                    Correo_Respondido = (bool)r.Correo_Respondido
                                }).FirstOrDefault();
 
-                if(reporte != null)
+                var miCliente = (from c in _db.SP_ADM_Seleccionar_Clientes()
+                               select new ClienteC
+                               {
+                                Cliente = c.Cliente,
+                                Nombre = c.NOMBRE
+                               }).Where(x => x.Cliente == reporte.Cliente).FirstOrDefault();
+
+                if (reporte != null)
                 {
                     idReporte = reporte.ID;
                     if (reporte.Correo_Enviado == false)
@@ -194,25 +201,27 @@ namespace API.LogicaNegocio
 
                         MailMessage email = new MailMessage
                         {
-                            Subject = "Aprobación del correo",
-                            From = new MailAddress("test.gestionproyectos@gmail.com"),
+                            Subject = "Aprobación de Formulario",
+                            From = new MailAddress("test.gestionproyectos@gmail.com","SITSA"),
                             SubjectEncoding = Encoding.UTF8,
                             IsBodyHtml = true
                         };
 
-                        message.Append($"<p>Se ha generado un reporte con el detalle siguiente: </p>");
-                        message.Append($"<br>");
-                        message.Append("<ul>");
-                        message.Append($"<li>Tipo del reporte: {reporte.Descripcion_Tipo_Reporte}</li>");
-                        message.Append($"<li>Tarea estandar: {reporte.Tareas_Estandar}</li>");
-                        message.Append($"<li>Descripción: {reporte.Descripcion}</li>");
-                        message.Append($"<li>Observaciones: {reporte.Observaciones}</li>");
-                        message.Append($"<li>Horas Totales: {reporte.Total_Horas}</li>");
-                        message.Append("</ul>");
-                        message.Append("<br>");
-                        message.Append("<p>Para aprobar dirígase al siguiente link: </p>");
-                        message.Append("<br>");
-                        message.Append($"<a href='http://localhost:4200/correo?id=" + token + "'>Confirmar</a>");
+                        //message.Append($"<p>Se ha generado un reporte con el detalle siguiente: </p>");
+                        //message.Append($"<br>");
+                        //message.Append("<ul>");
+                        //message.Append($"<li>Tipo del reporte: {reporte.Descripcion_Tipo_Reporte}</li>");
+                        //message.Append($"<li>Tarea estandar: {reporte.Tareas_Estandar}</li>");
+                        //message.Append($"<li>Descripción: {reporte.Descripcion}</li>");
+                        //message.Append($"<li>Observaciones: {reporte.Observaciones}</li>");
+                        //message.Append($"<li>Horas Totales: {reporte.Total_Horas}</li>");
+                        //message.Append("</ul>");
+                        //message.Append("<br>");
+                        //message.Append("<p>Para aprobar dirígase al siguiente link: </p>");
+                        //message.Append("<br>");
+                        //message.Append($"<a href='http://localhost:4200/correo?id=" + token + "'>Confirmar</a>");
+                        FormatoCorreoL fCorreoL = new FormatoCorreoL();
+                        message.Append(fCorreoL.getFormatoCorreo(reporte,miCliente,token));
 
 
                         //email.To.Add("jimenezjozsef@gmail.com");

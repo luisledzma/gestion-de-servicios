@@ -25,6 +25,7 @@ export class BackendComponent implements OnInit {
    _userExist: any;
   // _userNew:ReturnToken;
   _userInfo: any;
+  rol:any;
   private apiUrl = environment.apiURL;
   public loggedIn: boolean;
 
@@ -38,38 +39,20 @@ export class BackendComponent implements OnInit {
                 this._userExist = JSON.parse(atob(us));
                 //console.log(this._userExist.unique_name.split(';'));
                 this._userInfo = this._userExist.unique_name.split(';');
-
+                
  
               }
 
   ngOnInit() {
     
-    // JSON.parse(localStorage.getItem('PacienteUser'));
-    //   this.Auth.authStatus.subscribe(value => this.loggedIn = value);
-    //    //console.log(this._userExist);
-    //   this.getComponents();
-
-
-    // }
-    // else if(this._userNew!=null){
-
-
-    //   this._userInfo = this._userNew;//JSON.parse(localStorage.getItem('newUser'));
-    //   this.Auth.authStatus.subscribe(value => this.loggedIn = value);
-    //  // console.log(this._userNew);
-    //   this.getComponents();
-    // }
-
-    // localStorage.setItem('UserLogin', JSON.stringify(this._userInfo));
+    this.GetRolPorId(this._userInfo[6]);
     
-    //console.log(this.apiUrl);
     var urlParams = [];
     window.location.search.replace("?", "").split("&").forEach(function (e, i) {
         var p = e.split("=");
         urlParams[p[0]] = p[1];
     });
 
-    // We have all the params now -> you can access it by name
     console.log(urlParams["loaded"]);
 
     if(urlParams["loaded"]) {}else{
@@ -86,26 +69,14 @@ export class BackendComponent implements OnInit {
 
 
   GetPermisosPorRol(rol: number) {
-    // this._loadData=false;
-    // this._WebAPIService.GetComponents(2).subscribe(data => {
-    // this.tagComponents=data;
-    // this._DataService.changeMenuDetails(this.tagComponents); // Set in Service
-    // });
     let url = this.apiUrl + 'Permiso/GetPermisosPorRol';
     this.after.GetPermisosPorRol(url, rol).subscribe(data => {
-      
       this.permisos = data;
-      //console.log(this.permisos);
     });
 
   }
 
   GetMenusPorRol(rol: number) {
-    // this._loadData=false;
-    // this._WebAPIService.GetComponents(2).subscribe(data => {
-    // this.tagComponents=data;
-    // this._DataService.changeMenuDetails(this.tagComponents); // Set in Service
-    // });
     let url = this.apiUrl + 'Permiso/GetMenusPorRol';
     this.after.GetMenusPorRol(url, rol).subscribe(data => {
       
@@ -115,29 +86,12 @@ export class BackendComponent implements OnInit {
 
   }
 
-
-
-  // actionMenu()
-  // {
-  //   this._ActionMenu = !this._ActionMenu;
-  // }
-
-  // checkRoute()
-  // {
-  //   try{
-  //     let route: string = localStorage.getItem('routeLink');
-  //     localStorage.removeItem("routeLink");
-
-  //     if(route)
-  //       this._router.navigate(['/PacienteBackend/' + route ]);
-
-  //   }catch{
-  //     //this.logout();
-  //   }
-
-  // }
-
-
+  GetRolPorId(idRol:number) {
+    let url = this.apiUrl + 'Seguridad/GetRolPorId';
+    this.after.GetRolPorId(url,idRol).subscribe(data => {
+      this.rol = data;
+    });
+  }
 
   logout(event: MouseEvent) {
     event.preventDefault();

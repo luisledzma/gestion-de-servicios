@@ -1,4 +1,4 @@
-<div id="bmd-drawer" class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay show-outline" style="overflow: scroll;">
+<div id="bmd-drawer" class="bmd-layout-container bmd-drawer-f-l" style="overflow: scroll;">
   <header class="bmd-layout-header ">
     <div class="navbar navbar-light bg-dark">
       <button class="navbar-toggler btn btn-light ham-button " type="button" data-toggle="drawer" type="button" data-target="#Open">
@@ -11,17 +11,18 @@
       <ul class="nav navbar-nav">
         <li class="nav-item">
           <button class="btn btn-raised btn-danger" (click)="logout($event)">
-            <i class="fa fa-sign-out" aria-hidden="true"></i>Cerrar Sesión
+            <i class="material-icons">exit_to_app</i>Cerrar Sesión
           </button>
         </li>
       </ul>
     </div>
   </header>
-  <div id="Open" class="bmd-layout-drawer bmd-drawer-in-lg-up bg-faded">
+  <div id="Open" class="bmd-layout-drawer bg-faded">
     <header>
       <a *ngIf="_userInfo" class="navbar-brand navbar-text">  
         {{ _userInfo[0] }}
       </a>
+      <p style="font-size: .75rem;color: #999;text-align:left; padding-left: 2em;" *ngIf="rol">{{ rol.Descripcion }}</p>
     </header>
     <ul class="list-group menu-items">
       <ng-container *ngFor="let item of menus">
@@ -103,9 +104,11 @@
     </ul>
   </div>
 
-  <main class="container">
-    <router-outlet></router-outlet>
-  </main>
+  <div class="bmd-layout-content">
+    <main class="container">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 
   <footer>
     <!-- <p>Diseñado por: Jozsef y Luis</p> -->

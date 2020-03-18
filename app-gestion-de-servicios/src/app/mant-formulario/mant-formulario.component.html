@@ -5,7 +5,7 @@
         <ng-container *ngFor="let permiso of misPermisos">
             <div *ngIf="permiso.Descripcion_Seccion === 'Agregar' && permiso.Estado === 'A' " class="col-md-12 m-1">
                 <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
-                    Agregar
+                    <i class="material-icons">note_add</i>Agregar
                 </button>
             </div>
         </ng-container>
@@ -43,14 +43,12 @@
                             <td><span class="ui-column-title">Tarea Estándar</span>{{rep.Tareas_Estandar}}</td>
                             <ng-container *ngFor="let permiso2 of misPermisos">
                                 <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
-                                    <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
+                                    <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal"><i class="material-icons">edit</i>Editar</button></td>
                                 </ng-container>
                             </ng-container>
                             <ng-container *ngFor="let permiso2 of misPermisos">
                                 <ng-container *ngIf="permiso2.Descripcion_Seccion === 'EnvioCorreo' && permiso2.Estado === 'A' ">
-                                    <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal"><i class="material-icons">
-                                        email
-                                        </i></button></td>
+                                    <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal"><i class="material-icons">email</i>Reenviar</button></td>
                                 </ng-container>
                             </ng-container>
                         </tr>
@@ -261,12 +259,12 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
-                                Cerrar
+                                <i class="material-icons">close</i>Cerrar
                             </button>
 
                             <ng-container *ngIf="ReporteAddForm.form.valid">
                                 <button type="submit" (click)="onSubmit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
-                                    Guardar Cambios
+                                    <i class="material-icons">save</i>Guardar Cambios
                                 </button>
                             </ng-container>
 
@@ -311,11 +309,11 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
-                                Cerrar
+                                <i class="material-icons">close</i>Cerrar
                             </button>
                             <ng-container *ngIf="EditReportForm.form.valid">
                                 <button type="submit" (click)="onSubmitEdit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
-                                    Guardar Cambios
+                                    <i class="material-icons">save</i>Guardar Cambios
                                 </button>
                             </ng-container>
                         </div>

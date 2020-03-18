@@ -187,6 +187,7 @@
     </Compile>
     <Compile Include="LogicaNegocio\ClienteL.cs" />
     <Compile Include="LogicaNegocio\ContratoL.cs" />
+    <Compile Include="LogicaNegocio\FormatoCorreoL.cs" />
     <Compile Include="LogicaNegocio\GarantiaL.cs" />
     <Compile Include="LogicaNegocio\PermisoL.cs" />
     <Compile Include="LogicaNegocio\ProyectoL.cs" />

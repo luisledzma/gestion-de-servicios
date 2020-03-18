@@ -4,7 +4,7 @@
         <ng-container *ngFor="let permiso of misPermisos">
             <div *ngIf="permiso.Descripcion_Seccion === 'Agregar' && permiso.Estado === 'A' " class="col-md-12 m-1">
                 <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
-                    Agregar
+                    <i class="material-icons">note_add</i> Agregar
                 </button>
             </div>
         </ng-container>
@@ -31,7 +31,7 @@
                         <td> <span class="ui-column-title">Estado</span> {{ rol.Estado=='A'?'Activo':'Inactivo' }}</td>
                         <ng-container *ngFor="let permiso2 of misPermisos">
                             <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
-                                <td><button (click)="onButtonEditClick(rol)" type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
+                                <td><button (click)="onButtonEditClick(rol)" type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal"><i class="material-icons">edit</i>Editar</button></td>
                             </ng-container>
                         </ng-container>
                     </tr>
@@ -68,10 +68,10 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
-                                Cerrar
+                                    <i class="material-icons">close</i>Cerrar
                             </button>
                                 <button type="submit" class="btn btn-raised btn-success m-1">
-                                Guardar Cambios
+                                    <i class="material-icons">save</i>Guardar Cambios
                             </button>
                             </div>
                         </form>
@@ -106,10 +106,10 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
-                            Cerrar
+                                    <i class="material-icons">close</i>Cerrar
                         </button>
                                 <button type="submit" class="btn btn-raised btn-success m-1">
-                            Guardar Cambios
+                                    <i class="material-icons">save</i>Guardar Cambios
                         </button>
                             </div>
                         </form>

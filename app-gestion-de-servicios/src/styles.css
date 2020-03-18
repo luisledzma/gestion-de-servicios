@@ -11,3 +11,7 @@ body {
 .container{
     max-width: 1500px !important;
 }
+
+.material-icons {
+    vertical-align: bottom !important;
+}

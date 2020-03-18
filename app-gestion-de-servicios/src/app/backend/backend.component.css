@@ -15,3 +15,17 @@
     padding: 0.5em !important;
     font-size: 1.25rem !important;
 }
+
+:not(.bmd-drawer-out).bmd-drawer-in.bmd-drawer-f-l > .bmd-layout-header {
+    width: calc(100% - 330px) !important;
+    margin-left: 330px !important;
+}
+
+:not(.bmd-drawer-out).bmd-drawer-in.bmd-drawer-f-l > .bmd-layout-content {
+    margin-left: 330px;
+}
+
+.bmd-layout-content {
+    z-index: unset !important;
+}
+

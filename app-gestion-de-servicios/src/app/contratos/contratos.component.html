@@ -1,11 +1,11 @@
 <p-toast [style]="{marginTop: '80px'}" life="3000"></p-toast>
-<div class="container-fluid pt-5">
+<div class="container pt-5">
     <div class="row ">
         <h1>Contratos</h1>
         <ng-container *ngFor="let permiso of misPermisos">
             <div *ngIf="permiso.Descripcion_Seccion === 'Agregar' && permiso.Estado === 'A' " class="col-md-12 m-1">
                 <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
-                    Agregar
+                    <i class="material-icons">note_add</i>Agregar
                 </button>
             </div>
         </ng-container>
@@ -47,12 +47,12 @@
                             <!-- <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td> -->
                             <ng-container *ngFor="let permiso2 of misPermisos">
                                 <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
-                                    <td><button type="button" (click)="onButtonEditClick(contract)" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td>
+                                    <td><button type="button" (click)="onButtonEditClick(contract)" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal"><i class="material-icons">edit</i>Editar</button></td>
                                 </ng-container>
                             </ng-container>
                             <ng-container *ngFor="let permiso2 of misPermisos">
                                 <ng-container *ngIf="permiso2.Descripcion_Seccion === 'CierreMes' && permiso2.Estado === 'A' ">
-                                    <td><button type="button" (click)="cierreDeMes(contract)" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#cierreMesModal">Ejecutar</button></td>
+                                    <td><button type="button" (click)="cierreDeMes(contract)" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#cierreMesModal"><i class="material-icons">assignment</i>Ejecutar</button></td>
                                 </ng-container>
                             </ng-container>
                         </tr>
@@ -61,177 +61,177 @@
             </div>
         </ng-container>
 
-        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modal-title">Agregar Contrato</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-                    <form #ContratoAddForm="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
-                        <div class="modal-body">
-
-                            <div class="form-group">
-                                <ng-container *ngIf="clientes">
-                                    <label>Cliente</label>
-                                    <br>
-                                    <p-dropdown id="clientes" [options]="clientes" [(ngModel)]="selectedCliente" placeholder="Seleccione un cliente" optionLabel="Cliente" name="clients" [showClear]="true" required></p-dropdown>
-                                    <ng-container *ngIf="!selectedCliente">
-                                        <p-message severity="error" text="El campo es requerido"></p-message>
-                                    </ng-container>
-                                </ng-container>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="descripcion">Descripción</label>
-                                <br>
-                                <input id="descripcion" type="text" size="30" pInputText [(ngModel)]="contrato.Descripcion" name="descripcion" #descripcion="ngModel" required>
-                                <ng-container *ngIf="!descripcion.valid">
-                                    <p-message severity="error" text="El campo es requerido"></p-message>
-                                </ng-container>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label for="hContratadas">Horas contratadas</label>
-                                <br>
-                                <input id="hContratadas" type="number" size="30" pInputText [(ngModel)]="contrato.horas" name="hContratadas" #hContratadasNum="ngModel" required>
-                                <ng-container *ngIf="!hContratadasNum.valid">
-                                    <p-message severity="error" text="El campo es requerido"></p-message>
-                                </ng-container>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label for="mContrato">Monto Contrato</label>
-                                <br>
-                                <input id="mContrato" type="number" size="30" pInputText [(ngModel)]="contrato.Monto_Contrato" name="mContratoN" #mContratoNum="ngModel" required>
-                                <ng-container *ngIf="!mContratoNum.valid">
-                                    <p-message severity="error" text="El campo es requerido"></p-message>
-                                </ng-container>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label for="estado">Estado</label>
-                                <select class="form-control" id="estado" [(ngModel)]="contrato.Estado" name="estado">
-                                    <option value="A">Activo</option>
-                                    <option value="I">Inactivo</option>
-                                </select>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
-                                Cerrar
-                            </button>
-
-                            <ng-container *ngIf="ContratoAddForm.form.valid">
-                                <button type="submit" (click)="onSubmit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
-                                    Guardar Cambios
-                                </button>
-                            </ng-container>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modal-title">Editar Contrato</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                    </div>
-                    <form #EditConForm="ngForm" (ngSubmit)="onSubmitEdit()" autocomplete="off">
-                        <div class="modal-body">
-
-                            <div class="form-group">
-                                <label for="descripcionE">Descripción</label>
-                                <br>
-                                <input id="descripcionE" type="text" size="30" pInputText [(ngModel)]="selectedcontrato.Descripcion" name="descripcionEN" #descripcionEV="ngModel" required>
-                                <ng-container *ngIf="!descripcionEV.valid">
-                                    <p-message severity="error" text="El campo es requerido"></p-message>
-                                </ng-container>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label for="hContratadasE">Horas contratadas</label>
-                                <br>
-                                <input id="hContratadasE" type="number" size="30" pInputText [(ngModel)]="selectedcontrato.horas" name="hContratadasEN" #hContratadasENum="ngModel" required>
-                                <ng-container *ngIf="!hContratadasENum.valid">
-                                    <p-message severity="error" text="El campo es requerido"></p-message>
-                                </ng-container>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label for="mContratoE">Monto Contrato</label>
-                                <br>
-                                <input id="mContratoE" type="number" size="30" pInputText [(ngModel)]="selectedcontrato.Monto_Contrato" name="mContratoEN" #mContratoENum="ngModel" required>
-                                <ng-container *ngIf="!mContratoENum.valid">
-                                    <p-message severity="error" text="El campo es requerido"></p-message>
-                                </ng-container>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label for="estadoE">Estado</label>
-                                <select class="form-control" id="estadoE" [(ngModel)]="selectedcontrato.Estado" name="estadoEN">
-                                    <option value="A">Activo</option>
-                                    <option value="I">Inactivo</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
-                                Cerrar
-                            </button>
-                            <ng-container *ngIf="EditConForm.form.valid">
-                                <button type="submit" (click)="onSubmitEdit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
-                                    Guardar Cambios
-                                </button>
-                            </ng-container>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="cierreMesModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modal-title">Cierre de mes</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form #EditConForm="ngForm" (ngSubmit)="onSubmitEdit()" autocomplete="off">
-                        <div class="modal-body">
-                            <p>¿Está seguro que desea ejecutar el cierre de mes para este contrato?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
-                                Cerrar
-                            </button>
-                            <ng-container *ngIf="EditConForm.form.valid">
-                                <button type="submit" (click)="onSubmitCierreDeMes();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
-                                    Ejecutar
-                                </button>
-                            </ng-container>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
+        
     </div>
 </div>
+                <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-title">Agregar Contrato</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <form #ContratoAddForm="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                                <div class="modal-body">
+        
+                                    <div class="form-group">
+                                        <ng-container *ngIf="clientes">
+                                            <label>Cliente</label>
+                                            <br>
+                                            <p-dropdown id="clientes" [options]="clientes" [(ngModel)]="selectedCliente" placeholder="Seleccione un cliente" optionLabel="Cliente" name="clients" [showClear]="true" required></p-dropdown>
+                                            <ng-container *ngIf="!selectedCliente">
+                                                <p-message severity="error" text="El campo es requerido"></p-message>
+                                            </ng-container>
+                                        </ng-container>
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label for="descripcion">Descripción</label>
+                                        <br>
+                                        <input id="descripcion" type="text" size="30" pInputText [(ngModel)]="contrato.Descripcion" name="descripcion" #descripcion="ngModel" required>
+                                        <ng-container *ngIf="!descripcion.valid">
+                                            <p-message severity="error" text="El campo es requerido"></p-message>
+                                        </ng-container>
+        
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label for="hContratadas">Horas contratadas</label>
+                                        <br>
+                                        <input id="hContratadas" type="number" size="30" pInputText [(ngModel)]="contrato.horas" name="hContratadas" #hContratadasNum="ngModel" required>
+                                        <ng-container *ngIf="!hContratadasNum.valid">
+                                            <p-message severity="error" text="El campo es requerido"></p-message>
+                                        </ng-container>
+        
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label for="mContrato">Monto Contrato</label>
+                                        <br>
+                                        <input id="mContrato" type="number" size="30" pInputText [(ngModel)]="contrato.Monto_Contrato" name="mContratoN" #mContratoNum="ngModel" required>
+                                        <ng-container *ngIf="!mContratoNum.valid">
+                                            <p-message severity="error" text="El campo es requerido"></p-message>
+                                        </ng-container>
+        
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label for="estado">Estado</label>
+                                        <select class="form-control" id="estado" [(ngModel)]="contrato.Estado" name="estado">
+                                            <option value="A">Activo</option>
+                                            <option value="I">Inactivo</option>
+                                        </select>
+                                    </div>
+        
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                        <i class="material-icons">close</i>Cerrar
+                                    </button>
+        
+                                    <ng-container *ngIf="ContratoAddForm.form.valid">
+                                        <button type="submit" (click)="onSubmit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
+                                            <i class="material-icons">save</i>Guardar Cambios
+                                        </button>
+                                    </ng-container>
+        
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-title">Editar Contrato</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                            </div>
+                            <form #EditConForm="ngForm" (ngSubmit)="onSubmitEdit()" autocomplete="off">
+                                <div class="modal-body">
+        
+                                    <div class="form-group">
+                                        <label for="descripcionE">Descripción</label>
+                                        <br>
+                                        <input id="descripcionE" type="text" size="30" pInputText [(ngModel)]="selectedcontrato.Descripcion" name="descripcionEN" #descripcionEV="ngModel" required>
+                                        <ng-container *ngIf="!descripcionEV.valid">
+                                            <p-message severity="error" text="El campo es requerido"></p-message>
+                                        </ng-container>
+        
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label for="hContratadasE">Horas contratadas</label>
+                                        <br>
+                                        <input id="hContratadasE" type="number" size="30" pInputText [(ngModel)]="selectedcontrato.horas" name="hContratadasEN" #hContratadasENum="ngModel" required>
+                                        <ng-container *ngIf="!hContratadasENum.valid">
+                                            <p-message severity="error" text="El campo es requerido"></p-message>
+                                        </ng-container>
+        
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label for="mContratoE">Monto Contrato</label>
+                                        <br>
+                                        <input id="mContratoE" type="number" size="30" pInputText [(ngModel)]="selectedcontrato.Monto_Contrato" name="mContratoEN" #mContratoENum="ngModel" required>
+                                        <ng-container *ngIf="!mContratoENum.valid">
+                                            <p-message severity="error" text="El campo es requerido"></p-message>
+                                        </ng-container>
+        
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label for="estadoE">Estado</label>
+                                        <select class="form-control" id="estadoE" [(ngModel)]="selectedcontrato.Estado" name="estadoEN">
+                                            <option value="A">Activo</option>
+                                            <option value="I">Inactivo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                        <i class="material-icons">close</i>Cerrar
+                                    </button>
+                                    <ng-container *ngIf="EditConForm.form.valid">
+                                        <button type="submit" (click)="onSubmitEdit();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
+                                            <i class="material-icons">save</i>Guardar Cambios
+                                        </button>
+                                    </ng-container>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="modal fade" id="cierreMesModal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-title">Cierre de mes</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form #EditConForm="ngForm" (ngSubmit)="onSubmitEdit()" autocomplete="off">
+                                <div class="modal-body">
+                                    <p>¿Está seguro que desea ejecutar el cierre de mes para este contrato?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-raised btn-warning m-1" data-dismiss="modal">
+                                        <i class="material-icons">close</i>Cerrar
+                                    </button>
+                                    <ng-container *ngIf="EditConForm.form.valid">
+                                        <button type="submit" (click)="onSubmitCierreDeMes();" class="btn btn-raised btn-success m-1" data-dismiss="modal">
+                                            <i class="material-icons">gavel</i>Ejecutar
+                                        </button>
+                                    </ng-container>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
