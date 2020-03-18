@@ -210,9 +210,9 @@ namespace API.LogicaNegocio
                         message.Append($"<li>Horas Totales: {reporte.Total_Horas}</li>");
                         message.Append("</ul>");
                         message.Append("<br>");
-                        message.Append("<p>para aprobar dirígase al siguiente link: </p>");
+                        message.Append("<p>Para aprobar dirígase al siguiente link: </p>");
                         message.Append("<br>");
-                        message.Append($"<a href='http://localhost:4201/correo?id=" + token + "'>Confirmar</a>");
+                        message.Append($"<a href='http://localhost:4200/correo?id=" + token + "'>Confirmar</a>");
 
 
                         //email.To.Add("jimenezjozsef@gmail.com");
