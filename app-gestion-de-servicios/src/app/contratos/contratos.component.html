@@ -158,8 +158,8 @@
                                     <div class="form-group">
                                         <label for="descripcionE">Descripción</label>
                                         <br>
-                                        <input id="descripcionE" type="text" size="30" pInputText [(ngModel)]="selectedcontrato.Descripcion" name="descripcionEN" #descripcionEV="ngModel" required>
-                                        <ng-container *ngIf="!descripcionEV.valid">
+                                        <input *ngIf="selectedcontrato" id="descripcionE" type="text" size="30" pInputText [(ngModel)]="selectedcontrato.Descripcion" name="descripcionEN" #descripcionEV="ngModel" required>
+                                        <ng-container *ngIf="descripcionEV && !descripcionEV.valid">
                                             <p-message severity="error" text="El campo es requerido"></p-message>
                                         </ng-container>
         
@@ -168,8 +168,8 @@
                                     <div class="form-group">
                                         <label for="hContratadasE">Horas contratadas</label>
                                         <br>
-                                        <input id="hContratadasE" type="number" size="30" pInputText [(ngModel)]="selectedcontrato.horas" name="hContratadasEN" #hContratadasENum="ngModel" required>
-                                        <ng-container *ngIf="!hContratadasENum.valid">
+                                        <input *ngIf="selectedcontrato" id="hContratadasE" type="number" size="30" pInputText [(ngModel)]="selectedcontrato.Horas_Contratadas" name="hContratadasEN" #hContratadasENum="ngModel" required>
+                                        <ng-container *ngIf="hContratadasENum && !hContratadasENum.valid">
                                             <p-message severity="error" text="El campo es requerido"></p-message>
                                         </ng-container>
         
@@ -178,8 +178,8 @@
                                     <div class="form-group">
                                         <label for="mContratoE">Monto Contrato</label>
                                         <br>
-                                        <input id="mContratoE" type="number" size="30" pInputText [(ngModel)]="selectedcontrato.Monto_Contrato" name="mContratoEN" #mContratoENum="ngModel" required>
-                                        <ng-container *ngIf="!mContratoENum.valid">
+                                        <input *ngIf="selectedcontrato" id="mContratoE" type="number" size="30" pInputText [(ngModel)]="selectedcontrato.Monto_Contrato" name="mContratoEN" #mContratoENum="ngModel" required>
+                                        <ng-container *ngIf="mContratoENum && !mContratoENum.valid">
                                             <p-message severity="error" text="El campo es requerido"></p-message>
                                         </ng-container>
         
@@ -187,7 +187,7 @@
         
                                     <div class="form-group">
                                         <label for="estadoE">Estado</label>
-                                        <select class="form-control" id="estadoE" [(ngModel)]="selectedcontrato.Estado" name="estadoEN">
+                                        <select *ngIf="selectedcontrato" class="form-control" id="estadoE" [(ngModel)]="selectedcontrato.Estado" name="estadoEN">
                                             <option value="A">Activo</option>
                                             <option value="I">Inactivo</option>
                                         </select>

@@ -7,14 +7,11 @@ export class HorasPipe implements PipeTransform {
 
   transform(value: any): any {
     let newStr = "";
-    let splitted = [];
-
     
     if(value){
-      splitted = value.split(".");
-      newStr += splitted[0];
+      newStr += `${value}:00:00`;
     }else{
-      newStr = "N/A"
+      newStr = "00:00:00"
     }
     
 

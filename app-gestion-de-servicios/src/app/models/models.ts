@@ -136,9 +136,6 @@ export class Reporte
     ID_Contrato_Garantia: number;
     // ------------------------------------
     Descripcion_Tipo_Reporte : string;
-    Hora_Inicio : Date;
-    Hora_Final : Date;
-    Total_Horas : number;
     Horas_A_Facturar : number;
     ID_Tareas_Estandar : number;
     Tareas_Estandar : string;
@@ -159,7 +156,7 @@ export class Contrato{
     Cliente: string;
     Monto_Contrato: number;
     horas: number;
-    Horas_Contratadas: Date;
+    Horas_Contratadas: number;
     Horas_Disponibles: number;
     Horas_Consumidas: number;
     Horas_Excedidas: number;

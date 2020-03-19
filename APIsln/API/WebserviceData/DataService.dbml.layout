@@ -8,10 +8,10 @@
         <elementListCompartment Id="6bc6e262-063d-41c0-983b-df85eaebaab8" absoluteBounds="0.76500000000000057, 0.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="af70653c-41e3-4654-bedd-58f69bca1b61" absoluteBounds="3.25, 0.5, 2, 4.0785139973958326">
+    <classShape Id="669ba449-ca26-404a-a8f8-989b541faeed" absoluteBounds="4.125, 1.875, 2, 3.5016097005208326">
       <DataClassMoniker Name="/DataServiceDataContext/TBL_GS_REPORTE" />
       <nestedChildShapes>
-        <elementListCompartment Id="7845bfcf-618e-4678-9f51-e8af6e351748" absoluteBounds="3.2649999999999997, 0.96, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="96ff4177-cd47-475f-94af-0f4dbebbf463" absoluteBounds="4.14, 2.335, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

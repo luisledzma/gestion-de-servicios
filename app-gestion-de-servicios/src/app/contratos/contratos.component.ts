@@ -94,6 +94,7 @@ export class ContratosComponent implements OnInit {
       if(data){
         this.contratos = data;
         this.selectedcontrato = data ? data[0] : undefined;
+        console.log(this.selectedcontrato)
       }
     });
   }

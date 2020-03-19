@@ -128,9 +128,6 @@ namespace API.Controllers
         public int ID_Contrato_Garantia { get; set; }
         // ------------------------------------
         public string Descripcion_Tipo_Reporte { get; set; }
-        public DateTime? Hora_Inicio { get; set; }
-        public DateTime? Hora_Final { get; set; }
-        public string Total_Horas { get; set; }
         public decimal Horas_A_Facturar { get; set; }
         public int? ID_Tareas_Estandar { get; set; }
         public string Tareas_Estandar { get; set; }
@@ -154,7 +151,7 @@ namespace API.Controllers
         public int? ID_Cliente { get; set; }
         public string Cliente { get; set; }
         public decimal? Horas_Estimadas { get; set; }
-        public TimeSpan? Horas_Invertidas { get; set; }
+        public decimal? Horas_Invertidas { get; set; }
         public decimal Monto_Total { get; set; }
         public char? Estado { get; set; }
         public string Usuario_Creacion { get; set; }
@@ -170,7 +167,7 @@ namespace API.Controllers
         public int? ID_Proyecto { get; set; }
         public string Proyecto { get; set; }
         public decimal? Horas_Estimadas { get; set; }
-        public TimeSpan? Horas_Invertidas { get; set; }
+        public decimal? Horas_Invertidas { get; set; }
         public char? Estado { get; set; }
         public string Usuario_Creacion { get; set; }
         public string Usuario_Modificacion { get; set; }
@@ -185,10 +182,10 @@ namespace API.Controllers
         public string Cliente { get; set; }
         public decimal Monto_Contrato { get; set; }
         public int horas { get; set; }
-        public TimeSpan? Horas_Contratadas { get; set; }
-        public TimeSpan? Horas_Disponibles { get; set; }
-        public TimeSpan? Horas_Consumidas { get; set; }
-        public TimeSpan? Horas_Excedidas { get; set; }
+        public decimal? Horas_Contratadas { get; set; }
+        public decimal? Horas_Disponibles { get; set; }
+        public decimal? Horas_Consumidas { get; set; }
+        public decimal? Horas_Excedidas { get; set; }
         public char? Estado { get; set; }
         public string Usuario_Creacion { get; set; }
         public string Usuario_Modificacion { get; set; }

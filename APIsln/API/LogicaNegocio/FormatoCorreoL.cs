@@ -1819,7 +1819,7 @@ string email = @"<html>
                                                                          </tr>
                                                                          <tr class='tr-height'>
                                                                             <th class='th-width'><b>Total horas: </b></th>
-                                                                            <td>" + reporte.Total_Horas + @"</td>
+                                                                            <td>" + reporte.Horas_A_Facturar + @"</td>
                                                                          </tr>
                                                                       </table>
                                                                     <hr>

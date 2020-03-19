@@ -27,9 +27,6 @@ namespace API.LogicaNegocio
                                   Cliente = r.Cliente,
                                   ID_Tipo_Reporte = r.ID_Tipo_Reporte,
                                   Descripcion_Tipo_Reporte = r.Descripcion_Tipo_Reporte,
-                                  Hora_Inicio = r.Hora_Inicio,
-                                  Hora_Final = r.Hora_Final,
-                                  Total_Horas = r.Total_Horas.ToString(),
                                   Horas_A_Facturar = r.Horas_A_Facturar,
                                   ID_Tareas_Estandar = r.ID_Tareas_Estandar,
                                   Tareas_Estandar = r.Tareas_Estandar,
@@ -87,9 +84,7 @@ namespace API.LogicaNegocio
             string correoCliente = "";
             try
             {
-                DateTime begin = DateTime.Parse(reporte.Begin_Hour);
-                DateTime end = DateTime.Parse(reporte.End_Hour);
-                var result = _db.SP_ADM_Insertar_Reporte(reporte.ID_Cliente, reporte.ID_Tipo_Reporte, reporte.ID_Proyecto,reporte.ID_Etapa_Proyecto,reporte.ID_Contrato,reporte.ID_Proyecto_Garantia,reporte.ID_Contrato_Garantia,begin, end, reporte.Horas_A_Facturar, reporte.ID_Tareas_Estandar, reporte.Descripcion, reporte.Observaciones, 'P', reporte.Usuario_Creacion, ref idReporte, ref correoCliente);
+                var result = _db.SP_ADM_Insertar_Reporte(reporte.ID_Cliente, reporte.ID_Tipo_Reporte, reporte.ID_Proyecto,reporte.ID_Etapa_Proyecto,reporte.ID_Contrato,reporte.ID_Proyecto_Garantia,reporte.ID_Contrato_Garantia, reporte.Horas_A_Facturar, reporte.ID_Tareas_Estandar, reporte.Descripcion, reporte.Observaciones, 'P', reporte.Usuario_Creacion, ref idReporte, ref correoCliente);
 
 
                 EnviarCorreo(correoCliente, (int)idReporte);
@@ -163,9 +158,6 @@ namespace API.LogicaNegocio
                                    Cliente = r.Cliente,
                                    ID_Tipo_Reporte = r.ID_Tipo_Reporte,
                                    Descripcion_Tipo_Reporte = r.Descripcion_Tipo_Reporte,
-                                   Hora_Inicio = r.Hora_Inicio,
-                                   Hora_Final = r.Hora_Final,
-                                   Total_Horas = r.Total_Horas.ToString(),
                                    Horas_A_Facturar = r.Horas_A_Facturar,
                                    ID_Tareas_Estandar = r.ID_Tareas_Estandar,
                                    Tareas_Estandar = r.Tareas_Estandar,

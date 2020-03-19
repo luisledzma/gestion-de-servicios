@@ -146,8 +146,8 @@
                             <div class="form-group">
                                 <label for="descripcion">Descripción</label>
                                 <br>
-                                <input id="descripcion" type="text" size="30" pInputText [(ngModel)]="selectedProyecto.Descripcion" name="descripcionE" #descripcionE="ngModel" required>
-                                <ng-container *ngIf="!descripcionE.valid">
+                                <input *ngIf="selectedProyecto" id="descripcion" type="text" size="30" pInputText [(ngModel)]="selectedProyecto.Descripcion" name="descripcionE" #descripcionE="ngModel" required>
+                                <ng-container *ngIf="descripcionE && !descripcionE.valid">
                                     <p-message severity="error" text="El campo es requerido"></p-message>
                                 </ng-container>
 
@@ -156,8 +156,8 @@
                             <div class="form-group">
                                 <label for="hEstimadas">Horas estimadas</label>
                                 <br>
-                                <input id="hEstimadas" type="number" size="30" pInputText [(ngModel)]="selectedProyecto.Horas_Estimadas" name="hEstimadasE" #hEstimadasE="ngModel" required>
-                                <ng-container *ngIf="!hEstimadasE.valid">
+                                <input *ngIf="selectedProyecto" id="hEstimadas" type="number" size="30" pInputText [(ngModel)]="selectedProyecto.Horas_Estimadas" name="hEstimadasE" #hEstimadasE="ngModel" required>
+                                <ng-container *ngIf="hEstimadasE && !hEstimadasE.valid">
                                     <p-message severity="error" text="El campo es requerido"></p-message>
                                 </ng-container>
 
@@ -166,8 +166,8 @@
                             <div class="form-group">
                                 <label for="total">Monto Total</label>
                                 <br>
-                                <input id="total" type="number" size="30" pInputText [(ngModel)]="selectedProyecto.Monto_Total" name="totalE" #totalE="ngModel" required>
-                                <ng-container *ngIf="!totalE.valid">
+                                <input *ngIf="selectedProyecto" id="total" type="number" size="30" pInputText [(ngModel)]="selectedProyecto.Monto_Total" name="totalE" #totalE="ngModel" required>
+                                <ng-container *ngIf="totalE && !totalE.valid">
                                     <p-message severity="error" text="El campo es requerido"></p-message>
                                 </ng-container>
 
@@ -175,7 +175,7 @@
 
                             <div class="form-group">
                                 <label for="estado">Estado</label>
-                                <select class="form-control" id="estado" [(ngModel)]="selectedProyecto.Estado" name="estado">
+                                <select *ngIf="selectedProyecto" class="form-control" id="estado" [(ngModel)]="selectedProyecto.Estado" name="estado">
                                     <option value="A">Activo</option>
                                     <option value="I">Inactivo</option>
                                 </select>

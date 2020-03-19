@@ -71,7 +71,6 @@ export class MantFormularioComponent implements OnInit {
     { field: 'ID', header: 'N°'},
     { field: 'Cliente', header: 'Cliente' },
     { field: 'Descripcion_Tipo_Reporte', header: 'Tipo Reporte' },
-    { field: 'Total_Horas', header: 'Horas totales' },
     { field: 'Horas_A_Facturar', header: 'Horas a facturar' },
     { field: 'Tareas_Estandar', header: 'Tarea' },
     { field: '', header: 'Editar' },
