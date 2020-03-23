@@ -19,6 +19,29 @@
         </ng-container>
     </div>
     <div class="row">
+        <div class="col-md-6">
+            <label class="">Desde: &nbsp;</label><br>
+            <p-calendar name="inicio" [(ngModel)]="dates.begin" [showIcon]="true" #inicio="ngModel" required></p-calendar>
+            <div *ngIf="!inicio.valid" class="alert alert-danger">
+                Necesita seleccionar una hora inicial...
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <label class="">Hasta: &nbsp;</label><br>
+            <p-calendar name="fin" [(ngModel)]="dates.end" [showIcon]="true" #fin="ngModel" required></p-calendar>
+            <div *ngIf="!fin.valid" class="alert alert-danger">
+                Necesita seleccinar una hora final...
+            </div>
+        </div>
+        <ng-container *ngIf="inicio.valid && fin.valid">
+            <div class="mt-4 col-md-4">
+                <button type="button" (click)="GetEtapasProyectoPorProyectoYFecha(0);" class="btn btn-primary">Filtro de Fecha</button>
+            </div>
+        </ng-container>
+
+    </div>
+    <div class="row">
         <ng-container *ngFor="let permiso of misPermisos">
             <div *ngIf="permiso.Descripcion_Seccion === 'Agregar' && permiso.Estado === 'A' " class="col-md-12 m-1">
                 <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
@@ -38,7 +61,7 @@
                     </ng-template>
                     <ng-template pTemplate="header">
                         <tr>
-                            <th *ngFor="let col of cols">
+                            <th style="font-size: 80%" *ngFor="let col of cols">
                                 {{col.header}}
                             </th>
                         </tr>
@@ -46,13 +69,20 @@
                             <th *ngFor="let col of cols" [ngSwitch]="col.field" colspan=1>
                                 <input *ngSwitchCase="'ID'" class="form-control text-success" placeholder="Identificación" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
                                 <input *ngSwitchCase="'Descripcion'" class="form-control text-success" placeholder="Descripción" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
-                                <p-dropdown *ngSwitchCase="'Estado'" [options]="Estados" [style]="{'width':'10px'}" (onChange)="dt.filter($event.value, col.field, 'equals');"></p-dropdown>
+                                <div class="ui-grid ui-grid-responsive ui-fluid">
+                                    <div class="ui-grid-row">
+                                        <div class="ui-grid-col-12">
+                                            <p-dropdown *ngSwitchCase="'Estado'" [options]="Estados" [style]="{'width':'10px'}" (onChange)="dt.filter($event.value, col.field, 'equals');"></p-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
                             </th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-etapa>
                         <tr>
                             <td> <span class="ui-column-title">ID</span> {{etapa.ID}}</td>
+                            <td><span class="ui-column-title">Fecha</span>{{etapa.Fecha_Creacion | date:'dd/MM/yyy HH:mm:ss'}}</td>
                             <td> <span class="ui-column-title">Descripción</span> {{etapa.Descripcion}}</td>
                             <td> <span class="ui-column-title">Proyecto</span> {{etapa.Proyecto}}</td>
                             <td> <span class="ui-column-title">Horas Invertidas</span> {{ etapa.Horas_Invertidas | horas}}</td>

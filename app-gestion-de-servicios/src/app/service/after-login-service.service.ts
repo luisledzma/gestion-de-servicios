@@ -118,8 +118,12 @@ export class AfterLoginServiceService {
     let _apimethod = ``;
     return this._http.get(apiUrl + _apimethod);
   }
-  GetProyectosActivos(apiUrl: string){
-    let _apimethod = ``;
+  GetProyectosPorFecha(apiUrl: string, inicio: Date, fin: Date, user: any): Observable<any>{
+    let _apimethod = `?usuarioConsulta=${user}&inicio=${inicio}&fin=${fin}`;
+    return this._http.get(apiUrl + _apimethod);
+  }
+  GetProyectosActivos(apiUrl: string, idCliente: any){
+    let _apimethod = `?idCliente=${idCliente}`;
     return this._http.get(apiUrl + _apimethod);
   }
   InsertarProyecto(apiUrl: string,data:Proyecto) {
@@ -134,6 +138,10 @@ export class AfterLoginServiceService {
 
   GetEtapasProyectoPorProyecto(apiUrl: string, idProyecto:number,usuario:string) {
     let _apimethod = `?idProy=${idProyecto}&usuarioConsulta=${usuario}`;
+    return this._http.get(apiUrl + _apimethod);
+  }
+  GetEtapasProyectoPorProyectoYFecha(apiUrl: string, idProyecto:number,usuario:string, inicio: Date, fin: Date): Observable<any>{
+    let _apimethod = `?idProy=${idProyecto}&usuarioConsulta=${usuario}&inicio=${inicio}&fin=${fin}`;
     return this._http.get(apiUrl + _apimethod);
   }
   GetEtapasProyectoActivasPorProyecto(apiUrl: string, idProyecto:number) {
@@ -157,6 +165,10 @@ export class AfterLoginServiceService {
     let _apimethod = ``;
     return this._http.get(apiUrl + _apimethod);
   }
+  GetReportesPorFecha(apiUrl: string, inicio: Date, fin: Date, user: any): Observable<any>{
+    let _apimethod = `?usuarioConsulta=${user}&inicio=${inicio}&fin=${fin}`;
+    return this._http.get(apiUrl + _apimethod);
+  }
   InsertarReporte(apiUrl: string,data:Reporte) {
     return this._http.post(apiUrl , data);
   }
@@ -171,8 +183,12 @@ export class AfterLoginServiceService {
     let _apimethod = ``;
     return this._http.get(apiUrl + _apimethod);
   }
-  GetContratosActivos(apiUrl: string){
-    let _apimethod = ``;
+  GetContratosPorFecha(apiUrl: string, inicio: Date, fin: Date, user: any): Observable<any>{
+    let _apimethod = `?usuarioConsulta=${user}&inicio=${inicio}&fin=${fin}`;
+    return this._http.get(apiUrl + _apimethod);
+  }
+  GetContratosActivos(apiUrl: string, idCliente: any){
+    let _apimethod = `?idCliente=${idCliente}`;
     return this._http.get(apiUrl + _apimethod);
   }
   InsertarContrato(apiUrl: string,data:Contrato) {

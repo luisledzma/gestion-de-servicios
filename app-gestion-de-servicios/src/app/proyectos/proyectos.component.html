@@ -1,7 +1,31 @@
 <p-toast [style]="{marginTop: '80px'}" life="3000"></p-toast>
 <div class="container pt-5">
+    <h1>Proyectos</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="">Desde: &nbsp;</label><br>
+            <p-calendar name="inicio" [(ngModel)]="dates.begin" [showIcon]="true" #inicio="ngModel" required></p-calendar>
+            <div *ngIf="!inicio.valid" class="alert alert-danger">
+                Necesita seleccionar una hora inicial...
+            </div>
+        </div>
+        <div class="col-md-4">
+    
+            <label class="">Hasta: &nbsp;</label><br>
+            <p-calendar name="fin" [(ngModel)]="dates.end" [showIcon]="true" #fin="ngModel" required></p-calendar>
+            <div *ngIf="!fin.valid" class="alert alert-danger">
+                Necesita seleccinar una hora final...
+            </div>
+        </div>
+        <ng-container *ngIf="inicio.valid && fin.valid">
+            <div class="mt-4 col-md-4">
+                <button type="button" (click)="GetProyectosPorFecha();" class="btn btn-primary">Filtro de Fecha</button>
+            </div>
+        </ng-container>
+    </div>
+    
     <div class="row ">
-        <h1>Proyectos</h1>
+        
         <ng-container *ngFor="let permiso of misPermisos">
             <div *ngIf="permiso.Descripcion_Seccion === 'Agregar' && permiso.Estado === 'A' " class="col-md-12 m-1">
                 <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
@@ -9,6 +33,8 @@
                 </button>
             </div>
         </ng-container>
+
+        
 
         <ng-container *ngFor="let permiso of misPermisos">
             <div *ngIf="permiso.Descripcion_Seccion === 'Lista' && permiso.Estado === 'A' " class="col-md-12">
@@ -20,7 +46,7 @@
                     </ng-template>
                     <ng-template pTemplate="header">
                         <tr>
-                            <th *ngFor="let col of cols">
+                            <th style="font-size: 80%" *ngFor="let col of cols">
                                 {{col.header}}
                             </th>
                         </tr>
@@ -29,17 +55,24 @@
                                 <input *ngSwitchCase="'ID'" class="form-control text-success" placeholder="Identificación" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
                                 <input *ngSwitchCase="'Descripcion'" class="form-control text-success" placeholder="Descripción" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
                                 <input *ngSwitchCase="'Cliente'" class="form-control text-success" placeholder="Cliente" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
-                                <p-dropdown *ngSwitchCase="'Estado'" [options]="Estados" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals');"></p-dropdown>
+                                <div class="ui-grid ui-grid-responsive ui-fluid">
+                                    <div class="ui-grid-row">
+                                        <div class="ui-grid-col-12">
+                                            <p-dropdown *ngSwitchCase="'Estado'" [options]="Estados" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals');"></p-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
                             </th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-pro>
                         <tr>
                             <td> <span class="ui-column-title">ID</span> {{pro.ID}}</td>
+                            <td><span class="ui-column-title">Fecha</span>{{pro.Fecha_Creacion | date:'dd/MM/yyy HH:mm:ss'}}</td>
                             <td> <span class="ui-column-title">Descripción</span> {{pro.Descripcion}}</td>
                             <td> <span class="ui-column-title">Cliente</span> {{pro.Cliente}}</td>
                             <td> <span class="ui-column-title">Horas Invertidas</span> {{pro.Horas_Invertidas | horas}}</td>
-                            <td> <span class="ui-column-title">Monto Total</span> {{pro.Monto_Total}}</td>
+                            <td> <span class="ui-column-title">Monto Total</span> {{pro.Monto_Total | number}}</td>
                             <td> <span class="ui-column-title">Estado</span> {{pro.Estado}}</td>
                             <ng-container *ngFor="let permiso2 of misPermisos">
                                 <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
@@ -68,7 +101,14 @@
                                 <ng-container *ngIf="clientes">
                                     <label>Cliente</label>
                                     <br>
-                                    <p-dropdown id="clientes" [options]="clientes" [(ngModel)]="selectedCliente" placeholder="Seleccione un cliente" optionLabel="Cliente" name="clients" [showClear]="true" required></p-dropdown>
+                                    <div class="ui-grid ui-grid-responsive ui-fluid">
+                                        <div class="ui-grid-row">
+                                            <div class="ui-grid-col-6">
+                                                <p-dropdown id="clientes" [options]="clientes" [(ngModel)]="selectedCliente" placeholder="Seleccione un cliente" optionLabel="Cliente" name="clients" [showClear]="true" filter="true" required></p-dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     <ng-container *ngIf="!selectedCliente">
                                         <p-message severity="error" text="El campo es requerido"></p-message>
                                     </ng-container>
