@@ -109,7 +109,36 @@
       <router-outlet></router-outlet>
     </main>
   </div>
-
+  <div>
+    <div>
+      <button data-toggle="modal" data-target="#modalMessage" title="Ayuda" style="float: right !important;right: 1em !important;" type="button" class="btn btn-info bmd-btn-fab"  >
+        <i class="material-icons">live_help</i>
+      </button>
+    </div>
+    <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">Ayuda</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="alert alert-info" role="alert">
+                  ¿Desea descargar el manual de usuario?.
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-raised btn-warning" data-dismiss="modal"><i class="material-icons">close</i>Cerrar</button>
+            <a target="_self" href="../../assets/files/ManualUsuario.pdf" download class="btn btn-raised btn-success m-1">
+              <i class="material-icons">file_download</i>descargar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <footer>
     <!-- <p>Diseñado por: Jozsef y Luis</p> -->
     <p style="font-size: 11px;color: #999;text-align: center; margin-top: 25px;">V1.0.0</p>
