@@ -37,6 +37,7 @@ export class MantEtapasProyectoComponent implements OnInit {
 
   cols = [
     { field: 'ID', header: 'N°'},
+    { field: 'Fecha_Creacion', header: 'Fecha'},
     { field: 'Descripcion', header: 'Descripción' },
     { field: 'Proyecto', header: 'Proyecto' },
     { field: 'Horas_Invertidas', header: 'Horas invertidas' },
@@ -56,6 +57,11 @@ export class MantEtapasProyectoComponent implements OnInit {
     { dataKey: 'Proyecto', header: 'Proyecto' },
     { dataKey: 'Horas_Invertidas', header: 'Horas invertidas' },
   ];
+
+  public dates = {
+    begin: null,
+    end: null,
+  };
 
   constructor(private after: AfterLoginServiceService,
     private messageService: MessageService,
@@ -124,11 +130,11 @@ export class MantEtapasProyectoComponent implements OnInit {
   }
   GetProyectosActivos(){
     let url = this.apiUrl + 'Administracion/GetProyectosActivos';
-    this.after.GetProyectosActivos(url).subscribe(data => {
+    this.after.GetProyectosActivos(url, 0).subscribe(data => {
       if(data){
         this.proyectosActivos = data;
-        this.selectedProyecto = data ? data[0] : undefined;
       }
+      this.selectedProyecto = data ? data[0] : undefined;
     });
   }
   GetEtapasProyectoPorProyecto(id:number){
@@ -137,6 +143,26 @@ export class MantEtapasProyectoComponent implements OnInit {
       this.after.GetEtapasProyectoPorProyecto(url,id,this._userInfo[0]).subscribe(data => {
         if(data){
           this.etapas = data;
+        }
+      });
+    }
+  }
+  GetEtapasProyectoPorProyectoYFecha(id:number){
+    if(this.selectedProyectoTable.ID != 0){
+      let url = this.apiUrl + 'Administracion/GetEtapasProyectoPorProyectoYFecha';
+      let b = new Date(Date.parse(this.dates.begin));
+      let e = new Date(Date.parse(this.dates.end));
+      this.dates.begin = `${b.getMonth() + 1}/${b.getDate()}/${b.getFullYear()} ${e.getHours()}:${e.getMinutes()}`;
+      this.dates.end = `${e.getMonth() + 1}/${e.getDate()}/${e.getFullYear()} ${e.getHours()}:${e.getMinutes()}`;
+      this.after.GetEtapasProyectoPorProyectoYFecha(url,id,this._userInfo[0], this.dates.begin, this.dates.end).subscribe(data => {
+        if(data && data.length > 0){
+          this.etapas = data;
+        }else{
+          this.messageService.add({
+            severity: "warn",
+            summary: "Sin etapas",
+            detail: "No se encontraron etapas en el rango de fechas especificado"
+          });
         }
       });
     }

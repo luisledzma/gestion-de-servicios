@@ -132,10 +132,16 @@ namespace API.Controllers
             return proL.GetProyectos(usuarioConsulta);
         }
         [HttpGet]
-        [Route("GetProyectosActivos")]
-        public List<Proyecto> GetProyectosActivos()
+        [Route("GetProyectosPorFecha")]
+        public List<Proyecto> GetProyectosPorFecha(string usuarioConsulta, DateTime inicio, DateTime fin)
         {
-            return proL.GetProyectosActivos();
+            return proL.GetProyectosPorFecha(usuarioConsulta, inicio, fin);
+        }
+        [HttpGet]
+        [Route("GetProyectosActivos")]
+        public List<Proyecto> GetProyectosActivos(int idCliente)
+        {
+            return proL.GetProyectosActivos(idCliente);
         }        
         [HttpGet]
         [Route("GetProyectoPorId")]
@@ -186,6 +192,12 @@ namespace API.Controllers
             return proL.GetEtapasProyectoPorProyecto(idProy, usuarioConsulta);
         }
         [HttpGet]
+        [Route("GetEtapasProyectoPorProyectoYFecha")]
+        public List<EtapaProyecto> GetEtapasProyectoPorProyectoYFecha(int idProy, string usuarioConsulta, DateTime inicio, DateTime fin)
+        {
+            return proL.GetEtapasProyectoPorProyectoYFecha(idProy, usuarioConsulta, inicio, fin);
+        }
+        [HttpGet]
         [Route("GetEtapasProyectoActivasPorProyecto")]
         public List<EtapaProyecto> GetEtapasProyectoActivasPorProyecto(int idProy)
         {
@@ -229,6 +241,12 @@ namespace API.Controllers
         public List<Reporte> GetReportes(string usuarioConsulta)
         {
             return repL.GetReportes(usuarioConsulta);
+        }
+        [HttpGet]
+        [Route("GetReportesPorFecha")]
+        public List<Reporte> GetReportesPorFecha(string usuarioConsulta, DateTime inicio, DateTime fin)
+        {
+            return repL.GetReportesPorFecha(usuarioConsulta, inicio, fin);
         }
         [HttpPost]
         [Route("InsertarReporte")]
@@ -284,6 +302,12 @@ namespace API.Controllers
         {
             return conL.GetContratos(usuarioConsulta);
         }
+        [HttpGet]
+        [Route("GetContratosPorFecha")]
+        public List<Contrato> GetContratosPorFecha(string usuarioConsulta, DateTime inicio, DateTime fin)
+        {
+            return conL.GetContratosPorFecha(usuarioConsulta, inicio, fin);
+        }
         [HttpPost]
         [Route("InsertarContrato")]
         public bool InsertarContrato([FromBody]Contrato contrato)
@@ -317,9 +341,9 @@ namespace API.Controllers
         }
         [HttpGet]
         [Route("GetContratosActivos")]
-        public List<Contrato> GetContratosActivos()
+        public List<Contrato> GetContratosActivos(int idCliente)
         {
-            return conL.GetContratosActivos();
+            return conL.GetContratosActivos(idCliente);
         }
 
         [HttpGet]

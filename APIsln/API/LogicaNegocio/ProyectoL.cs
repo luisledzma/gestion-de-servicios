@@ -45,14 +45,48 @@ namespace API.LogicaNegocio
             }
             return new List<Proyecto>();
         }
-        // --------------------------------------------------------------------------------------------------------------------------------------------------
-        // Selecciona los proyectos que estan activos para poder hacer filtros en el formulario e insertar solo configuraciones a proyectos que esten activos
-        public List<Proyecto> GetProyectosActivos() 
+        public List<Proyecto> GetProyectosPorFecha(string usuarioConsulta, DateTime inicio, DateTime fin)
         {
             try
             {
 
-                var result = (from p in _db.SP_ADM_Seleccionar_Proyectos_Activos()
+                var result = (from p in _db.SP_ADM_Seleccionar_Proyectos_Por_Fecha(usuarioConsulta, inicio, fin)
+
+                              select new Proyecto()
+                              {
+                                  ID = p.ID,
+                                  Descripcion = p.Descripcion,
+                                  ID_Cliente = p.ID_Cliente,
+                                  Cliente = p.Cliente,
+                                  Horas_Estimadas = p.Horas_Estimadas,
+                                  Horas_Invertidas = p.Horas_Invertidas,
+                                  Monto_Total = p.Monto_Total,
+                                  Estado = p.Estado,
+                                  Usuario_Creacion = p.Usuario_Creacion,
+                                  Usuario_Modificacion = p.Usuario_Modificacion,
+                                  Fecha_Creacion = p.Fecha_Creacion,
+                                  Fecha_Modificacion = p.Fecha_Modificacion
+
+                              }).ToList();
+
+
+                if (result != null)
+                    return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return new List<Proyecto>();
+        }
+        // --------------------------------------------------------------------------------------------------------------------------------------------------
+        // Selecciona los proyectos que estan activos para poder hacer filtros en el formulario e insertar solo configuraciones a proyectos que esten activos
+        public List<Proyecto> GetProyectosActivos(int idCliente) 
+        {
+            try
+            {
+
+                var result = (from p in _db.SP_ADM_Seleccionar_Proyectos_Activos(idCliente)
 
                               select new Proyecto()
                               {
@@ -148,6 +182,39 @@ namespace API.LogicaNegocio
             {
 
                 var result = (from p in _db.SP_ADM_Seleccionar_Etapas_de_Proyecto_por_Proyectos(idProyecto, usuarioConsulta)
+
+                              select new EtapaProyecto()
+                              {
+                                  ID = p.ID,
+                                  Descripcion = p.Descripcion,
+                                  ID_Proyecto = p.ID_Proyecto,
+                                  Proyecto = p.Proyecto,
+                                  Horas_Estimadas = p.Horas_Estimadas,
+                                  Horas_Invertidas = p.Horas_Invertidas,
+                                  Estado = p.Estado,
+                                  Usuario_Creacion = p.Usuario_Creacion,
+                                  Usuario_Modificacion = p.Usuario_Modificacion,
+                                  Fecha_Creacion = p.Fecha_Creacion,
+                                  Fecha_Modificacion = p.Fecha_Modificacion
+
+                              }).ToList();
+
+
+                if (result != null)
+                    return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return new List<EtapaProyecto>();
+        }
+        public List<EtapaProyecto> GetEtapasProyectoPorProyectoYFecha(int idProyecto, string usuarioConsulta, DateTime inicio, DateTime fin)
+        {
+            try
+            {
+
+                var result = (from p in _db.SP_ADM_Seleccionar_Etapas_de_Proyecto_por_Proyectos_Y_Fecha(idProyecto, usuarioConsulta, inicio, fin)
 
                               select new EtapaProyecto()
                               {
