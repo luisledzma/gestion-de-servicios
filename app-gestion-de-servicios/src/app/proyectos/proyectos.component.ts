@@ -36,7 +36,7 @@ export class ProyectosComponent implements OnInit {
 
   cols = [
     { field: 'ID', header: 'N°'},
-    { field: 'Fecha_Creacion', header: 'Fecha'},
+    { field: 'Fecha_Creacion', header: 'Fecha de creación'},
     { field: 'Descripcion', header: 'Descripción' },
     { field: 'Cliente', header: 'Cliente' },
     { field: 'Horas_Invertidas', header: 'Horas invertidas' },

@@ -67,6 +67,7 @@
                     <ng-template pTemplate="body" let-contract>
                         <tr>
                             <td> <span class="ui-column-title">ID</span> {{contract.ID}}</td>
+                            <td><span class="ui-column-title">Fecha</span>{{contract.Fecha_Creacion | date:'dd/MM/yyy HH:mm:ss'}}</td>
                             <td> <span class="ui-column-title">Descripción</span> {{contract.Descripcion}}</td>
                             <td> <span class="ui-column-title">Cliente</span> {{contract.Cliente}}</td>
                             <td> <span class="ui-column-title">Monto Contrato</span> {{contract.Monto_Contrato | number}}</td>
