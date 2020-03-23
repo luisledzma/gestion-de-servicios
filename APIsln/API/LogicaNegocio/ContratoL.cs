@@ -47,12 +47,48 @@ namespace API.LogicaNegocio
             }
             return new List<Contrato>();
         }
-        public List<Contrato> GetContratosActivos()
+        public List<Contrato> GetContratosPorFecha(string usuarioConsulta, DateTime inicio, DateTime fin)
         {
             try
             {
 
-                var result = (from c in _db.SP_ADM_Seleccionar_Contratos_Activos()
+                var result = (from c in _db.SP_ADM_Seleccionar_Contratos_Por_Fecha(usuarioConsulta, inicio, fin)
+
+                              select new Contrato()
+                              {
+                                  ID = c.ID,
+                                  Descripcion = c.Descripcion,
+                                  ID_Cliente = c.ID_Cliente,
+                                  Cliente = c.Cliente,
+                                  Monto_Contrato = c.Monto_Contrato,
+                                  Horas_Contratadas = c.Horas_Contratadas,
+                                  Horas_Disponibles = c.Horas_Disponibles,
+                                  Horas_Consumidas = c.Horas_Consumidas,
+                                  Horas_Excedidas = c.Horas_Excedidas,
+                                  Estado = c.Estado,
+                                  Usuario_Creacion = c.Usuario_Creacion,
+                                  Usuario_Modificacion = c.Usuario_Modificacion,
+                                  Fecha_Creacion = c.Fecha_Creacion,
+                                  Fecha_Modificacion = c.Fecha_Modificacion
+
+                              }).ToList();
+
+
+                if (result != null)
+                    return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return new List<Contrato>();
+        }
+        public List<Contrato> GetContratosActivos(int idCliente)
+        {
+            try
+            {
+
+                var result = (from c in _db.SP_ADM_Seleccionar_Contratos_Activos(idCliente)
 
                               select new Contrato()
                               {

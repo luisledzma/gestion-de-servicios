@@ -69,6 +69,7 @@ export class MantFormularioComponent implements OnInit {
 
   cols = [
     { field: 'ID', header: 'N°'},
+    { field: 'Fecha_Creacion', header: 'Fecha'},
     { field: 'Cliente', header: 'Cliente' },
     { field: 'Descripcion_Tipo_Reporte', header: 'Tipo Reporte' },
     { field: 'Horas_A_Facturar', header: 'Horas a facturar' },
@@ -77,6 +78,10 @@ export class MantFormularioComponent implements OnInit {
     { field: '', header: 'Enviar Correo' },
   ];
   
+  public dates = {
+    begin: null,
+    end: null,
+  };
 
 
   constructor(private after: AfterLoginServiceService, 
@@ -94,8 +99,6 @@ export class MantFormularioComponent implements OnInit {
     this.GetClientes();
     this.GetTareasEstandar();
     this.GetTipoReportes();
-    this.GetProyectosActivos();
-    this.GetContratosActivos();
     this.GetEtapasProyectoActivasPorProyecto(0);
     this.GetTipoReportesFilter();
   }
@@ -123,21 +126,47 @@ export class MantFormularioComponent implements OnInit {
   GetReportes() {
     let url = this.apiUrl + 'Administracion/GetReportes?usuarioConsulta='+this._userInfo[0];
     this.after.GetReportes(url).subscribe(data => {
-      this.reportes = data;
-      this.reportesTipo = data;
+      if(data){
+        this.reportes = data;
+        this.reportesTipo = data;
+      }
     });
+  }
+  GetReportesPorFecha(){
+    let url = this.apiUrl + 'Administracion/GetReportesPorFecha'
+    let b = new Date(Date.parse(this.dates.begin));
+    let e = new Date(Date.parse(this.dates.end));
+    this.dates.begin = `${b.getMonth() + 1}/${b.getDate()}/${b.getFullYear()} ${e.getHours()}:${e.getMinutes()}`;
+    this.dates.end = `${e.getMonth() + 1}/${e.getDate()}/${e.getFullYear()} ${e.getHours()}:${e.getMinutes()}`;
+    
+    this.after.GetReportesPorFecha(url, this.dates.begin, this.dates.end, this._userInfo[0]).subscribe(data => {
+      if(data && data.length > 0){
+        this.reportes = data;
+        this.reportesTipo = data;
+      }else{
+        this.messageService.add({
+          severity: "warn",
+          summary: "Sin reportes",
+          detail: "No se encontraron reportes en el rango de fechas especificado"
+        });
+      }
+    });
+    
   }
   GetClientes(){
     let url = this.apiUrl + 'Administracion/GetClientes';
     this.after.GetClientes(url).subscribe(data => {
-      this.clientes = data;
-      this.selectedCliente = data ? data[0] : undefined;
+      if(data){
+        this.clientes = data;
+      }
     });
   }
   GetTareasEstandar() {
     let url = this.apiUrl + 'Administracion/GetTareasEstandarActivas';
     this.after.GetTareasEstandar(url).subscribe(data => {
-      this.tareasEstandar = data;
+      if(data){
+        this.tareasEstandar = data;
+      }
       this.selectedTarea = data ? data[0] : undefined;
     });
   }
@@ -145,7 +174,6 @@ export class MantFormularioComponent implements OnInit {
     let url = this.apiUrl + 'Administracion/GetTipoReportes';
     this.after.GetTipoReportes(url).subscribe(data => {
       this.tiposReportes = data;
-      this.selectedTReporte = data ? data[0] : undefined;
     });
   }
   
@@ -189,24 +217,32 @@ export class MantFormularioComponent implements OnInit {
       });
     }
   }
-  GetProyectosActivos(){
+  GetProyectosActivos(cliente: any){
     let url = this.apiUrl + 'Administracion/GetProyectosActivos';
-    this.after.GetProyectosActivos(url).subscribe(data => {
-      if(data){
-        this.proyectos = data;
-        this.selectedProyecto = data ? data[0] : undefined;
-      }
-    });
+    if(cliente){
+      this.after.GetProyectosActivos(url, cliente.ID).subscribe(data => {
+        if(data){
+          this.proyectos = data;
+          this.selectedProyecto = data ? data[0] : undefined;
+        }
+      });
+    }
   } 
+
+  prueb(data:any){
+    console.log(data);
+  }
   
-  GetContratosActivos(){
+  GetContratosActivos(cliente: any){
     let url = this.apiUrl + 'Administracion/GetContratosActivos';
-    this.after.GetContratosActivos(url).subscribe(data => {
-      if(data){
-        this.contratos = data;
-        this.selectedContrato = data ? data[0] : undefined;
-      }
-    });
+    if(cliente){
+      this.after.GetContratosActivos(url, cliente.ID).subscribe(data => {
+        if(data){
+          this.contratos = data;
+          this.selectedContrato = data ? data[0] : undefined;
+        }
+      });
+    }
   } 
   onSubmit(){
     this.confirmInsertGeneralCalc(); // DEBE CONFIRMAR PARA INSERTAR

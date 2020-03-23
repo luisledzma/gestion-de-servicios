@@ -36,6 +36,7 @@ export class ProyectosComponent implements OnInit {
 
   cols = [
     { field: 'ID', header: 'N°'},
+    { field: 'Fecha_Creacion', header: 'Fecha'},
     { field: 'Descripcion', header: 'Descripción' },
     { field: 'Cliente', header: 'Cliente' },
     { field: 'Horas_Invertidas', header: 'Horas invertidas' },
@@ -49,6 +50,11 @@ export class ProyectosComponent implements OnInit {
     { label: 'Activo', value: 'A' },
     { label: 'Inactivo', value: 'I' }
   ];
+
+  public dates = {
+    begin: null,
+    end: null,
+  };
 
   constructor(private after: AfterLoginServiceService,
     private messageService: MessageService,
@@ -87,7 +93,29 @@ export class ProyectosComponent implements OnInit {
   GetProyectos(){
     let url = this.apiUrl + 'Administracion/GetProyectos?usuarioConsulta='+this._userInfo[0];
     this.after.GetProyectos(url).subscribe(data => {
-      this.proyectos = data;
+      if(data){
+        this.proyectos = data;
+      }
+      this.selectedProyecto = data ? data[0] : undefined;
+    });
+  }
+  GetProyectosPorFecha(){
+    let url = this.apiUrl + 'Administracion/GetProyectosPorFecha'
+    let b = new Date(Date.parse(this.dates.begin));
+    let e = new Date(Date.parse(this.dates.end));
+    this.dates.begin = `${b.getMonth() + 1}/${b.getDate()}/${b.getFullYear()} ${e.getHours()}:${e.getMinutes()}`;
+    this.dates.end = `${e.getMonth() + 1}/${e.getDate()}/${e.getFullYear()} ${e.getHours()}:${e.getMinutes()}`;
+    
+    this.after.GetProyectosPorFecha(url, this.dates.begin, this.dates.end, this._userInfo[0]).subscribe(data => {
+      if(data && data.length > 0){
+        this.proyectos = data;
+      }else{
+        this.messageService.add({
+          severity: "warn",
+          summary: "Sin proyectos",
+          detail: "No se encontraron proyectos en el rango de fechas especificado"
+        });
+      }
       this.selectedProyecto = data ? data[0] : undefined;
     });
   }

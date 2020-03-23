@@ -36,6 +36,7 @@ export class ContratosComponent implements OnInit {
 
   cols = [
     { field: 'ID', header: 'N°'},
+    { field: 'Fecha_Creacion', header: 'Fecha'},
     { field: 'Descripcion', header: 'Descripción' },
     { field: 'Cliente', header: 'Cliente' },
     { field: 'Monto_Total', header: 'Monto contrato' },
@@ -47,6 +48,11 @@ export class ContratosComponent implements OnInit {
     { field: 'Editar', header: '' },
     { field: 'Cierre', header: 'Cierre de mes' },
   ];
+
+  public dates = {
+    begin: null,
+    end: null,
+  };
 
   Estados = [
     { label: 'Todos', value: null },
@@ -94,9 +100,29 @@ export class ContratosComponent implements OnInit {
       if(data){
         this.contratos = data;
         this.selectedcontrato = data ? data[0] : undefined;
-        console.log(this.selectedcontrato)
       }
     });
+  }
+  GetContratosPorFecha(){
+    let url = this.apiUrl + 'Administracion/GetContratosPorFecha'
+    let b = new Date(Date.parse(this.dates.begin));
+    let e = new Date(Date.parse(this.dates.end));
+    this.dates.begin = `${b.getMonth() + 1}/${b.getDate()}/${b.getFullYear()} ${e.getHours()}:${e.getMinutes()}`;
+    this.dates.end = `${e.getMonth() + 1}/${e.getDate()}/${e.getFullYear()} ${e.getHours()}:${e.getMinutes()}`;
+    
+    this.after.GetContratosPorFecha(url, this.dates.begin, this.dates.end, this._userInfo[0]).subscribe(data => {
+      if(data && data.length > 0){
+        this.contratos = data;
+        this.selectedcontrato = data ? data[0] : undefined;
+      }else{
+        this.messageService.add({
+          severity: "warn",
+          summary: "Sin contratos",
+          detail: "No se encontraron contratos en el rango de fechas especificado"
+        });
+      }
+    });
+    
   }
 
   GetClientes(){

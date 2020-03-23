@@ -52,6 +52,43 @@ namespace API.LogicaNegocio
             }
             return new List<Reporte>();
         }
+        public List<Reporte> GetReportesPorFecha(string usuarioConsulta, DateTime inicio, DateTime fin)
+        {
+            try
+            {
+                var result = (from r in _db.SP_ADM_Seleccionar_Reportes_Por_Fecha(usuarioConsulta, inicio, fin)
+                              select new Reporte
+                              {
+                                  ID = r.ID,
+                                  ID_Cliente = r.ID_Cliente,
+                                  Cliente = r.Cliente,
+                                  ID_Tipo_Reporte = r.ID_Tipo_Reporte,
+                                  Descripcion_Tipo_Reporte = r.Descripcion_Tipo_Reporte,
+                                  Horas_A_Facturar = r.Horas_A_Facturar,
+                                  ID_Tareas_Estandar = r.ID_Tareas_Estandar,
+                                  Tareas_Estandar = r.Tareas_Estandar,
+                                  Descripcion = r.Descripcion,
+                                  Observaciones = r.Observaciones,
+                                  Estado = r.Estado,
+                                  Usuario_Creacion = r.Usuario_Creacion,
+                                  Usuario_Modificacion = r.Usuario_Modificacion,
+                                  Fecha_Creacion = r.Fecha_Creacion,
+                                  Fecha_Modificacion = r.Fecha_Modificacion
+                              }).ToList();
+
+
+                if (result != null)
+                {
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return new List<Reporte>();
+        }
         public List<TipoReporte> GetTipoReportes()
         {
             try
