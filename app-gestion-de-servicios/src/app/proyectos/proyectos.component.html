@@ -1,24 +1,16 @@
 <p-toast [style]="{marginTop: '80px'}" life="3000"></p-toast>
 <div class="container pt-5">
-    <div class="row ">
-        <h1>Proyectos</h1>
-        <ng-container *ngFor="let permiso of misPermisos">
-            <div *ngIf="permiso.Descripcion_Seccion === 'Agregar' && permiso.Estado === 'A' " class="col-md-12 m-1">
-                <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
-                    <i class="material-icons">note_add</i>Agregar
-                </button>
-            </div>
-        </ng-container>
-
-        <div class="col-md-6">
+    <h1>Proyectos</h1>
+    <div class="row">
+        <div class="col-md-4">
             <label class="">Desde: &nbsp;</label><br>
             <p-calendar name="inicio" [(ngModel)]="dates.begin" [showIcon]="true" #inicio="ngModel" required></p-calendar>
             <div *ngIf="!inicio.valid" class="alert alert-danger">
                 Necesita seleccionar una hora inicial...
             </div>
         </div>
-        <div class="col-md-6">
-
+        <div class="col-md-4">
+    
             <label class="">Hasta: &nbsp;</label><br>
             <p-calendar name="fin" [(ngModel)]="dates.end" [showIcon]="true" #fin="ngModel" required></p-calendar>
             <div *ngIf="!fin.valid" class="alert alert-danger">
@@ -30,6 +22,19 @@
                 <button type="button" (click)="GetProyectosPorFecha();" class="btn btn-primary">Filtro de Fecha</button>
             </div>
         </ng-container>
+    </div>
+    
+    <div class="row ">
+        
+        <ng-container *ngFor="let permiso of misPermisos">
+            <div *ngIf="permiso.Descripcion_Seccion === 'Agregar' && permiso.Estado === 'A' " class="col-md-12 m-1">
+                <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
+                    <i class="material-icons">note_add</i>Agregar
+                </button>
+            </div>
+        </ng-container>
+
+        
 
         <ng-container *ngFor="let permiso of misPermisos">
             <div *ngIf="permiso.Descripcion_Seccion === 'Lista' && permiso.Estado === 'A' " class="col-md-12">
@@ -63,7 +68,7 @@
                     <ng-template pTemplate="body" let-pro>
                         <tr>
                             <td> <span class="ui-column-title">ID</span> {{pro.ID}}</td>
-                            <td><span class="ui-column-title">Fecha</span>{{pro.Fecha_Creacion}}</td>
+                            <td><span class="ui-column-title">Fecha</span>{{pro.Fecha_Creacion | date:'dd/MM/yyy HH:mm:ss'}}</td>
                             <td> <span class="ui-column-title">Descripción</span> {{pro.Descripcion}}</td>
                             <td> <span class="ui-column-title">Cliente</span> {{pro.Cliente}}</td>
                             <td> <span class="ui-column-title">Horas Invertidas</span> {{pro.Horas_Invertidas | horas}}</td>

@@ -1,7 +1,31 @@
 <p-toast [style]="{marginTop: '80px'}" life="3000"></p-toast>
 <div class="container pt-5">
+    <h1>Formulario</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="">Desde: &nbsp;</label><br>
+            <p-calendar name="inicio" [(ngModel)]="dates.begin" [showIcon]="true" #inicio="ngModel" required></p-calendar>
+            <div *ngIf="!inicio.valid" class="alert alert-danger">
+                Necesita seleccionar una hora inicial...
+            </div>
+        </div>
+        <div class="col-md-4">
+
+            <label class="">Hasta: &nbsp;</label><br>
+            <p-calendar name="fin" [(ngModel)]="dates.end" [showIcon]="true" #fin="ngModel" required></p-calendar>
+            <div *ngIf="!fin.valid" class="alert alert-danger">
+                Necesita seleccinar una hora final...
+            </div>
+        </div>
+        <ng-container *ngIf="inicio.valid && fin.valid">
+            <div class="mt-4 col-md-4">
+                <button type="button" (click)="GetReportesPorFecha();" class="btn btn-primary">Filtro de Fecha</button>
+            </div>
+        </ng-container>
+
+    </div>
     <div class="row ">
-        <h1>Formulario</h1>
+        
         <ng-container *ngFor="let permiso of misPermisos">
             <div *ngIf="permiso.Descripcion_Seccion === 'Agregar' && permiso.Estado === 'A' " class="col-md-12 m-1">
                 <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#createModal">
@@ -9,29 +33,7 @@
                 </button>
             </div>
         </ng-container>
-        <div class="row">
-            <div class="col-md-6">
-                <label class="">Desde: &nbsp;</label><br>
-                <p-calendar name="inicio" [(ngModel)]="dates.begin" [showIcon]="true" #inicio="ngModel" required></p-calendar>
-                <div *ngIf="!inicio.valid" class="alert alert-danger">
-                    Necesita seleccionar una hora inicial...
-                </div>
-            </div>
-            <div class="col-md-6">
-
-                <label class="">Hasta: &nbsp;</label><br>
-                <p-calendar name="fin" [(ngModel)]="dates.end" [showIcon]="true" #fin="ngModel" required></p-calendar>
-                <div *ngIf="!fin.valid" class="alert alert-danger">
-                    Necesita seleccinar una hora final...
-                </div>
-            </div>
-            <ng-container *ngIf="inicio.valid && fin.valid">
-                <div class="mt-4 col-md-4">
-                    <button type="button" (click)="GetReportesPorFecha();" class="btn btn-primary">Filtro de Fecha</button>
-                </div>
-            </ng-container>
-
-        </div>
+        
         <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
         <ng-container *ngFor="let permiso of misPermisos">
