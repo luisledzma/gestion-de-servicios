@@ -53,7 +53,7 @@ export class BackendComponent implements OnInit {
         urlParams[p[0]] = p[1];
     });
 
-    console.log(urlParams["loaded"]);
+    //console.log(urlParams["loaded"]);
 
     if(urlParams["loaded"]) {}else{
 
@@ -81,7 +81,7 @@ export class BackendComponent implements OnInit {
     this.after.GetMenusPorRol(url, rol).subscribe(data => {
       
       this.menus = data;
-      console.log(this.menus);
+      //console.log(this.menus);
     });
 
   }

@@ -50,7 +50,7 @@
                         </tr>
                         <tr>
                             <th *ngFor="let col of cols" [ngSwitch]="col.field" colspan=1>
-                                <input *ngSwitchCase="'ID'" class="form-control text-success" placeholder="Identificación" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
+                                <input *ngSwitchCase="'ID'" class="form-control text-success" placeholder="N°" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
                                 <input *ngSwitchCase="'Descripcion'" class="form-control text-success" placeholder="Descripción" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
                                 <input *ngSwitchCase="'Cliente'" class="form-control text-success" placeholder="Cliente" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
                                 <div class="ui-grid ui-grid-responsive ui-fluid">
@@ -67,7 +67,6 @@
                     <ng-template pTemplate="body" let-contract>
                         <tr>
                             <td> <span class="ui-column-title">ID</span> {{contract.ID}}</td>
-                            <td><span class="ui-column-title">Fecha</span>{{contract.Fecha_Creacion | date:'dd/MM/yyy HH:mm:ss'}}</td>
                             <td> <span class="ui-column-title">Descripción</span> {{contract.Descripcion}}</td>
                             <td> <span class="ui-column-title">Cliente</span> {{contract.Cliente}}</td>
                             <td> <span class="ui-column-title">Monto Contrato</span> {{contract.Monto_Contrato | number}}</td>
@@ -76,6 +75,7 @@
                             <td> <span class="ui-column-title">Horas Consumidas</span> {{contract.Horas_Consumidas | horas}}</td>
                             <td> <span class="ui-column-title">Horas Excedidas</span> {{contract.Horas_Excedidas | horas}}</td>
                             <td> <span class="ui-column-title">Estado</span> {{contract.Estado}}</td>
+                            <td><span class="ui-column-title">Fecha Creación</span>{{contract.Fecha_Creacion | date:'dd/MM/yyy HH:mm:ss'}}</td>
                             <!-- <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal">Editar</button></td> -->
                             <ng-container *ngFor="let permiso2 of misPermisos">
                                 <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
@@ -123,6 +123,7 @@
                                         <label for="descripcion">Descripción</label>
                                         <br>
                                         <input id="descripcion" type="text" size="30" pInputText [(ngModel)]="contrato.Descripcion" name="descripcion" #descripcion="ngModel" required>
+                                        <br>
                                         <ng-container *ngIf="!descripcion.valid">
                                             <p-message severity="error" text="El campo es requerido"></p-message>
                                         </ng-container>
@@ -133,6 +134,7 @@
                                         <label for="hContratadas">Horas contratadas</label>
                                         <br>
                                         <input id="hContratadas" type="number" size="30" pInputText [(ngModel)]="contrato.horas" name="hContratadas" #hContratadasNum="ngModel" required>
+                                        <br>
                                         <ng-container *ngIf="!hContratadasNum.valid">
                                             <p-message severity="error" text="El campo es requerido"></p-message>
                                         </ng-container>
@@ -142,7 +144,11 @@
                                     <div class="form-group">
                                         <label for="mContrato">Monto Contrato</label>
                                         <br>
-                                        <input id="mContrato" type="number" size="30" pInputText [(ngModel)]="contrato.Monto_Contrato" name="mContratoN" #mContratoNum="ngModel" required>
+                                        <div class="ui-inputgroup">
+                                            <span class="ui-inputgroup-addon">₡</span>
+                                            <input id="mContrato" type="number" size="30" pInputText [(ngModel)]="contrato.Monto_Contrato" name="mContratoN" #mContratoNum="ngModel" required>
+                                        </div>
+                                        <br>
                                         <ng-container *ngIf="!mContratoNum.valid">
                                             <p-message severity="error" text="El campo es requerido"></p-message>
                                         </ng-container>
@@ -201,6 +207,7 @@
                                         <label for="hContratadasE">Horas contratadas</label>
                                         <br>
                                         <input *ngIf="selectedcontrato" id="hContratadasE" type="number" size="30" pInputText [(ngModel)]="selectedcontrato.Horas_Contratadas" name="hContratadasEN" #hContratadasENum="ngModel" required>
+                                        <br>
                                         <ng-container *ngIf="hContratadasENum && !hContratadasENum.valid">
                                             <p-message severity="error" text="El campo es requerido"></p-message>
                                         </ng-container>
@@ -210,7 +217,11 @@
                                     <div class="form-group">
                                         <label for="mContratoE">Monto Contrato</label>
                                         <br>
-                                        <input *ngIf="selectedcontrato" id="mContratoE" type="number" size="30" pInputText [(ngModel)]="selectedcontrato.Monto_Contrato" name="mContratoEN" #mContratoENum="ngModel" required>
+                                        <div class="ui-inputgroup">
+                                            <span class="ui-inputgroup-addon">₡</span>
+                                            <input *ngIf="selectedcontrato" id="mContratoE" type="number" size="30" pInputText [(ngModel)]="selectedcontrato.Monto_Contrato" name="mContratoEN" #mContratoENum="ngModel" required>
+                                        </div>
+                                        <br>
                                         <ng-container *ngIf="mContratoENum && !mContratoENum.valid">
                                             <p-message severity="error" text="El campo es requerido"></p-message>
                                         </ng-container>

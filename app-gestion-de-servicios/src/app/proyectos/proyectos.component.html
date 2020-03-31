@@ -52,7 +52,7 @@
                         </tr>
                         <tr>
                             <th *ngFor="let col of cols" [ngSwitch]="col.field" colspan=1>
-                                <input *ngSwitchCase="'ID'" class="form-control text-success" placeholder="Identificación" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
+                                <input *ngSwitchCase="'ID'" class="form-control text-success" placeholder="N°" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
                                 <input *ngSwitchCase="'Descripcion'" class="form-control text-success" placeholder="Descripción" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
                                 <input *ngSwitchCase="'Cliente'" class="form-control text-success" placeholder="Cliente" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
                                 <div class="ui-grid ui-grid-responsive ui-fluid">
@@ -68,12 +68,13 @@
                     <ng-template pTemplate="body" let-pro>
                         <tr>
                             <td> <span class="ui-column-title">ID</span> {{pro.ID}}</td>
-                            <td><span class="ui-column-title">Fecha</span>{{pro.Fecha_Creacion | date:'dd/MM/yyy HH:mm:ss'}}</td>
                             <td> <span class="ui-column-title">Descripción</span> {{pro.Descripcion}}</td>
                             <td> <span class="ui-column-title">Cliente</span> {{pro.Cliente}}</td>
+                            <td> <span class="ui-column-title">Horas Estimadas</span> {{pro.Horas_Estimadas | horas}}</td>
                             <td> <span class="ui-column-title">Horas Invertidas</span> {{pro.Horas_Invertidas | horas}}</td>
                             <td> <span class="ui-column-title">Monto Total</span> {{pro.Monto_Total | number}}</td>
                             <td> <span class="ui-column-title">Estado</span> {{pro.Estado}}</td>
+                            <td><span class="ui-column-title">Fecha Creación</span>{{pro.Fecha_Creacion | date:'dd/MM/yyy HH:mm:ss'}}</td>
                             <ng-container *ngFor="let permiso2 of misPermisos">
                                 <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
                                     <td><button type="button" (click)="onButtonEditClick(pro)" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal"><i class="material-icons">edit</i>Editar</button></td>
@@ -119,6 +120,7 @@
                                 <label for="descripcion">Descripción</label>
                                 <br>
                                 <input id="descripcion" type="text" size="30" pInputText [(ngModel)]="proyecto.Descripcion" name="descripcion" #descripcion="ngModel" required>
+                                <br>
                                 <ng-container *ngIf="!descripcion.valid">
                                     <p-message severity="error" text="El campo es requerido"></p-message>
                                 </ng-container>
@@ -129,6 +131,7 @@
                                 <label for="hEstimadas">Horas estimadas</label>
                                 <br>
                                 <input id="hEstimadas" type="number" size="30" pInputText [(ngModel)]="proyecto.Horas_Estimadas" name="hEstimadas" #hEstimadas="ngModel" required>
+                                <br>
                                 <ng-container *ngIf="!hEstimadas.valid">
                                     <p-message severity="error" text="El campo es requerido"></p-message>
                                 </ng-container>
@@ -138,12 +141,16 @@
                             <div class="form-group">
                                 <label for="total">Monto Total</label>
                                 <br>
-                                <input id="total" type="number" size="30" pInputText [(ngModel)]="proyecto.Monto_Total" name="total" #total="ngModel" required>
+                                <div class="ui-inputgroup">
+                                    <span class="ui-inputgroup-addon">₡</span>
+                                    <input id="total" type="number" size="30" pInputText [(ngModel)]="proyecto.Monto_Total" name="total" #total="ngModel" required>
+                                </div>
+                                <br>
                                 <ng-container *ngIf="!total.valid">
                                     <p-message severity="error" text="El campo es requerido"></p-message>
                                 </ng-container>
-
                             </div>
+                            
 
                             <div class="form-group">
                                 <label for="estado">Estado</label>
@@ -187,6 +194,7 @@
                                 <label for="descripcion">Descripción</label>
                                 <br>
                                 <input *ngIf="selectedProyecto" id="descripcion" type="text" size="30" pInputText [(ngModel)]="selectedProyecto.Descripcion" name="descripcionE" #descripcionE="ngModel" required>
+                                <br>
                                 <ng-container *ngIf="descripcionE && !descripcionE.valid">
                                     <p-message severity="error" text="El campo es requerido"></p-message>
                                 </ng-container>
@@ -197,6 +205,7 @@
                                 <label for="hEstimadas">Horas estimadas</label>
                                 <br>
                                 <input *ngIf="selectedProyecto" id="hEstimadas" type="number" size="30" pInputText [(ngModel)]="selectedProyecto.Horas_Estimadas" name="hEstimadasE" #hEstimadasE="ngModel" required>
+                                <br>
                                 <ng-container *ngIf="hEstimadasE && !hEstimadasE.valid">
                                     <p-message severity="error" text="El campo es requerido"></p-message>
                                 </ng-container>
@@ -206,7 +215,11 @@
                             <div class="form-group">
                                 <label for="total">Monto Total</label>
                                 <br>
-                                <input *ngIf="selectedProyecto" id="total" type="number" size="30" pInputText [(ngModel)]="selectedProyecto.Monto_Total" name="totalE" #totalE="ngModel" required>
+                                <div class="ui-inputgroup">
+                                    <span class="ui-inputgroup-addon">₡</span>
+                                    <input *ngIf="selectedProyecto" id="total" type="number" size="30" pInputText [(ngModel)]="selectedProyecto.Monto_Total" name="totalE" #totalE="ngModel" required>
+                                </div>
+                                <br>
                                 <ng-container *ngIf="totalE && !totalE.valid">
                                     <p-message severity="error" text="El campo es requerido"></p-message>
                                 </ng-container>

@@ -25,6 +25,7 @@ export class MantUsuarioComponent implements OnInit {
   menus: any;
   permisos: any;
   misPermisos: any;
+  misRoles: any;
   page: string = "Mantenimiento de Usuario";
 
   constructor(private after: AfterLoginServiceService,private messageService: MessageService, private confirmationService: ConfirmationService) {
@@ -37,9 +38,17 @@ export class MantUsuarioComponent implements OnInit {
   ngOnInit() {
     this.GetUsuarios();
     this.GetRol();
+    this.GetRoles();
   }
 
- 
+  GetRoles() {
+    let url = this.apiUrl + 'Seguridad/GetRol?usuarioConsulta='+this._userInfo[0];
+    this.after.GetRol(url).subscribe(data => {
+      if(data){
+        this.misRoles = data;
+      }
+    });
+  }
 
   GetUsuarios() {
     let url = this.apiUrl + 'Seguridad/GetUsuarios?usuarioConsulta='+this._userInfo[0];

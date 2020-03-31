@@ -16,8 +16,9 @@
                 <p-table [value]="usuarios" [paginator]="true" [rows]="10" [responsive]="true">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th scope="col">Usuario</th>
+                            <th scope="col">Cod Usuario</th>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Rol</th>
                             <th scope="col">Correo Electrónico</th>
                             <th scope="col">Estado</th>
                             <ng-container *ngFor="let permiso2 of misPermisos">
@@ -32,9 +33,14 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-usr>
                         <tr>
-                            <td><span class="ui-column-title">Usuario</span>{{ usr.Usuario }}</td>
+                            <td><span class="ui-column-title">Cod Usuario</span>{{ usr.Usuario }}</td>
                             <td><span class="ui-column-title">Nombre</span>{{ usr.Nombre }}</td>
-                            <td><span class="ui-column-title">Correo</span>{{ usr.Correo_Electronico }}</td>
+                            <ng-container *ngFor="let rolItem of misRoles">
+                                <td *ngIf="rolItem.ID === usr.Rol">
+                                    <span class="ui-column-title">Rol</span>{{ rolItem.Descripcion }}
+                                </td>
+                            </ng-container>
+                            <td><span class="ui-column-title">Correo Electrónico</span>{{ usr.Correo_Electronico }}</td>
                             <td> <span class="ui-column-title">Estado</span> {{ usr.Estado=='A'?'Activo':'Inactivo' }}</td>
                             <ng-container *ngFor="let permiso2 of misPermisos">
                                 <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
@@ -63,23 +69,23 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="usuarioI">Usuario(Cod Artículo)</label>
-                                    <input id="usuarioI" class="form-control" name="usuarioI" [(ngModel)]="usuario.Usuario" />
+                                    <input pInputText id="usuarioI" class="form-control" name="usuarioI" [(ngModel)]="usuario.Usuario" />
                                 </div>
                                 <div class="form-group">
                                     <label for="contrasennaI">Contraseña</label>
-                                    <input id="contrasennaI" class="form-control" name="contrasennaI" [(ngModel)]="usuario.Contrasenna" type="password" autocomplete="off" />
+                                    <input pInputText id="contrasennaI" class="form-control" name="contrasennaI" [(ngModel)]="usuario.Contrasenna" type="password" autocomplete="off" />
                                 </div>
                                 <div class="form-group">
                                     <label for="nombreI">Nombre</label>
-                                    <input id="nombreI" class="form-control" name="nombreI" [(ngModel)]="usuario.Nombre" autocomplete="off" />
+                                    <input pInputText id="nombreI" class="form-control" name="nombreI" [(ngModel)]="usuario.Nombre" autocomplete="off" />
                                 </div>
                                 <div class="form-group">
                                     <label for="emailI">Correo Electrónico</label>
-                                    <input id="emailI" class="form-control" name="emailI" [(ngModel)]="usuario.Correo_Electronico" autocomplete="off" />
+                                    <input pInputText id="emailI" class="form-control" name="emailI" [(ngModel)]="usuario.Correo_Electronico" autocomplete="off" />
                                 </div>
                                 <div class="form-group">
                                     <label for="telefonoI">Teléfono</label>
-                                    <input id="telefonoI" class="form-control" name="telefonoI" [(ngModel)]="usuario.Telefono" autocomplete="off" />
+                                    <input pInputText id="telefonoI" class="form-control" name="telefonoI" [(ngModel)]="usuario.Telefono" autocomplete="off" />
                                 </div>
                                 <div class="form-group">
                                     <label for="estadoI">Estado</label>
@@ -123,23 +129,23 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="usuarioI">Usuario(Cod Artículo)</label>
-                                    <input id="usuarioI" class="form-control" name="usuarioI" [(ngModel)]="myUsr.Usuario" />
+                                    <input pInputText id="usuarioI" class="form-control" name="usuarioI" [(ngModel)]="myUsr.Usuario" />
                                 </div>
                                 <div class="form-group">
                                     <label for="contrasennaI">Contraseña</label>
-                                    <input id="contrasennaI" class="form-control" name="contrasennaI" [(ngModel)]="myUsr.Contrasenna" type="password" />
+                                    <input pInputText id="contrasennaI" class="form-control" name="contrasennaI" [(ngModel)]="myUsr.Contrasenna" type="password" />
                                 </div>
                                 <div class="form-group">
                                     <label for="nombreI">Nombre</label>
-                                    <input id="nombreI" class="form-control" name="nombreI" [(ngModel)]="myUsr.Nombre" />
+                                    <input pInputText id="nombreI" class="form-control" name="nombreI" [(ngModel)]="myUsr.Nombre" />
                                 </div>
                                 <div class="form-group">
                                     <label for="emailI">Correo Electrónico</label>
-                                    <input id="emailI" class="form-control" name="emailI" [(ngModel)]="myUsr.Correo_Electronico" />
+                                    <input pInputText id="emailI" class="form-control" name="emailI" [(ngModel)]="myUsr.Correo_Electronico" />
                                 </div>
                                 <div class="form-group">
                                     <label for="telefonoI">Teléfono</label>
-                                    <input id="telefonoI" class="form-control" name="telefonoI" [(ngModel)]="myUsr.Telefono" />
+                                    <input pInputText id="telefonoI" class="form-control" name="telefonoI" [(ngModel)]="myUsr.Telefono" />
                                 </div>
                                 <div class="form-group">
                                     <label for="estadoI">Estado</label>
@@ -199,12 +205,12 @@
                                 <input id="telefono" class="form-control" [(ngModel)]="usuarioDetalle.Telefono" disabled />
                             </div>
                             <div class="form-group bmd-form-group">
-                                <label class="bmd-label-static" for="miEstado">Estado</label>
+                                <label for="miEstado">Estado</label>
                                 <input *ngIf="usuarioDetalle.Estado === 'A'" id="miEstado" class="form-control" value="Activo" disabled />
                                 <input *ngIf="usuarioDetalle.Estado === 'I'" id="miEstado" class="form-control" value="Inactivo" disabled />
                             </div>
                             <div class="form-group bmd-form-group">
-                                <label class="bmd-label-static" for="miRol">Rol</label>
+                                <label for="miRol">Rol</label>
                                 <input *ngIf="rol !== undefined" id="miRol" class="form-control" [(ngModel)]="rol.Descripcion" disabled />
                             </div>
                         </div>

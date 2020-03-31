@@ -55,7 +55,7 @@
 
                                 <div class="form-group">
                                     <label for="descripcion">Descripción</label>
-                                    <input name="descripcion" type="text" class="form-control" id="descripcion" [(ngModel)]="myRol.Descripcion" />
+                                    <input name="descripcion" pInputText type="text" class="form-control" id="descripcion" [(ngModel)]="myRol.Descripcion" />
                                 </div>
                                 <div class="form-group">
                                     <label for="estado">Estado</label>
@@ -93,14 +93,14 @@
 
                                 <div class="form-group">
                                     <label for="descripcion">Descripción</label>
-                                    <input name="descripcion" type="text" class="form-control" id="descripcion" [(ngModel)]="rol.Descripcion" />
+                                    <input name="descripcion" pInputText type="text" class="form-control" id="descripcion" [(ngModel)]="rol.Descripcion" />
                                 </div>
                                 <div class="form-group">
                                     <label for="estado">Estado</label>
                                     <select class="form-control" id="estado" name="estado" [(ngModel)]="rol.Estado">
-                                <option value="A">Activo</option>
-                                <option value="I">Inactivo</option>
-                            </select>
+                                        <option value="A">Activo</option>
+                                        <option value="I">Inactivo</option>
+                                    </select>
                                 </div>
 
                             </div>

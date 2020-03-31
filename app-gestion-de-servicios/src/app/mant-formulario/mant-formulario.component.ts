@@ -69,11 +69,11 @@ export class MantFormularioComponent implements OnInit {
 
   cols = [
     { field: 'ID', header: 'N°'},
-    { field: 'Fecha_Creacion', header: 'Fecha'},
     { field: 'Cliente', header: 'Cliente' },
     { field: 'Descripcion_Tipo_Reporte', header: 'Tipo Reporte' },
     { field: 'Horas_A_Facturar', header: 'Horas a facturar' },
     { field: 'Tareas_Estandar', header: 'Tarea' },
+    { field: 'Fecha_Creacion', header: 'Fecha Creación'},
     { field: '', header: 'Editar' },
     { field: '', header: 'Enviar Correo' },
   ];
@@ -349,7 +349,7 @@ export class MantFormularioComponent implements OnInit {
   prueba(value:any){
     // let fecha = new Date(value);
     // console.log(`${fecha.getHours()}:${fecha.getMinutes()}`);
-    console.log(this.selectedTGarantia);
+    //console.log(this.selectedTGarantia);
   }
   exportExcel(data) {
 

@@ -55,13 +55,13 @@
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="descripcion">Descripción</label>
-                                <input name="descripcion" [(ngModel)]="tarea.Descripcion" type="text"
+                                <span for="descripcion">Descripción</span>
+                                <input pInputText name="descripcion" [(ngModel)]="tarea.Descripcion" type="text"
                                     class="form-control" id="descripcion" required />
                             </div>
 
                             <div class="form-group">
-                                <label for="estado">Estado</label>
+                                <span for="estado">Estado</span>
                                 <select class="form-control" id="estado" [(ngModel)]="tarea.Estado" name="estado">
                                     <option value="A">Activo</option>
                                     <option value="I">Inactivo</option>
@@ -100,14 +100,14 @@
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="descripcion">Descripción</label>
-                                <input name="descripcion" type="text" [(ngModel)]="selectedTarea.Descripcion"
-                                    class="form-control" id="descripcion" />
+                                <span for="descripcionE">Descripción</span>
+                                <input name="descripcionE" type="text" [(ngModel)]="selectedTarea.Descripcion"
+                                    class="form-control" id="descripcionE" pInputText />
                             </div>
 
                             <div class="form-group">
-                                <label for="estado">Estado</label>
-                                <select class="form-control" id="estado" name="estado"
+                                <span for="estadoE">Estado</span>
+                                <select class="form-control" id="estadoE" name="estadoE"
                                     [(ngModel)]="selectedTarea.Estado">
                                     <option value="A">Activo</option>
                                     <option value="I">Inactivo</option>

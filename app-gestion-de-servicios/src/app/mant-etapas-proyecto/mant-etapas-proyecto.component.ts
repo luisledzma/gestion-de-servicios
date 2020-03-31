@@ -37,11 +37,12 @@ export class MantEtapasProyectoComponent implements OnInit {
 
   cols = [
     { field: 'ID', header: 'N°'},
-    { field: 'Fecha_Creacion', header: 'Fecha'},
     { field: 'Descripcion', header: 'Descripción' },
     { field: 'Proyecto', header: 'Proyecto' },
+    { field: 'Horas_Estimadas', header: 'Horas estimadas' },
     { field: 'Horas_Invertidas', header: 'Horas invertidas' },
     { field: 'Estado', header: 'Estado' },
+    { field: 'Fecha_Creacion', header: 'Fecha Creación'},
     { field: 'Editar', header: '' },
   ];
 

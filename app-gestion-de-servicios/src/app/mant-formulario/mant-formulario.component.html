@@ -52,7 +52,7 @@
                         </tr>
                         <tr>
                             <th *ngFor="let col of cols" [ngSwitch]="col.field" colspan=1>
-                                <input *ngSwitchCase="'ID'" class="form-control text-success" placeholder="Identificación" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
+                                <input *ngSwitchCase="'ID'" class="form-control text-success" placeholder="N°" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
                                 <input *ngSwitchCase="'Cliente'" class="form-control text-success" placeholder="Cliente" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains');">
                                 <div class="ui-grid ui-grid-responsive ui-fluid">
                                     <div class="ui-grid-row">
@@ -67,11 +67,11 @@
                     <ng-template pTemplate="body" let-rep>
                         <tr>
                             <td><span class="ui-column-title">ID</span>{{rep.ID}}</td>
-                            <td><span class="ui-column-title">Fecha</span>{{rep.Fecha_Creacion}}</td>
                             <td><span class="ui-column-title">Cliente</span>{{rep.Cliente}}</td>
                             <td><span class="ui-column-title">Descripcion</span>{{rep.Descripcion_Tipo_Reporte}}</td>
                             <td><span class="ui-column-title">Horas a Facturar</span>{{rep.Horas_A_Facturar}}</td>
                             <td><span class="ui-column-title">Tarea Estándar</span>{{rep.Tareas_Estandar}}</td>
+                            <td><span class="ui-column-title">Fecha Creación</span>{{rep.Fecha_Creacion | date:'dd/MM/yyy HH:mm:ss'}}</td>
                             <ng-container *ngFor="let permiso2 of misPermisos">
                                 <ng-container *ngIf="permiso2.Descripcion_Seccion === 'Editar' && permiso2.Estado === 'A' ">
                                     <td><button type="button" class="btn btn-raised btn-warning" data-toggle="modal" data-target="#editModal"><i class="material-icons">edit</i>Editar</button></td>
@@ -297,7 +297,7 @@
                             <div class="form-group">
                                 <label for="horasFacturar">Horas a facturar</label>
                                 <br>
-                                <input id="horasFacturar" type="text" size="30" pInputText [(ngModel)]="reporte.Horas_A_Facturar" name="horasFacturar">
+                                <input id="horasFacturar" type="number" type="text" size="30" pInputText [(ngModel)]="reporte.Horas_A_Facturar" name="horasFacturar">
                             </div>
 
                             <div class="form-group">

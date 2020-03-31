@@ -80,7 +80,7 @@ export class MantTareasEstandarComponent implements OnInit {
   }
   
   onSubmitEdit(){
-    console.log('EntraAqui');
+    //console.log('EntraAqui');
     this.EditarTareaEstandar();
   }
 

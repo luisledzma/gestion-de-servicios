@@ -36,7 +36,6 @@ export class ContratosComponent implements OnInit {
 
   cols = [
     { field: 'ID', header: 'N°'},
-    { field: 'Fecha_Creacion', header: 'Fecha'},
     { field: 'Descripcion', header: 'Descripción' },
     { field: 'Cliente', header: 'Cliente' },
     { field: 'Monto_Total', header: 'Monto contrato' },
@@ -45,6 +44,7 @@ export class ContratosComponent implements OnInit {
     { field: 'Horas_Consumidas', header: 'Horas consumidas' },
     { field: 'Horas_Excedidas', header: 'Horas excedidas' },
     { field: 'Estado', header: 'Estado' },
+    { field: 'Fecha_Creacion', header: 'Fecha Creación'},
     { field: 'Editar', header: '' },
     { field: 'Cierre', header: 'Cierre de mes' },
   ];

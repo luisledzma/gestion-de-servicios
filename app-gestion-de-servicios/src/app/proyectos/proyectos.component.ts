@@ -36,12 +36,13 @@ export class ProyectosComponent implements OnInit {
 
   cols = [
     { field: 'ID', header: 'N°'},
-    { field: 'Fecha_Creacion', header: 'Fecha de creación'},
     { field: 'Descripcion', header: 'Descripción' },
     { field: 'Cliente', header: 'Cliente' },
+    { field: 'Horas_Estimadas', header: 'Horas estimadas' },
     { field: 'Horas_Invertidas', header: 'Horas invertidas' },
     { field: 'Monto_Total', header: 'Monto total' },
     { field: 'Estado', header: 'Estado' },
+    { field: 'Fecha_Creacion', header: 'Fecha Creación'},
     { field: '', header: 'Editar' },
   ];
 
