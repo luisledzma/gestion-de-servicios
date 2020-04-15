@@ -153,7 +153,7 @@ namespace API.LogicaNegocio
                 _db.SP_ADM_EjecutarCierreMes(contrato.ID,ref idReporte, ref correoCliente);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

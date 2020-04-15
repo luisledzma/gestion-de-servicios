@@ -252,6 +252,7 @@ export class MantFormularioComponent implements OnInit {
       message: 'Esta seguro que desea continuar? Verifique bien las horas ya que no se podran modificar mas adelante',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
+      acceptLabel: "Sí",
       accept: () => {
         this.InsertarReporte();
       },
